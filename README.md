@@ -16,6 +16,7 @@ The <b>MiniRT project</b> from 42 is a mini ray tracing engine. It's an introduc
 
 
 <div align="center">
+  
 Go to [42 Québec](https://42quebec.com/) to discover the course ! 👈
 </div>
 
