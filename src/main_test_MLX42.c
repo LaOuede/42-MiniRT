@@ -21,7 +21,7 @@ void	ft_randomize(void *param)
 				rand() % 0xFF, // R
 				rand() % 0xFF, // G
 				rand() % 0xFF, // B
-				rand() % 0xFF  // A
+				rand() % 0xFF // A
 			);
 			mlx_put_pixel(image, i, y, color);
 		}
