@@ -3,7 +3,7 @@
 
 # include "../MLX42/include/MLX42/MLX42.h"
 # include "../libft/include/libft.h"
-# include <stdbool.h>
+# include <math.h>
 # include <stdio.h>
 # include <stdlib.h>
 
