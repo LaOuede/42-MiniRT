@@ -6,7 +6,7 @@
 #    By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/31 12:57:00 by gle-roux          #+#    #+#              #
-#    Updated: 2023/07/31 14:26:54 by gle-roux         ###   ########.fr        #
+#    Updated: 2023/08/01 13:42:41 by gle-roux         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,7 +69,9 @@ NAME		=	miniRT
 
 # Dir. and files names
 SRCS_DIR	=	./src/
-SRCS_LIST	=	main_test_MLX42.c
+SRCS_LIST	=	main.c \
+				vectors_math1.c \
+				vectors_math2.c
 SRCS		=	$(addprefix $(SRCS_DIR), $(SRCS_LIST))
 
 OBJS_DIR	=	./obj/
@@ -78,7 +80,8 @@ OBJS		=	$(addprefix $(OBJS_DIR), $(OBJS_LIST))
 
 # Headers
 HEADER_DIR	=	./include/
-HEADER_LIST	=	miniRT.h
+HEADER_LIST	=	miniRT.h \
+				math.h
 HEADER		=	$(addprefix $(HEADER_DIR), $(HEADER_LIST))
 
 # Libft variables
