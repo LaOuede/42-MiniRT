@@ -1,5 +1,5 @@
 
-#include "../include/minirt.h"
+#include "minirt.h"
 
 
 //parses line input to the sphere struct

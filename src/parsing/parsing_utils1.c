@@ -1,5 +1,5 @@
 
-#include "../include/minirt.h"
+#include "minirt.h"
 
 
 //readability helper in parsing.c/new_struct()

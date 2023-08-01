@@ -1,5 +1,5 @@
 
-#include "../include/minirt.h"
+#include "minirt.h"
 
 
 //helps free in functions below

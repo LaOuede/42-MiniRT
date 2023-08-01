@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: macote <macote@student.42.fr>              +#+  +:+       +#+         #
+#    By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/31 12:57:00 by gle-roux          #+#    #+#              #
-#    Updated: 2023/08/01 14:57:22 by macote           ###   ########.fr        #
+#    Updated: 2023/08/01 15:59:49 by gle-roux         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -70,16 +70,16 @@ NAME		=	miniRT
 # Dir. and files names
 SRCS_DIR	=	./src/
 SRCS_LIST	=	main.c \
-				vectors_math1.c \
-				vectors_math2.c \
-				parsing.c \
+				parsing/parsing.c \
+				parsing/parsing_objects.c \
+				parsing/parsing_scene_info.c \
+				parsing/parsing_utils1.c \
+				parsing/parsing_helper.c \
+				parsing/parsing_error_handling.c \
 				utils1.c \
-				parsing_objects.c \
-				parsing_scene_info.c \
-				parsing_utils1.c \
-				parsing_helper.c \
-				parsing_error_handling.c \
-
+				vectors/vectors_math1.c \
+				vectors/vectors_math2.c \
+				vectors/vectors_math3.c
 SRCS		=	$(addprefix $(SRCS_DIR), $(SRCS_LIST))
 
 OBJS_DIR	=	./obj/
@@ -88,8 +88,7 @@ OBJS		=	$(addprefix $(OBJS_DIR), $(OBJS_LIST))
 
 # Headers
 HEADER_DIR	=	./include/
-HEADER_LIST	=	minirt.h \
-
+HEADER_LIST	=	minirt.h
 HEADER		=	$(addprefix $(HEADER_DIR), $(HEADER_LIST))
 
 # Libft variables
@@ -105,6 +104,9 @@ GLFW		=	-lglfw -L "/Users/$$USER/.brew/opt/glfw/lib/"
 # Evaluator variable
 USER		=	$(shell whoami)
 
+# Includes
+INCLUDE		= -I$(HEADER_DIR) -I$(LIBFT_DIR) -I$(MLX42_DIR)/include
+
 #------------------------------------------------------------------------------#
 #                                  RULES                                       #
 #------------------------------------------------------------------------------#
@@ -117,12 +119,12 @@ all: dir $(NAME)
 
 #Create directory for *.o files
 dir:
-	@mkdir -p $(OBJS_DIR)
+	@mkdir -p $(OBJS_DIR) $(OBJS_DIR)parsing $(OBJS_DIR)vectors
 
 # Compilation
 $(NAME): $(MLX42) $(LIBFT) $(OBJS)
 	@echo "$(ERASE_LINE)$W>>>>>>>>>>>>>>>>>>> $YCOMPILATION $Wis $Gdone ✅ $W<<<<<<<<<<<<<<<<<<<<"
-	@$(CC) $(CFLAGS) $(SRCS) $(LIBFT) $(MLX42) $(OPEN_GL) $(GLFW) -o $(NAME)
+	@$(CC) $(CFLAGS) $(SRCS) $(LIBFT) $(MLX42) $(OPEN_GL) $(GLFW) -o $(NAME) $(INCLUDE)
 	@echo "\n-------------- $WIf help is needed, type $Ymake help $W--------------"
 	@echo "\n>>>>>>>>>>>>>>>>>>>>>> $YMiniRT $Wis $Gready ✅$W <<<<<<<<<<<<<<<<<<<<<"
 
@@ -154,7 +156,7 @@ $(LIBFT):
 # Create all files .o (object) from files .c (source code)
 $(OBJS_DIR)%.o: $(SRCS_DIR)%.c $(HEADER)
 	@printf "$(ERASE_LINE) $GCompiling : $Z$(notdir $<)"
-	@$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@ $(INCLUDE)
 
 # Remove objects
 clean:
