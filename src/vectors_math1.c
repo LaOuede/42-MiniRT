@@ -1,4 +1,4 @@
-#include "../include/miniRT.h"
+#include "../include/minirt.h"
 
 /*
 ADDITION

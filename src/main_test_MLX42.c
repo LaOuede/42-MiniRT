@@ -1,4 +1,5 @@
-#include "../include/miniRT.h"
+#include "../include/minirt.h"
+
 
 #define WIDTH 512
 #define HEIGHT 512

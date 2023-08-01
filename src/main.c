@@ -1,44 +1,40 @@
-#include "../include/miniRT.h"
-#include "../include/math.h"
 
-/* void	*ft_get_ms(void *ptr)
+#include "../include/minirt.h"
+
+
+void free_minirt(void)
 {
-	static void	*ms = NULL;
+	t_minirt *minirt;
 
-	if (ptr)
-		ms = ptr;
-	return (ms);
+	minirt = get_minirt();
+	ft_lstclear(&minirt->objects);
+	ft_lstclear(&minirt->lights);
+	free(minirt);
 }
 
-void	ft_init_ms(t_rt *ms)
+t_minirt *get_minirt(void)
 {
-	printf("salut\n");
-	ms = ft_calloc(sizeof(t_rt), 1);
-	ft_get_ms(ms);
+	static t_minirt* minirt;
+
+	if (!minirt)
+		minirt = ft_calloc(1, sizeof(t_minirt));
+	return (minirt);
 }
 
-int	main(int argc, char **argv)
+void minirt(int fd)
 {
-	t_rt	ms;
+	get_minirt();
+	parse(fd);
+	free_minirt();
+}
 
-	if (argc != 2)
-		printf("Usage : ./miniRT <scene.rt>\n	-> One argument is needed <-\n");
-	else
-	{
-		ft_init_ms(&ms);
-		ms.mlx = mlx_init(WIDTH, HEIGHT, argv[1], 0);
-		ms.image = mlx_new_image(ms.mlx, WIDTH, HEIGHT);
-		mlx_image_to_window(ms.mlx, ms.image, 0, 0);
-	}
-	return (0);
-} */
-
-int	main(void)
+int main(int argc, char **argv)
 {
-	t_vec3	test = {4, 3, 7};
-	t_vec3	res;
-
-	res = vec_norm(test);
-	printf("x = %f\ny = %f\nz = %f\n", res.x, res.y, res.z);
+	int fd;
+	
+	check_args_validity(argc);
+	fd = open(argv[1], O_RDONLY);
+	minirt(fd);
+	close(fd);	
 	return (0);
 }

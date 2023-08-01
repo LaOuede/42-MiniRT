@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+         #
+#    By: macote <macote@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/31 12:57:00 by gle-roux          #+#    #+#              #
-#    Updated: 2023/08/01 13:42:41 by gle-roux         ###   ########.fr        #
+#    Updated: 2023/08/01 14:57:22 by macote           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -71,7 +71,15 @@ NAME		=	miniRT
 SRCS_DIR	=	./src/
 SRCS_LIST	=	main.c \
 				vectors_math1.c \
-				vectors_math2.c
+				vectors_math2.c \
+				parsing.c \
+				utils1.c \
+				parsing_objects.c \
+				parsing_scene_info.c \
+				parsing_utils1.c \
+				parsing_helper.c \
+				parsing_error_handling.c \
+
 SRCS		=	$(addprefix $(SRCS_DIR), $(SRCS_LIST))
 
 OBJS_DIR	=	./obj/
@@ -80,8 +88,8 @@ OBJS		=	$(addprefix $(OBJS_DIR), $(OBJS_LIST))
 
 # Headers
 HEADER_DIR	=	./include/
-HEADER_LIST	=	miniRT.h \
-				math.h
+HEADER_LIST	=	minirt.h \
+
 HEADER		=	$(addprefix $(HEADER_DIR), $(HEADER_LIST))
 
 # Libft variables
