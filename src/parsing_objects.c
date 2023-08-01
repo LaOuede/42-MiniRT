@@ -8,7 +8,7 @@ void parse_sphere(char **line, t_object *object)
 	t_sphere *sphere;
 
 	sphere = (t_sphere*)object->obj;
-	if (error_(line, EXPECTED_SPHERE))
+	if (error_(line, SPHERE))
 		return ;
 	
 	// check_sphere_validity(line);
@@ -24,7 +24,7 @@ void parse_cylinder(char **line, t_object *object)
 	t_cylindre *cylindre;
 
 	cylindre = (t_cylindre*)object->obj;
-	if (error_(line, EXPECTED_CYLINDER))
+	if (error_(line, CYLINDRE))
 		return ;
 	//check if valid
 
@@ -41,7 +41,7 @@ void parse_plane(char **line, t_object *object)
 	t_plan *plan;
 
 	plan = (t_plan*)object->obj;
-	if (error_(line, EXPECTED_PLANE))
+	if (error_(line, PLAN))
 		return ;
 		
 	parse_coordinates(line[1], &plan->position);
