@@ -7,7 +7,7 @@ void parse_light(char **line)
 {
 	t_light *new_light;
 	
-	if (error_(line, EXPECTED_LIGHT))
+	if (error_(line, LIGHT))
 		return ;
 
 	new_light = ft_calloc(1, sizeof(t_light));
@@ -23,7 +23,7 @@ void parse_camera(char **line)
 	if (get_minirt()->camera.exists)
 		get_minirt()->error_code = ERROR;
 		
-	if (error_(line, EXPECTED_CAMERA))
+	if (error_(line, CAMERA))
 		return ;
 	
 
@@ -38,7 +38,7 @@ void parse_ambiant_light(char **line)
 {
 	if (get_minirt()->ambiant_light.exists)
 		get_minirt()->error_code = ERROR;
-	if (error_(line, EXPECTED_AMB_LIGHT))
+	if (error_(line, AMBIANT_LIGHT))
 		return ;
 		
 	get_minirt()->ambiant_light.intensity = ft_atof(line[1]);
