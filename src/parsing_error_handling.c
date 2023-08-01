@@ -2,7 +2,7 @@
 
 #include "../include/minirt.h"
 
-
+//error 
 int bad_arg_count(char **line, int expected_nb)
 {
 	int nb_args;
