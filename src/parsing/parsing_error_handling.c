@@ -1,6 +1,6 @@
 
 
-#include "../include/minirt.h"
+#include "minirt.h"
 
 int expected_arg_count(int type)
 {

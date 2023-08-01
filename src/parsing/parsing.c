@@ -1,5 +1,5 @@
 
-#include "../include/minirt.h"
+#include "minirt.h"
 
 
 //Directs to the right parsing function depending on
