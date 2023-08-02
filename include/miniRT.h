@@ -6,7 +6,7 @@
 /*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 11:06:20 by macote            #+#    #+#             */
-/*   Updated: 2023/08/02 13:33:47 by gle-roux         ###   ########.fr       */
+/*   Updated: 2023/08/02 15:05:58 by gle-roux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -192,5 +192,8 @@ t_mat4	matrix_rotz(float angle);
 t_mat4	matrix_scale(float sx, float sy, float sz);
 t_mat4	matrix_translation(float tx, float ty, float tz);
 t_vec3	matrix_vec_mult(t_mat4 mat, t_vec3 v);
+
+//colors
+
 
 #endif

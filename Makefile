@@ -6,7 +6,7 @@
 #    By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/31 12:57:00 by gle-roux          #+#    #+#              #
-#    Updated: 2023/08/02 13:23:59 by gle-roux         ###   ########.fr        #
+#    Updated: 2023/08/02 15:03:04 by gle-roux         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -105,7 +105,7 @@ all: dir $(NAME)
 
 #Create directory for *.o files
 dir:
-	@mkdir -p $(OBJS_DIR) $(OBJS_DIR)parsing $(OBJS_DIR)vectors $(OBJS_DIR)matrices
+	@mkdir -p $(OBJS_DIR) $(OBJS_DIR)parsing $(OBJS_DIR)vectors $(OBJS_DIR)matrices $(OBJS_DIR)colors
 
 # Compilation
 $(NAME): $(MLX42) $(LIBFT) $(OBJS)
