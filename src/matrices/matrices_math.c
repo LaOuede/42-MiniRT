@@ -64,11 +64,11 @@ t_mat4	matrix_mult(t_mat4 mat1, t_mat4 mat2)
 			+ (mat1.p[row][1] * mat2.p[1][1]) \
 			+ (mat1.p[row][2] * mat2.p[2][1]) \
 			+ (mat1.p[row][3] * mat2.p[3][1]);
-		res.p[row][1] = (mat1.p[row][0] * mat2.p[0][2]) \
+		res.p[row][2] = (mat1.p[row][0] * mat2.p[0][2]) \
 			+ (mat1.p[row][1] * mat2.p[1][2]) \
 			+ (mat1.p[row][2] * mat2.p[2][2]) \
 			+ (mat1.p[row][3] * mat2.p[3][2]);
-		res.p[row][1] = (mat1.p[row][0] * mat2.p[0][3]) \
+		res.p[row][3] = (mat1.p[row][0] * mat2.p[0][3]) \
 			+ (mat1.p[row][1] * mat2.p[1][3]) \
 			+ (mat1.p[row][2] * mat2.p[2][3]) \
 			+ (mat1.p[row][3] * mat2.p[3][3]);
