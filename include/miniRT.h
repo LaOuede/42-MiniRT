@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minirt.h                                           :+:      :+:    :+:   */
+/*   miniRT.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: macote <macote@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 11:06:20 by macote            #+#    #+#             */
-/*   Updated: 2023/08/01 15:02:28 by macote           ###   ########.fr       */
+/*   Updated: 2023/08/02 13:33:47 by gle-roux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,13 +129,18 @@ typedef struct s_minirt
 }					t_minirt;
 
 //vector
-
 typedef struct s_vec3
 {
 	float	x;
 	float	y;
 	float	z;
 }	t_vec3;
+
+//matrix
+typedef struct s_mat4
+{
+	float	p[4][4];
+}	t_mat4;
 
 //parsing
 void				parse(int fd);
@@ -176,5 +181,16 @@ t_vec3	vec_mult(t_vec3 v1, t_vec3 v2);
 t_vec3	vec_norm(t_vec3 v);
 t_vec3	vec_scale(t_vec3 v, float scale);
 t_vec3	vec_subs(t_vec3 v1, t_vec3 v2);
+
+//matrices
+t_mat4	identity_matrix(void);
+t_mat4	matrix_copy(t_mat4 mat);
+t_mat4	matrix_mult(t_mat4 mat1, t_mat4 mat2);
+t_mat4	matrix_rotx(float angle);
+t_mat4	matrix_roty(float angle);
+t_mat4	matrix_rotz(float angle);
+t_mat4	matrix_scale(float sx, float sy, float sz);
+t_mat4	matrix_translation(float tx, float ty, float tz);
+t_vec3	matrix_vec_mult(t_mat4 mat, t_vec3 v);
 
 #endif
