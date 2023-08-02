@@ -88,7 +88,7 @@ t_mat4	matrix_roty(float angle)
 	rad = angle * M_PI / 180;
 	mat = identity_matrix();
 	mat.p[0][0] = cos(rad);
-	mat.p[0][3] = -sin(rad);
+	mat.p[0][2] = -sin(rad);
 	mat.p[2][0] = sin(rad);
 	mat.p[2][2] = cos(rad);
 	return (mat);
