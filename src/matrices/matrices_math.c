@@ -84,7 +84,7 @@ t_vec3	matrix_vec_mult(t_mat4 mat, t_vec3 v)
 	t_vec3	res;
 
 	res.x = (mat.p[0][0] * v.x) + (mat.p[1][0] * v.y) + (mat.p[2][0] * v.z);
-	res.x = (mat.p[0][1] * v.x) + (mat.p[1][1] * v.y) + (mat.p[2][1] * v.z);
-	res.x = (mat.p[0][2] * v.x) + (mat.p[1][2] * v.y) + (mat.p[2][2] * v.z);
+	res.y = (mat.p[0][1] * v.x) + (mat.p[1][1] * v.y) + (mat.p[2][1] * v.z);
+	res.z = (mat.p[0][2] * v.x) + (mat.p[1][2] * v.y) + (mat.p[2][2] * v.z);
 	return (res);
 }
