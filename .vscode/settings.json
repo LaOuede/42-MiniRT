@@ -4,7 +4,8 @@
 		"libft.h": "c",
 		"math.h": "c",
 		"__locale": "c",
-		"locale": "c"
+		"locale": "c",
+		"algorithm": "c"
 	},
 	"workbench.colorCustomizations": {
 		"activityBar.activeBackground": "#93e6fc",
