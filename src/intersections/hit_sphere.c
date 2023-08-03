@@ -12,19 +12,18 @@ typedef struct	s_ray
 Une autre structure permet de garder les infos pertinentes
 typedef struct	s_hit
 {
-	t_vec3	pt_coll; // coord du point de collision
-	float	dist; //distance au point de collision
+	t_vec3	col; // coord du point de collision
+	float	t; //distance au point de collision
 }	t_hit
 
 */
-bool	hit_sphere(t_ray ray, t_sphere *sphere, t_hit *infos)
+bool	hit_sphere(t_ray ray, t_sphere *sphere, t_hit *hit)
 {
 	float	a;
 	float	b;
 	float	c;
 	float	discriminant;
 	t_vec3	vec;
-	t_vec3	temp;
  
 	vec = vec_subs(ray.origin - sphere->position);
 	a = vec_dot(ray.direction, ray.direction);
@@ -35,7 +34,8 @@ bool	hit_sphere(t_ray ray, t_sphere *sphere, t_hit *infos)
 		return (false); // no hit
 	else
 	{
-		infos->dist = -b - sqrtf(discriminant) / (2.0 * a); // distance au point de collision
+		hit->t = -b - sqrtf(discriminant) / (2.0 * a); // distance au point de collision
+		hit->col = vec_add(ray.origin, vec_scale(ray.direction, hit->t)); // coord du point de collision = (vecteur directionnel * t) + vecteur origin
 		return (true); // HIT!
 	}
 }

@@ -45,24 +45,24 @@ NAME		=	miniRT
 
 # Dir. and files names
 SRCS_DIR	=	./src/
-SRCS_LIST	=	main.c \
+SRCS_LIST	=	intersections/hit_sphere.c \
+				main.c \
 				matrices/matrices_math.c \
 				matrices/matrices_transformations.c \
 				parsing/parsing.c \
+				parsing/object_error.c \
+				parsing/parsing_error_helper.c \
+				parsing/object_error_types.c \
+				parsing/object_error_utils.c \
+				parsing/parsing_error_handling.c \
+				parsing/parsing_helper.c \
 				parsing/parsing_objects.c \
 				parsing/parsing_scene_info.c \
 				parsing/parsing_utils1.c \
-				parsing/parsing_helper.c \
-				parsing/parsing_error_handling.c \
 				utils1.c \
 				vectors/vectors_math1.c \
 				vectors/vectors_math2.c \
 				vectors/vectors_math3.c \
-				parsing/parsing_error_helper.c \
-				parsing/object_error.c \
-				parsing/object_error_utils.c \
-				parsing/object_error_types.c \
-				
 SRCS		=	$(addprefix $(SRCS_DIR), $(SRCS_LIST))
 
 OBJS_DIR	=	./obj/
@@ -99,7 +99,7 @@ all: dir $(NAME)
 
 #Create directory for *.o files
 dir:
-	@mkdir -p $(OBJS_DIR) $(OBJS_DIR)parsing $(OBJS_DIR)vectors $(OBJS_DIR)matrices $(OBJS_DIR)colors
+	@mkdir -p $(OBJS_DIR) $(OBJS_DIR)parsing $(OBJS_DIR)vectors $(OBJS_DIR)matrices $(OBJS_DIR)colors $(OBJS_DIR)intersections
 
 # Compilation
 $(NAME): $(MLX42) $(LIBFT) $(OBJS)
