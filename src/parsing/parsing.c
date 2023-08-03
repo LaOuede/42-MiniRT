@@ -48,17 +48,6 @@ void new_scene_info(char **line)
 	}
 }
 
-
-//prints error message if the type of object is invalid
-//and just ignore the object and goes on to continue parsing
-void invalid_object(char *type)
-{	
-	perror("Error: \"");
-	perror(type);
-	perror("\" type is invalid");
-	get_minirt()->error_code = ERROR;
-}
-
 //redirects to the right parsing functions 
 void new_struct(char **line)
 {
@@ -72,9 +61,46 @@ void new_struct(char **line)
 	}
 	else
 	{
-		invalid_object(line[0]);
+		error(line, INVALID_OBJECT, NULL);
 	}
 	free_splitted_line(line);
+}
+
+//Helper to parse(). Cleans up output of get_next_line()
+char *trim_gnl(char *str)
+{
+	int i;
+	int count;
+	char *output;
+
+	if (!str)
+		return (NULL);
+	i = 1;
+	count = 1;
+	while (str[i])
+	{
+		if (!((str[i] == ' ' || str[i] == '	')
+			&& (str[i - 1] == ' ' || (str[i - 1] == '	')))
+			&& str[i] != '\n')
+			count++;
+		i++;
+	}
+	output = ft_calloc(sizeof(char), count + 1);
+	i = 0;
+	count = 0;
+	while (str[i])
+	{
+		if (!((str[i] == ' ' || str[i] == '	')
+			&& (str[i - 1] == ' ' || (str[i - 1] == '	')))
+			&& str[i] != '\n')
+		{
+			if (str[i] == '	')
+				str[i] = ' ';
+			output[count++] = str[i];
+		}
+		i++;
+	}
+	return (output);
 }
 
 //entry parsing function, reads lines with gnl
@@ -84,7 +110,7 @@ void parse(int fd)
 	char *next_line;
 	char **splitted_line;
 
-	next_line = get_next_line(fd);
+	next_line = trim_gnl(get_next_line(fd));
 	while (next_line)
 	{
 		splitted_line = ft_split(next_line, ' ');
@@ -92,6 +118,6 @@ void parse(int fd)
 
 		if (next_line)
 			free(next_line);
-		next_line = get_next_line(fd);
+		next_line = trim_gnl(get_next_line(fd));
 	}
 }

@@ -1,17 +1,6 @@
 
 #include "minirt.h"
 
-
-void free_minirt(void)
-{
-	t_minirt *minirt;
-
-	minirt = get_minirt();
-	ft_lstclear(&minirt->objects);
-	ft_lstclear(&minirt->lights);
-	free(minirt);
-}
-
 t_minirt *get_minirt(void)
 {
 	static t_minirt* minirt;
