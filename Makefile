@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+         #
+#    By: macote <macote@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/31 12:57:00 by gle-roux          #+#    #+#              #
-#    Updated: 2023/08/01 15:59:49 by gle-roux         ###   ########.fr        #
+#    Updated: 2023/08/02 12:53:29 by macote           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -79,7 +79,12 @@ SRCS_LIST	=	main.c \
 				utils1.c \
 				vectors/vectors_math1.c \
 				vectors/vectors_math2.c \
-				vectors/vectors_math3.c
+				vectors/vectors_math3.c \
+				parsing/parsing_error_helper.c \
+				parsing/object_error.c \
+				parsing/object_error_utils.c \
+				parsing/object_error_types.c \
+				
 SRCS		=	$(addprefix $(SRCS_DIR), $(SRCS_LIST))
 
 OBJS_DIR	=	./obj/
@@ -113,9 +118,6 @@ INCLUDE		= -I$(HEADER_DIR) -I$(LIBFT_DIR) -I$(MLX42_DIR)/include
 
 # Executable creation
 all: dir $(NAME)
-	@echo $Y"$$BANNER1"$W
-	@echo "				$W...powered by $Ygle-roux$W and $Ymacote$W"
-	@echo "					$W...evaluated by $Y$(USER)\n\n$W"
 
 #Create directory for *.o files
 dir:

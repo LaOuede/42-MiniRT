@@ -6,7 +6,7 @@
 /*   By: macote <macote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 11:06:20 by macote            #+#    #+#             */
-/*   Updated: 2023/08/01 15:02:28 by macote           ###   ########.fr       */
+/*   Updated: 2023/08/02 13:47:44 by macote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ typedef struct s_color
 //********************
 //OBJECTS STRUCTS INFO
 //********************
+
+//types of objects
 # define INVALID 0
 # define SPHERE 1
 # define CYLINDRE 2
@@ -67,6 +69,23 @@ typedef struct s_color
 # define EXPECTED_LIGHT 4
 # define EXPECTED_AMB_LIGHT 3
 # define EXPECTED_CAMERA 4
+
+//error codes
+# define INVALID_OBJECT 1
+# define BAD_ARG_COUNT_SPHERE 2
+# define BAD_ARG_COUNT_PLANE 3
+# define BAD_ARG_COUNT_CYLINDER 4
+# define BAD_ARG_COUNT_LIGHT 5
+# define BAD_ARG_COUNT_AMB_LIGHT 6
+# define BAD_ARG_COUNT_CAMERA 7
+# define BAD_ARGS_SPHERE 7
+# define BAD_ARGS_PLANE 8
+# define BAD_ARGS_CYLINDER 9
+# define BAD_ARGS_AMB_LIGHT 10
+# define BAD_ARGS_LIGHT 11
+# define BAD_ARGS_CAMERA 12
+
+
 
 typedef struct s_ambiant_light
 {
@@ -152,20 +171,40 @@ void parse_light(char **line);
 
 //parsing error handling
 int check_obj_arg_count(char **line, int expected_nb);
-int error_(char **line, int expected);
+void check_invalid_arg(char **line, int type, void *to_free);
+void error(char **line, int error_code, void *to_free);
+void check_bad_arg_count(char **line, int type, void *to_free);
+void check_error(char **line, int type, void *to_free);
+int expected_arg_count(int type);
 
+//object errors
+void check_sphere_args(char **line, void *to_free);
+void check_cylinder_args(char **line, void *to_free);
+void check_plane_args(char **line, void *to_free);
+void check_amb_light_args(char **line, void *to_free);
+void check_light_args(char **line, void *to_free);
+void check_camera_args(char **line, void *to_free);
 
+//error value input
+int invalid_value(char *coords);
+int invalid_value_limited(char *coords, float min, float max);
+int invalid_coords(char *coords);
+int invalid_coords_limited(char *coords, float min, float max);
+int nb_of_split(char **splits);
 
 
 //parsing utils
 int					is_scene_info(char *type);
 int					is_object(char *type);
 void free_splitted_line(char **line);
+int is_all_digit_dot(char *str);
 
 //utils
 void check_args_validity(int argc);
 float ft_atof(char *str);
+double ft_atod(char *str);
 t_minirt *get_minirt(void);
+void free_minirt(void);
 
 //vector
 t_vec3	vec_add(t_vec3 v1, t_vec3 v2);

@@ -7,8 +7,8 @@ void parse_light(char **line)
 {
 	t_light *new_light;
 	
-	if (error_(line, LIGHT))
-		return ;
+	check_error(line, LIGHT, NULL);
+
 
 	new_light = ft_calloc(1, sizeof(t_light));
 	parse_coordinates(line[1], &new_light->position);
@@ -20,11 +20,8 @@ void parse_light(char **line)
 //parses line input to the camera struct
 void parse_camera(char **line)
 {
-	if (get_minirt()->camera.exists)
-		get_minirt()->error_code = ERROR;
-		
-	if (error_(line, CAMERA))
-		return ;
+	check_error(line, CAMERA, NULL);
+
 	
 
 	parse_coordinates(line[1], &get_minirt()->camera.position);
@@ -36,10 +33,7 @@ void parse_camera(char **line)
 //parses line input to the ambiant light struct
 void parse_ambiant_light(char **line)
 {
-	if (get_minirt()->ambiant_light.exists)
-		get_minirt()->error_code = ERROR;
-	if (error_(line, AMBIANT_LIGHT))
-		return ;
+	check_error(line, AMBIANT_LIGHT, NULL);
 		
 	get_minirt()->ambiant_light.intensity = ft_atof(line[1]);
 	parse_colors(line[2], &get_minirt()->ambiant_light.color);
