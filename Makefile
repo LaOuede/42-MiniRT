@@ -6,26 +6,13 @@
 #    By: macote <macote@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/31 12:57:00 by gle-roux          #+#    #+#              #
-#    Updated: 2023/08/02 12:53:29 by macote           ###   ########.fr        #
+#    Updated: 2023/08/03 14:42:36 by macote           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #------------------------------------------------------------------------------#
 #                          BANNER & COLOR SETTINGS                             #
 #------------------------------------------------------------------------------#
-
-#Banner
-define BANNER1
-                   
-$G	               $Y_$G       $Y_$G ____  ______
-$G	    ____ ___  $Y(_)$G___  $Y(_)$G __ \/_  __/
-$G	   / __ `__ \/ / __ \/ / /_/ / / /   
-$C	  / / / / / / / / / / / _, _/ / /    
-$C	 /_/ /_/ /_/_/_/ /_/_/_/ |_| /_/
-
-
-endef
-export BANNER1
 
 # Colors settings
 R = $(shell tput -Txterm setaf 1)
@@ -70,6 +57,8 @@ NAME		=	miniRT
 # Dir. and files names
 SRCS_DIR	=	./src/
 SRCS_LIST	=	main.c \
+				matrices/matrices_math.c \
+				matrices/matrices_transformations.c \
 				parsing/parsing.c \
 				parsing/parsing_objects.c \
 				parsing/parsing_scene_info.c \
@@ -121,14 +110,14 @@ all: dir $(NAME)
 
 #Create directory for *.o files
 dir:
-	@mkdir -p $(OBJS_DIR) $(OBJS_DIR)parsing $(OBJS_DIR)vectors
+	@mkdir -p $(OBJS_DIR) $(OBJS_DIR)parsing $(OBJS_DIR)vectors $(OBJS_DIR)matrices $(OBJS_DIR)colors
 
 # Compilation
 $(NAME): $(MLX42) $(LIBFT) $(OBJS)
 	@echo "$(ERASE_LINE)$W>>>>>>>>>>>>>>>>>>> $YCOMPILATION $Wis $Gdone ✅ $W<<<<<<<<<<<<<<<<<<<<"
 	@$(CC) $(CFLAGS) $(SRCS) $(LIBFT) $(MLX42) $(OPEN_GL) $(GLFW) -o $(NAME) $(INCLUDE)
 	@echo "\n-------------- $WIf help is needed, type $Ymake help $W--------------"
-	@echo "\n>>>>>>>>>>>>>>>>>>>>>> $YMiniRT $Wis $Gready ✅$W <<<<<<<<<<<<<<<<<<<<<"
+	@echo "\n>>>>>>>>>>>>>>>>>>>>>> $YMiniRT $Wis $Gready ✅$W <<<<<<<<<<<<<<<<<<<<<\n"
 
 $(MLX42):
 	@echo "\n$W>>>>>>>>>>>>>>>>>>>>>>>> $YCONFIGURATION $W<<<<<<<<<<<<<<<<<<<<<<<<\n"

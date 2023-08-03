@@ -6,7 +6,7 @@
 /*   By: macote <macote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 11:06:20 by macote            #+#    #+#             */
-/*   Updated: 2023/08/02 13:47:44 by macote           ###   ########.fr       */
+/*   Updated: 2023/08/03 14:40:32 by macote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,13 +148,18 @@ typedef struct s_minirt
 }					t_minirt;
 
 //vector
-
 typedef struct s_vec3
 {
 	float	x;
 	float	y;
 	float	z;
 }	t_vec3;
+
+//matrix
+typedef struct s_mat4
+{
+	float	p[4][4];
+}	t_mat4;
 
 //parsing
 void				parse(int fd);
@@ -215,5 +220,24 @@ t_vec3	vec_mult(t_vec3 v1, t_vec3 v2);
 t_vec3	vec_norm(t_vec3 v);
 t_vec3	vec_scale(t_vec3 v, float scale);
 t_vec3	vec_subs(t_vec3 v1, t_vec3 v2);
+
+//matrices
+t_mat4	identity_matrix(void);
+t_mat4	matrix_copy(t_mat4 mat);
+t_mat4	matrix_mult(t_mat4 mat1, t_mat4 mat2);
+t_mat4	matrix_rotx(float angle);
+t_mat4	matrix_roty(float angle);
+t_mat4	matrix_rotz(float angle);
+t_mat4	matrix_scale(float sx, float sy, float sz);
+t_mat4	matrix_translation(float tx, float ty, float tz);
+t_vec3	matrix_vec_mult(t_mat4 mat, t_vec3 v);
+
+//colors
+t_color	add_2_colors(t_color col1, t_color col2);
+t_color	add_3_colors(t_color col1, t_color col2, t_color col3);
+t_color	color_scale(t_color col1, float scale);
+t_color	sub_2_colors(t_color col1, t_color col2);
+t_color	sub_3_colors(t_color col1, t_color col2, t_color col3);
+int		get_rgba(float r, float g, float b, float a);
 
 #endif
