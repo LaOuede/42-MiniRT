@@ -17,7 +17,7 @@ typedef struct	s_hit
 }	t_hit
 
 */
-bool	hit_sphere(t_ray ray, t_sphere *sphere, t_hit *hit)
+/* bool	hit_sphere(t_ray ray, t_sphere *sphere, t_hit *hit)
 {
 	float	a;
 	float	b;
@@ -38,4 +38,4 @@ bool	hit_sphere(t_ray ray, t_sphere *sphere, t_hit *hit)
 		hit->col = vec_add(ray.origin, vec_scale(ray.direction, hit->t)); // coord du point de collision = (vecteur directionnel * t) + vecteur origin
 		return (true); // HIT!
 	}
-}
+} */

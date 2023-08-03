@@ -62,7 +62,7 @@ SRCS_LIST	=	intersections/hit_sphere.c \
 				utils1.c \
 				vectors/vectors_math1.c \
 				vectors/vectors_math2.c \
-				vectors/vectors_math3.c \
+				vectors/vectors_math3.c
 SRCS		=	$(addprefix $(SRCS_DIR), $(SRCS_LIST))
 
 OBJS_DIR	=	./obj/
