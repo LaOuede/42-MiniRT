@@ -3,12 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: macote <macote@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/31 11:06:20 by macote            #+#    #+#             */
-/*   Updated: 2023/08/03 14:40:32 by macote           ###   ########.fr       */
+/*   Created: Invalid date        by                   #+#    #+#             */
+/*   Updated: 2023/08/03 14:55:03 by gle-roux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+
+
 
 #ifndef MINIRT_H
 # define MINIRT_H
@@ -35,6 +38,7 @@
 
 //commençons par dealer avec une seule ambiant light/ light / camera
 
+//même struct que vec3 - on pourrait changer le type au début pour que ça marche avec les fonctions de vecteurs ?
 typedef struct s_position
 {
 	float			x;
