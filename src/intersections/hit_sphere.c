@@ -9,12 +9,17 @@ typedef struct	s_ray
 	t_vec3	direction;
 }	t_ray
 
-Une autre structure permet de garder les infos pertinentes
+Une autre structure qui serait accessible depuis l'objet permet de garder les infos pertinentes en lien avec les hits
 typedef struct	s_hit
 {
 	t_vec3	col; // coord du point de collision
 	float	t; //distance au point de collision
 }	t_hit
+
+Equation :
+	 (d.d)t² + 2d.(p - c)t + (p - c)(p - c) - r² = 0
+	|______|  |___________| |___________________|
+		a			b				c
 
 */
 /* bool	hit_sphere(t_ray ray, t_sphere *sphere, t_hit *hit)
@@ -23,12 +28,12 @@ typedef struct	s_hit
 	float	b;
 	float	c;
 	float	discriminant;
-	t_vec3	vec;
+	t_vec3	displacement;
  
-	vec = vec_subs(ray.origin - sphere->position);
+	displacement = vec_subs(ray.origin - sphere->position);
 	a = vec_dot(ray.direction, ray.direction);
-	b = 2.0 * vec_dot(vec, ray.direction);
-	c = vec_dot(vec,vec) - sphere->rayon * sphere->rayon;
+	b = 2.0 * vec_dot(displacement, ray.direction);
+	c = vec_dot(displacement,displacement) - sphere->rayon * sphere->rayon;
 	discriminant = b * b - 4 * a * c;
 	if (discriminant < 0.0)
 		return (false); // no hit
