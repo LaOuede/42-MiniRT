@@ -166,6 +166,7 @@ void parse_light(char **line);
 
 //parsing error handling
 int check_obj_arg_count(char **line, int expected_nb);
+void check_file_validity(char *file);
 void check_invalid_arg(char **line, int type, void *to_free);
 void error(char **line, int error_code, void *to_free);
 void check_bad_arg_count(char **line, int type, void *to_free);

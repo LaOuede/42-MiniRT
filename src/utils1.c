@@ -94,6 +94,32 @@ double ft_atod(char *str)
 	return (resultat);
 }
 
+/*
+Checks :
+	- if the <file.rt> is valid / exist,
+	- if the extension is .rt,
+	- if .rt is a file and not a directory,
+	- if the file can be opened.
+*/
+void	check_file_validity(char *file)
+{
+	int		fd;
+	char	*check_file;
+
+	check_file = NULL;
+	check_file = ft_strrchr(file, '.');
+	if (!check_file)
+		ft_putstr_fd("Usage : ./miniRT <file.rt> : File is invalid\n", STDERR_FILENO);
+	else if (ft_strcmp(check_file, ".rt") != 0)
+		ft_putstr_fd("Usage : ./fdf <map.fdf> : File has an invalid extension\n", STDERR_FILENO);
+	else
+	{
+		fd = open(file, O_RDONLY);
+		if (fd == -1)
+		ft_putstr_fd("Usage : ./fdf <map.fdf> : File can't be opened OR File doesn't exist\n", STDERR_FILENO);
+	}
+}
+
 //Helper in main.c/main() to check if the input to 
 //the program is valid
 void check_args_validity(int argc)
