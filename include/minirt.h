@@ -196,6 +196,7 @@ void free_splitted_line(char **line);
 int is_all_digit_dot(char *str);
 
 //utils
+void	ft_free_lst(t_list **lst);
 void check_args_validity(int argc);
 float ft_atof(char *str);
 double ft_atod(char *str);

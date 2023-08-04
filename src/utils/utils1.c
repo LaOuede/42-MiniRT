@@ -130,13 +130,3 @@ void check_args_validity(int argc)
 		exit(EXIT_SUCCESS);//exit failure?
 	}
 }
-
-void free_minirt(void)
-{
-	t_minirt *minirt;
-
-	minirt = get_minirt();
-	ft_lstclear(&minirt->objects);
-	ft_lstclear(&minirt->lights);
-	free(minirt);
-}

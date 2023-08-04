@@ -100,6 +100,7 @@ char *trim_gnl(char *str)
 		}
 		i++;
 	}
+	str = ft_freenull(str);
 	return (output);
 }
 
@@ -117,7 +118,7 @@ void parse(int fd)
 		new_struct(splitted_line);
 
 		if (next_line)
-			free(next_line);
+			next_line = ft_freenull(next_line);
 		next_line = trim_gnl(get_next_line(fd));
 	}
 }

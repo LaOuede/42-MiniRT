@@ -59,7 +59,8 @@ SRCS_LIST	=	intersections/hit_sphere.c \
 				parsing/parsing_objects.c \
 				parsing/parsing_scene_info.c \
 				parsing/parsing_utils1.c \
-				utils1.c \
+				utils/utils1.c \
+				utils/utils_free.c \
 				vectors/vectors_math1.c \
 				vectors/vectors_math2.c \
 				vectors/vectors_math3.c
@@ -99,7 +100,7 @@ all: dir $(NAME)
 
 #Create directory for *.o files
 dir:
-	@mkdir -p $(OBJS_DIR) $(OBJS_DIR)parsing $(OBJS_DIR)vectors $(OBJS_DIR)matrices $(OBJS_DIR)colors $(OBJS_DIR)intersections
+	@mkdir -p $(OBJS_DIR) $(OBJS_DIR)parsing $(OBJS_DIR)vectors $(OBJS_DIR)matrices $(OBJS_DIR)colors $(OBJS_DIR)intersections $(OBJS_DIR)utils
 
 # Compilation
 $(NAME): $(MLX42) $(LIBFT) $(OBJS)
