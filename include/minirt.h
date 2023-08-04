@@ -13,8 +13,8 @@
 # include <math.h>
 
 /* --------------------SETTINGS-------------------- */
-# define WIDTH 1920
-# define HEIGHT 1080
+/* # define WIDTH 1920
+# define HEIGHT 1080 */
 
 #define ERROR -1
 

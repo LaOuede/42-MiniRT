@@ -47,6 +47,7 @@ NAME		=	miniRT
 SRCS_DIR	=	./src/
 SRCS_LIST	=	intersections/hit_sphere.c \
 				main.c \
+				main_MLX.c \
 				matrices/matrices_math.c \
 				matrices/matrices_transformations.c \
 				parsing/parsing.c \
