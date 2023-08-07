@@ -17,30 +17,33 @@ typedef struct	s_hit
 }	t_hit
 
 Equation :
-	 (d.d)t² + 2d.(p - c)t + (p - c)(p - c) - r² = 0
-	|______|  |___________| |___________________|
-		a			b				c
+	       
+	     ___a___
+	    |       |
+	     c - p.n
+	t = ---------
+	       d.n
+	      |___|
+			b
 
 */
-/* bool	hit_sphere(t_ray ray, t_sphere *sphere, t_hit *hit)
+bool	hit_plane(t_ray ray, t_plan *plane, t_hit *hit)
 {
 	float	a;
 	float	b;
-	float	c;
-	float	delta;
-	t_vec3	displacement;
- 
-	displacement = vec_subs(ray.origin - sphere->position);
-	a = vec_dot(ray.direction, ray.direction);
-	b = 2.0 * vec_dot(displacement, ray.direction);
-	c = vec_dot(displacement,displacement) - sphere->rayon * sphere->rayon;
-	delta = b * b - 4 * a * c;
-	if (delta < 0.0)
+	float	t;
+
+	a = vec_dot(vec_subs(plane->position - ray.origin), vec_norm(plane->direction));
+	b = vec_dot(ray.direction, vec_norm(plane->direction));
+	if (b < 0.0001)
+		return (false); // no hit - means ray is perpendicular to plane
+	t = a / b;
+	if (t < 0.0)
 		return (false); // no hit
 	else
 	{
-		hit->t = -b - sqrtf(delta) / (2.0 * a); // distance au point de collision
+		hit->t = t; // distance au point de collision
 		hit->col = vec_add(ray.origin, vec_scale(ray.direction, hit->t)); // coord du point de collision = (vecteur directionnel * t) + vecteur origin
 		return (true); // HIT!
 	}
-} */
+}
