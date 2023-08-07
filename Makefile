@@ -46,6 +46,7 @@ NAME		=	miniRT
 # Dir. and files names
 SRCS_DIR	=	./src/
 SRCS_LIST	=	intersections/hit_sphere.c \
+				intersections/hit_plane.c \
 				main.c \
 				main_MLX.c \
 				matrices/matrices_math.c \
@@ -105,23 +106,23 @@ dir:
 
 # Compilation
 $(NAME): $(MLX42) $(LIBFT) $(OBJS)
-	@echo "$(ERASE_LINE)$W>>>>>>>>>>>>>>>>>>> $YCOMPILATION $Wis $Gdone ✅ $W<<<<<<<<<<<<<<<<<<<<"
+	@echo "$(ERASE_LINE)$W>>>>>>>>>>>>>>>>>> $YCONFIGURATION $Wis $Gdone ✅ $W<<<<<<<<<<<<<<<<<<<"
 	@$(CC) $(CFLAGS) $(SRCS) $(LIBFT) $(MLX42) $(OPEN_GL) $(GLFW) -o $(NAME) $(INCLUDE)
 	@echo "\n-------------- $WIf help is needed, type $Ymake help $W--------------"
 	@echo "\n>>>>>>>>>>>>>>>>>>>>>> $YMiniRT $Wis $Gready ✅$W <<<<<<<<<<<<<<<<<<<<<\n"
 
 $(MLX42):
 	@echo "\n$W>>>>>>>>>>>>>>>>>>>>>>>> $YCONFIGURATION $W<<<<<<<<<<<<<<<<<<<<<<<<\n"
-	@echo "****************** Checking for $YBREW $Wupdate *******************\n"
+	@echo "------------------- Checking for $YBREW $Wupdate ------------------\n"
 	@brew update
 	@if brew search cmake &> /dev/null; then \
-		echo "\n***************** $YCMAKE $Wis already $Ginstalled$W ******************\n"; \
+		echo "\n------------------ $YCMAKE $Wis already $Ginstalled$W -----------------\n"; \
 	else \
 		echo "\n**************** $RInstalling $ZCMAKE please wait$W *****************\n"; \
 		brew install cmake > /dev/null; \
 	fi
 	@if brew list glfw &> /dev/null; then \
-		echo "****************** $YGLFW $Wis already $Ginstalled$W ******************\n"; \
+		echo "------------------ $YGLFW $Wis already $Ginstalled$W ------------------\n"; \
 	else \
 		echo "***************** $RInstalling $ZGLFW please wait$W *****************\n"; \
 		brew install glfw &> /dev/null; \
@@ -131,13 +132,13 @@ $(MLX42):
 		cmake MLX42 -B $(MLX42_DIR) &> /dev/null && make -C $(MLX42_DIR) -j4; \
 	fi
 	@echo "\n$W----------------------- $Ymlx42 $Wis $Gdone ✅ $W----------------------\n"
-	
+
 $(LIBFT):
 	@make -C $(LIBFT_DIR)
 
 # Create all files .o (object) from files .c (source code)
 $(OBJS_DIR)%.o: $(SRCS_DIR)%.c $(HEADER)
-	@printf "$(ERASE_LINE) $GCompiling : $Z$(notdir $<)"
+	@printf "$(ERASE_LINE) $YCompiling : $W$(notdir $<)"
 	@$(CC) $(CFLAGS) -c $< -o $@ $(INCLUDE)
 
 # Remove objects
