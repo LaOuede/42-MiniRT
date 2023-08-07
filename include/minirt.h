@@ -88,14 +88,14 @@ typedef struct s_light
 {
 	float			intensity; //between 0 and 1
 	t_color			color;   //******pas utilisé dans la partie obligatoire******
-	t_position		position;
+	t_vec3			position;
 }					t_light;
 
 typedef struct s_camera
 {
 	float			field_of_view;  //values between 0 and 180
-	t_position		direction; //vector values between 0 and 1
-	t_position		position;
+	t_vec3			direction; //vector values between 0 and 1
+	t_vec3			position;
 	int				exists;
 }					t_camera;
 
@@ -109,14 +109,14 @@ typedef struct s_sphere
 {
 	float			rayon; //faire (diametre en input) / 2
 	t_color			color;
-	t_position		position;
+	t_vec3			position;
 }					t_sphere;
 
 typedef struct s_plan
 {
 	t_color			color;
-	t_position		direction; //vector values between 0 and 1
-	t_position		position;
+	t_vec3			direction; //vector values between 0 and 1
+	t_vec3			position;
 }					t_plan;
 
 typedef struct s_cylindre
@@ -124,8 +124,8 @@ typedef struct s_cylindre
 	float			rayon;
 	float			hauteur;
 	t_color			color;
-	t_position		direction; //vector values between -1 and 1
-	t_position		position;
+	t_vec3			direction; //vector values between -1 and 1
+	t_vec3			position;
 }					t_cylindre;
 
 typedef struct s_minirt
