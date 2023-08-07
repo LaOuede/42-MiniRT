@@ -25,12 +25,6 @@
 //commençons par dealer avec une seule ambiant light/ light / camera
 
 //même struct que vec3 - on pourrait changer le type au début pour que ça marche avec les fonctions de vecteurs ?
-typedef struct s_position
-{
-	float			x;
-	float			y;
-	float			z;
-}					t_position;
 
 typedef struct s_color
 {
@@ -76,66 +70,14 @@ typedef struct s_color
 # define BAD_ARGS_CAMERA 12
 
 
-
-typedef struct s_ambiant_light
+typedef s_ray_info
 {
-	float			intensity; //between 0 and 1
-	t_color			color;
-	int				exists;
-}					t_ambiant_light;
-
-typedef struct s_light
-{
-	float			intensity; //between 0 and 1
-	t_color			color;   //******pas utilisé dans la partie obligatoire******
-	t_position		position;
-}					t_light;
-
-typedef struct s_camera
-{
-	float			field_of_view;  //values between 0 and 180
-	t_position		direction; //vector values between 0 and 1
-	t_position		position;
-	int				exists;
-}					t_camera;
-
-typedef struct s_object
-{
-	int				type;
-	void			*obj;
-}					t_object;
-
-typedef struct s_sphere
-{
-	float			rayon; //faire (diametre en input) / 2
-	t_color			color;
-	t_position		position;
-}					t_sphere;
-
-typedef struct s_plan
-{
-	t_color			color;
-	t_position		direction; //vector values between 0 and 1
-	t_position		position;
-}					t_plan;
-
-typedef struct s_cylindre
-{
-	float			rayon;
-	float			hauteur;
-	t_color			color;
-	t_position		direction; //vector values between -1 and 1
-	t_position		position;
-}					t_cylindre;
-
-typedef struct s_minirt
-{
-	t_list			*objects;
-	t_ambiant_light	ambiant_light;
-	t_list			*lights; //multiple lights?
-	t_camera		camera;
-	int				error_code;
-}					t_minirt;
+	float height;
+	float width;
+	t_vec3 forward;
+	t_vec3 right;
+	t_vec3 up;
+}		t_ray_info;
 
 //vector
 typedef struct s_vec3
@@ -151,6 +93,67 @@ typedef struct s_mat4
 	float	p[4][4];
 }	t_mat4;
 
+typedef struct s_ambiant_light
+{
+	float			intensity; //between 0 and 1
+	t_color			color;
+	int				exists;
+}					t_ambiant_light;
+
+typedef struct s_light
+{
+	float			intensity; //between 0 and 1
+	t_color			color;   //******pas utilisé dans la partie obligatoire******
+	t_vec3		position;
+}					t_light;
+
+typedef struct s_camera
+{
+	float			field_of_view;  //values between 0 and 180
+	t_vec3		direction; //vector values between 0 and 1
+	t_vec3		position;
+	int				exists;
+}					t_camera;
+
+typedef struct s_object
+{
+	int				type;
+	void			*obj;
+}					t_object;
+
+typedef struct s_sphere
+{
+	float			rayon; //faire (diametre en input) / 2
+	t_color			color;
+	t_vec3		position;
+}					t_sphere;
+
+typedef struct s_plan
+{
+	t_color			color;
+	t_vec3		direction; //vector values between 0 and 1
+	t_vec3		position;
+}					t_plan;
+
+typedef struct s_cylindre
+{
+	float			rayon;
+	float			hauteur;
+	t_color			color;
+	t_vec3		direction; //vector values between -1 and 1
+	t_vec3		position;
+}					t_cylindre;
+
+typedef struct s_minirt
+{
+	t_list			*objects;
+	t_ambiant_light	ambiant_light;
+	t_list			*lights; //multiple lights?
+	t_camera		camera;
+	int				error_code;
+}					t_minirt;
+
+
 //parsing
 void				parse(int fd);
 void				parse_to_struct(t_list **objects, char **line);
@@ -158,7 +161,7 @@ void				parse_sphere(char **line, t_object *object);
 void				parse_cylinder(char **line, t_object *object);
 void				parse_plane(char **line, t_object *object);
 void free_parse_functions(char **split);
-void parse_coordinates(char *coordinates, t_position *position);
+void parse_coordinates(char *coordinates, t_vec3 *position);
 void parse_colors(char *coordinates, t_color *color);
 void parse_ambiant_light(char **line);
 void parse_camera(char **line);
@@ -212,6 +215,7 @@ t_vec3	vec_mult(t_vec3 v1, t_vec3 v2);
 t_vec3	vec_norm(t_vec3 v);
 t_vec3	vec_scale(t_vec3 v, float scale);
 t_vec3	vec_subs(t_vec3 v1, t_vec3 v2);
+t_vec3	vec_unit_vec(t_vec3 v1, t_vec3 v2);
 
 //matrices
 t_mat4	identity_matrix(void);
@@ -232,4 +236,6 @@ t_color	sub_2_colors(t_color col1, t_color col2);
 t_color	sub_3_colors(t_color col1, t_color col2, t_color col3);
 int		get_rgba(float r, float g, float b, float a);
 
+//ray launcher
+void ray_launcher(mlx_t* mlx);
 #endif

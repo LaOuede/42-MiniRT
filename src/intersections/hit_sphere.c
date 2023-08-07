@@ -22,7 +22,7 @@ Equation :
 		a			b				c
 
 */
-/* bool	hit_sphere(t_ray ray, t_sphere *sphere, t_hit *hit)
+bool	hit_sphere(t_ray ray, t_sphere *sphere, t_hit *hit)
 {
 	float	a;
 	float	b;
@@ -30,7 +30,7 @@ Equation :
 	float	delta;
 	t_vec3	displacement;
  
-	displacement = vec_subs(ray.origin - sphere->position);
+	displacement = vec_subs(get_minirt()->camera.position,  sphere->position);
 	a = vec_dot(ray.direction, ray.direction);
 	b = 2.0 * vec_dot(displacement, ray.direction);
 	c = vec_dot(displacement,displacement) - sphere->rayon * sphere->rayon;
@@ -40,7 +40,7 @@ Equation :
 	else
 	{
 		hit->t = -b - sqrtf(delta) / (2.0 * a); // distance au point de collision
-		hit->col = vec_add(ray.origin, vec_scale(ray.direction, hit->t)); // coord du point de collision = (vecteur directionnel * t) + vecteur origin
+		hit->col = vec_add(get_minirt()->camera.position, vec_scale(ray.direction, hit->t)); // coord du point de collision = (vecteur directionnel * t) + vecteur origin
 		return (true); // HIT!
 	}
-} */
+}

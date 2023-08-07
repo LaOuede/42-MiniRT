@@ -26,6 +26,7 @@ void parse_camera(char **line)
 
 	parse_coordinates(line[1], &get_minirt()->camera.position);
 	parse_coordinates(line[2], &get_minirt()->camera.direction);
+	vec_norm(get_minirt()->camera.direction);
 	get_minirt()->camera.field_of_view = ft_atof(line[3]);
 	get_minirt()->camera.exists = TRUE;
 }

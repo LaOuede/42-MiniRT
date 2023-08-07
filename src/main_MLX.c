@@ -1,7 +1,7 @@
 #include "minirt.h"
 
-#define WIDTH 512
-#define HEIGHT 512
+#define WIDTH 1600
+#define HEIGHT 900
 
 static mlx_image_t* image;
 
@@ -68,7 +68,7 @@ int32_t	main(int32_t argc, const char* argv[])
 		puts(mlx_strerror(mlx_errno));
 		return(EXIT_FAILURE);
 	}
-
+	ray_launcher(mlx);
 	mlx_loop_hook(mlx, ft_randomize, mlx);
 	mlx_loop_hook(mlx, ft_hook, mlx);
 

@@ -53,3 +53,8 @@ float	vec_mag(t_vec3 v)
 	len = sqrtf((v.x * v.x) + (v.y * v.y) + (v.z * v.z));
 	return (len);
 }
+
+t_vec3	vec_unit_vec(t_vec3 v1, t_vec3 v2)
+{
+	return (vec_norm(vec_subs(v1, v2)));
+}

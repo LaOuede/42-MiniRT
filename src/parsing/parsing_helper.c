@@ -12,7 +12,7 @@ void free_parse_functions(char **split)
 }
 
 //helps parse triplets of coordinates or vecor coordinates (x,y,z)
-void parse_coordinates(char *coordinates, t_position *position)
+void parse_coordinates(char *coordinates, t_vec3 *position)
 {
 	char **xyz;
 	
