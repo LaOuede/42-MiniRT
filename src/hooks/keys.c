@@ -20,8 +20,10 @@ void	keys_exit(void *param)
 	minirt = (t_minirt *)param;
 	if (mlx_is_key_down(minirt->mlx, MLX_KEY_ESCAPE)
 		|| mlx_is_key_down(minirt->mlx, MLX_KEY_Q))
+	{
 		free_minirt();
-	
+		exit(EXIT_SUCCESS);
+	}
 }
 
 void	minirt_keys(mlx_key_data_t keydata, void *param)
