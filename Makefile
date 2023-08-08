@@ -105,7 +105,7 @@ all: dir $(NAME)
 
 #Create directory for *.o files
 dir:
-	@mkdir -p $(OBJS_DIR) $(OBJS_DIR)parsing $(OBJS_DIR)vectors $(OBJS_DIR)matrices $(OBJS_DIR)colors $(OBJS_DIR)intersections $(OBJS_DIR)utils $(OBJS_DIR)ray_generation
+	@mkdir -p $(OBJS_DIR) $(OBJS_DIR)parsing $(OBJS_DIR)vectors $(OBJS_DIR)matrices $(OBJS_DIR)colors $(OBJS_DIR)intersections $(OBJS_DIR)utils $(OBJS_DIR)ray_generation $(OBJS_DIR)hooks
 
 # Compilation
 $(NAME): $(MLX42) $(LIBFT) $(OBJS)

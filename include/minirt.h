@@ -159,6 +159,9 @@ typedef struct s_minirt
 	t_list			*lights; //multiple lights?
 	t_camera		camera;
 	int				error_code;
+	mlx_t			*mlx;
+	mlx_image_t		*image;
+	keys_t			*keys;
 }					t_minirt;
 
 
