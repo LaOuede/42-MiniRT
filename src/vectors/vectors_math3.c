@@ -16,11 +16,11 @@ t_vec3	vec_copy(t_vec3 v)
 /*
 RESET
 */
-void	vec_reset(t_vec3 v)
+void	vec_reset(t_vec3 *v)
 {
-	v.x = 0;
-	v.y = 0;
-	v.z = 0;
+	v->x = 0;
+	v->y = 0;
+	v->z = 0;
 }
 
 /*

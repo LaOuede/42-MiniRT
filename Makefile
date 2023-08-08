@@ -66,7 +66,8 @@ SRCS_LIST	=	intersections/hit_sphere.c \
 				vectors/vectors_math1.c \
 				vectors/vectors_math2.c \
 				vectors/vectors_math3.c \
-				ray_generation/primary_ray.c \
+				ray_generation/ray_launcher.c \
+				ray_generation/find_closest_hit.c \
 # 
 SRCS		=	$(addprefix $(SRCS_DIR), $(SRCS_LIST))
 

@@ -22,25 +22,31 @@ Equation :
 		a			b				c
 
 */
-bool	hit_sphere(t_ray ray, t_sphere *sphere, t_hit *hit)
+void	hit_sphere(t_vec3 d, t_object *packed_sphere, t_hit *hit)
 {
 	float	a;
 	float	b;
 	float	c;
 	float	delta;
 	t_vec3	displacement;
- 
+	t_sphere *sphere;
+
+	sphere = packed_sphere->obj;
+
 	displacement = vec_subs(get_minirt()->camera.position,  sphere->position);
-	a = vec_dot(ray.direction, ray.direction);
-	b = 2.0 * vec_dot(displacement, ray.direction);
+	a = vec_dot(d, d);
+	b = 2.0 * vec_dot(displacement, d);
 	c = vec_dot(displacement,displacement) - sphere->rayon * sphere->rayon;
 	delta = b * b - 4 * a * c;
 	if (delta < 0.0)
-		return (false); // no hit
+	{
+		hit->obj = NULL;
+		hit->t = ERROR;
+	}
 	else
 	{
+		hit->obj = packed_sphere;
 		hit->t = -b - sqrtf(delta) / (2.0 * a); // distance au point de collision
-		hit->col = vec_add(get_minirt()->camera.position, vec_scale(ray.direction, hit->t)); // coord du point de collision = (vecteur directionnel * t) + vecteur origin
-		return (true); // HIT!
+		// hit->col = vec_add(get_minirt()->camera.position, vec_scale(ray.direction, hit->t)); // coord du point de collision = (vecteur directionnel * t) + vecteur origin
 	}
 }

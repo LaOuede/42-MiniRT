@@ -315,6 +315,7 @@ int32_t main(int32_t argc, const char* argv[])
 		puts(mlx_strerror(mlx_errno));
 		return(EXIT_FAILURE);
 	}
+
 	
 	mlx_loop_hook(mlx, ft_randomize, mlx);
 	mlx_loop_hook(mlx, ft_hook, mlx);

@@ -70,14 +70,7 @@ typedef struct s_color
 # define BAD_ARGS_CAMERA 12
 
 
-typedef s_ray_info
-{
-	float height;
-	float width;
-	t_vec3 forward;
-	t_vec3 right;
-	t_vec3 up;
-}		t_ray_info;
+
 
 //vector
 typedef struct s_vec3
@@ -86,6 +79,21 @@ typedef struct s_vec3
 	float	y;
 	float	z;
 }	t_vec3;
+
+typedef struct s_ray_info
+{
+	float width;
+	float height;
+	float x;
+	float y;
+	int px;
+	int py;
+	t_vec3 d;
+	t_vec3 forward;
+	t_vec3 right;
+	t_vec3 up;
+}		t_ray_info;
+
 
 //matrix
 typedef struct s_mat4
@@ -153,6 +161,17 @@ typedef struct s_minirt
 	int				error_code;
 }					t_minirt;
 
+typedef struct s_hit
+{
+	float t;
+	t_object *obj;
+}				t_hit;
+
+typedef struct s_shading
+{
+	t_vec3 light_dir;
+	t_vec3 normal_vec;
+}				t_shading;
 
 //parsing
 void				parse(int fd);
@@ -216,6 +235,8 @@ t_vec3	vec_norm(t_vec3 v);
 t_vec3	vec_scale(t_vec3 v, float scale);
 t_vec3	vec_subs(t_vec3 v1, t_vec3 v2);
 t_vec3	vec_unit_vec(t_vec3 v1, t_vec3 v2);
+void	vec_reset(t_vec3 *v);
+
 
 //matrices
 t_mat4	identity_matrix(void);
@@ -236,6 +257,8 @@ t_color	sub_2_colors(t_color col1, t_color col2);
 t_color	sub_3_colors(t_color col1, t_color col2, t_color col3);
 int		get_rgba(float r, float g, float b, float a);
 
-//ray launcher
+// __!!!RAY-TRACING MAIN FUNCITONS!!!__
 void ray_launcher(mlx_t* mlx);
+void find_closest_hit(t_ray_info ray, t_hit *closest_hit);
+
 #endif

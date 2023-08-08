@@ -56,7 +56,7 @@ int32_t	main(int32_t argc, const char* argv[])
 		puts(mlx_strerror(mlx_errno));
 		return(EXIT_FAILURE);
 	}
-	if (!(image = mlx_new_image(mlx, 128, 128)))
+	if (!(image = mlx_new_image(mlx, WIDTH, HEIGHT)))
 	{
 		mlx_close_window(mlx);
 		puts(mlx_strerror(mlx_errno));
@@ -68,9 +68,11 @@ int32_t	main(int32_t argc, const char* argv[])
 		puts(mlx_strerror(mlx_errno));
 		return(EXIT_FAILURE);
 	}
-	ray_launcher(mlx);
-	mlx_loop_hook(mlx, ft_randomize, mlx);
-	mlx_loop_hook(mlx, ft_hook, mlx);
+	// ray_launcher(mlx);
+
+	// mlx_loop_hook(mlx, ft_randomize, mlx);
+	// mlx_loop_hook(mlx, ft_hook, mlx);
+
 
 	mlx_loop(mlx);
 	mlx_terminate(mlx);
