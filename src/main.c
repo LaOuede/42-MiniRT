@@ -17,7 +17,7 @@ void minirt(int fd)
 	free_minirt();
 }
 
-/* int main(int argc, char **argv)
+int main(int argc, char **argv)
 {
 	int fd;
 	
@@ -25,6 +25,5 @@ void minirt(int fd)
 	check_file_validity(argv[1]);
 	fd = open(argv[1], O_RDONLY);
 	minirt(fd);
-	close(fd);	
 	return (0);
-} */
+}

@@ -13,7 +13,7 @@
 /*
 	Handles hook for program closure;
 */
-void	keys_exit(mlx_key_data_t keydata, void *param)
+void	keys_exit(void *param)
 {
 	t_minirt	*minirt;
 
@@ -27,7 +27,7 @@ void	keys_exit(mlx_key_data_t keydata, void *param)
 void	minirt_keys(mlx_key_data_t keydata, void *param)
 {
 	(void) param;
-	keys_exit(keydata, param);
-	keys_size(keydata, param);
-	keys_objects(keydata, param);
+	keys_exit(param);
+	keys_camera(keydata, param);
+	//keys_objects(keydata, param);
 }

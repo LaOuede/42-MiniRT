@@ -26,7 +26,8 @@ Surface normal vector :
 RUN "make int" to see informations
 
 */
-bool	hit_plane(t_object *obj_actuel, t_plan *plane)
+
+/* bool	hit_plane(t_object *obj_actuel, t_plan *plane)
 {
 	float	a;
 	float	b;
@@ -50,6 +51,7 @@ bool	hit_plane(t_object *obj_actuel, t_plan *plane)
 		obj_actuel = plane;
 		return (t); // HIT!
 	}
-}
+} */
+
 /* 		hit->t = t; // distance au point de collision
 		hit->col = vec_add(ray.origin, vec_scale(ray.direction, hit->t)); // coord du point de collision = (vecteur directionnel * t) + vecteur origin */

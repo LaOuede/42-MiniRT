@@ -44,7 +44,7 @@ void ft_hook(void* param)
 		image->instances[0].x += 5;
 }
 
-int32_t	main(int32_t argc, const char* argv[])
+/* int32_t	main(int32_t argc, const char* argv[])
 {
 	mlx_t* mlx;
 
@@ -75,4 +75,4 @@ int32_t	main(int32_t argc, const char* argv[])
 	mlx_loop(mlx);
 	mlx_terminate(mlx);
 	return (EXIT_SUCCESS);
-}
+} */

@@ -69,16 +69,6 @@ typedef struct s_color
 # define BAD_ARGS_LIGHT 11
 # define BAD_ARGS_CAMERA 12
 
-
-typedef s_ray_info
-{
-	float height;
-	float width;
-	t_vec3 forward;
-	t_vec3 right;
-	t_vec3 up;
-}		t_ray_info;
-
 //vector
 typedef struct s_vec3
 {
@@ -86,6 +76,15 @@ typedef struct s_vec3
 	float	y;
 	float	z;
 }	t_vec3;
+
+typedef struct s_ray_info
+{
+	float	height;
+	float	width;
+	t_vec3	forward;
+	t_vec3	right;
+	t_vec3	up;
+}		t_ray_info;
 
 //matrix
 typedef struct s_mat4
@@ -244,7 +243,7 @@ void ray_launcher(mlx_t* mlx);
 
 //hooks
 void	camera_translation(t_minirt *minirt, keys_t key);
-void	keys_exit(mlx_key_data_t keydata, void *param);
+void	keys_exit(void *param);
 void	keys_camera(mlx_key_data_t keydata, void *param);
 void	minirt_keys(mlx_key_data_t keydata, void *param);
 

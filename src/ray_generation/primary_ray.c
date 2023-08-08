@@ -1,6 +1,6 @@
 #include "minirt.h"
 
-void single_ray(t_vec3 grid_position)
+/* void single_ray(t_vec3 grid_position)
 {
 	t_vec3 d;
 
@@ -31,9 +31,9 @@ void single_ray(t_vec3 grid_position)
 	//parcours linked list d'object et met a jour closest hit si hit plus proche
 
 	//shadow_ray(closest_hit)
-}
+} */
 
-void ray_launcher(mlx_t* mlx)
+/* void ray_launcher(mlx_t* mlx)
 {
 	int py;
 	int px;
@@ -65,4 +65,4 @@ void ray_launcher(mlx_t* mlx)
 		}
 		py++;
 	}
-}
+} */

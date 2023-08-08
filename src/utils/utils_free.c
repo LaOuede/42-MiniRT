@@ -1,6 +1,21 @@
 
 #include "minirt.h"
 
+void	ft_free_lights(t_list **lst)
+{
+	t_list	*ptr;
+
+	if (!lst)
+		return ;
+	ptr = *lst;
+	while (*lst != NULL)
+	{
+		ptr = (*lst)->next;
+		ft_lstdelone(*lst);
+		*lst = ptr;
+	}
+}
+
 void	ft_free_lst(t_list **lst)
 {
 	t_list	*ptr;
@@ -34,6 +49,6 @@ void free_minirt(void)
 	if (minirt->objects)
 		ft_free_lst(&minirt->objects);
 	if (minirt->lights)
-		ft_free_lst(&minirt->lights);
+		ft_free_lights(&minirt->lights);
 	minirt = ft_freenull(minirt);
 }

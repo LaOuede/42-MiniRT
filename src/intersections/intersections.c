@@ -1,6 +1,6 @@
 #include "minirt.h"
 
-float	search_intersection(t_object *obj)
+/* float	search_intersection(t_object *obj)
 {
 	float	t;
 
@@ -10,4 +10,4 @@ float	search_intersection(t_object *obj)
 		t = hit_plane(obj);
 	else if (obj->type == CYLINDRE)
 		t = hit_cylinder(obj);
-}
+} */

@@ -21,7 +21,7 @@ Surface normal vector :
 RUN "make int" to see informations
 
 */
-float	hit_sphere(t_object *obj_actuel)
+/* float	hit_sphere(t_object *obj_actuel)
 {
 	float		a;
 	float		b;
@@ -46,7 +46,7 @@ float	hit_sphere(t_object *obj_actuel)
 		obj_actuel = obj;
 		return (-b - sqrtf(delta) / (2.0 * a)); // HIT!
 	}
-}
+} */
 
 /* 		hit->t = -b - sqrtf(delta) / (2.0 * a); // distance au point de collision
 		hit->col_pt = vec_add(ray.origin, vec_scale(ray.direction, hit->t)); // coord du point de collision = (vecteur directionnel * t) + vecteur origin
