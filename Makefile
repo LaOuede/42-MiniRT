@@ -45,8 +45,9 @@ NAME		=	miniRT
 
 # Dir. and files names
 SRCS_DIR	=	./src/
-SRCS_LIST	=	intersections/intersections.c \
-				intersections/hit_plane.c \
+SRCS_LIST	=	hooks/hooks_camera.c \
+				hooks/keys.c \
+				intersections/intersections.c \
 				intersections/hit_plane.c \
 				main.c \
 				main_MLX.c \
@@ -68,7 +69,7 @@ SRCS_LIST	=	intersections/intersections.c \
 				vectors/vectors_math2.c \
 				vectors/vectors_math3.c \
 				ray_generation/primary_ray.c \
-# 
+
 SRCS		=	$(addprefix $(SRCS_DIR), $(SRCS_LIST))
 
 OBJS_DIR	=	./obj/

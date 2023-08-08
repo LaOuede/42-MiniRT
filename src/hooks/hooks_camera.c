@@ -3,7 +3,7 @@
 void	camera_translation(t_minirt *minirt, keys_t key)
 {
 	if (key == MLX_KEY_RIGHT)
-		minirt.
+		minirt->camera.position
 	if (key == MLX_KEY_LEFT)
 
 	if (key == MLX_KEY_DOWN)
@@ -23,5 +23,4 @@ void	keys_camera(mlx_key_data_t keydata, void *param)
 		|| (mlx_is_key_down(minirt->mlx, MLX_KEY_DOWN))
 		|| (mlx_is_key_down(minirt->mlx, MLX_KEY_UP))
 		camera_translation(minirt, keydata.key);
-
 }

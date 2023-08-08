@@ -241,4 +241,11 @@ int		get_rgba(float r, float g, float b, float a);
 
 //ray launcher
 void ray_launcher(mlx_t* mlx);
+
+//hooks
+void	camera_translation(t_minirt *minirt, keys_t key);
+void	keys_exit(mlx_key_data_t keydata, void *param);
+void	keys_camera(mlx_key_data_t keydata, void *param);
+void	minirt_keys(mlx_key_data_t keydata, void *param);
+
 #endif
