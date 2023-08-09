@@ -2,14 +2,17 @@
 
 void	camera_translation(t_minirt *minirt, keys_t key)
 {
+	t_mat4	move;
+
+	move = vec_scale(minirt->camera.direction, 0.75);
 	if (key == MLX_KEY_RIGHT)
-		minirt->camera.position.x += 5;
+		minirt->camera.direction = vec_add(minirt->camera.direction, move);
 	if (key == MLX_KEY_LEFT)
-		minirt->camera.position.x -= 5;
+		minirt->camera.direction = vec_subs(minirt->camera.direction, move);
 	if (key == MLX_KEY_DOWN)
-		minirt->camera.position.y -= 5;
+		minirt->camera.direction = vec_add(minirt->camera.direction, move);
 	if (key == MLX_KEY_UP)
-		minirt->camera.position.y += 5;
+		minirt->camera.direction = vec_subs(minirt->camera.direction, move);
 
 
 }
