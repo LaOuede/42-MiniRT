@@ -17,7 +17,7 @@ void minirt(int fd)
 	free_minirt();
 }
 
-int main(int argc, char **argv)
+/* int main(int argc, char **argv)
 {
 	int fd;
 	
@@ -26,4 +26,4 @@ int main(int argc, char **argv)
 	fd = open(argv[1], O_RDONLY);
 	minirt(fd);
 	return (0);
-}
+} */
