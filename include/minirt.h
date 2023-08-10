@@ -273,6 +273,9 @@ void find_closest_hit(t_ray_info ray, t_hit *closest_hit);
 
 
 //hooks
+void	camera_rotation_yaw(t_minirt *minirt, keys_t key);
+void	camera_rotation_pitch(t_minirt *minirt, keys_t key);
+void	camera_rotation_roll(t_minirt *minirt, keys_t key);
 void	camera_translation_x(t_minirt *minirt, keys_t key);
 void	camera_translation_y(t_minirt *minirt, keys_t key);
 void	camera_translation_z(t_minirt *minirt, keys_t key);

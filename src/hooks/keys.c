@@ -56,16 +56,16 @@ void	keys_camera(mlx_key_data_t keydata, void *param)
 	t_minirt	*minirt;
 
 	minirt = (t_minirt *)param;
-	if (mlx_is_key_down(minirt->mlx, MLX_KEY_A)
-		|| mlx_is_key_down(minirt->mlx, MLX_KEY_D))
-		camera_translation_x(minirt, keydata.key);
-/* 	if (mlx_is_key_down(minirt->mlx, MLX_KEY_W)
-		|| mlx_is_key_down(minirt->mlx, MLX_KEY_S))
-		camera_translation_y(minirt, keydata.key);
-	if (mlx_is_key_down(minirt->mlx, MLX_KEY_R)
+	if (mlx_is_key_down(minirt->mlx, MLX_KEY_S)
 		|| mlx_is_key_down(minirt->mlx, MLX_KEY_F))
+		camera_translation_x(minirt, keydata.key);
+	if (mlx_is_key_down(minirt->mlx, MLX_KEY_E)
+		|| mlx_is_key_down(minirt->mlx, MLX_KEY_D))
 		camera_translation_y(minirt, keydata.key);
-	if (mlx_is_key_down(minirt->mlx, MLX_KEY_L)
+	if (mlx_is_key_down(minirt->mlx, MLX_KEY_W)
+		|| mlx_is_key_down(minirt->mlx, MLX_KEY_R))
+		camera_translation_z(minirt, keydata.key);
+/* 	if (mlx_is_key_down(minirt->mlx, MLX_KEY_L)
 		|| mlx_is_key_down(minirt->mlx, MLX_KEY_J))
 		camera_rotation_yaw(minirt, keydata.key);
 	if (mlx_is_key_down(minirt->mlx, MLX_KEY_I)
