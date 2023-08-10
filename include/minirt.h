@@ -232,6 +232,7 @@ float ft_atof(char *str);
 double ft_atod(char *str);
 t_minirt *get_minirt(void);
 void free_minirt(void);
+void	map_erase(t_minirt *minirt);
 
 //vector
 t_vec3	vec_add(t_vec3 v1, t_vec3 v2);
@@ -248,7 +249,7 @@ void	vec_reset(t_vec3 *v);
 
 //matrices
 t_mat4	identity_matrix(void);
-t_mat4	init_cam_matrix(t_vec3 right, t_vec3 up, t_vec3 forward, t_vec3 origin);
+t_mat4	init_cam_matrix(t_vec3 right, t_vec3 up, t_vec3 forward);
 t_mat4	matrix_copy(t_mat4 mat);
 t_mat4	matrix_mult(t_mat4 mat1, t_mat4 mat2);
 t_mat4	matrix_rotx(float angle);

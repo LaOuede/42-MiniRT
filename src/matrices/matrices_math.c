@@ -7,17 +7,17 @@ When the identity matrix represents a geometric transformation,
 the object remains unchanged by the transformation.
 In other contexts, it is analogous to multiplying by the number 1.
 */
-// t_mat4	identity_matrix(void)
-// {
-// 	t_mat4	id_mat;
+t_mat4	identity_matrix(void)
+{
+	t_mat4	id_mat;
 
-// 	ft_bzero(&id_mat, sizeof(t_mat4));
-// 	id_mat.p[0][0] = 1;
-// 	id_mat.p[1][1] = 1;
-// 	id_mat.p[2][2] = 1;
-// 	id_mat.p[3][3] = 1;
-// 	return (id_mat);
-// }
+	ft_bzero(&id_mat, sizeof(t_mat4));
+	id_mat.p[0][0] = 1;
+	id_mat.p[1][1] = 1;
+	id_mat.p[2][2] = 1;
+	id_mat.p[3][3] = 1;
+	return (id_mat);
+}
 
 // /*
 // MATRIX COPY

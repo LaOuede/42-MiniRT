@@ -30,17 +30,19 @@
 // 	// Add function to redraw the scene
 // }
 
-// void	camera_translation_x(t_minirt *minirt, keys_t key)
-// {
-// 	t_vec3	move;
+void	camera_translation_x(t_minirt *minirt, keys_t key)
+{
+	t_vec3	move;
 
-// 	move.x = minirt->cam_matrix.p[0][0];
-// 	move.y = minirt->cam_matrix.p[0][1];
-// 	move.z = minirt->cam_matrix.p[0][2];
-// 	move = vec_scale(move, 0.5);
-// 	if (key == MLX_KEY_D)
-// 		minirt->camera.position = vec_add(minirt->camera.position, move);
-// 	if (key == MLX_KEY_A)
-// 		minirt->camera.position = vec_subs(minirt->camera.position, move);
-// 	// Add function to redraw the scene
-// }
+	move.x = minirt->cam_matrix.p[0][0];
+	move.y = minirt->cam_matrix.p[0][1];
+	move.z = minirt->cam_matrix.p[0][2];
+	move = vec_scale(move, 5);
+	if (key == MLX_KEY_D)
+	{
+		minirt->camera.position = vec_add(minirt->camera.position, move);
+	}
+	if (key == MLX_KEY_A)
+		minirt->camera.position = vec_subs(minirt->camera.position, move);
+	ray_launcher();
+}

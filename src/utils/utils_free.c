@@ -41,9 +41,9 @@ void	ft_free_lst(t_list **lst)
 	*lst = NULL;
 }
 
-void free_minirt(void)
+void	free_minirt(void)
 {
-	t_minirt *minirt;
+	t_minirt	*minirt;
 
 	minirt = get_minirt();
 	if (minirt->objects)

@@ -51,52 +51,53 @@
 // 		ligh_translation_y(minirt, keydata.key);
 // }
 
-// void	keys_camera(mlx_key_data_t keydata, void *param)
-// {
-// 	t_minirt	*minirt;
+void	keys_camera(mlx_key_data_t keydata, void *param)
+{
+	t_minirt	*minirt;
 
-// 	minirt = (t_minirt *)param;
-// 	if (mlx_is_key_down(minirt->mlx, MLX_KEY_A)
-// 		|| mlx_is_key_down(minirt->mlx, MLX_KEY_D))
-// 		camera_translation_x(minirt, keydata.key);
-// 	if (mlx_is_key_down(minirt->mlx, MLX_KEY_W)
-// 		|| mlx_is_key_down(minirt->mlx, MLX_KEY_S))
-// 		camera_translation_y(minirt, keydata.key);
-// 	if (mlx_is_key_down(minirt->mlx, MLX_KEY_R)
-// 		|| mlx_is_key_down(minirt->mlx, MLX_KEY_F))
-// 		camera_translation_y(minirt, keydata.key);
-// 	if (mlx_is_key_down(minirt->mlx, MLX_KEY_L)
-// 		|| mlx_is_key_down(minirt->mlx, MLX_KEY_J))
-// 		camera_rotation_yaw(minirt, keydata.key);
-// 	if (mlx_is_key_down(minirt->mlx, MLX_KEY_I)
-// 		|| mlx_is_key_down(minirt->mlx, MLX_KEY_K))
-// 		camera_rotation_pitch(minirt, keydata.key);
-// 	if (mlx_is_key_down(minirt->mlx, MLX_KEY_O)
-// 		|| mlx_is_key_down(minirt->mlx, MLX_KEY_U))
-// 		camera_rotation_roll(minirt, keydata.key);
-// }
+	minirt = (t_minirt *)param;
+	if (mlx_is_key_down(minirt->mlx, MLX_KEY_A)
+		|| mlx_is_key_down(minirt->mlx, MLX_KEY_D))
+		camera_translation_x(minirt, keydata.key);
+/* 	if (mlx_is_key_down(minirt->mlx, MLX_KEY_W)
+		|| mlx_is_key_down(minirt->mlx, MLX_KEY_S))
+		camera_translation_y(minirt, keydata.key);
+	if (mlx_is_key_down(minirt->mlx, MLX_KEY_R)
+		|| mlx_is_key_down(minirt->mlx, MLX_KEY_F))
+		camera_translation_y(minirt, keydata.key);
+	if (mlx_is_key_down(minirt->mlx, MLX_KEY_L)
+		|| mlx_is_key_down(minirt->mlx, MLX_KEY_J))
+		camera_rotation_yaw(minirt, keydata.key);
+	if (mlx_is_key_down(minirt->mlx, MLX_KEY_I)
+		|| mlx_is_key_down(minirt->mlx, MLX_KEY_K))
+		camera_rotation_pitch(minirt, keydata.key);
+	if (mlx_is_key_down(minirt->mlx, MLX_KEY_O)
+		|| mlx_is_key_down(minirt->mlx, MLX_KEY_U))
+		camera_rotation_roll(minirt, keydata.key); */
+	ray_launcher();
+}
 
 // /*
 // 	Handles hook for program closure;
 // */
-// void	keys_exit(void *param)
-// {
-// 	t_minirt	*minirt;
+void	keys_exit(void *param)
+{
+	t_minirt	*minirt;
 
-// 	minirt = (t_minirt *)param;
-// 	if (mlx_is_key_down(minirt->mlx, MLX_KEY_ESCAPE)
-// 		|| mlx_is_key_down(minirt->mlx, MLX_KEY_Q))
-// 	{
-// 		free_minirt();
-// 		exit(EXIT_SUCCESS);
-// 	}
-// }
+	minirt = (t_minirt *)param;
+	if (mlx_is_key_down(minirt->mlx, MLX_KEY_ESCAPE)
+		|| mlx_is_key_down(minirt->mlx, MLX_KEY_Q))
+	{
+		free_minirt();
+		exit(EXIT_SUCCESS);
+	}
+}
 
-// void	minirt_keys(mlx_key_data_t keydata, void *param)
-// {
-// 	(void) param;
-// 	keys_exit(param);
-// 	keys_camera(keydata, param);
-// 	keys_light(keydata, param);
-// 	keys_object(keydata, param);
-// }
+void	minirt_keys(mlx_key_data_t keydata, void *param)
+{
+	(void) keydata;
+	keys_exit(param);
+	keys_camera(keydata, param);
+	//keys_light(keydata, param);
+	//keys_object(keydata, param);
+}

@@ -55,7 +55,7 @@ void find_closest_hit(t_ray_info ray, t_hit *closest_hit)
 		{
 			if (hit.obj->type == SPHERE)
 			{
-				mlx_put_pixel(get_minirt()->image, ray.px, ray.py, get_rgba(255, 0, 0, 255));
+				mlx_put_pixel(get_minirt()->image, ray.px, ray.py, get_rgba(204, 0, 255, 255));
 			}
 			else
 				mlx_put_pixel(get_minirt()->image, ray.px, ray.py, get_rgba(0, 0, 255, 255));

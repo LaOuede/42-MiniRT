@@ -40,6 +40,7 @@ static void init_direcions(t_ray_info *ray)
 	ray->up = vec_scale(vec_cross(vec_norm(ray->right), ray->forward), ray->height);
 	ray->forward = vec_scale(ray->forward, 3.0f);
 	vec_reset(&ray->d);
+	get_minirt()->cam_matrix = init_cam_matrix(ray->right, ray->up, ray->forward);
 }
 
 static void pre_launch_operations(t_ray_info *ray)
@@ -57,6 +58,7 @@ void ray_launcher(void)
 	t_hit closest_hit;
 	// t_shading shading;
 
+	map_erase(get_minirt());
 	init_direcions(&ray);
 	ray.py = -1;
 	while (++ray.py < (int)get_minirt()->image->height)

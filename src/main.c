@@ -14,9 +14,10 @@ void minirt(int fd)
 {
 	mlx_t* mlx;
 	mlx_image_t *image;
+	t_minirt *minirt;
 
 
-	get_minirt();
+	minirt = get_minirt();
 	parse(fd);
 
 	// Gotta error check this stuff
@@ -40,10 +41,9 @@ void minirt(int fd)
 	get_minirt()->mlx = mlx;
 	get_minirt()->image = image;
 
+	mlx_key_hook(mlx, &minirt_keys, minirt);
 	ray_launcher();
 	mlx_loop(mlx);
-
-	
 	mlx_terminate(mlx);
 	free_minirt();
 }
