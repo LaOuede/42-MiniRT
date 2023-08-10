@@ -44,9 +44,9 @@ void	hit_sphere(t_vec3 d, t_object *packed_sphere, t_hit *hit)
 	}
 	else
 	{
+		// hit->col = vec_add(get_minirt()->camera.position, vec_scale(ray.direction, hit->t)); // coord du point de collision = (vecteur directionnel * t) + vecteur origin
 		hit->obj = packed_sphere;
 		hit->t = -b - sqrtf(delta) / (2.0 * a); // distance au point de collision
-		// hit->col = vec_add(get_minirt()->camera.position, vec_scale(ray.direction, hit->t)); // coord du point de collision = (vecteur directionnel * t) + vecteur origin
 	}
 }
 

@@ -46,11 +46,20 @@ void find_closest_hit(t_ray_info ray, t_hit *closest_hit)
 		object = current->content;
 		if (object->type == SPHERE)
 			hit_sphere(ray.d, object, &hit);
+		else if (object->type == PLAN)
+			hit_plane(ray.d, object, &hit);
+		
 		///////////////////////////////////////////////////////////////////////
 
 		if (hit.obj && (first_hit(TRUE) || hit.t < closest_hit->t))
 		{
-			mlx_put_pixel(get_minirt()->image, ray.px, ray.py, get_rgba(255, 0, 0, 255));
+			if (hit.obj->type == SPHERE)
+			{
+				mlx_put_pixel(get_minirt()->image, ray.px, ray.py, get_rgba(255, 0, 0, 255));
+			}
+			else
+				mlx_put_pixel(get_minirt()->image, ray.px, ray.py, get_rgba(0, 0, 255, 255));
+			
 			update_closest_hit(closest_hit, hit);
 		}
 		current = current->next;

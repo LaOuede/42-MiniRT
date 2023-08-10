@@ -51,9 +51,10 @@ SRCS_LIST	=	hooks/camera_rotation.c \
 				hooks/keys.c \
 				intersections/intersections.c \
 				intersections/hit_plane.c \
+				intersections/hit_sphere.c \
 				main.c \
 				main_MLX.c \
-				matrices/init.c \
+				matrices/matrices_init.c \
 				matrices/matrices_math.c \
 				matrices/matrices_transformations.c \
 				parsing/parsing.c \
@@ -115,7 +116,8 @@ all: dir $(NAME)
 dir:
 	@mkdir -p $(OBJS_DIR) $(OBJS_DIR)parsing \
 	$(OBJS_DIR)vectors $(OBJS_DIR)matrices $(OBJS_DIR)colors \
-	$(OBJS_DIR)intersections $(OBJS_DIR)utils $(OBJS_DIR)ray_generation
+	$(OBJS_DIR)intersections $(OBJS_DIR)utils $(OBJS_DIR)ray_generation \
+	$(OBJS_DIR)hooks
 
 # Compilation
 $(NAME): $(MLX42) $(LIBFT) $(OBJS)

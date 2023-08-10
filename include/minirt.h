@@ -200,6 +200,7 @@ int expected_arg_count(int type);
 
 //intersections
 void	hit_sphere(t_vec3 d, t_object *packed_sphere, t_hit *hit);
+void	hit_plane(t_vec3 d, t_object *obj_actuel, t_hit *hit);
 
 
 //object errors
@@ -266,7 +267,9 @@ t_color	sub_3_colors(t_color col1, t_color col2, t_color col3);
 int		get_rgba(float r, float g, float b, float a);
 
 //ray launcher
-void ray_launcher(mlx_t* mlx);
+void ray_launcher();
+void find_closest_hit(t_ray_info ray, t_hit *closest_hit);
+
 
 //hooks
 void	camera_translation_x(t_minirt *minirt, keys_t key);

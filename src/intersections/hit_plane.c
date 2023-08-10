@@ -27,31 +27,33 @@ RUN "make int" to see informations
 
 */
 
-/* bool	hit_plane(t_object *obj_actuel, t_plan *plane)
+void	hit_plane(t_vec3 d, t_object *packed_plane, t_hit *hit)
 {
 	float	a;
 	float	b;
 	float	t;
+	t_plan *plane;
 
+	plane = (t_plan *)packed_plane->obj;
 	a = vec_dot(vec_subs(plane->position, get_minirt()->camera.position), vec_norm(plane->direction));
-	b = vec_dot(ray.direction, vec_norm(plane->direction)); // need to change ray.direction
+	b = vec_dot(d, vec_norm(plane->direction)); // need to change ray.direction
 	if (b < 0.0001)
 	{
-		obj_actuel = NULL;
-		return (-1.0); // no hit - means ray is perpendicular to plane
+		// no hit - means ray is perpendicular to plane
+		hit->obj = NULL;
 	}
 	t = a / b;
 	if (t < 0.0001)
 	{
-		obj_actuel = NULL;
-		return (-1.0); // no hit
+		// no hit
+		hit->obj = NULL;
 	}
 	else
 	{
-		obj_actuel = plane;
-		return (t); // HIT!
+		hit->obj = packed_plane;
+		hit->t = t; // HIT
 	}
-} */
+}
 
 /* 		hit->t = t; // distance au point de collision
 		hit->col = vec_add(ray.origin, vec_scale(ray.direction, hit->t)); // coord du point de collision = (vecteur directionnel * t) + vecteur origin */
