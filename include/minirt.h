@@ -149,6 +149,7 @@ typedef struct s_minirt
 	t_ambiant_light	ambiant_light;
 	t_list			*lights; //multiple lights?
 	t_camera		camera;
+	t_mat4			cam_matrix;
 	int				error_code;
 	mlx_t			*mlx;
 	mlx_image_t		*image;
@@ -221,6 +222,7 @@ t_vec3	vec_unit_vec(t_vec3 v1, t_vec3 v2);
 
 //matrices
 t_mat4	identity_matrix(void);
+t_mat4	init_cam_matrix(t_vec3 right, t_vec3 up, t_vec3 forward, t_vec3 origin);
 t_mat4	matrix_copy(t_mat4 mat);
 t_mat4	matrix_mult(t_mat4 mat1, t_mat4 mat2);
 t_mat4	matrix_rotx(float angle);
@@ -242,9 +244,14 @@ int		get_rgba(float r, float g, float b, float a);
 void ray_launcher(mlx_t* mlx);
 
 //hooks
-void	camera_translation(t_minirt *minirt, keys_t key);
+void	camera_translation_x(t_minirt *minirt, keys_t key);
+void	camera_translation_y(t_minirt *minirt, keys_t key);
+void	camera_translation_z(t_minirt *minirt, keys_t key);
 void	keys_exit(void *param);
 void	keys_camera(mlx_key_data_t keydata, void *param);
+void	light_translation_x(t_minirt *minirt, keys_t key);
+void	light_translation_y(t_minirt *minirt, keys_t key);
+void	light_translation_z(t_minirt *minirt, keys_t key);
 void	minirt_keys(mlx_key_data_t keydata, void *param);
 
 #endif

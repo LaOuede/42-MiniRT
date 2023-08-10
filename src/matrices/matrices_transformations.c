@@ -59,8 +59,8 @@ t_mat4	matrix_rotx(float angle)
 	t_mat4	mat;
 	float	rad;
 
-	rad = angle * M_PI / 180;
 	mat = identity_matrix();
+	rad = angle * M_PI / 180;
 	mat.p[1][1] = cos(rad);
 	mat.p[1][2] = sin(rad);
 	mat.p[2][1] = -sin(rad);

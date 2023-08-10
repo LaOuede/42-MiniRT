@@ -45,12 +45,15 @@ NAME		=	miniRT
 
 # Dir. and files names
 SRCS_DIR	=	./src/
-SRCS_LIST	=	hooks/hooks_camera.c \
+SRCS_LIST	=	hooks/camera_rotation.c \
+				hooks/camera_translation.c \
+				hooks/light_translation.c \
 				hooks/keys.c \
 				intersections/intersections.c \
 				intersections/hit_plane.c \
 				main.c \
 				main_MLX.c \
+				matrices/init.c \
 				matrices/matrices_math.c \
 				matrices/matrices_transformations.c \
 				parsing/parsing.c \
