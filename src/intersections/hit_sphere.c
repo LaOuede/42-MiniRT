@@ -2,24 +2,23 @@
 
 /*
 
-Supposons que l'on a une structure t_ray qui contient 2 vectors (origin et direction)
-typedef struct	s_ray
-{
-	t_vec3	origin;
-	t_vec3	direction;
-}	t_ray
-
-Une autre structure qui serait accessible depuis l'objet permet de garder les infos pertinentes en lien avec les hits
+Une structure qui serait accessible depuis l'objet permet de garder les infos pertinentes en lien avec les hits
 typedef struct	s_hit
 {
-	t_vec3	col; // coord du point de collision
+	t_vec3	col_pt; // coord du point de collision
 	float	t; //distance au point de collision
+	t_vec3	normal //  Surface normal vector
 }	t_hit
 
 Equation :
 	 (d.d)t² + 2d.(p - c)t + (p - c)(p - c) - r² = 0
 	|______|  |___________| |___________________|
 		a			b				c
+
+Surface normal vector :
+	N = nrm(P - C)
+	P = point on the sphere and C = center of the sphere
+RUN "make int" to see informations
 
 */
 void	hit_sphere(t_vec3 d, t_object *packed_sphere, t_hit *hit)
@@ -50,3 +49,7 @@ void	hit_sphere(t_vec3 d, t_object *packed_sphere, t_hit *hit)
 		// hit->col = vec_add(get_minirt()->camera.position, vec_scale(ray.direction, hit->t)); // coord du point de collision = (vecteur directionnel * t) + vecteur origin
 	}
 }
+
+/* 		hit->t = -b - sqrtf(delta) / (2.0 * a); // distance au point de collision
+		hit->col_pt = vec_add(ray.origin, vec_scale(ray.direction, hit->t)); // coord du point de collision = (vecteur directionnel * t) + vecteur origin
+		hit->normal = vec_norm(vec_subs(hit->col_pt , sphere->position))*/

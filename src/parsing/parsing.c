@@ -121,4 +121,5 @@ void parse(int fd)
 			next_line = ft_freenull(next_line);
 		next_line = trim_gnl(get_next_line(fd));
 	}
+	close(fd);
 }

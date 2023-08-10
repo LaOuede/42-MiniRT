@@ -2,18 +2,12 @@
 
 /*
 
-Supposons que l'on a une structure t_ray qui contient 2 vectors (origin et direction)
-typedef struct	s_ray
-{
-	t_vec3	origin;
-	t_vec3	direction;
-}	t_ray
-
-Une autre structure qui serait accessible depuis l'objet permet de garder les infos pertinentes en lien avec les hits
+Une structure qui serait accessible depuis l'objet permet de garder les infos pertinentes en lien avec les hits
 typedef struct	s_hit
 {
-	t_vec3	col; // coord du point de collision
+	t_vec3	col_pt; // coord du point de collision
 	float	t; //distance au point de collision
+	t_vec3	normal // Surface normal vector
 }	t_hit
 
 Equation :
@@ -26,24 +20,38 @@ Equation :
 	      |___|
 			b
 
+Surface normal vector :
+	Surface normal vector at point P equals to the plane normal, unless d.n is negative, in which case N = -n.
+
+RUN "make int" to see informations
+
 */
-/* bool	hit_plane(t_ray ray, t_plan *plane, t_hit *hit)
+
+/* bool	hit_plane(t_object *obj_actuel, t_plan *plane)
 {
 	float	a;
 	float	b;
 	float	t;
 
-	a = vec_dot(vec_subs(plane->position - ray.origin), vec_norm(plane->direction));
-	b = vec_dot(ray.direction, vec_norm(plane->direction));
+	a = vec_dot(vec_subs(plane->position, get_minirt()->camera.position), vec_norm(plane->direction));
+	b = vec_dot(ray.direction, vec_norm(plane->direction)); // need to change ray.direction
 	if (b < 0.0001)
-		return (false); // no hit - means ray is perpendicular to plane
+	{
+		obj_actuel = NULL;
+		return (-1.0); // no hit - means ray is perpendicular to plane
+	}
 	t = a / b;
-	if (t < 0.0)
-		return (false); // no hit
+	if (t < 0.0001)
+	{
+		obj_actuel = NULL;
+		return (-1.0); // no hit
+	}
 	else
 	{
-		hit->t = t; // distance au point de collision
-		hit->col = vec_add(ray.origin, vec_scale(ray.direction, hit->t)); // coord du point de collision = (vecteur directionnel * t) + vecteur origin
-		return (true); // HIT!
+		obj_actuel = plane;
+		return (t); // HIT!
 	}
 } */
+
+/* 		hit->t = t; // distance au point de collision
+		hit->col = vec_add(ray.origin, vec_scale(ray.direction, hit->t)); // coord du point de collision = (vecteur directionnel * t) + vecteur origin */

@@ -71,9 +71,6 @@ typedef struct s_color
 # define BAD_ARGS_LIGHT 11
 # define BAD_ARGS_CAMERA 12
 
-
-
-
 //vector
 typedef struct s_vec3
 {
@@ -114,14 +111,14 @@ typedef struct s_light
 {
 	float			intensity; //between 0 and 1
 	t_color			color;   //******pas utilisé dans la partie obligatoire******
-	t_vec3		position;
+	t_vec3			position;
 }					t_light;
 
 typedef struct s_camera
 {
 	float			field_of_view;  //values between 0 and 180
-	t_vec3		direction; //vector values between 0 and 1
-	t_vec3		position;
+	t_vec3			direction; //vector values between 0 and 1
+	t_vec3			position;
 	int				exists;
 }					t_camera;
 
@@ -135,14 +132,14 @@ typedef struct s_sphere
 {
 	float			rayon; //faire (diametre en input) / 2
 	t_color			color;
-	t_vec3		position;
+	t_vec3			position;
 }					t_sphere;
 
 typedef struct s_plan
 {
 	t_color			color;
-	t_vec3		direction; //vector values between 0 and 1
-	t_vec3		position;
+	t_vec3			direction; //vector values between 0 and 1
+	t_vec3			position;
 }					t_plan;
 
 typedef struct s_cylindre
@@ -150,8 +147,8 @@ typedef struct s_cylindre
 	float			rayon;
 	float			hauteur;
 	t_color			color;
-	t_vec3		direction; //vector values between -1 and 1
-	t_vec3		position;
+	t_vec3			direction; //vector values between -1 and 1
+	t_vec3			position;
 }					t_cylindre;
 
 typedef struct s_minirt
@@ -160,9 +157,11 @@ typedef struct s_minirt
 	t_ambiant_light	ambiant_light;
 	t_list			*lights; //multiple lights?
 	t_camera		camera;
+	t_mat4			cam_matrix;
 	int				error_code;
-	mlx_image_t		*image;
 	mlx_t			*mlx;
+	mlx_image_t		*image;
+	keys_t			*keys;
 }					t_minirt;
 
 typedef struct s_hit
@@ -248,6 +247,7 @@ void	vec_reset(t_vec3 *v);
 
 //matrices
 t_mat4	identity_matrix(void);
+t_mat4	init_cam_matrix(t_vec3 right, t_vec3 up, t_vec3 forward, t_vec3 origin);
 t_mat4	matrix_copy(t_mat4 mat);
 t_mat4	matrix_mult(t_mat4 mat1, t_mat4 mat2);
 t_mat4	matrix_rotx(float angle);
@@ -265,8 +265,18 @@ t_color	sub_2_colors(t_color col1, t_color col2);
 t_color	sub_3_colors(t_color col1, t_color col2, t_color col3);
 int		get_rgba(float r, float g, float b, float a);
 
-// __!!!RAY-TRACING MAIN FUNCITONS!!!__
-void ray_launcher(void);
-void find_closest_hit(t_ray_info ray, t_hit *closest_hit);
+//ray launcher
+void ray_launcher(mlx_t* mlx);
+
+//hooks
+void	camera_translation_x(t_minirt *minirt, keys_t key);
+void	camera_translation_y(t_minirt *minirt, keys_t key);
+void	camera_translation_z(t_minirt *minirt, keys_t key);
+void	keys_exit(void *param);
+void	keys_camera(mlx_key_data_t keydata, void *param);
+void	light_translation_x(t_minirt *minirt, keys_t key);
+void	light_translation_y(t_minirt *minirt, keys_t key);
+void	light_translation_z(t_minirt *minirt, keys_t key);
+void	minirt_keys(mlx_key_data_t keydata, void *param);
 
 #endif

@@ -45,10 +45,15 @@ NAME		=	miniRT
 
 # Dir. and files names
 SRCS_DIR	=	./src/
-SRCS_LIST	=	intersections/hit_sphere.c \
+SRCS_LIST	=	hooks/camera_rotation.c \
+				hooks/camera_translation.c \
+				hooks/light_translation.c \
+				hooks/keys.c \
+				intersections/intersections.c \
 				intersections/hit_plane.c \
 				main.c \
 				main_MLX.c \
+				matrices/init.c \
 				matrices/matrices_math.c \
 				matrices/matrices_transformations.c \
 				parsing/parsing.c \
@@ -184,6 +189,10 @@ pdf:
 rot:
 	@open https://fr.wikipedia.org/wiki/Rotation_vectorielle
 
+# Open intersection informations
+int:
+	@open https://hugi.scene.org/online/hugi24/coding%20graphics%20chris%20dragan%20raytracing%20shapes.htm
+
 # Run norminette
 norm :
 	@echo "\n$W>>>>>>>>>>>>>>>>>>>>>>>>>> $YNORMINETTE $W<<<<<<<<<<<<<<<<<<<<<<<<<<$Z\n"
@@ -191,4 +200,4 @@ norm :
 	@echo "\n$W>>>>>>>>>>>>>>>>>>>>>>>> $YNORMINETTE ✅ $W<<<<<<<<<<<<<<<<<<<<<<<<<<"
 
 # Avoids file-target name conflicts
-.PHONY: all dir clean fclean re help pdf rot norm run
+.PHONY: all dir clean fclean re help pdf rot norm run int

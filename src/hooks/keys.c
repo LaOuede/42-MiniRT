@@ -1,0 +1,102 @@
+#include "minirt.h"
+
+/**
+ * This function sets the key callback, which is called when a key is pressed
+ * on the keyboard. Useful for single key press detection.
+ * 
+ * @param[in] mlx The MLX instance handle.
+ * @param[in] func The key press callback function.
+ * @param[in] param An additional optional parameter.
+ * void mlx_key_hook(mlx_t* mlx, mlx_keyfunc func, void* param);
+*/
+
+void	keys_object(mlx_key_data_t keydata, void *param)
+{
+	t_minirt	*minirt;
+
+	minirt = (t_minirt *)param;
+	if (mlx_is_key_down(minirt->mlx, MLX_KEY_A)
+		|| mlx_is_key_down(minirt->mlx, MLX_KEY_D))
+		object_translation_x(minirt, keydata.key);
+	if (mlx_is_key_down(minirt->mlx, MLX_KEY_W)
+		|| mlx_is_key_down(minirt->mlx, MLX_KEY_S))
+		object_translation_y(minirt, keydata.key);
+	if (mlx_is_key_down(minirt->mlx, MLX_KEY_R)
+		|| mlx_is_key_down(minirt->mlx, MLX_KEY_F))
+		object_translation_y(minirt, keydata.key);
+	if (mlx_is_key_down(minirt->mlx, MLX_KEY_L)
+		|| mlx_is_key_down(minirt->mlx, MLX_KEY_J))
+		object_rotation_yaw(minirt, keydata.key);
+	if (mlx_is_key_down(minirt->mlx, MLX_KEY_I)
+		|| mlx_is_key_down(minirt->mlx, MLX_KEY_K))
+		object_rotation_pitch(minirt, keydata.key);
+	if (mlx_is_key_down(minirt->mlx, MLX_KEY_O)
+		|| mlx_is_key_down(minirt->mlx, MLX_KEY_U))
+		object_rotation_roll(minirt, keydata.key);
+}
+
+void	keys_light(mlx_key_data_t keydata, void *param)
+{
+	t_minirt	*minirt;
+
+	minirt = (t_minirt *)param;
+	if (mlx_is_key_down(minirt->mlx, MLX_KEY_A)
+		|| mlx_is_key_down(minirt->mlx, MLX_KEY_D))
+		ligh_translation_x(minirt, keydata.key);
+	if (mlx_is_key_down(minirt->mlx, MLX_KEY_W)
+		|| mlx_is_key_down(minirt->mlx, MLX_KEY_S))
+		ligh_translation_y(minirt, keydata.key);
+	if (mlx_is_key_down(minirt->mlx, MLX_KEY_R)
+		|| mlx_is_key_down(minirt->mlx, MLX_KEY_F))
+		ligh_translation_y(minirt, keydata.key);
+}
+
+void	keys_camera(mlx_key_data_t keydata, void *param)
+{
+	t_minirt	*minirt;
+
+	minirt = (t_minirt *)param;
+	if (mlx_is_key_down(minirt->mlx, MLX_KEY_A)
+		|| mlx_is_key_down(minirt->mlx, MLX_KEY_D))
+		camera_translation_x(minirt, keydata.key);
+	if (mlx_is_key_down(minirt->mlx, MLX_KEY_W)
+		|| mlx_is_key_down(minirt->mlx, MLX_KEY_S))
+		camera_translation_y(minirt, keydata.key);
+	if (mlx_is_key_down(minirt->mlx, MLX_KEY_R)
+		|| mlx_is_key_down(minirt->mlx, MLX_KEY_F))
+		camera_translation_y(minirt, keydata.key);
+	if (mlx_is_key_down(minirt->mlx, MLX_KEY_L)
+		|| mlx_is_key_down(minirt->mlx, MLX_KEY_J))
+		camera_rotation_yaw(minirt, keydata.key);
+	if (mlx_is_key_down(minirt->mlx, MLX_KEY_I)
+		|| mlx_is_key_down(minirt->mlx, MLX_KEY_K))
+		camera_rotation_pitch(minirt, keydata.key);
+	if (mlx_is_key_down(minirt->mlx, MLX_KEY_O)
+		|| mlx_is_key_down(minirt->mlx, MLX_KEY_U))
+		camera_rotation_roll(minirt, keydata.key);
+}
+
+/*
+	Handles hook for program closure;
+*/
+void	keys_exit(void *param)
+{
+	t_minirt	*minirt;
+
+	minirt = (t_minirt *)param;
+	if (mlx_is_key_down(minirt->mlx, MLX_KEY_ESCAPE)
+		|| mlx_is_key_down(minirt->mlx, MLX_KEY_Q))
+	{
+		free_minirt();
+		exit(EXIT_SUCCESS);
+	}
+}
+
+void	minirt_keys(mlx_key_data_t keydata, void *param)
+{
+	(void) param;
+	keys_exit(param);
+	keys_camera(keydata, param);
+	keys_light(keydata, param);
+	keys_object(keydata, param);
+}
