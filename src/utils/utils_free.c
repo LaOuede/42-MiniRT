@@ -34,6 +34,6 @@ void free_minirt(void)
 	if (minirt->objects)
 		ft_free_lst(&minirt->objects);
 	if (minirt->lights)
-		ft_free_lst(&minirt->lights);
+		ft_lstclear(&minirt->lights);
 	minirt = ft_freenull(minirt);
 }

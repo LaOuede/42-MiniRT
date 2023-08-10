@@ -1,13 +1,21 @@
 #include "minirt.h"
 
-static bool first_hit(void)
+static bool first_hit(bool action)
 {
 	static bool first_hit = TRUE;
 	bool output;
 
-	output = first_hit;
-	first_hit = FALSE;
-	return (output);
+	if (action == TRUE)
+	{
+		output = first_hit;
+		first_hit = FALSE;
+		return (output);
+	}
+	else
+	{
+		first_hit = TRUE;
+		return (FALSE);
+	}
 }
 
 static void init_hit(t_hit *closest_hit, t_hit *hit)
@@ -37,13 +45,15 @@ void find_closest_hit(t_ray_info ray, t_hit *closest_hit)
 		//a changer////////////////////////////////////////////////////////////
 		object = current->content;
 		if (object->type == SPHERE)
-			hit.t = hit_sphere(ray.d, object, &hit);
+			hit_sphere(ray.d, object, &hit);
 		///////////////////////////////////////////////////////////////////////
 
-		if (hit.obj && (first_hit() || hit.t < closest_hit->t))
+		if (hit.obj && (first_hit(TRUE) || hit.t < closest_hit->t))
 		{
-			update_closest_hit(&closest_hit, hit);
+			mlx_put_pixel(get_minirt()->image, ray.px, ray.py, get_rgba(255, 0, 0, 255));
+			update_closest_hit(closest_hit, hit);
 		}
 		current = current->next;
 	}
+	first_hit(FALSE);
 }

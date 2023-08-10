@@ -28,7 +28,7 @@ int is_all_digit_dot(char *str)
 			return (FALSE);
 		i++;
 	}
-	if (str[i] != '\n' && !ft_isdigit(str[i]))
+	if (str[i] && str[i] != '\n' && !ft_isdigit(str[i]))
 		return (FALSE);
 	return (TRUE);
 }

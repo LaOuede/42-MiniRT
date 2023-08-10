@@ -1,8 +1,5 @@
 #include "minirt.h"
 
-#define WIDTH 1600
-#define HEIGHT 900
-
 static mlx_image_t* image;
 
 int32_t	ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a)
@@ -44,37 +41,38 @@ void ft_hook(void* param)
 		image->instances[0].x += 5;
 }
 
-int32_t	main(int32_t argc, const char* argv[])
-{
-	mlx_t* mlx;
+// int32_t	main(int32_t argc, const char* argv[])
+// {
+// 	mlx_t *mlx;
+// 	mlx_image_t *image;
 
-	(void)argc;
-	(void)argv;
-	// Gotta error check this stuff
-	if (!(mlx = mlx_init(WIDTH, HEIGHT, "MLX42", true)))
-	{
-		puts(mlx_strerror(mlx_errno));
-		return(EXIT_FAILURE);
-	}
-	if (!(image = mlx_new_image(mlx, WIDTH, HEIGHT)))
-	{
-		mlx_close_window(mlx);
-		puts(mlx_strerror(mlx_errno));
-		return(EXIT_FAILURE);
-	}
-	if (mlx_image_to_window(mlx, image, 0, 0) == -1)
-	{
-		mlx_close_window(mlx);
-		puts(mlx_strerror(mlx_errno));
-		return(EXIT_FAILURE);
-	}
-	// ray_launcher(mlx);
+// 	(void)argc;
+// 	(void)argv;
+// 	// Gotta error check this stuff
+// 	if (!(mlx = mlx_init(WIDTH, HEIGHT, "MLX42", true)))
+// 	{
+// 		puts(mlx_strerror(mlx_errno));
+// 		return(EXIT_FAILURE);
+// 	}
+// 	if (!(image = mlx_new_image(mlx, WIDTH, HEIGHT)))
+// 	{
+// 		mlx_close_window(mlx);
+// 		puts(mlx_strerror(mlx_errno));
+// 		return(EXIT_FAILURE);
+// 	}
+// 	if (mlx_image_to_window(mlx, image, 0, 0) == -1)
+// 	{
+// 		mlx_close_window(mlx);
+// 		puts(mlx_strerror(mlx_errno));
+// 		return(EXIT_FAILURE);
+// 	}
+// 	ray_launcher(mlx, image);
 
-	// mlx_loop_hook(mlx, ft_randomize, mlx);
-	// mlx_loop_hook(mlx, ft_hook, mlx);
+// 	// mlx_loop_hook(mlx, ft_randomize, mlx);
+// 	// mlx_loop_hook(mlx, ft_hook, mlx);
 
 
-	mlx_loop(mlx);
-	mlx_terminate(mlx);
-	return (EXIT_SUCCESS);
-}
+// 	mlx_loop(mlx);
+// 	mlx_terminate(mlx);
+// 	return (EXIT_SUCCESS);
+// }

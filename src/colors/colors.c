@@ -16,12 +16,12 @@ int	get_rgba(float r, float g, float b, float a)
 /*
 SCALE
 */
-t_color	color_scale(t_color col1, float scale)
-{
-	t_color	new;
+// int	color_scale(t_color col1, float scale)
+// {
+// 	t_color	new;
 
-	new.r = col1.r * scale;
-	new.g = col1.g * scale;
-	new.b = col1.b * scale;
-	return (get_rgba(new.r, new.g, new.b, 0));
-}
+// 	new.r = col1.r * scale;
+// 	new.g = col1.g * scale;
+// 	new.b = col1.b * scale;
+// 	return (get_rgba(new.r, new.g, new.b, 0));
+// }

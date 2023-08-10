@@ -13,17 +13,26 @@ static t_vec3 up_guide(void)
 static t_vec3 get_d(t_ray_info ray)
 {
 	t_vec3 d;
-	ray.right = vec_scale(ray.right, ray.x);
-	ray.up = vec_scale(ray.up, ray.y);
-	d = vec_add(ray.forward, vec_add(ray.up, ray.right));
+	t_vec3 right;
+	t_vec3 up;
+
+	right = ray.right;
+	up = ray.up;
+
+	right = vec_scale(right, ray.x);
+	// right = vec_norm(right);
+	up = vec_scale(up, ray.y);
+	// up = vec_norm(up);
+	d = vec_add(ray.forward, vec_add(up, right));
+	d = vec_norm(d);
 	return (d);
 }
 
-static void init_direcions(t_ray_info *ray, mlx_t *mlx)
+static void init_direcions(t_ray_info *ray)
 {
 	float aspect_ratio;
 
-	aspect_ratio = mlx->width / mlx->height;
+	aspect_ratio = (float)get_minirt()->image->width / (float)get_minirt()->image->height;
 	ray->height = atanf(get_minirt()->camera.field_of_view);
 	ray->width = ray->height * aspect_ratio;
 	ray->forward = get_minirt()->camera.direction;
@@ -34,25 +43,25 @@ static void init_direcions(t_ray_info *ray, mlx_t *mlx)
 
 static void pre_launch_operations(t_ray_info *ray)
 {
-	ray->x = 2.0f * ((float)ray->px + 0.5f) / ray->width - 1;
-	ray->y = 2.0f * ((float)ray->py + 0.5f) / ray->height - 1;
+	ray->x = 2.0f * ((float)ray->px + 0.5f) / (float)get_minirt()->image->width - 1;
+	ray->y = 2.0f * ((float)ray->py + 0.5f) / (float)get_minirt()->image->height - 1;
 	ray->d = get_d(*ray);
 }
 
 //optimisation a faire ici...
 // d = f + hyu + wxr
-void ray_launcher(mlx_t* mlx)
+void ray_launcher(void)
 {
 	t_ray_info ray;
 	t_hit closest_hit;
-	t_shading shading;
+	// t_shading shading;
 
-	init_direcions(&ray, mlx);
+	init_direcions(&ray);
 	ray.py = -1;
-	while (++ray.py < mlx->height)
+	while (++ray.py < (int)get_minirt()->image->height)
 	{
 		ray.px = -1;
-		while (++ray.px < mlx->width)
+		while (++ray.px < (int)get_minirt()->image->width)
 		{
 			pre_launch_operations(&ray);
 			find_closest_hit(ray, &closest_hit);

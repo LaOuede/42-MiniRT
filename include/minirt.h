@@ -17,6 +17,8 @@
 # define HEIGHT 1080 */
 
 #define ERROR -1
+#define WIDTH 1600
+#define HEIGHT 900
 
 //***************
 //GENERAL STRUCTS
@@ -159,6 +161,8 @@ typedef struct s_minirt
 	t_list			*lights; //multiple lights?
 	t_camera		camera;
 	int				error_code;
+	mlx_image_t		*image;
+	mlx_t			*mlx;
 }					t_minirt;
 
 typedef struct s_hit
@@ -194,6 +198,10 @@ void error(char **line, int error_code, void *to_free);
 void check_bad_arg_count(char **line, int type, void *to_free);
 void check_error(char **line, int type, void *to_free);
 int expected_arg_count(int type);
+
+//intersections
+void	hit_sphere(t_vec3 d, t_object *packed_sphere, t_hit *hit);
+
 
 //object errors
 void check_sphere_args(char **line, void *to_free);
@@ -252,13 +260,13 @@ t_vec3	matrix_vec_mult(t_mat4 mat, t_vec3 v);
 //colors
 t_color	add_2_colors(t_color col1, t_color col2);
 t_color	add_3_colors(t_color col1, t_color col2, t_color col3);
-t_color	color_scale(t_color col1, float scale);
+int		color_scale(t_color col1, float scale);
 t_color	sub_2_colors(t_color col1, t_color col2);
 t_color	sub_3_colors(t_color col1, t_color col2, t_color col3);
 int		get_rgba(float r, float g, float b, float a);
 
 // __!!!RAY-TRACING MAIN FUNCITONS!!!__
-void ray_launcher(mlx_t* mlx);
+void ray_launcher(void);
 void find_closest_hit(t_ray_info ray, t_hit *closest_hit);
 
 #endif
