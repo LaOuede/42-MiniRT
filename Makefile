@@ -34,7 +34,7 @@ export HELP
 
 # Compiler and flags
 CC		=	gcc
-CFLAGS	=	-g -Wall -Wextra -Werror
+CFLAGS	=	-g -Wall -Wextra -Werror -O3
 #CFLAGS	=	-fsanitize=address
 
 # Remove
@@ -48,6 +48,7 @@ SRCS_DIR	=	./src/
 SRCS_LIST	=	hooks/camera_rotation.c \
 				hooks/camera_translation.c \
 				hooks/light_translation.c \
+				hooks/object_translation.c \
 				hooks/keys.c \
 				intersections/intersections.c \
 				intersections/hit_plane.c \

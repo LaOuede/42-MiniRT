@@ -284,6 +284,9 @@ void	keys_camera(mlx_key_data_t keydata, void *param);
 void	light_translation_x(t_minirt *minirt, keys_t key);
 void	light_translation_y(t_minirt *minirt, keys_t key);
 void	light_translation_z(t_minirt *minirt, keys_t key);
+void	object_translation_x(t_minirt *minirt, keys_t key);
+void	object_translation_y(t_minirt *minirt, keys_t key);
+void	object_translation_z(t_minirt *minirt, keys_t key);
 void	minirt_keys(mlx_key_data_t keydata, void *param);
 
 #endif

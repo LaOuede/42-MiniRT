@@ -28,7 +28,7 @@ static t_vec3 get_d(t_ray_info ray)
 	return (d);
 }
 
-static void init_direcions(t_ray_info *ray)
+static void init_directions(t_ray_info *ray)
 {
 	float aspect_ratio;
 
@@ -59,7 +59,7 @@ void ray_launcher(void)
 	// t_shading shading;
 
 	map_erase(get_minirt());
-	init_direcions(&ray);
+	init_directions(&ray);
 	ray.py = -1;
 	while (++ray.py < (int)get_minirt()->image->height)
 	{
