@@ -32,6 +32,7 @@ void	minirt(int fd)
 	minirt = get_minirt();
 	if (init_mlx(minirt) == true)
 	{
+		mlx_mouse_hook(minirt->mlx, &minirt_mouse, minirt);
 		mlx_key_hook(minirt->mlx, &minirt_keys, minirt);
 		ray_launcher();
 		mlx_loop(minirt->mlx);

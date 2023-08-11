@@ -48,8 +48,9 @@ SRCS_DIR	=	./src/
 SRCS_LIST	=	hooks/camera_rotation.c \
 				hooks/camera_translation.c \
 				hooks/light_translation.c \
-				hooks/object_translation.c \
 				hooks/keys.c \
+				hooks/mouse.c \
+				hooks/object_translation.c \
 				intersections/intersections.c \
 				intersections/hit_plane.c \
 				intersections/hit_sphere.c \

@@ -61,10 +61,10 @@ t_mat4	matrix_rotx(float angle)
 
 	mat = identity_matrix();
 	rad = angle * M_PI / 180;
-	mat.p[1][1] = cos(rad);
-	mat.p[1][2] = sin(rad);
-	mat.p[2][1] = -sin(rad);
-	mat.p[2][2] = cos(rad);
+	mat.p[1][1] = cosf(rad);
+	mat.p[1][2] = sinf(rad);
+	mat.p[2][1] = -sinf(rad);
+	mat.p[2][2] = cosf(rad);
 	return (mat);
 }
 
@@ -87,10 +87,10 @@ t_mat4	matrix_roty(float angle)
 
 	rad = angle * M_PI / 180;
 	mat = identity_matrix();
-	mat.p[0][0] = cos(rad);
-	mat.p[0][2] = -sin(rad);
-	mat.p[2][0] = sin(rad);
-	mat.p[2][2] = cos(rad);
+	mat.p[0][0] = cosf(rad);
+	mat.p[0][2] = -sinf(rad);
+	mat.p[2][0] = sinf(rad);
+	mat.p[2][2] = cosf(rad);
 	return (mat);
 }
 
