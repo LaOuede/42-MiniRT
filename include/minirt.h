@@ -168,6 +168,7 @@ typedef struct s_hit
 {
 	float t;
 	t_object *obj;
+	t_vec3	hit_point;
 }				t_hit;
 
 typedef struct s_shading
@@ -201,6 +202,13 @@ int expected_arg_count(int type);
 //intersections
 void	hit_sphere(t_vec3 d, t_object *packed_sphere, t_hit *hit);
 void	hit_plane(t_vec3 d, t_object *obj_actuel, t_hit *hit);
+
+//get object info
+t_vec3 get_position(t_object *object);
+t_vec3 get_light_position(void *packed_light);
+float get_light_intensity(void *packed_light);
+t_color get_light_color(void *packed_light);
+t_color get_obj_color(t_object *obj);
 
 
 //object errors
@@ -245,6 +253,11 @@ t_vec3	vec_scale(t_vec3 v, float scale);
 t_vec3	vec_subs(t_vec3 v1, t_vec3 v2);
 t_vec3	vec_unit_vec(t_vec3 v1, t_vec3 v2);
 void	vec_reset(t_vec3 *v);
+t_vec3	null_vector(void);
+t_vec3 get_normal_vec(t_hit *hit);
+t_vec3	vec_copy(t_vec3 v);
+
+
 
 
 //matrices
@@ -265,11 +278,16 @@ t_color	add_3_colors(t_color col1, t_color col2, t_color col3);
 int		color_scale(t_color col1, float scale);
 t_color	sub_2_colors(t_color col1, t_color col2);
 t_color	sub_3_colors(t_color col1, t_color col2, t_color col3);
-int		get_rgba(float r, float g, float b, float a);
+int		get_rgba(t_color color, float a);
+t_color	no_color(void);
+
 
 //ray launcher
 void ray_launcher();
 void find_closest_hit(t_ray_info ray, t_hit *closest_hit);
+
+//shading
+int	shading(t_hit *hit);
 
 
 //hooks

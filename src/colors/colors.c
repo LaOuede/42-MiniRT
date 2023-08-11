@@ -8,9 +8,19 @@ Use with mlx_put_pixel as 4th param (uint_32 color)
 *** I think we don't need a so it will be silenced and assigned to 0 ???***
 
 */
-int	get_rgba(float r, float g, float b, float a)
+int	get_rgba(t_color color, float a)
 {
-	return ((int)r << 24 | (int)g << 16 | (int)b << 8 | (int)a);
+	return ((int)color.r << 24 | (int)color.g << 16 | (int)color.b << 8 | (int)a);
+}
+
+t_color no_color(void)
+{
+	t_color color;
+
+	color.r = 0;
+	color.g = 0;
+	color.b = 0;
+	return(color);
 }
 
 /*

@@ -34,7 +34,7 @@ export HELP
 
 # Compiler and flags
 CC		=	gcc
-CFLAGS	=	-g -Wall -Wextra -Werror
+CFLAGS	=	-g -Wall -Wextra -Werror -O3
 #CFLAGS	=	-fsanitize=address
 
 # Remove
@@ -69,11 +69,15 @@ SRCS_LIST	=	hooks/camera_rotation.c \
 				parsing/parsing_utils1.c \
 				utils/utils1.c \
 				utils/utils_free.c \
+				utils/get_object_info.c \
+				utils/get_light_info.c \
 				vectors/vectors_math1.c \
 				vectors/vectors_math2.c \
 				vectors/vectors_math3.c \
+				vectors/object_normal_vec.c \
 				ray_generation/ray_launcher.c \
 				ray_generation/find_closest_hit.c \
+				ray_generation/shading.c \
 				colors/colors.c \
 				colors/colors_transformations.c \
 

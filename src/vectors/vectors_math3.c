@@ -32,3 +32,13 @@ void	vec_negate(t_vec3 v)
 	v.y = -v.y;
 	v.z = -v.z;
 }
+
+t_vec3 null_vector(void)
+{
+	t_vec3 null_vector;
+
+	null_vector.x = 0;
+	null_vector.y = 0;
+	null_vector.z = 0;
+	return (null_vector);
+}
