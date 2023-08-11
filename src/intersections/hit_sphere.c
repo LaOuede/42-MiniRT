@@ -23,20 +23,20 @@ RUN "make int" to see informations
 */
 void	hit_sphere(t_vec3 d, t_object *packed_sphere, t_hit *hit)
 {
-	float	a;
-	float	b;
-	float	c;
-	float	delta;
-	t_vec3	displacement;
-	t_sphere *sphere;
+	float		a;
+	float		b;
+	float		c;
+	float		delta;
+	t_vec3		displacement;
+	t_sphere	*sphere;
 
 	sphere = packed_sphere->obj;
 
-	displacement = vec_subs(get_minirt()->camera.position,  sphere->position);
+	displacement = vec_subs(get_minirt()->camera.position, sphere->position);
 	a = vec_dot(d, d);
 	b = 2.0 * vec_dot(displacement, d);
-	c = vec_dot(displacement,displacement) - sphere->rayon * sphere->rayon;
-	delta = b * b - 4 * a * c;
+	c = vec_dot(displacement, displacement) - sphere->rayon * sphere->rayon;
+	delta = b * b - 4 * vec_dot(d, d) * c;
 	if (delta < 0.0)
 	{
 		hit->obj = NULL;

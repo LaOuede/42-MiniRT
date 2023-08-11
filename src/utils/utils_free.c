@@ -3,23 +3,31 @@
 
 void	ft_free_lights(t_list **lst)
 {
-	t_list	*ptr;
+	t_list		*ptr;
+	t_list		*tmp;
+	t_object	*tmpo;
 
-	if (!lst)
+	if (!lst || !*lst)
 		return ;
 	ptr = *lst;
-	while (*lst != NULL)
+	while (ptr)
 	{
-		ptr = (*lst)->next;
-		ft_lstdelone(*lst);
-		*lst = ptr;
+		tmp = ptr->next;
+		if (ptr->content)
+		{
+			tmpo = ptr->content;
+			tmpo = ft_freenull(tmpo);
+		}
+		ptr = ft_freenull(ptr);
+		ptr = tmp;
 	}
+	*lst = NULL;
 }
 
 void	ft_free_lst(t_list **lst)
 {
-	t_list	*ptr;
-	t_list	*tmp;
+	t_list		*ptr;
+	t_list		*tmp;
 	t_object	*tmpo;
 
 	if (!lst || !*lst)
@@ -49,6 +57,8 @@ void	free_minirt(void)
 	if (minirt->objects)
 		ft_free_lst(&minirt->objects);
 	if (minirt->lights)
-		ft_lstclear(&minirt->lights);
+		ft_free_lights(&minirt->lights);
+	if (minirt->mlx)
+		mlx_terminate(minirt->mlx);
 	minirt = ft_freenull(minirt);
 }

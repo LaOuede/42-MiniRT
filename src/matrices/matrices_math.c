@@ -53,8 +53,8 @@ t_mat4	matrix_mult(t_mat4 mat1, t_mat4 mat2)
 	t_mat4	res;
 
 	res = identity_matrix();
-	row = 0;
-	while (row < 4)
+	row = -1;
+	while (++row < 4)
 	{
 		res.p[row][0] = (mat1.p[row][0] * mat2.p[0][0]) \
 			+ (mat1.p[row][1] * mat2.p[1][0]) \

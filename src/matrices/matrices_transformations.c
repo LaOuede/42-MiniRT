@@ -42,80 +42,80 @@
 // 	return (mat);
 // }
 
-// /*
-// MATRIX ROTATION
-// A rotation matrix rotates an object about one of the three coordinate axes,
-// or any arbitrary vector.
-// ROT on axe X
-//  _                   _
-// |  1    0     0    0  |
-// |  0   cos𝜃  sin𝜃   0  |
-// |  0  -sin𝜃  cos𝜃   0  |
-// |_ 0    0     0    1 _|
-// To convert from degrees to radians, multiply the number of degrees by π/180.
-// */
-// t_mat4	matrix_rotx(float angle)
-// {
-// 	t_mat4	mat;
-// 	float	rad;
+/*
+MATRIX ROTATION
+A rotation matrix rotates an object about one of the three coordinate axes,
+or any arbitrary vector.
+ROT on axe X
+ _                   _
+|  1    0     0    0  |
+|  0   cos𝜃  sin𝜃   0  |
+|  0  -sin𝜃  cos𝜃   0  |
+|_ 0    0     0    1 _|
+To convert from degrees to radians, multiply the number of degrees by π/180.
+*/
+t_mat4	matrix_rotx(float angle)
+{
+	t_mat4	mat;
+	float	rad;
 
-// 	mat = identity_matrix();
-// 	rad = angle * M_PI / 180;
-// 	mat.p[1][1] = cos(rad);
-// 	mat.p[1][2] = sin(rad);
-// 	mat.p[2][1] = -sin(rad);
-// 	mat.p[2][2] = cos(rad);
-// 	return (mat);
-// }
+	mat = identity_matrix();
+	rad = angle * M_PI / 180;
+	mat.p[1][1] = cos(rad);
+	mat.p[1][2] = sin(rad);
+	mat.p[2][1] = -sin(rad);
+	mat.p[2][2] = cos(rad);
+	return (mat);
+}
 
-// /*
-// MATRIX ROTATION
-// A rotation matrix rotates an object about one of the three coordinate axes,
-// or any arbitrary vector.
-// ROT on axe Y
-//  _                   _
-// |  cos𝜃  0  -sin𝜃   0  |
-// |   0    1    0     0  |
-// |  sin𝜃  0   cos𝜃   0  |
-// |_  0    0    0     1 _|
-// To convert from degrees to radians, multiply the number of degrees by π/180.
-// */
-// t_mat4	matrix_roty(float angle)
-// {
-// 	t_mat4	mat;
-// 	float	rad;
+/*
+MATRIX ROTATION
+A rotation matrix rotates an object about one of the three coordinate axes,
+or any arbitrary vector.
+ROT on axe Y
+ _                   _
+|  cos𝜃  0  -sin𝜃   0  |
+|   0    1    0     0  |
+|  sin𝜃  0   cos𝜃   0  |
+|_  0    0    0     1 _|
+To convert from degrees to radians, multiply the number of degrees by π/180.
+*/
+t_mat4	matrix_roty(float angle)
+{
+	t_mat4	mat;
+	float	rad;
 
-// 	rad = angle * M_PI / 180;
-// 	mat = identity_matrix();
-// 	mat.p[0][0] = cos(rad);
-// 	mat.p[0][2] = -sin(rad);
-// 	mat.p[2][0] = sin(rad);
-// 	mat.p[2][2] = cos(rad);
-// 	return (mat);
-// }
+	rad = angle * M_PI / 180;
+	mat = identity_matrix();
+	mat.p[0][0] = cos(rad);
+	mat.p[0][2] = -sin(rad);
+	mat.p[2][0] = sin(rad);
+	mat.p[2][2] = cos(rad);
+	return (mat);
+}
 
-// /*
-// MATRIX ROTATION
-// A rotation matrix rotates an object about one of the three coordinate axes,
-// or any arbitrary vector.
-// ROT on axe Z
-//  _                   _
-// |  cos𝜃  sin𝜃  0  0  |
-// | -sin𝜃  cos𝜃  0  0  |
-// |   0     0    1  0  |
-// |_  0     0    0  1 _|
-// To convert from degrees to radians, multiply the number of degrees by π/180.
-// */
-// t_mat4	matrix_rotz(float angle)
-// {
-// 	t_mat4	mat;
-// 	float	rad;
+/*
+MATRIX ROTATION
+A rotation matrix rotates an object about one of the three coordinate axes,
+or any arbitrary vector.
+ROT on axe Z
+ _                   _
+|  cos𝜃  sin𝜃  0  0  |
+| -sin𝜃  cos𝜃  0  0  |
+|   0     0    1  0  |
+|_  0     0    0  1 _|
+To convert from degrees to radians, multiply the number of degrees by π/180.
+*/
+t_mat4	matrix_rotz(float angle)
+{
+	t_mat4	mat;
+	float	rad;
 
-// 	rad = angle * M_PI / 180;
-// 	mat = identity_matrix();
-// 	mat.p[0][0] = cos(rad);
-// 	mat.p[0][1] = sin(rad);
-// 	mat.p[1][0] = -sin(rad);
-// 	mat.p[1][1] = cos(rad);
-// 	return (mat);
-// }
+	rad = angle * M_PI / 180;
+	mat = identity_matrix();
+	mat.p[0][0] = cos(rad);
+	mat.p[0][1] = sin(rad);
+	mat.p[1][0] = -sin(rad);
+	mat.p[1][1] = cos(rad);
+	return (mat);
+}
