@@ -4,7 +4,9 @@ t_mat4	init_cam_matrix(t_vec3 right, t_vec3 up, t_vec3 forward)
 {
 	t_mat4	cam_mat;
 
-	// normaliser les vecteurs
+	right = vec_norm(right);
+	up = vec_norm(up);
+	forward = vec_norm(forward);
 	cam_mat = identity_matrix();
 	cam_mat.p[0][0] = right.x;
 	cam_mat.p[0][1] = right.y;
