@@ -50,3 +50,15 @@ t_color get_obj_color(t_object *obj)
 	else
 		return (no_color());
 }
+
+t_vec3 get_plane_direction(t_object *object)
+{
+	t_plan *plane;
+
+	if (object->type == PLAN)
+	{
+		plane = (t_plan *)object->obj;
+		return (plane->direction);
+	}
+	return(null_vector());
+}

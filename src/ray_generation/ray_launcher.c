@@ -37,7 +37,9 @@ static void init_directions(t_ray_info *ray)
 	ray->width = ray->height * aspect_ratio;
 	ray->forward = get_minirt()->camera.direction;
 	ray->right = vec_scale(vec_cross(ray->forward, up_guide()), ray->width);
+	ray->right = vec_scale(ray->right, -1);
 	ray->up = vec_scale(vec_cross(vec_norm(ray->right), ray->forward), ray->height);
+	// ray->up = vec_scale(ray->up, -1);
 	ray->forward = vec_scale(ray->forward, 3.0f);
 	vec_reset(&ray->d);
 	get_minirt()->cam_matrix = init_cam_matrix(ray->right, ray->up, ray->forward);

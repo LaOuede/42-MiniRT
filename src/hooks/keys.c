@@ -52,6 +52,19 @@
 // 		ligh_translation_y(minirt, keydata.key);
 // }
 
+void mod_light_intensity(float add)
+{
+	t_light *light;
+
+	light = (t_light *)get_minirt()->lights->content;
+
+	light->intensity += add;
+	if (light->intensity > 1.0f)
+		light->intensity = 1.0f;
+	else if (light->intensity < 0.0f)
+		light->intensity = 0.0f;
+}
+
 void	keys_camera(mlx_key_data_t keydata, void *param)
 {
 	t_minirt	*minirt;
@@ -72,6 +85,15 @@ void	keys_camera(mlx_key_data_t keydata, void *param)
 	if (mlx_is_key_down(minirt->mlx, MLX_KEY_I)
 		|| mlx_is_key_down(minirt->mlx, MLX_KEY_K))
 		camera_rotation_pitch(minirt, keydata.key);
+	
+	if (mlx_is_key_down(minirt->mlx, MLX_KEY_RIGHT_SHIFT)
+		&& mlx_is_key_down(minirt->mlx, MLX_KEY_EQUAL))
+		mod_light_intensity(0.05f);
+
+	if (mlx_is_key_down(minirt->mlx, MLX_KEY_RIGHT_SHIFT)
+		&& mlx_is_key_down(minirt->mlx, MLX_KEY_MINUS))
+		mod_light_intensity(-0.05f);
+	
 /* 	if (mlx_is_key_down(minirt->mlx, MLX_KEY_O)
 		|| mlx_is_key_down(minirt->mlx, MLX_KEY_U))
 		camera_rotation_roll(minirt, keydata.key); */

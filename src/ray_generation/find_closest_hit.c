@@ -42,11 +42,17 @@ void find_hit(t_vec3 d, t_object *object, t_hit *hit)
 		hit_plane(d, object, hit);
 }
 
+void put_the_pixel()
+{
+
+}
+
 void find_closest_hit(t_ray_info ray, t_hit *closest_hit)
 {
 	t_hit		hit;
 	t_list		*current;
-	t_object	*object;//a enlever/////////////////////////////////////////////
+	t_object	*object;
+	// t_shading	shading;
 
 	init_hit(closest_hit, &hit);
 	current = get_minirt()->objects;
@@ -56,25 +62,16 @@ void find_closest_hit(t_ray_info ray, t_hit *closest_hit)
 		find_hit(ray.d, object, &hit);
 		if (hit.obj && (first_hit(TRUE) || hit.t < closest_hit->t))
 		{
-			// if (hit.obj->type == SPHERE)
-			// {
-			// 	(t_sphere)hit.obj->obj.color;
-			// 	mlx_put_pixel(get_minirt()->image, ray.px, ray.py, get_rgba(204, 0, 255, 255));
-			// }
-			// else
-			// 	mlx_put_pixel(get_minirt()->image, ray.px, ray.py, get_rgba(0, 0, 255, 255));
-			
 			update_closest_hit(closest_hit, hit);
 		}
 		current = current->next;
 	}
 	if (closest_hit->obj)
 	{
-		if (closest_hit->obj->type == SPHERE)
+		if (closest_hit->obj->type == PLAN)
 		{
-			printf("hi");
+			printf("");
 		}
-		
 		closest_hit->hit_point = vec_add(get_minirt()->camera.position, vec_scale(ray.d, closest_hit->t));
 		mlx_put_pixel(get_minirt()->image, ray.px, ray.py, shading(closest_hit));
 	}

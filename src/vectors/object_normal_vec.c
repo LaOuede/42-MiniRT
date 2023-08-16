@@ -17,12 +17,17 @@ static t_vec3 sphere_normal(t_hit *hit)
 
 static t_vec3 plane_normal(t_hit *hit)
 {
-	// t_plan *plane;
 	t_vec3 n;
+	t_vec3 vec1;
+	t_vec3 vec2;
 
-	// plane = (t_plan *)hit->obj;
-	hit = NULL;
-	n = null_vector();
+	vec1 = vec_norm(vec_subs(get_position(hit->obj), hit->hit_point));
+	vec2 = get_plane_direction(hit->obj);
+	n = vec_norm(vec_cross(vec1, vec2));
+	n.x = 0;
+	n.y = 1;
+	n.z = 0;
+	// n = vec_scale(n, -1);
 	return (n);
 }
 

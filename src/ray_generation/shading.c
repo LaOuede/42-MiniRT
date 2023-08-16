@@ -9,25 +9,68 @@ t_vec3 get_light_dir(t_hit *hit)
 	return (w);
 }
 
-int shading(t_hit *hit)
+float shading_intensity(float geo_term)
 {
-	t_vec3 	n;//normal vector to hit point
-	t_vec3 	w;//light source direction
-	float 	intensity;
-	float 	kd;
-	int		result;
+	float diffuse_light;
+	float ambiant_light;
+	float light_intensity;
+
+	ambiant_light = 255.0f * get_minirt()->ambiant_light.intensity;
+	if (geo_term >= 0.0f)
+		diffuse_light = geo_term * 255.0f * get_light_intensity(get_minirt()->lights->content);
+	else
+		diffuse_light = 0.0f;
+	light_intensity = diffuse_light + ambiant_light;
+	if (light_intensity > 255.0f)
+		light_intensity = 255.0f;
+	return (light_intensity);
+}
+
+t_color shading_color(t_hit *hit, t_vec3 w, t_vec3 n)
+{
+	t_color obj_color;
+	t_color specular_color;
+	t_color output_color;
+	t_vec3	v;
+	t_vec3	h;
+	float	coeff;
+
+	obj_color = get_obj_color(hit->obj);
+	specular_color = get_specular_color();
+
+	v = vec_norm(vec_subs(get_minirt()->camera.position, hit->hit_point));
+	h = vec_norm(vec_add(w, v));
+
+	coeff = pow(vec_dot(n, h), SHINY_FACTOR * pow(get_light_intensity(get_minirt()->lights->content), 1.4f));
+
+	specular_color = color_scale(specular_color, coeff);
+
+	output_color = color_add(obj_color, specular_color);
+
+	output_color = max_color(output_color);
+	return(output_color);
+}
+
+u_int32_t shading(t_hit *hit)
+{
+	t_vec3 		n;//normal vector to hit point
+	t_vec3 		w;//light source direction
+	float		geo_term;
+	t_color color;
+	float intensity;
+
+	n = get_normal_vec(hit);
+	w = get_light_dir(hit);
+	geo_term = vec_dot(n, w);
+
+	intensity = shading_intensity(geo_term);
+	color = shading_color(hit, w, n);
 
 	if (hit->obj->type == SPHERE)
 	{
- 		n = vec_copy(hit->hit_point);
-		n = vec_norm(n);
+		return((u_int32_t)get_rgba(sphere_color_texture(hit), intensity));
 	}
-	else
-		n = get_normal_vec(hit);
-	w = get_light_dir(hit);
-	intensity = get_light_intensity(get_minirt()->lights->content);
-	kd = get_rgba(get_obj_color(hit->obj->obj), 255);
+	
 
-	result = intensity * vec_dot(n, w) * kd;
-	return (result);
+	return ((u_int32_t)get_rgba(color, intensity));
 }

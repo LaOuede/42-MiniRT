@@ -28,6 +28,8 @@ void	minirt(int fd)
 {
 	t_minirt	*minirt;
 
+	get_minirt()->texture = mlx_load_png("/Users/macote/cursus42/miniRT_/textures/moon_texture_qual.png");
+
 	parse(fd);
 	minirt = get_minirt();
 	if (init_mlx(minirt) == true)

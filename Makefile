@@ -34,7 +34,7 @@ export HELP
 
 # Compiler and flags
 CC		=	gcc
-CFLAGS	=	-g -Wall -Wextra -Werror -O3
+CFLAGS	=	-g -Wall -Wextra -Werror #-O3
 #CFLAGS	=	-fsanitize=address
 
 # Remove

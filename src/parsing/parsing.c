@@ -59,6 +59,9 @@ void new_struct(char **line)
 	{
 		new_scene_info(line);
 	}
+	else if (!ft_strncmp(line[0], "#", 1))
+	{
+	}
 	else
 	{
 		error(line, INVALID_OBJECT, NULL);
@@ -114,9 +117,11 @@ void parse(int fd)
 	next_line = trim_gnl(get_next_line(fd));
 	while (next_line)
 	{
-		splitted_line = ft_split(next_line, ' ');
-		new_struct(splitted_line);
-
+		if (next_line[0])
+		{
+			splitted_line = ft_split(next_line, ' ');
+			new_struct(splitted_line);
+		}
 		if (next_line)
 			next_line = ft_freenull(next_line);
 		next_line = trim_gnl(get_next_line(fd));

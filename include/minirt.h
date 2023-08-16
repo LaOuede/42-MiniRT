@@ -20,6 +20,8 @@
 #define WIDTH 1600
 #define HEIGHT 900
 
+#define SHINY_FACTOR 400
+
 //***************
 //GENERAL STRUCTS
 //***************
@@ -162,19 +164,20 @@ typedef struct s_minirt
 	mlx_t			*mlx;
 	mlx_image_t		*image;
 	keys_t			*keys;
+	mlx_texture_t	*texture;
 }					t_minirt;
 
 typedef struct s_hit
 {
-	float t;
-	t_object *obj;
-	t_vec3	hit_point;
+	float		t;
+	t_object	*obj;
+	t_vec3		hit_point;
 }				t_hit;
 
 typedef struct s_shading
 {
-	t_vec3 light_dir;
-	t_vec3 normal_vec;
+	int		color;
+	float	intensity;
 }				t_shading;
 
 //parsing
@@ -209,6 +212,7 @@ t_vec3 get_light_position(void *packed_light);
 float get_light_intensity(void *packed_light);
 t_color get_light_color(void *packed_light);
 t_color get_obj_color(t_object *obj);
+t_vec3 get_plane_direction(t_object *object);
 
 
 //object errors
@@ -275,20 +279,23 @@ t_vec3	matrix_vec_mult(t_mat4 mat, t_vec3 v);
 //colors
 t_color	add_2_colors(t_color col1, t_color col2);
 t_color	add_3_colors(t_color col1, t_color col2, t_color col3);
-int		color_scale(t_color col1, float scale);
+// int		color_scale(t_color col1, float scale);
 t_color	sub_2_colors(t_color col1, t_color col2);
 t_color	sub_3_colors(t_color col1, t_color col2, t_color col3);
 int		get_rgba(t_color color, float a);
 t_color	no_color(void);
-
+t_color get_specular_color(void);
+t_color max_color(t_color color);
+t_color	color_scale(t_color v, float scale);
+t_color	color_add(t_color v1, t_color v2);
+t_color sphere_color_texture(t_hit *hit);
 
 //ray launcher
 void ray_launcher();
 void find_closest_hit(t_ray_info ray, t_hit *closest_hit);
 
 //shading
-int	shading(t_hit *hit);
-
+u_int32_t	shading(t_hit *hit);
 
 //hooks
 void	camera_rotation_yaw(t_minirt *minirt, keys_t key);

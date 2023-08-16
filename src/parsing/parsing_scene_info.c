@@ -37,6 +37,8 @@ void parse_ambiant_light(char **line)
 	check_error(line, AMBIANT_LIGHT, NULL);
 		
 	get_minirt()->ambiant_light.intensity = ft_atof(line[1]);
+	if(get_minirt()->ambiant_light.intensity < 0.01f)
+		get_minirt()->ambiant_light.intensity = 0.01f;
 	parse_colors(line[2], &get_minirt()->ambiant_light.color);
 	get_minirt()->ambiant_light.exists = TRUE;
 }
