@@ -34,7 +34,7 @@ export HELP
 
 # Compiler and flags
 CC		=	gcc
-CFLAGS	=	-g -Wall -Wextra -Werror #-O3
+CFLAGS	=	-g -Wall -Wextra -Werror -O3
 #CFLAGS	=	-fsanitize=address
 
 # Remove
@@ -82,6 +82,11 @@ SRCS_LIST	=	hooks/camera_rotation.c \
 				ray_generation/shading.c \
 				colors/colors.c \
 				colors/colors_transformations.c \
+				textures/texture.c \
+				textures/normal_map.c \
+				textures/uv_mapping.c \
+				materials/load_materials.c \
+				materials/moon.c \
 
 # 
 SRCS		=	$(addprefix $(SRCS_DIR), $(SRCS_LIST))
@@ -123,7 +128,7 @@ dir:
 	@mkdir -p $(OBJS_DIR) $(OBJS_DIR)parsing \
 	$(OBJS_DIR)vectors $(OBJS_DIR)matrices $(OBJS_DIR)colors \
 	$(OBJS_DIR)intersections $(OBJS_DIR)utils $(OBJS_DIR)ray_generation \
-	$(OBJS_DIR)hooks
+	$(OBJS_DIR)hooks $(OBJS_DIR)materials $(OBJS_DIR)textures
 
 # Compilation
 $(NAME): $(MLX42) $(LIBFT) $(OBJS)

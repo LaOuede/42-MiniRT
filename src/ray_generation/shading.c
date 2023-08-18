@@ -26,22 +26,24 @@ float shading_intensity(float geo_term)
 	return (light_intensity);
 }
 
-t_color shading_color(t_hit *hit, t_vec3 w, t_vec3 n)
+t_color shading_color(t_hit *hit, t_vec3 w, t_vec3 n, t_color obj_color)
 {
-	t_color obj_color;
 	t_color specular_color;
 	t_color output_color;
 	t_vec3	v;
 	t_vec3	h;
 	float	coeff;
 
-	obj_color = get_obj_color(hit->obj);
 	specular_color = get_specular_color();
 
 	v = vec_norm(vec_subs(get_minirt()->camera.position, hit->hit_point));
 	h = vec_norm(vec_add(w, v));
 
-	coeff = pow(vec_dot(n, h), SHINY_FACTOR * pow(get_light_intensity(get_minirt()->lights->content), 1.4f));
+
+	coeff = vec_dot(n, h);
+	if (coeff < 0)
+		coeff = 0;
+	coeff = pow(coeff, SHINY_FACTOR * pow(get_light_intensity(get_minirt()->lights->content), 1.4f));
 
 	specular_color = color_scale(specular_color, coeff);
 
@@ -59,17 +61,19 @@ u_int32_t shading(t_hit *hit)
 	t_color color;
 	float intensity;
 
+	color = get_obj_color(hit->obj);
 	n = get_normal_vec(hit);
 	w = get_light_dir(hit);
 	geo_term = vec_dot(n, w);
+	
 
-	intensity = shading_intensity(geo_term);
-	color = shading_color(hit, w, n);
-
-	if (hit->obj->type == SPHERE)
+	if (hit->obj->type == SPHERE && get_minirt()->moon.texture)
 	{
-		return((u_int32_t)get_rgba(sphere_color_texture(hit), intensity));
+		color = get_texture_color(hit);
 	}
+	intensity = shading_intensity(geo_term);
+	color = shading_color(hit, w, n, color);
+
 	
 
 	return ((u_int32_t)get_rgba(color, intensity));

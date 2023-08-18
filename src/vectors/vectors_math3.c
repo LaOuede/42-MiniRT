@@ -33,12 +33,12 @@ void	vec_negate(t_vec3 v)
 	v.z = -v.z;
 }
 
-t_vec3 null_vector(void)
+t_vec3 generate_vector(float x, float y, float z)
 {
 	t_vec3 null_vector;
 
-	null_vector.x = 0;
-	null_vector.y = 0;
-	null_vector.z = 0;
+	null_vector.x = x;
+	null_vector.y = y;
+	null_vector.z = z;
 	return (null_vector);
 }

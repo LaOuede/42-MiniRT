@@ -28,7 +28,7 @@ t_color get_specular_color(void)
 	t_color color;
 	float color_intensity;
 
-	color_intensity = pow(get_light_intensity(get_minirt()->lights->content), 1.2) * 255.0f * 0.8f;
+	color_intensity = pow(get_light_intensity(get_minirt()->lights->content), 1.2) * 255.0f * 0.2f;
 	color.r = color_intensity;
 	color.b = color_intensity;
 	color.g = color_intensity;
@@ -74,47 +74,6 @@ t_color	data_to_rgb(const unsigned int color)
 	rgb.g = ((color >> 8) & 0xFF) / 255.0;
 	rgb.b = ((color) & 0xFF) / 255.0;
 	return (rgb);
-}
-
-t_color sphere_color_texture(t_hit *hit)
-{
-	t_vec3		normal;
-	float		phi;
-	float		theta;
-	float			U;
-	float			V;
-	unsigned int			px;
-	unsigned int			py;
-	t_color	color;
-
-	normal = vec_norm(vec_subs(hit->hit_point, get_position(hit->obj)));
-	phi = atan2f(normal.z, normal.x);
-	theta = acosf(normal.y);
-
-	
-	U = (phi / (2 * M_PI)) * -1;
-	if (U < 0)
-		U = 0;
-
-	// V = (1 - (theta / M_PI));
-	V = ((theta / M_PI));
-	if (V < 0)
-		V = 0;
-
-	px = U * (get_minirt()->texture->width - 1);
-	if (px > (get_minirt()->texture->width - 1))
-		px = (get_minirt()->texture->width - 1);
-
-	py = V * (get_minirt()->texture->height - 1);
-	if (py > get_minirt()->texture->height - 1)
-		py = get_minirt()->texture->height - 1;
-
-	// U = get_minirt()->texture->bytes_per_pixel;
-	// color = data_to_rgb(get_minirt()->texture->pixels[(py * get_minirt()->texture->width + px)]);
-	color.r = get_minirt()->texture->pixels[4 * (py * get_minirt()->texture->width + px)];
-	color.g = get_minirt()->texture->pixels[4 * (py * get_minirt()->texture->width + px) + 1];
-	color.b = get_minirt()->texture->pixels[4 * (py * get_minirt()->texture->width + px) + 2];
-	return (color);
 }
 
 /*

@@ -88,11 +88,11 @@ void	keys_camera(mlx_key_data_t keydata, void *param)
 	
 	if (mlx_is_key_down(minirt->mlx, MLX_KEY_RIGHT_SHIFT)
 		&& mlx_is_key_down(minirt->mlx, MLX_KEY_EQUAL))
-		mod_light_intensity(0.05f);
+		mod_light_intensity(0.2f);
 
 	if (mlx_is_key_down(minirt->mlx, MLX_KEY_RIGHT_SHIFT)
 		&& mlx_is_key_down(minirt->mlx, MLX_KEY_MINUS))
-		mod_light_intensity(-0.05f);
+		mod_light_intensity(-0.2f);
 	
 /* 	if (mlx_is_key_down(minirt->mlx, MLX_KEY_O)
 		|| mlx_is_key_down(minirt->mlx, MLX_KEY_U))

@@ -17,10 +17,10 @@
 # define HEIGHT 1080 */
 
 #define ERROR -1
-#define WIDTH 1600
-#define HEIGHT 900
+#define WIDTH 2560
+#define HEIGHT 1440
 
-#define SHINY_FACTOR 400
+#define SHINY_FACTOR 1000
 
 //***************
 //GENERAL STRUCTS
@@ -72,6 +72,14 @@ typedef struct s_color
 # define BAD_ARGS_AMB_LIGHT 10
 # define BAD_ARGS_LIGHT 11
 # define BAD_ARGS_CAMERA 12
+
+//texture
+typedef struct s_material
+{
+	mlx_texture_t	*texture;
+	mlx_texture_t	*norm_map;
+	int				shine;
+}				t_material;
 
 //vector
 typedef struct s_vec3
@@ -135,6 +143,7 @@ typedef struct s_sphere
 	float			rayon; //faire (diametre en input) / 2
 	t_color			color;
 	t_vec3			position;
+
 }					t_sphere;
 
 typedef struct s_plan
@@ -164,7 +173,7 @@ typedef struct s_minirt
 	mlx_t			*mlx;
 	mlx_image_t		*image;
 	keys_t			*keys;
-	mlx_texture_t	*texture;
+	t_material		moon;////////////////////////////////////////////// to change
 }					t_minirt;
 
 typedef struct s_hit
@@ -179,6 +188,7 @@ typedef struct s_shading
 	int		color;
 	float	intensity;
 }				t_shading;
+
 
 //parsing
 void				parse(int fd);
@@ -257,7 +267,7 @@ t_vec3	vec_scale(t_vec3 v, float scale);
 t_vec3	vec_subs(t_vec3 v1, t_vec3 v2);
 t_vec3	vec_unit_vec(t_vec3 v1, t_vec3 v2);
 void	vec_reset(t_vec3 *v);
-t_vec3	null_vector(void);
+t_vec3	generate_vector(float x, float y, float z);
 t_vec3 get_normal_vec(t_hit *hit);
 t_vec3	vec_copy(t_vec3 v);
 
@@ -284,18 +294,24 @@ t_color	sub_2_colors(t_color col1, t_color col2);
 t_color	sub_3_colors(t_color col1, t_color col2, t_color col3);
 int		get_rgba(t_color color, float a);
 t_color	no_color(void);
-t_color get_specular_color(void);
-t_color max_color(t_color color);
+t_color	get_specular_color(void);
+t_color	max_color(t_color color);
 t_color	color_scale(t_color v, float scale);
 t_color	color_add(t_color v1, t_color v2);
-t_color sphere_color_texture(t_hit *hit);
 
 //ray launcher
-void ray_launcher();
-void find_closest_hit(t_ray_info ray, t_hit *closest_hit);
+void	ray_launcher();
+void	find_closest_hit(t_ray_info ray, t_hit *closest_hit);
 
 //shading
 u_int32_t	shading(t_hit *hit);
+
+//materials && textures
+void	load_moon(void);
+void	load_materials(void);
+t_color	get_texture_color(t_hit *hit);
+void	uv_map_sphere(t_hit *hit, unsigned int *px, unsigned int *py, mlx_texture_t *image);
+t_color get_normap_value(t_hit *hit);
 
 //hooks
 void	camera_rotation_yaw(t_minirt *minirt, keys_t key);

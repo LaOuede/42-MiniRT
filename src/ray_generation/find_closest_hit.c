@@ -22,10 +22,10 @@ static void init_hit(t_hit *closest_hit, t_hit *hit)
 {
 	hit->t = 0;
 	hit->obj = NULL;
-	hit->hit_point = null_vector();
+	hit->hit_point = generate_vector(0,0,0);
 	closest_hit->t = 0;
 	closest_hit->obj = NULL;
-	closest_hit->hit_point = null_vector();
+	closest_hit->hit_point = generate_vector(0,0,0);
 }
 
 static void update_closest_hit(t_hit *closest_hit, t_hit hit)
@@ -40,11 +40,6 @@ void find_hit(t_vec3 d, t_object *object, t_hit *hit)
 		hit_sphere(d, object, hit);
 	else if (object->type == PLAN)
 		hit_plane(d, object, hit);
-}
-
-void put_the_pixel()
-{
-
 }
 
 void find_closest_hit(t_ray_info ray, t_hit *closest_hit)
@@ -66,12 +61,13 @@ void find_closest_hit(t_ray_info ray, t_hit *closest_hit)
 		}
 		current = current->next;
 	}
+	if (ray.px == 547 && ray.py == 447)
+	{
+		printf("");
+	}
+	
 	if (closest_hit->obj)
 	{
-		if (closest_hit->obj->type == PLAN)
-		{
-			printf("");
-		}
 		closest_hit->hit_point = vec_add(get_minirt()->camera.position, vec_scale(ray.d, closest_hit->t));
 		mlx_put_pixel(get_minirt()->image, ray.px, ray.py, shading(closest_hit));
 	}

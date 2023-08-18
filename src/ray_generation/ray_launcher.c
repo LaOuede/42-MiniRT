@@ -70,7 +70,6 @@ void ray_launcher(void)
 		{
 			pre_launch_operations(&ray);
 			find_closest_hit(ray, &closest_hit);
-			
 		}
 	}
 }

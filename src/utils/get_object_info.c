@@ -21,7 +21,7 @@ t_vec3 get_position(t_object *object)
 		cylinder = (t_cylindre *)object->obj;
 		return (cylinder->position);
 	}
-	return(null_vector());
+	return(generate_vector(0,0,0));
 }
 
 t_color get_obj_color(t_object *obj)
@@ -60,5 +60,5 @@ t_vec3 get_plane_direction(t_object *object)
 		plane = (t_plan *)object->obj;
 		return (plane->direction);
 	}
-	return(null_vector());
+	return(generate_vector(0, 0, 0));
 }
