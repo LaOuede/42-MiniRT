@@ -24,7 +24,7 @@ static t_vec3 modified_sphere_normal(t_hit *hit)
 	float	distance;
 
 	n = sphere_normal(hit);
-	if (get_minirt()->moon.norm_map)
+	if (get_obj_material(hit->obj)->norm_map)
 	{
 		distance = vec_mag(vec_subs(hit->hit_point, get_minirt()->camera.position));
 		distance = 1.0 + 0.001f * pow(distance, 2);//constantes;;;

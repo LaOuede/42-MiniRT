@@ -73,6 +73,9 @@ typedef struct s_color
 # define BAD_ARGS_LIGHT 11
 # define BAD_ARGS_CAMERA 12
 
+# define NO_MAT 0
+# define MOON 1
+# define EARTH 2
 //texture
 typedef struct s_material
 {
@@ -143,6 +146,7 @@ typedef struct s_sphere
 	float			rayon; //faire (diametre en input) / 2
 	t_color			color;
 	t_vec3			position;
+	t_material		*material;
 
 }					t_sphere;
 
@@ -151,6 +155,7 @@ typedef struct s_plan
 	t_color			color;
 	t_vec3			direction; //vector values between 0 and 1
 	t_vec3			position;
+	t_material		*material;
 }					t_plan;
 
 typedef struct s_cylindre
@@ -160,6 +165,7 @@ typedef struct s_cylindre
 	t_color			color;
 	t_vec3			direction; //vector values between -1 and 1
 	t_vec3			position;
+	t_material		*material;
 }					t_cylindre;
 
 typedef struct s_minirt
@@ -173,7 +179,7 @@ typedef struct s_minirt
 	mlx_t			*mlx;
 	mlx_image_t		*image;
 	keys_t			*keys;
-	t_material		moon;////////////////////////////////////////////// to change
+	t_material		material[3];////////////////////////////////////////////// to change
 }					t_minirt;
 
 typedef struct s_hit
@@ -223,6 +229,8 @@ float get_light_intensity(void *packed_light);
 t_color get_light_color(void *packed_light);
 t_color get_obj_color(t_object *obj);
 t_vec3 get_plane_direction(t_object *object);
+t_material *get_obj_material(t_object *obj);
+
 
 
 //object errors
@@ -308,6 +316,8 @@ u_int32_t	shading(t_hit *hit);
 
 //materials && textures
 void	load_moon(void);
+void	load_earth(void);
+void	load_no_material(void);
 void	load_materials(void);
 t_color	get_texture_color(t_hit *hit);
 void	uv_map_sphere(t_hit *hit, unsigned int *px, unsigned int *py, mlx_texture_t *image);

@@ -86,7 +86,9 @@ SRCS_LIST	=	hooks/camera_rotation.c \
 				textures/normal_map.c \
 				textures/uv_mapping.c \
 				materials/load_materials.c \
+				materials/no_material.c \
 				materials/moon.c \
+				materials/earth.c \
 
 # 
 SRCS		=	$(addprefix $(SRCS_DIR), $(SRCS_LIST))

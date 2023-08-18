@@ -43,7 +43,7 @@ t_color shading_color(t_hit *hit, t_vec3 w, t_vec3 n, t_color obj_color)
 	coeff = vec_dot(n, h);
 	if (coeff < 0)
 		coeff = 0;
-	coeff = pow(coeff, SHINY_FACTOR * pow(get_light_intensity(get_minirt()->lights->content), 1.4f));
+	coeff = pow(coeff, get_obj_material(hit->obj)->shine * pow(get_light_intensity(get_minirt()->lights->content), 1.4f));
 
 	specular_color = color_scale(specular_color, coeff);
 
@@ -67,7 +67,7 @@ u_int32_t shading(t_hit *hit)
 	geo_term = vec_dot(n, w);
 	
 
-	if (hit->obj->type == SPHERE && get_minirt()->moon.texture)
+	if (hit->obj->type == SPHERE && get_obj_material(hit->obj)->texture)
 	{
 		color = get_texture_color(hit);
 	}

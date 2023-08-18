@@ -62,3 +62,28 @@ t_vec3 get_plane_direction(t_object *object)
 	}
 	return(generate_vector(0, 0, 0));
 }
+
+t_material *get_obj_material(t_object *obj)
+{
+	t_sphere *sphere;
+	t_plan *plane;
+	t_cylindre *cylindre;
+
+	if (obj->type == SPHERE)
+	{
+		sphere = (t_sphere *)obj->obj;
+		return (sphere->material);
+	}
+	else if (obj->type == PLAN)
+	{
+		plane = (t_plan *)obj->obj;
+		return (plane->material);
+	}
+	else if (obj->type == CYLINDRE)
+	{
+		cylindre = (t_cylindre *)obj->obj;
+		return (cylindre->material);
+	}
+	else
+		return (NULL);
+}

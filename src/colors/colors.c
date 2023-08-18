@@ -28,7 +28,7 @@ t_color get_specular_color(void)
 	t_color color;
 	float color_intensity;
 
-	color_intensity = pow(get_light_intensity(get_minirt()->lights->content), 1.2) * 255.0f * 0.2f;
+	color_intensity = pow(get_light_intensity(get_minirt()->lights->content), 1.2) * 255.0f * 0.8f;
 	color.r = color_intensity;
 	color.b = color_intensity;
 	color.g = color_intensity;

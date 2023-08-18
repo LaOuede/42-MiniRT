@@ -1,6 +1,17 @@
 
 #include "minirt.h"
 
+t_material *get_material(char *line)
+{
+	if (!line)
+		return (&get_minirt()->material[NO_MAT]);
+	if (!ft_strncmp(line, "moon", 5))
+		return(&get_minirt()->material[MOON]);
+	else if (!ft_strncmp(line, "earth", 6))
+		return(&get_minirt()->material[EARTH]);
+	else
+		return (&get_minirt()->material[NO_MAT]);//error no such material???
+}
 
 //parses line input to the sphere struct
 void parse_sphere(char **line, t_object *object)
@@ -15,6 +26,7 @@ void parse_sphere(char **line, t_object *object)
 	parse_coordinates(line[1], &sphere->position);
 	sphere->rayon = ft_atof(line[2]) / 2;
 	parse_colors(line[3], &sphere->color);
+	sphere->material = get_material(line[4]);
 }
 
 //parses line input to the cylinder struct
@@ -31,6 +43,7 @@ void parse_cylinder(char **line, t_object *object)
 	cylindre->rayon = ft_atof(line[3]) / 2;
 	cylindre->hauteur = ft_atof(line[4]);
 	parse_colors(line[5], &cylindre->color);
+	cylindre->material = get_material(line[6]);
 }
 
 //parses line input to the plane struct
@@ -44,4 +57,5 @@ void parse_plane(char **line, t_object *object)
 	parse_coordinates(line[1], &plan->position);
 	parse_coordinates(line[2], &plan->direction);
 	parse_colors(line[3], &plan->color);
+	plan->material = get_material(line[4]);
 }
