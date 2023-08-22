@@ -20,6 +20,7 @@
 #define WIDTH 2560
 #define HEIGHT 1440
 
+#define THREAD_COUNT (HEIGHT / 4)
 #define SHINY_FACTOR 1000
 
 //***************
@@ -76,6 +77,8 @@ typedef struct s_color
 # define NO_MAT 0
 # define MOON 1
 # define EARTH 2
+# define WATER 3
+
 //texture
 typedef struct s_material
 {
@@ -104,6 +107,7 @@ typedef struct s_ray_info
 	t_vec3 forward;
 	t_vec3 right;
 	t_vec3 up;
+	bool first_hit;
 }		t_ray_info;
 
 
@@ -179,7 +183,7 @@ typedef struct s_minirt
 	mlx_t			*mlx;
 	mlx_image_t		*image;
 	keys_t			*keys;
-	t_material		material[3];////////////////////////////////////////////// to change
+	t_material		material[4];////////////////////////////////////////////// to change
 }					t_minirt;
 
 typedef struct s_hit
@@ -194,6 +198,14 @@ typedef struct s_shading
 	int		color;
 	float	intensity;
 }				t_shading;
+
+typedef struct s_thread
+{
+	pthread_t	thread;
+	t_ray_info	ray;
+	t_hit		closest_hit;
+	int			index;
+}				t_thread;
 
 
 //parsing
@@ -302,7 +314,7 @@ t_color	sub_2_colors(t_color col1, t_color col2);
 t_color	sub_3_colors(t_color col1, t_color col2, t_color col3);
 int		get_rgba(t_color color, float a);
 t_color	no_color(void);
-t_color	get_specular_color(void);
+t_color	get_specular_color(t_color obj_color);
 t_color	max_color(t_color color);
 t_color	color_scale(t_color v, float scale);
 t_color	color_add(t_color v1, t_color v2);
@@ -317,10 +329,12 @@ u_int32_t	shading(t_hit *hit);
 //materials && textures
 void	load_moon(void);
 void	load_earth(void);
+void	load_water(void);
 void	load_no_material(void);
 void	load_materials(void);
 t_color	get_texture_color(t_hit *hit);
 void	uv_map_sphere(t_hit *hit, unsigned int *px, unsigned int *py, mlx_texture_t *image);
+void uv_map(t_hit *hit, unsigned int *px, unsigned int *py, mlx_texture_t *image);
 t_color get_normap_value(t_hit *hit);
 
 //hooks

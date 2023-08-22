@@ -34,7 +34,7 @@ t_color shading_color(t_hit *hit, t_vec3 w, t_vec3 n, t_color obj_color)
 	t_vec3	h;
 	float	coeff;
 
-	specular_color = get_specular_color();
+	specular_color = get_specular_color(obj_color);
 
 	v = vec_norm(vec_subs(get_minirt()->camera.position, hit->hit_point));
 	h = vec_norm(vec_add(w, v));
@@ -61,16 +61,13 @@ u_int32_t shading(t_hit *hit)
 	t_color color;
 	float intensity;
 
-	color = get_obj_color(hit->obj);
+	// color = get_obj_color(hit->obj);
+	color = get_texture_color(hit);
 	n = get_normal_vec(hit);
 	w = get_light_dir(hit);
 	geo_term = vec_dot(n, w);
-	
 
-	if (hit->obj->type == SPHERE && get_obj_material(hit->obj)->texture)
-	{
-		color = get_texture_color(hit);
-	}
+	
 	intensity = shading_intensity(geo_term);
 	color = shading_color(hit, w, n, color);
 

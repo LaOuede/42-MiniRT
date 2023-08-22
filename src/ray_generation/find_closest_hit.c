@@ -1,22 +1,22 @@
 #include "minirt.h"
 
-static bool first_hit(bool action)
-{
-	static bool first_hit = TRUE;
-	bool output;
+// static bool first_hit(bool action)
+// {
+// 	static bool first_hit = TRUE;
+// 	bool output;
 
-	if (action == TRUE)
-	{
-		output = first_hit;
-		first_hit = FALSE;
-		return (output);
-	}
-	else
-	{
-		first_hit = TRUE;
-		return (FALSE);
-	}
-}
+// 	if (action == TRUE)
+// 	{
+// 		output = first_hit;
+// 		first_hit = FALSE;
+// 		return (output);
+// 	}
+// 	else
+// 	{
+// 		first_hit = TRUE;
+// 		return (FALSE);
+// 	}
+// }
 
 static void init_hit(t_hit *closest_hit, t_hit *hit)
 {
@@ -55,15 +55,12 @@ void find_closest_hit(t_ray_info ray, t_hit *closest_hit)
 	{
 		object = current->content;
 		find_hit(ray.d, object, &hit);
-		if (hit.obj && (first_hit(TRUE) || hit.t < closest_hit->t))
+		if (hit.obj && (ray.first_hit || hit.t < closest_hit->t))
 		{
 			update_closest_hit(closest_hit, hit);
+			ray.first_hit = FALSE;
 		}
 		current = current->next;
-	}
-	if (ray.px == 547 && ray.py == 447)
-	{
-		printf("");
 	}
 	
 	if (closest_hit->obj)
@@ -71,5 +68,5 @@ void find_closest_hit(t_ray_info ray, t_hit *closest_hit)
 		closest_hit->hit_point = vec_add(get_minirt()->camera.position, vec_scale(ray.d, closest_hit->t));
 		mlx_put_pixel(get_minirt()->image, ray.px, ray.py, shading(closest_hit));
 	}
-	first_hit(FALSE);
+	// first_hit(FALSE);
 }

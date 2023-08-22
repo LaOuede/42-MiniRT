@@ -34,7 +34,7 @@ export HELP
 
 # Compiler and flags
 CC		=	gcc
-CFLAGS	=	-g -Wall -Wextra -Werror -O3
+CFLAGS	=	-g -Wall -Wextra -Werror -O3 #-fsanitize=thread
 #CFLAGS	=	-fsanitize=address
 
 # Remove
@@ -89,6 +89,7 @@ SRCS_LIST	=	hooks/camera_rotation.c \
 				materials/no_material.c \
 				materials/moon.c \
 				materials/earth.c \
+				materials/water.c \
 
 # 
 SRCS		=	$(addprefix $(SRCS_DIR), $(SRCS_LIST))

@@ -23,16 +23,32 @@ t_color no_color(void)
 	return(color);
 }
 
-t_color get_specular_color(void)
+t_color generate_color(float r, float g, float b)
 {
 	t_color color;
+	color.r = r;
+	color.g = g;
+	color.b = b;
+	return (color);
+}
+
+t_color get_specular_color(t_color obj_color)/////////////////play around here
+{
+	t_color color_add_;
+	t_color basic_spec_color;
 	float color_intensity;
 
-	color_intensity = pow(get_light_intensity(get_minirt()->lights->content), 1.2) * 255.0f * 0.8f;
-	color.r = color_intensity;
-	color.b = color_intensity;
-	color.g = color_intensity;
-	return(color);
+	// if (get_obj_material(obj)->texture)
+	// {
+	// 	color = 
+	// }
+	color_add_ = obj_color;
+	color_intensity = pow(get_light_intensity(get_minirt()->lights->content), 1.2);
+	basic_spec_color = color_scale(generate_color(100, 100, 100), color_intensity);
+	color_add_ = color_scale(color_add_, color_intensity);
+
+	obj_color = color_add(basic_spec_color, color_add_);
+	return(obj_color);
 }
 
 t_color max_color(t_color color)

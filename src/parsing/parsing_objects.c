@@ -9,6 +9,8 @@ t_material *get_material(char *line)
 		return(&get_minirt()->material[MOON]);
 	else if (!ft_strncmp(line, "earth", 6))
 		return(&get_minirt()->material[EARTH]);
+	else if (!ft_strncmp(line, "water", 6))
+		return(&get_minirt()->material[WATER]);
 	else
 		return (&get_minirt()->material[NO_MAT]);//error no such material???
 }
