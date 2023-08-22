@@ -53,13 +53,13 @@ t_color shading_color(t_hit *hit, t_vec3 w, t_vec3 n, t_color obj_color)
 	return(output_color);
 }
 
-u_int32_t shading(t_hit *hit)
+void shading(t_hit *hit, t_shading *shade)
 {
 	t_vec3 		n;//normal vector to hit point
 	t_vec3 		w;//light source direction
 	float		geo_term;
 	t_color color;
-	float intensity;
+	// float intensity;
 
 	// color = get_obj_color(hit->obj);
 	color = get_texture_color(hit);
@@ -68,10 +68,10 @@ u_int32_t shading(t_hit *hit)
 	geo_term = vec_dot(n, w);
 
 	
-	intensity = shading_intensity(geo_term);
-	color = shading_color(hit, w, n, color);
+	shade->intensity = shading_intensity(geo_term);
+	shade->color = shading_color(hit, w, n, color);
 
 	
 
-	return ((u_int32_t)get_rgba(color, intensity));
+	// return ((u_int32_t)get_rgba(color, intensity));
 }

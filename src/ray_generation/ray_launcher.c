@@ -45,36 +45,70 @@ static void init_directions(t_ray_info *ray)
 	get_minirt()->cam_matrix = init_cam_matrix(ray->right, ray->up, ray->forward);
 }
 
-static void pre_launch_operations(t_ray_info *ray)
+static void pre_launch_operations(t_ray_info *ray, float added_px, float added_py)
 {
-	ray->x = 2.0f * ((float)ray->px + 0.5f) / (float)get_minirt()->image->width - 1;
-	ray->y = 2.0f * ((float)ray->py + 0.5f) / (float)get_minirt()->image->height - 1;
+	ray->x = 2.0f * ((float)ray->px + added_px) / (float)get_minirt()->image->width - 1;
+	ray->y = 2.0f * ((float)ray->py + added_py) / (float)get_minirt()->image->height - 1;
+	// ray->x = 2.0f * ((float)ray->px + 0.5f) / (float)get_minirt()->image->width - 1;
+	// ray->y = 2.0f * ((float)ray->py + 0.5f) / (float)get_minirt()->image->height - 1;
 	ray->first_hit = TRUE;
 	ray->d = get_d(*ray);
 }
 
-//optimisation a faire ici...
-// d = f + hyu + wxr
-// void ray_launcher(void)
-// {
-// 	t_ray_info ray;
-// 	t_hit closest_hit;
-// 	// t_shading shading;
-// 	// pthread_t threads[10];
+void single_sample(t_thread *thread, t_shading *shade, float added_px, float added_py)
+{
+	pre_launch_operations(&thread->ray, added_px, added_py);
+	find_closest_hit(thread->ray, &thread->closest_hit);
+	if (thread->closest_hit.obj)
+	{
+		thread->closest_hit.hit_point = vec_add(get_minirt()->camera.position, vec_scale(thread->ray.d, thread->closest_hit.t));
+		shading(&thread->closest_hit, shade);
+	}
+	else
+	{
+		shade->color = no_color();
+		shade->intensity = 0.0f;
+	}
+}
 
-// 	map_erase(get_minirt());
-// 	init_directions(&ray);
-// 	ray.py = -1;
-// 	while (++ray.py < (int)get_minirt()->image->height)
-// 	{
-// 		ray.px = -1;
-// 		while (++ray.px < (int)get_minirt()->image->width)
-// 		{
-// 			pre_launch_operations(&ray);
-// 			find_closest_hit(ray, &closest_hit);
-// 		}
-// 	}
-// }
+void super_sample_pixel(t_thread *thread)
+{
+	t_shading	shade[4];
+	t_color		result_color;
+	float		result_intensity;
+	u_int32_t	hexa_color;
+	int i;
+
+	single_sample(thread, &shade[0], 0.25f, 0.25f);
+	single_sample(thread, &shade[1], 0.25f, 0.75f);
+	single_sample(thread, &shade[2], 0.75f, 0.25f);
+	single_sample(thread, &shade[3], 0.75f, 0.75f);
+
+
+	result_color = no_color();
+	result_intensity = 0.0f;
+	i = 0;
+	while (i < 4)
+	{
+		result_color.r += shade[i].color.r;
+		result_color.g += shade[i].color.g;
+		result_color.b += shade[i].color.b;
+		result_intensity += shade[i].intensity;
+		i++;
+	}
+		result_color.r /= 4.0f;
+		result_color.g /= 4.0f;
+		result_color.b /= 4.0f;
+		result_intensity /= 4.0f;
+
+
+	hexa_color = (u_int32_t)get_rgba(result_color, result_intensity);
+
+
+
+
+	mlx_put_pixel(get_minirt()->image, thread->ray.px, thread->ray.py, hexa_color);
+}
 
 void *routine(void *package)
 {
@@ -91,8 +125,7 @@ void *routine(void *package)
 		thread->ray.px = 0;
 		while (thread->ray.px < scr_width)
 		{
-			pre_launch_operations(&thread->ray);
-			find_closest_hit(thread->ray, &thread->closest_hit);
+			super_sample_pixel(thread);
 			thread->ray.px++;
 		}
 		thread->ray.py += THREAD_COUNT;

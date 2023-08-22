@@ -20,7 +20,7 @@
 #define WIDTH 2560
 #define HEIGHT 1440
 
-#define THREAD_COUNT (HEIGHT / 4)
+#define THREAD_COUNT (HEIGHT / 2)
 #define SHINY_FACTOR 1000
 
 //***************
@@ -195,8 +195,8 @@ typedef struct s_hit
 
 typedef struct s_shading
 {
-	int		color;
-	float	intensity;
+	t_color		color;
+	float		intensity;
 }				t_shading;
 
 typedef struct s_thread
@@ -324,7 +324,7 @@ void	ray_launcher();
 void	find_closest_hit(t_ray_info ray, t_hit *closest_hit);
 
 //shading
-u_int32_t	shading(t_hit *hit);
+void	shading(t_hit *hit, t_shading *shade);
 
 //materials && textures
 void	load_moon(void);

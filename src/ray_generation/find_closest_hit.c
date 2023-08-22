@@ -63,10 +63,10 @@ void find_closest_hit(t_ray_info ray, t_hit *closest_hit)
 		current = current->next;
 	}
 	
-	if (closest_hit->obj)
-	{
-		closest_hit->hit_point = vec_add(get_minirt()->camera.position, vec_scale(ray.d, closest_hit->t));
-		mlx_put_pixel(get_minirt()->image, ray.px, ray.py, shading(closest_hit));
-	}
+	// if (closest_hit->obj)
+	// {
+	// 	closest_hit->hit_point = vec_add(get_minirt()->camera.position, vec_scale(ray.d, closest_hit->t));
+	// 	mlx_put_pixel(get_minirt()->image, ray.px, ray.py, shading(closest_hit));
+	// }
 	// first_hit(FALSE);
 }
