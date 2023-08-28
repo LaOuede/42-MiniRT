@@ -194,6 +194,8 @@ typedef struct s_minirt
 	mlx_t			*mlx;
 	mlx_image_t		*image;
 	keys_t			*keys;
+	t_object		*obj_selected;
+	int				obj_selected_type;
 	t_material		material[5];////////////////////////////////////////////// to change
 }					t_minirt;
 
@@ -250,6 +252,7 @@ void	hit_sphere(t_vec3 d, t_object *packed_sphere, t_hit *hit, t_vec3 origin);
 void	hit_plane(t_vec3 d, t_object *obj_actuel, t_hit *hit, t_vec3 origin);
 
 //get object info
+void	change_position(t_object *object, t_vec3 new_position);
 t_vec3 get_position(t_object *object);
 t_vec3 get_light_position(void *packed_light);
 float get_light_intensity(void *packed_light);
