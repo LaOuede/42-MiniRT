@@ -77,7 +77,7 @@ float shading_intensity(t_hit *hit, t_vec3 n)
 		
 		geo_term = get_geo_term(hit, current->content, n);
 		if (geo_term >= 0.0f)
-			diffuse_light = geo_term * 255.0f * get_light_intensity(current->content);
+			diffuse_light = geo_term * 255.0f * get_light_intensity(current->content) / cbrtf(fabsf(vec_mag(vec_subs(get_light_position(current->content), hit->hit_point))/ 7));/////
 		else
 			diffuse_light = 0.0f;
 		current_intensity = diffuse_light;
@@ -103,7 +103,7 @@ void calc_specular_effect(t_hit *hit, t_vec3 n, t_vec3 v, t_shading *shade)
 	float	current_coeff;
 	t_list *current;
 
-	specular_color = get_specular_color(shade->color);
+	specular_color = get_specular_color(shade->color, hit, shade);
 	current = get_minirt()->lights;
 	coeff = 0;
 	while (current)
@@ -118,10 +118,7 @@ void calc_specular_effect(t_hit *hit, t_vec3 n, t_vec3 v, t_shading *shade)
 			coeff = current_coeff;
 		current = current->next;
 	}
-	if (coeff > 0.5)
-	{
-		printf("");
-	}
+	coeff *= shade->intensity / 255.0f;
 	// shade->color = color_scale(specular_color, shading_intensity(hit, n) / 255.0f);
 	shade->color = color_add(shade->color, color_scale(specular_color, coeff));
 }
@@ -131,10 +128,10 @@ t_color shading_color(t_hit *hit, t_vec3 n, t_shading *shade, int *refl, t_vec3 
 	t_material *mat;
 
 	mat = get_obj_material(hit->obj);
+	if (mat->shine != 0)
+		calc_specular_effect(hit, n, v, shade);//!!!!IMPORTANT!!!!<------------------
 	if (mat->reflexion != 0)
 		calc_reflexion(hit, n, v, shade, refl);
-	// if (mat->shine != 0)
-	// 	calc_specular_effect(hit, n, v, shade);//!!!!IMPORTANT!!!!<------------------
 
 	return(shade->color);
 }

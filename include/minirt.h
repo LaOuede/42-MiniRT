@@ -95,6 +95,7 @@ typedef struct s_material
 	mlx_texture_t	*texture;
 	mlx_texture_t	*norm_map;
 	int				shine;
+	float			specular_factor;
 	float			reflexion;
 }				t_material;
 
@@ -330,17 +331,17 @@ t_color	sub_2_colors(t_color col1, t_color col2);
 t_color	sub_3_colors(t_color col1, t_color col2, t_color col3);
 int		get_rgba(t_color color, float a);
 t_color	no_color(void);
-t_color	get_specular_color(t_color obj_color);
+t_color	get_specular_color(t_color obj_color, t_hit *hit, t_shading *shade);
 t_color	max_color(t_color color);
 t_color	color_scale(t_color v, float scale);
 t_color	color_add(t_color v1, t_color v2);
-t_color shading_color(t_hit *hit, t_vec3 n, t_shading *shade, int *refl, t_vec3 v);
+t_color	shading_color(t_hit *hit, t_vec3 n, t_shading *shade, int *refl, t_vec3 v);
 
 //ray launcher
-void	ray_launcher();
-void	find_closest_hit(t_ray_info ray, t_hit *closest_hit, t_vec3 origin);
-t_shading single_ray(t_ray_info ray, t_hit *closest_hit);
-void find_hit(t_vec3 d, t_object *object, t_hit *hit, t_vec3 origin);
+void		ray_launcher();
+void		find_closest_hit(t_ray_info ray, t_hit *closest_hit, t_vec3 origin);
+t_shading	single_ray(t_ray_info ray, t_hit *closest_hit);
+void		find_hit(t_vec3 d, t_object *object, t_hit *hit, t_vec3 origin);
 
 //shading
 t_shading	shading(t_hit *hit);
@@ -356,8 +357,8 @@ void	load_sun(void);
 void	load_materials(void);
 t_color	get_texture_color(t_hit *hit);
 void	uv_map_sphere(t_hit *hit, unsigned int *px, unsigned int *py, mlx_texture_t *image);
-void uv_map(t_hit *hit, unsigned int *px, unsigned int *py, mlx_texture_t *image);
-t_color get_normap_value(t_hit *hit);
+void	uv_map(t_hit *hit, unsigned int *px, unsigned int *py, mlx_texture_t *image);
+t_color	get_normap_value(t_hit *hit);
 
 //hooks
 void	camera_rotation_yaw(t_minirt *minirt, keys_t key);
