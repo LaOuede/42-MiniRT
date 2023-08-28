@@ -36,7 +36,7 @@ static void init_directions_mouse(t_ray_info *ray)
 	ray->height = atanf(get_minirt()->camera.field_of_view);
 	ray->width = ray->height * aspect_ratio;
 	ray->forward = get_minirt()->camera.direction;
-	ray->right = vec_scale(vec_cross(ray->forward, up_guide_mouse()), ray->width);
+	ray->right = vec_scale(vec_cross(ray->forward, up_guide_mouse()), ray->width * -1);
 	ray->up = vec_scale(vec_cross(vec_norm(ray->right), ray->forward), ray->height);
 	ray->forward = vec_scale(ray->forward, 3.0f);
 	vec_reset(&ray->d);
@@ -81,6 +81,12 @@ static void find_closest_object(t_ray_info *ray, t_hit *closest_hit)
 			if (hit.obj->type == SPHERE)
 			{
 				printf("SPHERE\n");
+				get_minirt()->obj_selected_type = SPHERE;
+			}
+			if (hit.obj->type == PLAN)
+			{
+				printf("PLAN\n");
+				get_minirt()->obj_selected_type = PLAN;
 			}
 			update_closest_hit_mouse(closest_hit, hit);
 		}
@@ -107,7 +113,7 @@ static t_vec3 get_d_mouse(t_ray_info *ray)
 	return (d);
 }
 
-void ray_mouse(float x, float y)
+static void	ray_mouse(float x, float y)
 {
 	t_ray_info	ray;
 	t_hit		closest_hit;
@@ -117,6 +123,7 @@ void ray_mouse(float x, float y)
 	ray.y = 2.0f * ((float)y + 0.5f) / (float)get_minirt()->image->height - 1;
 	ray.d = get_d_mouse(&ray);
 	find_closest_object(&ray, &closest_hit);
+	get_minirt()->obj_selected = closest_hit.obj;
 }
 
 void	minirt_mouse(mouse_key_t button, action_t action, modifier_key_t mods, void* param)

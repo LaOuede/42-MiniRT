@@ -1,5 +1,28 @@
 #include "minirt.h"
 
+void	change_position(t_object *object, t_vec3 new_position)
+{
+	t_sphere	*sphere;
+	t_plan		*plane;
+	t_cylindre	*cylinder;
+
+	if (object->type == SPHERE)
+	{
+		sphere = (t_sphere *)object->obj;
+		sphere->position = new_position;
+	}
+	if (object->type == PLAN)
+	{
+		plane = (t_plan *)object->obj;
+		sphere->position = new_position;
+	}
+	if (object->type == CYLINDRE)
+	{
+		cylinder = (t_cylindre *)object->obj;
+		sphere->position = new_position;
+	}
+}
+
 t_vec3 get_position(t_object *object)
 {
 	t_sphere *sphere;

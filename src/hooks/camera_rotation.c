@@ -34,13 +34,15 @@ void	camera_rotation_pitch(t_minirt *minirt, keys_t key)
 void	camera_rotation_yaw(t_minirt *minirt, keys_t key)
 {
 	t_mat4	yaw;
-	t_mat4	mat_mult;
 
+/* 	printf("minirt->cam_matrix.p[2][0] = %f\n", minirt->cam_matrix.p[2][0]);
+	printf("minirt->cam_matrix.p[2][1] = %f\n", minirt->cam_matrix.p[2][1]);
+	printf("minirt->cam_matrix.p[2][2] = %f\n", minirt->cam_matrix.p[2][2]);
+	printf("-----------------------------------\n"); */
 	if (key == MLX_KEY_I)
 		yaw = matrix_rotx(1);
 	if (key == MLX_KEY_K)
 		yaw = matrix_rotx(-1);
-	mat_mult = matrix_mult(yaw, minirt->cam_matrix);
-	minirt->cam_matrix = mat_mult;
+	minirt->cam_matrix = matrix_mult(yaw, minirt->cam_matrix);
 	update_d(minirt);
 }

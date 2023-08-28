@@ -3,10 +3,13 @@
 
 t_minirt	*get_minirt(void)
 {
-	static t_minirt*	 minirt;
+	static t_minirt	*minirt;
 
 	if (!minirt)
+	{
 		minirt = ft_calloc(1, sizeof(t_minirt));
+		minirt->obj_selected_type = CAMERA;
+	}
 	return (minirt);
 }
 
