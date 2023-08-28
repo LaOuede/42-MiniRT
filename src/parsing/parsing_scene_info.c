@@ -21,9 +21,6 @@ void parse_light(char **line)
 void parse_camera(char **line)
 {
 	check_error(line, CAMERA, NULL);
-
-	
-
 	parse_coordinates(line[1], &get_minirt()->camera.position);
 	parse_coordinates(line[2], &get_minirt()->camera.direction);
 	vec_norm(get_minirt()->camera.direction);
@@ -38,7 +35,7 @@ void parse_ambiant_light(char **line)
 		
 	get_minirt()->ambiant_light.intensity = ft_atof(line[1]);
 	if(get_minirt()->ambiant_light.intensity < 0.01f)
-		get_minirt()->ambiant_light.intensity = 0.01f;
+		get_minirt()->ambiant_light.intensity = 0.008f;
 	parse_colors(line[2], &get_minirt()->ambiant_light.color);
 	get_minirt()->ambiant_light.exists = TRUE;
 }

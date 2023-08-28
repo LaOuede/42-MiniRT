@@ -49,6 +49,21 @@ void	ft_free_lst(t_list **lst)
 	*lst = NULL;
 }
 
+void free_textures(void)
+{
+	int i;
+
+	i = 0;
+	while (i < TEXTURE_COUNT)
+	{
+		if (get_minirt()->material[i].texture)
+			mlx_delete_texture(get_minirt()->material[i].texture);
+		if (get_minirt()->material[i].norm_map)
+			mlx_delete_texture(get_minirt()->material[i].norm_map);
+		i++;
+	}
+}
+
 void	free_minirt(void)
 {
 	t_minirt	*minirt;
@@ -60,5 +75,6 @@ void	free_minirt(void)
 		ft_free_lights(&minirt->lights);
 	if (minirt->mlx)
 		mlx_terminate(minirt->mlx);
+	free_textures();//add
 	minirt = ft_freenull(minirt);
 }

@@ -42,3 +42,13 @@ t_vec3 generate_vector(float x, float y, float z)
 	null_vector.z = z;
 	return (null_vector);
 }
+
+t_vec3 up_guide(void)
+{
+	t_vec3 up_guide;
+
+	up_guide.x = 0.0f;
+	up_guide.y = 1.0f;
+	up_guide.z = 0.0f;
+	return (up_guide);
+}

@@ -45,22 +45,6 @@ static t_vec3 modified_sphere_normal(t_hit *hit)
 	return (n);
 }
 
-static t_vec3 plane_normal(t_hit *hit)
-{
-	t_vec3 n;
-	t_vec3 vec1;
-	t_vec3 vec2;
-
-	vec1 = vec_norm(vec_subs(get_position(hit->obj), hit->hit_point));
-	vec2 = get_plane_direction(hit->obj);
-	n = vec_norm(vec_cross(vec1, vec2));
-	n.x = 0;
-	n.y = 1;
-	n.z = 0;
-	// n = vec_scale(n, -1);
-	return (n);
-}
-
 static t_vec3 cylinder_normal(t_hit *hit)
 {
 	// t_cylindre *cylinder;
@@ -80,7 +64,7 @@ t_vec3 get_normal_vec(t_hit *hit)
 	}
 	else if (hit->obj->type == PLAN)
 	{
-		return (plane_normal(hit));
+		return (vec_norm(get_plane_direction(hit->obj)));
 	}
 	else if (hit->obj->type == CYLINDRE)
 	{

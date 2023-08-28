@@ -70,9 +70,9 @@ static void find_closest_object(t_ray_info *ray, t_hit *closest_hit)
 		//a changer////////////////////////////////////////////////////////////
 		object = current->content;
 		if (object->type == SPHERE)
-			hit_sphere(ray->d, object, &hit);
+			hit_sphere(ray->d, object, &hit, get_minirt()->camera.position);
 		else if (object->type == PLAN)
-			hit_plane(ray->d, object, &hit);
+			hit_plane(ray->d, object, &hit, get_minirt()->camera.position);
 		
 		///////////////////////////////////////////////////////////////////////
 

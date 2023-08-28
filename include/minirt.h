@@ -17,10 +17,17 @@
 # define HEIGHT 1080 */
 
 #define ERROR -1
-#define WIDTH 2560
-#define HEIGHT 1440
+// #define WIDTH 2560
+// #define HEIGHT 1440
+// #define WIDTH 1920
+// #define HEIGHT 1080
+// #define WIDTH 1280
+// #define HEIGHT 720
+#define WIDTH 640
+#define HEIGHT 480
 
-#define THREAD_COUNT (HEIGHT / 2)
+#define	NUMBER_OF_REFLEXIONS 5
+#define THREAD_COUNT (HEIGHT / 4)
 #define SHINY_FACTOR 1000
 
 //***************
@@ -78,13 +85,17 @@ typedef struct s_color
 # define MOON 1
 # define EARTH 2
 # define WATER 3
+# define SUN 4
+# define TEXTURE_COUNT 5 //always ajust to be last texture index + 1 or leakks
 
 //texture
 typedef struct s_material
 {
+	int				id;
 	mlx_texture_t	*texture;
 	mlx_texture_t	*norm_map;
 	int				shine;
+	float			reflexion;
 }				t_material;
 
 //vector
@@ -183,14 +194,16 @@ typedef struct s_minirt
 	mlx_t			*mlx;
 	mlx_image_t		*image;
 	keys_t			*keys;
-	t_material		material[4];////////////////////////////////////////////// to change
+	t_material		material[5];////////////////////////////////////////////// to change
 }					t_minirt;
 
 typedef struct s_hit
 {
-	float		t;
-	t_object	*obj;
-	t_vec3		hit_point;
+	float			t;
+	t_object		*obj;
+	t_vec3			hit_point;
+	unsigned int	u_px;
+	unsigned int	v_py;
 }				t_hit;
 
 typedef struct s_shading
@@ -205,6 +218,8 @@ typedef struct s_thread
 	t_ray_info	ray;
 	t_hit		closest_hit;
 	int			index;
+	int scr_height;
+	int scr_width;
 }				t_thread;
 
 
@@ -231,8 +246,8 @@ void check_error(char **line, int type, void *to_free);
 int expected_arg_count(int type);
 
 //intersections
-void	hit_sphere(t_vec3 d, t_object *packed_sphere, t_hit *hit);
-void	hit_plane(t_vec3 d, t_object *obj_actuel, t_hit *hit);
+void	hit_sphere(t_vec3 d, t_object *packed_sphere, t_hit *hit, t_vec3 origin);
+void	hit_plane(t_vec3 d, t_object *obj_actuel, t_hit *hit, t_vec3 origin);
 
 //get object info
 t_vec3 get_position(t_object *object);
@@ -290,6 +305,7 @@ void	vec_reset(t_vec3 *v);
 t_vec3	generate_vector(float x, float y, float z);
 t_vec3 get_normal_vec(t_hit *hit);
 t_vec3	vec_copy(t_vec3 v);
+t_vec3	up_guide(void);
 
 
 
@@ -318,19 +334,25 @@ t_color	get_specular_color(t_color obj_color);
 t_color	max_color(t_color color);
 t_color	color_scale(t_color v, float scale);
 t_color	color_add(t_color v1, t_color v2);
+t_color shading_color(t_hit *hit, t_vec3 n, t_shading *shade, int *refl, t_vec3 v);
 
 //ray launcher
 void	ray_launcher();
-void	find_closest_hit(t_ray_info ray, t_hit *closest_hit);
+void	find_closest_hit(t_ray_info ray, t_hit *closest_hit, t_vec3 origin);
+t_shading single_ray(t_ray_info ray, t_hit *closest_hit);
+void find_hit(t_vec3 d, t_object *object, t_hit *hit, t_vec3 origin);
 
 //shading
-void	shading(t_hit *hit, t_shading *shade);
+t_shading	shading(t_hit *hit);
+void		calc_reflexion(t_hit *hit, t_vec3 n, t_vec3 v, t_shading *shade, int *refl);
+float		shading_intensity(t_hit *hit, t_vec3 n);
 
 //materials && textures
 void	load_moon(void);
 void	load_earth(void);
 void	load_water(void);
 void	load_no_material(void);
+void	load_sun(void);
 void	load_materials(void);
 t_color	get_texture_color(t_hit *hit);
 void	uv_map_sphere(t_hit *hit, unsigned int *px, unsigned int *py, mlx_texture_t *image);
@@ -354,5 +376,6 @@ void	object_translation_y(t_minirt *minirt, keys_t key);
 void	object_translation_z(t_minirt *minirt, keys_t key);
 void	minirt_keys(mlx_key_data_t keydata, void *param);
 void	minirt_mouse(mouse_key_t button, action_t action, modifier_key_t mods, void* param);
+void	resize_image(int32_t width, int32_t height, void* param);
 
 #endif

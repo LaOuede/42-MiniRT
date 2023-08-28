@@ -21,7 +21,7 @@ Surface normal vector :
 RUN "make int" to see informations
 
 */
-void	hit_sphere(t_vec3 d, t_object *packed_sphere, t_hit *hit)
+void	hit_sphere(t_vec3 d, t_object *packed_sphere, t_hit *hit, t_vec3 origin)
 {
 	float		a;
 	float		b;
@@ -32,7 +32,7 @@ void	hit_sphere(t_vec3 d, t_object *packed_sphere, t_hit *hit)
 
 	sphere = packed_sphere->obj;
 
-	displacement = vec_subs(get_minirt()->camera.position, sphere->position);
+	displacement = vec_subs(origin, sphere->position);
 	a = vec_dot(d, d);
 	b = vec_dot(vec_scale(d, 2.0f), displacement);
 	c = vec_dot(displacement, displacement) - sphere->rayon * sphere->rayon;
@@ -47,6 +47,12 @@ void	hit_sphere(t_vec3 d, t_object *packed_sphere, t_hit *hit)
 		// hit->col = vec_add(get_minirt()->camera.position, vec_scale(ray.direction, hit->t)); // coord du point de collision = (vecteur directionnel * t) + vecteur origin
 		hit->obj = packed_sphere;
 		hit->t = (-b - sqrtf(delta)) / (2.0f * a); // distance au point de collision
+		if (hit->t < 0.0f)
+		{
+			hit->t = 0.0f;
+			hit->obj = NULL;
+		}
+		
 	}
 }
 

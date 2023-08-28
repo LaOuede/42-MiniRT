@@ -24,6 +24,7 @@ bool	init_mlx(t_minirt *minirt)
 	return (true);
 }
 
+		// mlx_resize_image(minirt->mlx, minirt->mlx.);
 void	minirt(int fd)
 {
 	t_minirt	*minirt;
@@ -35,6 +36,7 @@ void	minirt(int fd)
 	{
 		mlx_mouse_hook(minirt->mlx, &minirt_mouse, minirt);
 		mlx_key_hook(minirt->mlx, &minirt_keys, minirt);
+		mlx_resize_hook(minirt->mlx, &resize_image, minirt);
 		ray_launcher();
 		mlx_loop(minirt->mlx);
 	}

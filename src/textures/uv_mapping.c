@@ -17,9 +17,9 @@ void uv_map_sphere(t_hit *hit, unsigned int *px, unsigned int *py, mlx_texture_t
 	if (U < 0)
 		U += 1;
 
-	V = ((theta / M_PI));
+	V = (theta / M_PI);
 	if (V < 0)
-		V += 0;
+		V += 1;
 
 	(*px) = U * (image->width - 1);
 	if ((*px) > (image->width - 1))
@@ -32,32 +32,35 @@ void uv_map_sphere(t_hit *hit, unsigned int *px, unsigned int *py, mlx_texture_t
 
 void uv_map_plane(t_hit *hit, unsigned int *px, unsigned int *py, mlx_texture_t *image)
 {
-    t_vec3 hit_point = hit->hit_point;
+    t_vec3 normal;
+    t_vec3 u_vec;
+    t_vec3 v_vec;
+    t_vec3 hit_to_point;
+	float U;
+	float V;
 
-	
-    // Define the local axes of the plane
-    t_vec3 axis_u = (t_vec3){1.0f, 0.0f, 0.0f}; // Local x-axis of the plane
-    t_vec3 axis_v = (t_vec3){0.0f, 0.0f, 1.0f}; // Local z-axis of the plane
+	normal = get_plane_direction(hit->obj);
+    u_vec = vec_cross(normal, generate_vector(1, 0, 0));
+    v_vec = vec_cross(normal, u_vec);
+    hit_to_point = vec_subs(hit->hit_point, get_position(hit->obj));
+    U = vec_dot(hit_to_point, u_vec);
+    V = vec_dot(hit_to_point, v_vec);
 
-    // Calculate the coordinates of the hit point in the local space of the plane
-    t_vec3 hit_vector = vec_norm(vec_subs(hit_point, get_position(hit->obj)));
-    float U = vec_dot(hit_vector, axis_u);
-		if (U < 0)
-		U += 1;
-    float V = vec_dot(hit_vector, axis_v);
-		if (V < 0)
-		V += 1;
 
-    // Calculate pixel coordinates
-    (*px) = (unsigned int)(U * (image->width - 1));
-    (*py) = (unsigned int)(V * (image->height - 1));
+    U /= 30;
+    V /= 35;
 
-    // Clamp pixel coordinates to the image dimensions
-    if ((*px) >= image->width)
-        (*px) = image->width - 1;
+    // Normalize U and V to [0, 1] range
+    U = fmod(U, 1.0f);
+    if (U < 0)
+        U += 1;
 
-    if ((*py) >= image->height)
-        (*py) = image->height - 1;
+    V = fmod(V, 1.0f);
+    if (V < 0)
+        V += 1;
+
+    *px = (unsigned int)(U * (image->width - 1));
+    *py = (unsigned int)(V * (image->height - 1));
 }
 
 void uv_map(t_hit *hit, unsigned int *px, unsigned int *py, mlx_texture_t *image)
@@ -70,6 +73,4 @@ void uv_map(t_hit *hit, unsigned int *px, unsigned int *py, mlx_texture_t *image
 	{
 		uv_map_plane(hit, px, py, image);
 	}
-	
-	
 }

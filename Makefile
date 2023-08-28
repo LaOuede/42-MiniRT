@@ -34,7 +34,7 @@ export HELP
 
 # Compiler and flags
 CC		=	gcc
-CFLAGS	=	-g -Wall -Wextra -Werror -O3 #-fsanitize=thread
+CFLAGS	=	-g -Wall -Wextra -Werror -flto -Ofast -march=native -funroll-loops -finline-functions -ftree-vectorize -ffast-math #-fsanitize=thread
 #CFLAGS	=	-fsanitize=address
 
 # Remove
@@ -55,7 +55,6 @@ SRCS_LIST	=	hooks/camera_rotation.c \
 				intersections/hit_plane.c \
 				intersections/hit_sphere.c \
 				main.c \
-				main_MLX.c \
 				matrices/matrices_init.c \
 				matrices/matrices_math.c \
 				matrices/matrices_transformations.c \
@@ -80,6 +79,7 @@ SRCS_LIST	=	hooks/camera_rotation.c \
 				ray_generation/ray_launcher.c \
 				ray_generation/find_closest_hit.c \
 				ray_generation/shading.c \
+				ray_generation/reflexions.c \
 				colors/colors.c \
 				colors/colors_transformations.c \
 				textures/texture.c \
@@ -90,6 +90,7 @@ SRCS_LIST	=	hooks/camera_rotation.c \
 				materials/moon.c \
 				materials/earth.c \
 				materials/water.c \
+				materials/sun.c \
 
 # 
 SRCS		=	$(addprefix $(SRCS_DIR), $(SRCS_LIST))

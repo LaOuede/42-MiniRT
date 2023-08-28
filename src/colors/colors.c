@@ -38,10 +38,6 @@ t_color get_specular_color(t_color obj_color)/////////////////play around here
 	t_color basic_spec_color;
 	float color_intensity;
 
-	// if (get_obj_material(obj)->texture)
-	// {
-	// 	color = 
-	// }
 	color_add_ = obj_color;
 	color_intensity = pow(get_light_intensity(get_minirt()->lights->content), 1.2);
 	basic_spec_color = color_scale(generate_color(100, 100, 100), color_intensity);
@@ -53,12 +49,25 @@ t_color get_specular_color(t_color obj_color)/////////////////play around here
 
 t_color max_color(t_color color)
 {
-	if (color.r >= 255.0f)
-		color.r = 254.9f;
-	if (color.g >= 255.0f)
-		color.g = 254.9f;
-	if (color.b >= 255.0f)
-		color.b = 254.9f;
+	float	big_color;
+	float	div_factor;
+
+	big_color = MAX(MAX(color.r, color.g), color.b);
+
+	if (big_color > 255.0f)
+	{
+		div_factor = big_color / 255.0f;
+		color.r = color.r / div_factor;
+		color.g = color.g / div_factor;
+		color.b = color.b / div_factor;
+	}
+	if (color.r > 255.0f)
+		color.r = 255.0f;
+	if (color.g > 255.0f)
+		color.g = 255.0f;
+	if (color.b > 255.0f)
+		color.b = 255.0f;
+	
 	return (color);
 }
 

@@ -73,26 +73,24 @@ void	keys_camera(mlx_key_data_t keydata, void *param)
 	if (mlx_is_key_down(minirt->mlx, MLX_KEY_A)
 		|| mlx_is_key_down(minirt->mlx, MLX_KEY_D))
 		camera_translation_x(minirt, keydata.key);
-	if (mlx_is_key_down(minirt->mlx, MLX_KEY_W)
+	else if (mlx_is_key_down(minirt->mlx, MLX_KEY_W)
 		|| mlx_is_key_down(minirt->mlx, MLX_KEY_S))
-		camera_translation_y(minirt, keydata.key);
-	if (mlx_is_key_down(minirt->mlx, MLX_KEY_Q)
-		|| mlx_is_key_down(minirt->mlx, MLX_KEY_E))
 		camera_translation_z(minirt, keydata.key);
-	if (mlx_is_key_down(minirt->mlx, MLX_KEY_L)
+	else if (mlx_is_key_down(minirt->mlx, MLX_KEY_Q)
+		|| mlx_is_key_down(minirt->mlx, MLX_KEY_E))
+		camera_translation_y(minirt, keydata.key);
+	else if (mlx_is_key_down(minirt->mlx, MLX_KEY_L)
 		|| mlx_is_key_down(minirt->mlx, MLX_KEY_J))
-		camera_rotation_yaw(minirt, keydata.key);
-	if (mlx_is_key_down(minirt->mlx, MLX_KEY_I)
-		|| mlx_is_key_down(minirt->mlx, MLX_KEY_K))
 		camera_rotation_pitch(minirt, keydata.key);
-	
-	if (mlx_is_key_down(minirt->mlx, MLX_KEY_RIGHT_SHIFT)
+	else if (mlx_is_key_down(minirt->mlx, MLX_KEY_I)
+		|| mlx_is_key_down(minirt->mlx, MLX_KEY_K))
+		camera_rotation_yaw(minirt, keydata.key);
+	else if (mlx_is_key_down(minirt->mlx, MLX_KEY_RIGHT_SHIFT)
 		&& mlx_is_key_down(minirt->mlx, MLX_KEY_EQUAL))
-		mod_light_intensity(0.2f);
-
-	if (mlx_is_key_down(minirt->mlx, MLX_KEY_RIGHT_SHIFT)
+		mod_light_intensity(0.01f);
+	else if (mlx_is_key_down(minirt->mlx, MLX_KEY_RIGHT_SHIFT)
 		&& mlx_is_key_down(minirt->mlx, MLX_KEY_MINUS))
-		mod_light_intensity(-0.2f);
+		mod_light_intensity(-0.01f);
 	
 /* 	if (mlx_is_key_down(minirt->mlx, MLX_KEY_O)
 		|| mlx_is_key_down(minirt->mlx, MLX_KEY_U))
@@ -122,4 +120,13 @@ void	minirt_keys(mlx_key_data_t keydata, void *param)
 	keys_camera(keydata, param);
 	//keys_light(keydata, param);
 	//keys_object(keydata, param);
+}
+
+void resize_image(int32_t width, int32_t height, void* param)
+{
+	t_minirt *minirt;
+
+	minirt = (t_minirt *)param;
+	mlx_resize_image(minirt->image, width, height);
+	ray_launcher();
 }
