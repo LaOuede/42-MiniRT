@@ -34,17 +34,14 @@ t_color generate_color(float r, float g, float b)
 
 t_color get_specular_color(t_color obj_color, t_hit *hit, t_shading *shade)/////////////////play around here
 {
-	t_color color_add_;
-	t_color basic_spec_color;
+	t_color spec_color;
 	float color_intensity;
 
-	color_add_ = obj_color;
-	color_intensity = pow((shade->intensity / 255.0f), 1.2) * get_obj_material(hit->obj)->specular_factor;
-	basic_spec_color = color_scale(generate_color(100, 100, 100), color_intensity);
-	color_add_ = color_scale(color_add_, color_intensity);
-
-	obj_color = color_add(basic_spec_color, color_add_);
-	return(obj_color);
+	color_intensity = pow(get_light_intensity(get_minirt()->lights->content), 1.2) * get_obj_material(hit->obj)->specular_factor;
+	spec_color = color_add(generate_color(255.0f, 255.0f, 255.0f), obj_color);
+	spec_color = color_scale
+	// // color_intensity = pow(shade->intensity, 1.2) * get_obj_material(hit->obj)->specular_factor;
+	return(spec_color);
 }
 
 t_color max_color(t_color color)

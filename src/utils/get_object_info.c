@@ -14,12 +14,12 @@ void	change_position(t_object *object, t_vec3 new_position)
 	if (object->type == PLAN)
 	{
 		plane = (t_plan *)object->obj;
-		sphere->position = new_position;
+		plane->position = new_position;
 	}
 	if (object->type == CYLINDRE)
 	{
 		cylinder = (t_cylindre *)object->obj;
-		sphere->position = new_position;
+		cylinder->position = new_position;
 	}
 }
 
