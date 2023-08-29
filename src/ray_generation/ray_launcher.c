@@ -75,9 +75,7 @@ void *super_routine(void *package)
 {
 	t_thread *thread;
 	t_shading shades[9];
-	int i;
 
-	i = 0;
 	thread = package;
 	thread->ray.py = thread->index;
 	while (thread->ray.py < thread->scr_height)
