@@ -11,13 +11,12 @@ RUN "make int" to see informations
 */
 void	hit_cylinder(t_vec3 d, t_object *packed_cylinder, t_hit *hit, t_vec3 origin)
 {
-	//Need to check hit with cylinder, top disk and bottom disk
 	float		a;
 	float		half_b;
 	float		c;
 	float		discriminant;
 	float		t;
-	float		m;
+	float		distance;
 	t_cylindre	*cyl;
 	t_vec3		otoc; //calculate vector from the origin of the ray to the cylinder's position
 
@@ -39,15 +38,24 @@ void	hit_cylinder(t_vec3 d, t_object *packed_cylinder, t_hit *hit, t_vec3 origin
 		hit->t = ERROR;
 		return ;
 	}
-	// t = (-b - √d) / 2a;
-	t = (-half_b - sqrtf(discriminant)) / 2 * a;
-	// m = D|V*t + X|V
-	m = (vec_dot(d, vec_scale(vec_norm(cyl->direction), t))) + (vec_dot(otoc, vec_norm(cyl->direction)));
-	if (m < 0.0001 || m > cyl->hauteur)
+	// t = (-b - √d) / a;
+	t = (-half_b - sqrtf(discriminant)) / a;
+	distance = vec_dot(d, vec_norm(cyl->direction)) * t + vec_dot(otoc, vec_norm(cyl->direction));
+	if (t < 0.00001 || fabs(distance) > cyl->hauteur / 2)
 	{
-		// no hit
-		hit->obj = NULL;
-		hit->t = ERROR;
+		t = (-half_b + sqrtf(discriminant)) / a;
+		distance = vec_dot(d, vec_norm(cyl->direction)) * t + vec_dot(otoc, vec_norm(cyl->direction));
+		if (t < 0.00001 || fabs(distance) > cyl->hauteur / 2)
+		{
+			hit->obj = NULL;
+			hit->t = ERROR;
+			return ;
+		}
+		else
+		{
+			hit->obj = packed_cylinder;
+			hit->t = t; // HIT
+		}
 	}
 	else
 	{
@@ -55,43 +63,3 @@ void	hit_cylinder(t_vec3 d, t_object *packed_cylinder, t_hit *hit, t_vec3 origin
 		hit->t = t; // HIT
 	}
 }
-
-/* void	hit_cylinder(t_vec3 d, t_object *packed_cylinder, t_hit *hit, t_vec3 origin)
-{
-	//Need to check hit with cylinder, top disk and bottom disk
-	float		a;
-	float		half_b;
-	float		c;
-	float		discriminant;
-	float		t;
-	t_cylindre	*cyl;
-	t_vec3		otoc; //calculate vector from the origin of the ray to the cylinder's position
-
-	cyl = (t_cylindre *)packed_cylinder->obj;
-	otoc = vec_subs(origin, cyl->position);
-
-	// Coefficients and discriminant for the quadratic equation for intersection
-	a = vec_dot(d, d) - pow(vec_dot(d, vec_norm(cyl->direction)), 2);
-	half_b = vec_dot(d, otoc) - vec_dot(d, vec_norm(cyl->direction)) * vec_dot(otoc, vec_norm(cyl->direction));
-	c = vec_dot(otoc, otoc) - pow(vec_dot(otoc, vec_norm(cyl->direction)), 2) - pow(cyl->rayon, 2);
-	discriminant = half_b * half_b - a * c;
-	// No intersection if discriminant < 0
-	if (discriminant < 0.00001)
-	{
-		hit->obj = NULL;
-		hit->t = ERROR;
-		return ;
-	}
-	t = (-half_b - sqrtf(discriminant)) / a;
-	if (t < 0.0001)
-	{
-		// no hit
-		hit->obj = NULL;
-		hit->t = ERROR;
-	}
-	else
-	{
-		hit->obj = packed_cylinder;
-		hit->t = t; // HIT
-	}
-} */
