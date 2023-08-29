@@ -73,7 +73,8 @@ static void find_closest_object(t_ray_info *ray, t_hit *closest_hit)
 			hit_sphere(ray->d, object, &hit, get_minirt()->camera.position);
 		else if (object->type == PLAN)
 			hit_plane(ray->d, object, &hit, get_minirt()->camera.position);
-		
+		else if (object->type == CYLINDRE)
+			hit_cylinder(ray->d, object, &hit, get_minirt()->camera.position);
 		///////////////////////////////////////////////////////////////////////
 
 		if (hit.obj && (first_hit_mouse(TRUE) || hit.t < closest_hit->t))
@@ -87,6 +88,11 @@ static void find_closest_object(t_ray_info *ray, t_hit *closest_hit)
 			{
 				printf("PLAN\n");
 				get_minirt()->obj_selected_type = PLAN;
+			}
+			if (hit.obj->type == CYLINDRE)
+			{
+				printf("CYLINDRE\n");
+				get_minirt()->obj_selected_type = CYLINDRE;
 			}
 			update_closest_hit_mouse(closest_hit, hit);
 		}

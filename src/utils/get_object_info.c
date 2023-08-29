@@ -1,5 +1,22 @@
 #include "minirt.h"
 
+void	change_direction(t_object *object, t_vec3 new_direction)
+{
+	t_plan		*plane;
+	t_cylindre	*cylinder;
+
+	if (object->type == PLAN)
+	{
+		plane = (t_plan *)object->obj;
+		plane->direction = new_direction;
+	}
+	if (object->type == CYLINDRE)
+	{
+		cylinder = (t_cylindre *)object->obj;
+		cylinder->direction = new_direction;
+	}
+}
+
 void	change_position(t_object *object, t_vec3 new_position)
 {
 	t_sphere	*sphere;
