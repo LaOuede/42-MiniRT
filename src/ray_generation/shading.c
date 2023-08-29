@@ -53,7 +53,18 @@ static bool shadow_ray_hits(t_hit *hit, void *light)
 	return (FALSE);
 }
 
-float shading_intensity(t_hit *hit, t_vec3 n)
+void add_light_color(t_shading *shade, void *light, float light_intensity, int refl)
+{
+	t_color coloradd;
+
+	if (refl > 1)
+		return;
+	
+	coloradd = color_scale(get_light_color(light), light_intensity / 255.0f);
+	shade->color = color_add(shade->color, coloradd);
+}
+
+float shading_intensity(t_hit *hit, t_vec3 n, t_shading *shade, int refl)
 {
 	t_list *current;
 	float diffuse_light;
@@ -77,7 +88,7 @@ float shading_intensity(t_hit *hit, t_vec3 n)
 		
 		geo_term = get_geo_term(hit, current->content, n);
 		if (geo_term >= 0.0f)
-			diffuse_light = geo_term * 255.0f * get_light_intensity(current->content) / cbrtf(fabsf(vec_mag(vec_subs(get_light_position(current->content), hit->hit_point))/ 7));/////
+			diffuse_light = geo_term * 255.0f * get_light_intensity(current->content);/////
 		else
 			diffuse_light = 0.0f;
 		current_intensity = diffuse_light;
@@ -85,6 +96,8 @@ float shading_intensity(t_hit *hit, t_vec3 n)
 			current_intensity = 255.0f;
 		if (current_intensity > light_intensity)
 			light_intensity = current_intensity;
+		
+		add_light_color(shade, current->content, light_intensity, refl);
 		current = current->next;
 	}
 	if (light_intensity < ambiant_light)
@@ -92,7 +105,6 @@ float shading_intensity(t_hit *hit, t_vec3 n)
 	
 	return (light_intensity);
 }
-
 
 void calc_specular_effect(t_hit *hit, t_vec3 n, t_vec3 v, t_shading *shade)
 {
@@ -151,9 +163,9 @@ t_shading shading(t_hit *hit)
 	shade.color = get_texture_color(hit);
 
 	n = get_normal_vec(hit);
-	shade.intensity = shading_intensity(hit, n);
+	shade.intensity = shading_intensity(hit, n, &shade, refl);
 	shade.color = shading_color(hit, n, &shade, &refl, v);
-	
 	shade.color = max_color(shade.color);
+
 	return (shade);
 }

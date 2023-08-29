@@ -349,7 +349,7 @@ void		find_hit(t_vec3 d, t_object *object, t_hit *hit, t_vec3 origin);
 //shading
 t_shading	shading(t_hit *hit);
 void		calc_reflexion(t_hit *hit, t_vec3 n, t_vec3 v, t_shading *shade, int *refl);
-float		shading_intensity(t_hit *hit, t_vec3 n);
+float		shading_intensity(t_hit *hit, t_vec3 n, t_shading *shade, int refl);
 
 //materials && textures
 void	load_moon(void);
