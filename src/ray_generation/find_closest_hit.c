@@ -40,6 +40,8 @@ void find_hit(t_vec3 d, t_object *object, t_hit *hit, t_vec3 origin)
 		hit_sphere(d, object, hit, origin);
 	else if (object->type == PLAN)
 		hit_plane(d, object, hit, origin);
+	else if (object->type == CYLINDRE)
+		hit_cylinder(d, object, hit, origin);
 }
 
 void find_closest_hit(t_ray_info ray, t_hit *closest_hit, t_vec3 origin)

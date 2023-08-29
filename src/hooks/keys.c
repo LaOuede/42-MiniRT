@@ -24,15 +24,18 @@ void	keys_object(mlx_key_data_t keydata, void *param)
 	if (mlx_is_key_down(minirt->mlx, MLX_KEY_W)
 		|| mlx_is_key_down(minirt->mlx, MLX_KEY_S))
 		object_translation_z(minirt, keydata.key);
-/* 	if (mlx_is_key_down(minirt->mlx, MLX_KEY_L)
-		|| mlx_is_key_down(minirt->mlx, MLX_KEY_J))
-		object_rotation_yaw(minirt, keydata.key);
-	if (mlx_is_key_down(minirt->mlx, MLX_KEY_I)
-		|| mlx_is_key_down(minirt->mlx, MLX_KEY_K))
-		object_rotation_pitch(minirt, keydata.key);
-	if (mlx_is_key_down(minirt->mlx, MLX_KEY_O)
-		|| mlx_is_key_down(minirt->mlx, MLX_KEY_U))
-		object_rotation_roll(minirt, keydata.key); */
+	if (minirt->obj_selected_type == PLAN
+		&& (mlx_is_key_down(minirt->mlx, MLX_KEY_L)
+		|| mlx_is_key_down(minirt->mlx, MLX_KEY_J)))
+		plane_rotation_pitch(minirt, keydata.key);
+	if (minirt->obj_selected_type == PLAN
+		&& (mlx_is_key_down(minirt->mlx, MLX_KEY_I)
+		|| mlx_is_key_down(minirt->mlx, MLX_KEY_K)))
+		plane_rotation_yaw(minirt, keydata.key);
+	if (minirt->obj_selected_type == PLAN
+		&& (mlx_is_key_down(minirt->mlx, MLX_KEY_O)
+		|| mlx_is_key_down(minirt->mlx, MLX_KEY_U)))
+		plane_rotation_roll(minirt, keydata.key);
 	ray_launcher();
 }
 

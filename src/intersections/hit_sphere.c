@@ -2,14 +2,6 @@
 
 /*
 
-Une structure qui serait accessible depuis l'objet permet de garder les infos pertinentes en lien avec les hits
-typedef struct	s_hit
-{
-	t_vec3	col_pt; // coord du point de collision
-	float	t; //distance au point de collision
-	t_vec3	normal //  Surface normal vector
-}	t_hit
-
 Equation :
 	 (d.d)t² + 2d.(p - c)t + (p - c)(p - c) - r² = 0
 	|______|  |___________| |___________________|
@@ -18,6 +10,7 @@ Equation :
 Surface normal vector :
 	N = nrm(P - C)
 	P = point on the sphere and C = center of the sphere
+
 RUN "make int" to see informations
 
 */
@@ -31,7 +24,6 @@ void	hit_sphere(t_vec3 d, t_object *packed_sphere, t_hit *hit, t_vec3 origin)
 	t_sphere	*sphere;
 
 	sphere = packed_sphere->obj;
-
 	displacement = vec_subs(origin, sphere->position);
 	a = vec_dot(d, d);
 	b = vec_dot(vec_scale(d, 2.0f), displacement);
@@ -52,7 +44,6 @@ void	hit_sphere(t_vec3 d, t_object *packed_sphere, t_hit *hit, t_vec3 origin)
 			hit->t = 0.0f;
 			hit->obj = NULL;
 		}
-		
 	}
 }
 

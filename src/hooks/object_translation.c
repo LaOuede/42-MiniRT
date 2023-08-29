@@ -9,21 +9,20 @@ void	object_translation_z(t_minirt *minirt, keys_t key)
 	move.y = minirt->cam_matrix.p[2][1];
 	move.z = minirt->cam_matrix.p[2][2];
 	move = vec_scale(move, 0.5);
-	pos = get_position(get_minirt()->obj_selected);
-	if (key == MLX_KEY_W)
+	pos = get_position(minirt->obj_selected);
+	if (key == MLX_KEY_S)
 	{
 		pos.x -= move.x;
 		pos.y -= move.y;
 		pos.z -= move.z;
 	}
-	else if (key == MLX_KEY_S)
+	else if (key == MLX_KEY_W)
 	{
 		pos.x += move.x;
 		pos.y += move.y;
 		pos.z += move.z;
 	}
-	change_position(get_minirt()->obj_selected, pos);
-	ray_launcher();
+	change_position(minirt->obj_selected, pos);
 }
 
 void	object_translation_y(t_minirt *minirt, keys_t key)
@@ -35,7 +34,7 @@ void	object_translation_y(t_minirt *minirt, keys_t key)
 	move.y = minirt->cam_matrix.p[1][1];
 	move.z = minirt->cam_matrix.p[1][2];
 	move = vec_scale(move, 0.5);
-	pos = get_position(get_minirt()->obj_selected);
+	pos = get_position(minirt->obj_selected);
 	if (key == MLX_KEY_Q)
 	{
 		pos.x -= move.x;
@@ -48,8 +47,7 @@ void	object_translation_y(t_minirt *minirt, keys_t key)
 		pos.y += move.y;
 		pos.z += move.z;
 	}
-	change_position(get_minirt()->obj_selected, pos);
-	ray_launcher();
+	change_position(minirt->obj_selected, pos);
 }
 
 void	object_translation_x(t_minirt *minirt, keys_t key)
@@ -61,7 +59,7 @@ void	object_translation_x(t_minirt *minirt, keys_t key)
 	move.y = minirt->cam_matrix.p[0][1];
 	move.z = minirt->cam_matrix.p[0][2];
 	move = vec_scale(move, 0.5);
-	pos = get_position(get_minirt()->obj_selected);
+	pos = get_position(minirt->obj_selected);
 	if (key == MLX_KEY_A)
 	{
 		pos.x -= move.x;
@@ -74,6 +72,5 @@ void	object_translation_x(t_minirt *minirt, keys_t key)
 		pos.y += move.y;
 		pos.z += move.z;
 	}
-	change_position(get_minirt()->obj_selected, pos);
-	ray_launcher();
+	change_position(minirt->obj_selected, pos);
 }

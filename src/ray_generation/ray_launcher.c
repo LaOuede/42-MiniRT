@@ -52,6 +52,7 @@ void *routine(void *package)
 		thread->ray.px = 0;
 		while (thread->ray.px < thread->scr_width)
 		{
+			
 			pre_launch_operations(&thread->ray);
 			shade = single_ray(thread->ray, &thread->closest_hit);
 			mlx_put_pixel(get_minirt()->image, thread->ray.px, thread->ray.py, (u_int32_t)get_rgba(shade.color, shade.intensity));

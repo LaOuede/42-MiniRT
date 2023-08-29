@@ -51,7 +51,8 @@ SRCS_LIST	=	hooks/camera_rotation.c \
 				hooks/keys.c \
 				hooks/mouse.c \
 				hooks/object_translation.c \
-				intersections/intersections.c \
+				hooks/object_rotation.c \
+				intersections/hit_cylinder.c \
 				intersections/hit_plane.c \
 				intersections/hit_sphere.c \
 				main.c \

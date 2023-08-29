@@ -249,10 +249,12 @@ void check_error(char **line, int type, void *to_free);
 int expected_arg_count(int type);
 
 //intersections
-void	hit_sphere(t_vec3 d, t_object *packed_sphere, t_hit *hit, t_vec3 origin);
+void	hit_cylinder(t_vec3 d, t_object *packed_cylinder, t_hit *hit, t_vec3 origin);
 void	hit_plane(t_vec3 d, t_object *obj_actuel, t_hit *hit, t_vec3 origin);
+void	hit_sphere(t_vec3 d, t_object *packed_sphere, t_hit *hit, t_vec3 origin);
 
 //get object info
+void	change_direction(t_object *object, t_vec3 new_direction);
 void	change_position(t_object *object, t_vec3 new_position);
 t_vec3 get_position(t_object *object);
 t_vec3 get_light_position(void *packed_light);
@@ -378,6 +380,9 @@ void	light_translation_z(t_minirt *minirt, keys_t key);
 void	object_translation_x(t_minirt *minirt, keys_t key);
 void	object_translation_y(t_minirt *minirt, keys_t key);
 void	object_translation_z(t_minirt *minirt, keys_t key);
+void	plane_rotation_pitch(t_minirt *minirt, keys_t key);
+void	plane_rotation_roll(t_minirt *minirt, keys_t key);
+void	plane_rotation_yaw(t_minirt *minirt, keys_t key);
 void	minirt_keys(mlx_key_data_t keydata, void *param);
 void	minirt_mouse(mouse_key_t button, action_t action, modifier_key_t mods, void* param);
 void	resize_image(int32_t width, int32_t height, void* param);
