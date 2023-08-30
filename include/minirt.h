@@ -88,6 +88,9 @@ typedef struct s_color
 # define SUN 4
 # define TEXTURE_COUNT 5 //always ajust to be last texture index + 1 or leakks
 
+# define ROUTINE 1
+# define SUPER_ROUTINE 2
+
 //texture
 typedef struct s_material
 {
@@ -195,7 +198,8 @@ typedef struct s_minirt
 	mlx_image_t		*image;
 	keys_t			*keys;
 	t_object		*obj_selected;
-	int				obj_selected_type;
+	int				selected;
+	int				mode;
 	t_material		material[5];////////////////////////////////////////////// to change
 }					t_minirt;
 

@@ -40,11 +40,11 @@ void	hit_cylinder(t_vec3 d, t_object *packed_cylinder, t_hit *hit, t_vec3 origin
 	}
 	// t = (-b - √d) / a;
 	t = (-half_b - sqrtf(discriminant)) / a;
-	m = vec_dot(d, vec_norm(cyl->direction)) * t + vec_dot(otoc, vec_norm(cyl->direction));
+	m = vec_dot(d, vec_norm(cyl->direction)) * t + vec_dot(displacement, vec_norm(cyl->direction));
 	if (t < 0.00001 || fabs(m) > cyl->hauteur / 2)
 	{
 		t = (-half_b + sqrtf(discriminant)) / a;
-		m = vec_dot(d, vec_norm(cyl->direction)) * t + vec_dot(otoc, vec_norm(cyl->direction));
+		m = vec_dot(d, vec_norm(cyl->direction)) * t + vec_dot(displacement, vec_norm(cyl->direction));
 		if (t < 0.00001 || fabs(m) > cyl->hauteur / 2)
 		{
 			hit->obj = NULL;
@@ -63,3 +63,49 @@ void	hit_cylinder(t_vec3 d, t_object *packed_cylinder, t_hit *hit, t_vec3 origin
 		hit->t = t; // HIT
 	}
 }
+
+/* void	hit_cylinder(t_vec3 d, t_object *packed_cylinder, t_hit *hit, t_vec3 origin)
+{
+	float		a;
+	float		b;
+	float		c;
+	float		t;
+	float		discriminant;
+	t_vec3		displacement;
+	t_cylindre	*cylinder;
+
+	cylinder = packed_cylinder->obj;
+	displacement = vec_subs(origin, cylinder->position);
+	a = vec_dot(d, d);
+	b = vec_dot(vec_scale(d, 2.0f), displacement);
+	c = vec_dot(displacement, displacement) - pow(cylinder->rayon, 2);
+	discriminant = pow(b, 2) - (4.0f * a * c);
+	if (discriminant < 0.0f)
+	{
+		hit->obj = NULL;
+		hit->t = 0.0f;
+	}
+	else
+	{
+		t = (-b - sqrtf(discriminant)) / (2.0f * a);
+		if (t < 0.00001)
+		{
+			t = (-b + sqrtf(discriminant)) / (2.0f * a);
+			if (t < 0.00001)
+			{
+				hit->t = 0.0f;
+				hit->obj = NULL;
+			}
+			else
+			{
+				hit->obj = packed_cylinder;
+				hit->t = t;
+			}
+		}
+		else
+		{
+			hit->obj = packed_cylinder;
+			hit->t = t;
+		}
+	}
+} */

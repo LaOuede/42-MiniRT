@@ -24,15 +24,15 @@ void	keys_object(mlx_key_data_t keydata, void *param)
 	if (mlx_is_key_down(minirt->mlx, MLX_KEY_W)
 		|| mlx_is_key_down(minirt->mlx, MLX_KEY_S))
 		object_translation_z(minirt, keydata.key);
-	if (minirt->obj_selected_type == PLAN
+	if (minirt->selected == PLAN
 		&& (mlx_is_key_down(minirt->mlx, MLX_KEY_L)
 		|| mlx_is_key_down(minirt->mlx, MLX_KEY_J)))
 		plane_rotation_pitch(minirt, keydata.key);
-	if (minirt->obj_selected_type == PLAN
+	if (minirt->selected == PLAN
 		&& (mlx_is_key_down(minirt->mlx, MLX_KEY_I)
 		|| mlx_is_key_down(minirt->mlx, MLX_KEY_K)))
 		plane_rotation_yaw(minirt, keydata.key);
-	if (minirt->obj_selected_type == PLAN
+	if (minirt->selected == PLAN
 		&& (mlx_is_key_down(minirt->mlx, MLX_KEY_O)
 		|| mlx_is_key_down(minirt->mlx, MLX_KEY_U)))
 		plane_rotation_roll(minirt, keydata.key);
@@ -100,9 +100,29 @@ void	keys_camera(mlx_key_data_t keydata, void *param)
 	ray_launcher();
 }
 
-// /*
-// 	Handles hook for program closure;
-// */
+/* 
+	Handles hook for program mode;
+ */
+void	keys_mode(void *param)
+{
+	t_minirt	*minirt;
+
+	minirt = (t_minirt *)param;
+	if (mlx_is_key_down(minirt->mlx, MLX_KEY_1))
+	{
+		minirt->mode = ROUTINE;
+		ray_launcher();
+	}
+	else if (mlx_is_key_down(minirt->mlx, MLX_KEY_2))
+	{
+		minirt->mode = SUPER_ROUTINE;
+		ray_launcher();
+	}
+}
+
+/* 
+	Handles hook for program closure;
+ */
 void	keys_exit(void *param)
 {
 	t_minirt	*minirt;
@@ -119,11 +139,12 @@ void	minirt_keys(mlx_key_data_t keydata, void *param)
 {
 	(void) keydata;
 	keys_exit(param);
+	keys_mode(param);
 	if (mlx_is_key_down(get_minirt()->mlx, MLX_KEY_C))
-		get_minirt()->obj_selected_type = CAMERA;
-	if (get_minirt()->obj_selected_type == CAMERA)
+		get_minirt()->selected = CAMERA;
+	if (get_minirt()->selected == CAMERA)
 		keys_camera(keydata, param);
-	if (SPHERE <= get_minirt()->obj_selected_type && get_minirt()->obj_selected_type <= PLAN)
+	if (SPHERE <= get_minirt()->selected && get_minirt()->selected <= PLAN)
 		keys_object(keydata, param);
 	//keys_light(keydata, param);
 }
