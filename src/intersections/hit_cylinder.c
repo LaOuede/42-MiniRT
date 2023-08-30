@@ -16,7 +16,7 @@ void	hit_cylinder(t_vec3 d, t_object *packed_cylinder, t_hit *hit, t_vec3 origin
 	float		c;
 	float		discriminant;
 	float		t;
-	float		distance;
+	float		m;
 	t_cylindre	*cyl;
 	t_vec3		otoc; //calculate vector from the origin of the ray to the cylinder's position
 
@@ -40,12 +40,12 @@ void	hit_cylinder(t_vec3 d, t_object *packed_cylinder, t_hit *hit, t_vec3 origin
 	}
 	// t = (-b - √d) / a;
 	t = (-half_b - sqrtf(discriminant)) / a;
-	distance = vec_dot(d, vec_norm(cyl->direction)) * t + vec_dot(otoc, vec_norm(cyl->direction));
-	if (t < 0.00001 || fabs(distance) > cyl->hauteur / 2)
+	m = vec_dot(d, vec_norm(cyl->direction)) * t + vec_dot(otoc, vec_norm(cyl->direction));
+	if (t < 0.00001 || fabs(m) > cyl->hauteur / 2)
 	{
 		t = (-half_b + sqrtf(discriminant)) / a;
-		distance = vec_dot(d, vec_norm(cyl->direction)) * t + vec_dot(otoc, vec_norm(cyl->direction));
-		if (t < 0.00001 || fabs(distance) > cyl->hauteur / 2)
+		m = vec_dot(d, vec_norm(cyl->direction)) * t + vec_dot(otoc, vec_norm(cyl->direction));
+		if (t < 0.00001 || fabs(m) > cyl->hauteur / 2)
 		{
 			hit->obj = NULL;
 			hit->t = ERROR;
