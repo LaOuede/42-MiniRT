@@ -3,14 +3,12 @@
 
 t_color get_texture_color(t_hit *hit)
 {
-	t_minirt *minirt;
 	t_material *mat;
 	t_color color;
 	unsigned int px;
 	unsigned int py;
 	unsigned int p_xy;
 
-	minirt = get_minirt();
 	mat = get_obj_material(hit->obj);
 	if (!mat->texture)
 		return (get_obj_color(hit->obj));
