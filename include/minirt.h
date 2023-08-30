@@ -266,6 +266,8 @@ t_color get_light_color(void *packed_light);
 t_color get_obj_color(t_object *obj);
 t_vec3 get_plane_direction(t_object *object);
 t_material *get_obj_material(t_object *obj);
+float	*get_height(t_object *object);
+float	*get_radius(t_object *object);
 
 
 
@@ -286,10 +288,10 @@ int nb_of_split(char **splits);
 
 
 //parsing utils
-int					is_scene_info(char *type);
-int					is_object(char *type);
-void free_splitted_line(char **line);
-int is_all_digit_dot(char *str);
+int		is_scene_info(char *type);
+int		is_object(char *type);
+void	free_splitted_line(char **line);
+int		is_all_digit_dot(char *str);
 
 //utils
 void	ft_free_lst(t_list **lst);
@@ -315,8 +317,6 @@ t_vec3	generate_vector(float x, float y, float z);
 t_vec3 get_normal_vec(t_hit *hit);
 t_vec3	vec_copy(t_vec3 v);
 t_vec3	up_guide(void);
-
-
 
 
 //matrices
@@ -371,7 +371,6 @@ t_color get_normap_value(t_hit *hit);
 //hooks
 void	camera_rotation_yaw(t_minirt *minirt, keys_t key);
 void	camera_rotation_pitch(t_minirt *minirt, keys_t key);
-void	camera_rotation_roll(t_minirt *minirt, keys_t key);
 void	camera_translation_x(t_minirt *minirt, keys_t key);
 void	camera_translation_y(t_minirt *minirt, keys_t key);
 void	camera_translation_z(t_minirt *minirt, keys_t key);
