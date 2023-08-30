@@ -57,11 +57,18 @@ void add_light_color(t_shading *shade, void *light, float light_intensity, int r
 {
 	t_color coloradd;
 
-	if (refl > 1)
+	if (refl > 1)////
 		return;
-	
-	coloradd = color_scale(get_light_color(light), light_intensity / 255.0f);
+	light_intensity /=  255.0f;
+	// if (light_intensity > 0 && light_intensity < 0.2f)
+	// 	light_intensity = 0.2f;
+	// if (light_intensity <= 0)
+	// 	light_intensity = 0.1f;
+	coloradd = color_scale(get_light_color(light), light_intensity);
 	shade->color = color_add(shade->color, coloradd);
+	coloradd = color_scale(get_minirt()->ambiant_light.color , get_minirt()->ambiant_light.intensity);
+	shade->color = color_add(shade->color, coloradd);
+
 }
 
 float shading_intensity(t_hit *hit, t_vec3 n, t_shading *shade, int refl)
@@ -85,7 +92,6 @@ float shading_intensity(t_hit *hit, t_vec3 n, t_shading *shade, int refl)
 			current = current->next;
 			continue;
 		}
-		
 		geo_term = get_geo_term(hit, current->content, n);
 		if (geo_term >= 0.0f)
 			diffuse_light = geo_term * 255.0f * get_light_intensity(current->content);/////
@@ -94,14 +100,14 @@ float shading_intensity(t_hit *hit, t_vec3 n, t_shading *shade, int refl)
 		current_intensity = diffuse_light;
 		if (current_intensity > 255.0f)
 			current_intensity = 255.0f;
+		if (current_intensity < ambiant_light)
+			current_intensity = ambiant_light;
+		add_light_color(shade, current->content, current_intensity, refl);
 		if (current_intensity > light_intensity)
 			light_intensity = current_intensity;
 		
-		add_light_color(shade, current->content, light_intensity, refl);
 		current = current->next;
 	}
-	if (light_intensity < ambiant_light)
-		light_intensity = ambiant_light;
 	
 	return (light_intensity);
 }
@@ -155,6 +161,7 @@ t_shading shading(t_hit *hit)
 	t_shading	shade;
 	int refl;
 	t_vec3	v;
+	t_color coloradd;
 
 	v = vec_norm(vec_subs(get_minirt()->camera.position, hit->hit_point));
 
@@ -165,6 +172,9 @@ t_shading shading(t_hit *hit)
 	n = get_normal_vec(hit);
 	shade.intensity = shading_intensity(hit, n, &shade, refl);
 	shade.color = shading_color(hit, n, &shade, &refl, v);
+	coloradd = color_scale(get_minirt()->ambiant_light.color , get_minirt()->ambiant_light.intensity);
+	shade.color = color_add(shade.color, coloradd);
+
 	shade.color = max_color(shade.color);
 
 	return (shade);

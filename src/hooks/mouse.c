@@ -129,6 +129,9 @@ static void	ray_mouse(float x, float y)
 	ray.y = 2.0f * ((float)y + 0.5f) / (float)get_minirt()->image->height - 1;
 	ray.d = get_d_mouse(&ray);
 	find_closest_object(&ray, &closest_hit);
+	if (closest_hit.obj)
+		printf("x: %f, y: %f, z: %f\n", get_position(closest_hit.obj).x, get_position(closest_hit.obj).y, get_position(closest_hit.obj).z);
+	
 	get_minirt()->obj_selected = closest_hit.obj;
 }
 

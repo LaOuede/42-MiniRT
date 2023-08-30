@@ -12,7 +12,7 @@
 # include "../MLX42/include/MLX42/MLX42.h"
 # include <math.h>
 
-/* --------------------SETTINGS-------------------- */
+/* -------------------SETTINGS------------------- */
 /* # define WIDTH 1920
 # define HEIGHT 1080 */
 
@@ -26,7 +26,7 @@
 #define WIDTH 640
 #define HEIGHT 480
 
-#define	NUMBER_OF_REFLEXIONS 5
+#define	NUMBER_OF_REFLEXIONS 4
 #define THREAD_COUNT (HEIGHT / 4)
 #define SHINY_FACTOR 1000
 

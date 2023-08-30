@@ -109,14 +109,24 @@ void	check_file_validity(char *file)
 	check_file = NULL;
 	check_file = ft_strrchr(file, '.');
 	if (!check_file)
-		ft_putstr_fd("Usage : ./miniRT <file.rt> : File is invalid\n", STDERR_FILENO);
+	{
+		ft_putstr_fd("File is invalid.\n", STDERR_FILENO);
+		exit(EXIT_SUCCESS);
+	}
 	else if (ft_strcmp(check_file, ".rt") != 0)
-		ft_putstr_fd("Usage : ./fdf <map.fdf> : File has an invalid extension\n", STDERR_FILENO);
+	{
+		ft_putstr_fd("File has an invalid extension.\n", STDERR_FILENO);
+		exit(EXIT_SUCCESS);
+	}
 	else
 	{
 		fd = open(file, O_RDONLY);
 		if (fd == -1)
-		ft_putstr_fd("Usage : ./fdf <map.fdf> : File can't be opened OR File doesn't exist\n", STDERR_FILENO);
+		{
+			ft_putstr_fd("File can't be opened OR File doesn't exist.\n", STDERR_FILENO);
+			close(fd);
+			exit(EXIT_SUCCESS);
+		}
 	}
 }
 
@@ -126,7 +136,7 @@ void check_args_validity(int argc)
 {
 	if (argc != 2)
 	{
-		perror("Invalid args.\n");
+		ft_putstr_fd("Invalid argument count.\n", STDERR_FILENO);
 		exit(EXIT_SUCCESS);//exit failure?
 	}
 }
