@@ -8,7 +8,14 @@ t_minirt	*get_minirt(void)
 	if (!minirt)
 	{
 		minirt = ft_calloc(1, sizeof(t_minirt));
-		minirt->obj_selected_type = CAMERA;
+		minirt->selected = CAMERA;
+		{
+			printf("Object selected = camera\n");
+		}
+		minirt->mode = ROUTINE;
+		{
+			printf("Mode selected = routine\n");
+		}
 	}
 	return (minirt);
 }

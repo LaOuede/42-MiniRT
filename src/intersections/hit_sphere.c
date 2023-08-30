@@ -19,7 +19,8 @@ void	hit_sphere(t_vec3 d, t_object *packed_sphere, t_hit *hit, t_vec3 origin)
 	float		a;
 	float		b;
 	float		c;
-	float		delta;
+	float		t;
+	float		discriminant;
 	t_vec3		displacement;
 	t_sphere	*sphere;
 
@@ -27,26 +28,34 @@ void	hit_sphere(t_vec3 d, t_object *packed_sphere, t_hit *hit, t_vec3 origin)
 	displacement = vec_subs(origin, sphere->position);
 	a = vec_dot(d, d);
 	b = vec_dot(vec_scale(d, 2.0f), displacement);
-	c = vec_dot(displacement, displacement) - sphere->rayon * sphere->rayon;
-	delta = (b * b) - (4.0f * a * c);
-	if (delta < 0.0f)
+	c = vec_dot(displacement, displacement) - pow(sphere->rayon, 2);
+	discriminant = pow(b, 2) - (4.0f * a * c);
+	if (discriminant < 0.0f)
 	{
 		hit->obj = NULL;
-		hit->t = ERROR;
+		hit->t = 0.0f;
 	}
 	else
 	{
-		// hit->col = vec_add(get_minirt()->camera.position, vec_scale(ray.direction, hit->t)); // coord du point de collision = (vecteur directionnel * t) + vecteur origin
-		hit->obj = packed_sphere;
-		hit->t = (-b - sqrtf(delta)) / (2.0f * a); // distance au point de collision
-		if (hit->t < 0.0f)
+		t = (-b - sqrtf(discriminant)) / (2.0f * a);
+		if (t < 0.00001)
 		{
-			hit->t = 0.0f;
-			hit->obj = NULL;
+			t = (-b + sqrtf(discriminant)) / (2.0f * a);
+			if (t < 0.00001)
+			{
+				hit->t = 0.0f;
+				hit->obj = NULL;
+			}
+			else
+			{
+				hit->obj = packed_sphere;
+				hit->t = t;
+			}
+		}
+		else
+		{
+			hit->obj = packed_sphere;
+			hit->t = t;
 		}
 	}
 }
-
-/* 		hit->t = -b - sqrtf(delta) / (2.0 * a); // distance au point de collision
-		hit->col_pt = vec_add(ray.origin, vec_scale(ray.direction, hit->t)); // coord du point de collision = (vecteur directionnel * t) + vecteur origin
-		hit->normal = vec_norm(vec_subs(hit->col_pt , sphere->position))*/

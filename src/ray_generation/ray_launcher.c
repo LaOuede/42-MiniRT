@@ -75,9 +75,7 @@ void *super_routine(void *package)
 {
 	t_thread *thread;
 	t_shading shades[9];
-	int i;
 
-	i = 0;
 	thread = package;
 	thread->ray.py = thread->index;
 	while (thread->ray.py < thread->scr_height)
@@ -148,7 +146,10 @@ void ray_launcher(void)
 		thread[i].index = i;
 		thread[i].scr_width = (int)get_minirt()->image->width;
 		thread[i].scr_height = (int)get_minirt()->image->height;
-		pthread_create(&thread[i].thread, NULL, &super_routine, &thread[i]);
+		if (get_minirt()->mode == ROUTINE)
+			pthread_create(&thread[i].thread, NULL, &super_routine, &thread[i]);
+		else if (get_minirt()->mode == SUPER_ROUTINE)
+			pthread_create(&thread[i].thread, NULL, &super_routine, &thread[i]);
 		i++;
 	}
 	i = 0;

@@ -45,7 +45,9 @@ NAME		=	miniRT
 
 # Dir. and files names
 SRCS_DIR	=	./src/
-SRCS_LIST	=	hooks/camera_rotation.c \
+SRCS_LIST	=	colors/colors.c \
+				colors/colors_transformations.c \
+				hooks/camera_rotation.c \
 				hooks/camera_translation.c \
 				hooks/light_translation.c \
 				hooks/keys.c \
@@ -56,6 +58,12 @@ SRCS_LIST	=	hooks/camera_rotation.c \
 				intersections/hit_plane.c \
 				intersections/hit_sphere.c \
 				main.c \
+				materials/load_materials.c \
+				materials/no_material.c \
+				materials/moon.c \
+				materials/earth.c \
+				materials/water.c \
+				materials/sun.c \
 				matrices/matrices_init.c \
 				matrices/matrices_math.c \
 				matrices/matrices_transformations.c \
@@ -69,29 +77,22 @@ SRCS_LIST	=	hooks/camera_rotation.c \
 				parsing/parsing_objects.c \
 				parsing/parsing_scene_info.c \
 				parsing/parsing_utils1.c \
-				utils/utils1.c \
-				utils/utils_free.c \
-				utils/get_object_info.c \
-				utils/get_light_info.c \
-				vectors/vectors_math1.c \
-				vectors/vectors_math2.c \
-				vectors/vectors_math3.c \
-				vectors/object_normal_vec.c \
 				ray_generation/ray_launcher.c \
 				ray_generation/find_closest_hit.c \
 				ray_generation/shading.c \
 				ray_generation/reflexions.c \
-				colors/colors.c \
-				colors/colors_transformations.c \
 				textures/texture.c \
 				textures/normal_map.c \
 				textures/uv_mapping.c \
-				materials/load_materials.c \
-				materials/no_material.c \
-				materials/moon.c \
-				materials/earth.c \
-				materials/water.c \
-				materials/sun.c \
+				utils/get_object_info.c \
+				utils/get_light_info.c \
+				utils/utils_free.c \
+				utils/utils_image.c \
+				utils/utils_parsing.c \
+				vectors/vectors_math1.c \
+				vectors/vectors_math2.c \
+				vectors/vectors_math3.c \
+				vectors/object_normal_vec.c \
 
 # 
 SRCS		=	$(addprefix $(SRCS_DIR), $(SRCS_LIST))

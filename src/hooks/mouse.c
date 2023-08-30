@@ -81,18 +81,18 @@ static void find_closest_object(t_ray_info *ray, t_hit *closest_hit)
 		{
 			if (hit.obj->type == SPHERE)
 			{
-				printf("SPHERE\n");
-				get_minirt()->obj_selected_type = SPHERE;
+				printf("Object selected = sphere\n");
+				get_minirt()->selected = SPHERE;
 			}
 			if (hit.obj->type == PLAN)
 			{
-				printf("PLAN\n");
-				get_minirt()->obj_selected_type = PLAN;
+				printf("Object selected = plan\n");
+				get_minirt()->selected = PLAN;
 			}
 			if (hit.obj->type == CYLINDRE)
 			{
-				printf("CYLINDRE\n");
-				get_minirt()->obj_selected_type = CYLINDRE;
+				printf("Object selected = cylinder\n");
+				get_minirt()->selected = CYLINDRE;
 			}
 			update_closest_hit_mouse(closest_hit, hit);
 		}

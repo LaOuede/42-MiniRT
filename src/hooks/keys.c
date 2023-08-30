@@ -10,6 +10,44 @@
  * void mlx_key_hook(mlx_t* mlx, mlx_keyfunc func, void* param);
 */
 
+void	keys_sphere(void *param)
+{
+	float		*radius;
+	t_minirt	*minirt;
+
+	minirt = (t_minirt *)param;
+	radius = get_radius(minirt->obj_selected);
+	if (mlx_is_key_down(minirt->mlx, MLX_KEY_EQUAL))
+		*radius += 1.0f;
+	if (mlx_is_key_down(minirt->mlx, MLX_KEY_MINUS) && *radius > 1.0f)
+		*radius -= 1.0f;
+	ray_launcher();
+}
+
+void	keys_cylinder(void *param)
+{
+	float		*radius;
+	float		*height;
+	t_minirt	*minirt;
+
+	minirt = (t_minirt *)param;
+	height = get_height(minirt->obj_selected);
+	radius = get_radius(minirt->obj_selected);
+	if (mlx_is_key_down(minirt->mlx, MLX_KEY_H)
+		&& mlx_is_key_down(minirt->mlx, MLX_KEY_EQUAL))
+		*height += 1.0f;
+	else if (mlx_is_key_down(minirt->mlx, MLX_KEY_H)
+		&& mlx_is_key_down(minirt->mlx, MLX_KEY_MINUS) && *height > 1.0f)
+		*height -= 1.0f;
+	else if (mlx_is_key_down(minirt->mlx, MLX_KEY_R)
+		&& mlx_is_key_down(minirt->mlx, MLX_KEY_EQUAL))
+		*radius += 1.0f;
+	else if (mlx_is_key_down(minirt->mlx, MLX_KEY_R)
+		&& mlx_is_key_down(minirt->mlx, MLX_KEY_MINUS) && *radius > 1.0f)
+		*radius -= 1.0f;
+	ray_launcher();
+}
+
 void	keys_object(mlx_key_data_t keydata, void *param)
 {
 	t_minirt	*minirt;
@@ -24,17 +62,17 @@ void	keys_object(mlx_key_data_t keydata, void *param)
 	if (mlx_is_key_down(minirt->mlx, MLX_KEY_W)
 		|| mlx_is_key_down(minirt->mlx, MLX_KEY_S))
 		object_translation_z(minirt, keydata.key);
-	if (minirt->obj_selected_type == PLAN
+	if (minirt->selected == PLAN
 		&& (mlx_is_key_down(minirt->mlx, MLX_KEY_L)
-		|| mlx_is_key_down(minirt->mlx, MLX_KEY_J)))
+			|| mlx_is_key_down(minirt->mlx, MLX_KEY_J)))
 		plane_rotation_pitch(minirt, keydata.key);
-	if (minirt->obj_selected_type == PLAN
+	if (minirt->selected == PLAN
 		&& (mlx_is_key_down(minirt->mlx, MLX_KEY_I)
-		|| mlx_is_key_down(minirt->mlx, MLX_KEY_K)))
+			|| mlx_is_key_down(minirt->mlx, MLX_KEY_K)))
 		plane_rotation_yaw(minirt, keydata.key);
-	if (minirt->obj_selected_type == PLAN
+	if (minirt->selected == PLAN
 		&& (mlx_is_key_down(minirt->mlx, MLX_KEY_O)
-		|| mlx_is_key_down(minirt->mlx, MLX_KEY_U)))
+			|| mlx_is_key_down(minirt->mlx, MLX_KEY_U)))
 		plane_rotation_roll(minirt, keydata.key);
 	ray_launcher();
 }
@@ -54,19 +92,6 @@ void	keys_object(mlx_key_data_t keydata, void *param)
 // 		|| mlx_is_key_down(minirt->mlx, MLX_KEY_F))
 // 		ligh_translation_y(minirt, keydata.key);
 // }
-
-void mod_light_intensity(float add)
-{
-	t_light *light;
-
-	light = (t_light *)get_minirt()->lights->content;
-
-	light->intensity += add;
-	if (light->intensity > 1.0f)
-		light->intensity = 1.0f;
-	else if (light->intensity < 0.0f)
-		light->intensity = 0.0f;
-}
 
 void	keys_camera(mlx_key_data_t keydata, void *param)
 {
@@ -88,21 +113,63 @@ void	keys_camera(mlx_key_data_t keydata, void *param)
 	else if (mlx_is_key_down(minirt->mlx, MLX_KEY_I)
 		|| mlx_is_key_down(minirt->mlx, MLX_KEY_K))
 		camera_rotation_yaw(minirt, keydata.key);
-	else if (mlx_is_key_down(minirt->mlx, MLX_KEY_RIGHT_SHIFT)
+	ray_launcher();
+}
+
+void	mod_light_intensity(float add)
+{
+	t_light	*light;
+
+	light = (t_light *)get_minirt()->lights->content;
+
+	light->intensity += add;
+	if (light->intensity > 1.0f)
+		light->intensity = 1.0f;
+	else if (light->intensity < 0.0f)
+		light->intensity = 0.0f;
+}
+
+/* 
+	Handles hook for lights;
+ */
+void	keys_light(void *param)
+{
+	t_minirt	*minirt;
+
+	minirt = (t_minirt *)param;
+	if (mlx_is_key_down(minirt->mlx, MLX_KEY_RIGHT_SHIFT)
 		&& mlx_is_key_down(minirt->mlx, MLX_KEY_EQUAL))
 		mod_light_intensity(0.01f);
 	else if (mlx_is_key_down(minirt->mlx, MLX_KEY_RIGHT_SHIFT)
 		&& mlx_is_key_down(minirt->mlx, MLX_KEY_MINUS))
 		mod_light_intensity(-0.01f);
-/* 	if (mlx_is_key_down(minirt->mlx, MLX_KEY_O)
-		|| mlx_is_key_down(minirt->mlx, MLX_KEY_U))
-		camera_rotation_roll(minirt, keydata.key); */
-	ray_launcher();
 }
 
-// /*
-// 	Handles hook for program closure;
-// */
+/* 
+	Handles hook for program mode;
+ */
+void	keys_mode(void *param)
+{
+	t_minirt	*minirt;
+
+	minirt = (t_minirt *)param;
+	if (mlx_is_key_down(minirt->mlx, MLX_KEY_1))
+	{
+		minirt->mode = ROUTINE;
+		printf("Mode selected = routine\n");
+		ray_launcher();
+	}
+	else if (mlx_is_key_down(minirt->mlx, MLX_KEY_2))
+	{
+		minirt->mode = SUPER_ROUTINE;
+		printf("Mode selected = super routine\n");
+		ray_launcher();
+	}
+}
+
+/* 
+	Handles hook for program closure;
+ */
 void	keys_exit(void *param)
 {
 	t_minirt	*minirt;
@@ -119,20 +186,23 @@ void	minirt_keys(mlx_key_data_t keydata, void *param)
 {
 	(void) keydata;
 	keys_exit(param);
+	keys_mode(param);
+	keys_light(param);
 	if (mlx_is_key_down(get_minirt()->mlx, MLX_KEY_C))
-		get_minirt()->obj_selected_type = CAMERA;
-	if (get_minirt()->obj_selected_type == CAMERA)
+	{
+		get_minirt()->selected = CAMERA;
+		printf("Object selected = camera\n");
+	}
+	if (get_minirt()->selected == CAMERA)
 		keys_camera(keydata, param);
-	if (SPHERE <= get_minirt()->obj_selected_type && get_minirt()->obj_selected_type <= PLAN)
+	if (get_minirt()->selected == SPHERE)
+	{
 		keys_object(keydata, param);
-	//keys_light(keydata, param);
-}
-
-void	resize_image(int32_t width, int32_t height, void *param)
-{
-	t_minirt	*minirt;
-
-	minirt = (t_minirt *)param;
-	mlx_resize_image(minirt->image, width, height);
-	ray_launcher();
+		keys_sphere(param);
+	}
+	if (get_minirt()->selected == CYLINDRE)
+	{
+		keys_object(keydata, param);
+		keys_cylinder(param);
+	}
 }
