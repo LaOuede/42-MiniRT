@@ -130,12 +130,3 @@ void check_args_validity(int argc)
 		exit(EXIT_SUCCESS);//exit failure?
 	}
 }
-
-/* Draw the points of the previous image with the background color */
-void	map_erase(t_minirt *minirt)
-{
-	size_t	screen_size;
-
-	screen_size = minirt->image->width * minirt->image->height * sizeof(uint32_t);
-	ft_bzero(minirt->image->pixels, screen_size);
-}

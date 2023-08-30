@@ -55,9 +55,9 @@ void	keys_object(mlx_key_data_t keydata, void *param)
 // 		ligh_translation_y(minirt, keydata.key);
 // }
 
-void mod_light_intensity(float add)
+void	mod_light_intensity(float add)
 {
-	t_light *light;
+	t_light	*light;
 
 	light = (t_light *)get_minirt()->lights->content;
 
@@ -94,9 +94,6 @@ void	keys_camera(mlx_key_data_t keydata, void *param)
 	else if (mlx_is_key_down(minirt->mlx, MLX_KEY_RIGHT_SHIFT)
 		&& mlx_is_key_down(minirt->mlx, MLX_KEY_MINUS))
 		mod_light_intensity(-0.01f);
-/* 	if (mlx_is_key_down(minirt->mlx, MLX_KEY_O)
-		|| mlx_is_key_down(minirt->mlx, MLX_KEY_U))
-		camera_rotation_roll(minirt, keydata.key); */
 	ray_launcher();
 }
 
@@ -111,11 +108,13 @@ void	keys_mode(void *param)
 	if (mlx_is_key_down(minirt->mlx, MLX_KEY_1))
 	{
 		minirt->mode = ROUTINE;
+		printf("Mode selected = routine\n");
 		ray_launcher();
 	}
 	else if (mlx_is_key_down(minirt->mlx, MLX_KEY_2))
 	{
 		minirt->mode = SUPER_ROUTINE;
+		printf("Mode selected = super routine\n");
 		ray_launcher();
 	}
 }
@@ -141,19 +140,13 @@ void	minirt_keys(mlx_key_data_t keydata, void *param)
 	keys_exit(param);
 	keys_mode(param);
 	if (mlx_is_key_down(get_minirt()->mlx, MLX_KEY_C))
+	{
 		get_minirt()->selected = CAMERA;
+		printf("Object selected = camera\n");
+	}
 	if (get_minirt()->selected == CAMERA)
 		keys_camera(keydata, param);
 	if (SPHERE <= get_minirt()->selected && get_minirt()->selected <= PLAN)
 		keys_object(keydata, param);
 	//keys_light(keydata, param);
-}
-
-void	resize_image(int32_t width, int32_t height, void *param)
-{
-	t_minirt	*minirt;
-
-	minirt = (t_minirt *)param;
-	mlx_resize_image(minirt->image, width, height);
-	ray_launcher();
 }
