@@ -120,8 +120,11 @@ void calc_specular_effect(t_hit *hit, t_vec3 n, t_vec3 v, t_shading *shade)
 	float	coeff;
 	float	current_coeff;
 	t_list *current;
+	float	light_intensity;
 
+	light_intensity = 0.0f;
 	specular_color = get_specular_color(shade->color, hit, shade);
+	// specular_color = color_scale(generate_color(255.0f, 255.0f, 255.0f), get_obj_material(hit->obj)->specular_factor);
 	current = get_minirt()->lights;
 	coeff = 0;
 	while (current)
@@ -131,13 +134,21 @@ void calc_specular_effect(t_hit *hit, t_vec3 n, t_vec3 v, t_shading *shade)
 		current_coeff = vec_dot(n, h);
 		if (current_coeff < 0)
 			current_coeff = 0;
-		current_coeff = pow(current_coeff, get_obj_material(hit->obj)->shine * pow(get_light_intensity(current->content), 1.4f));
+		current_coeff = pow(current_coeff, get_obj_material(hit->obj)->shine);
 		if (current_coeff > coeff)
+		{
 			coeff = current_coeff;
+			light_intensity = get_light_intensity(current->content);
+		}
 		current = current->next;
 	}
-	coeff *= shade->intensity / 255.0f;
+	// coeff *= shade->intensity / 255.0f;
 	// shade->color = color_scale(specular_color, shading_intensity(hit, n) / 255.0f);
+	// if (light_intensity * 255.0f * coeff > shade->intensity)
+	// 	shade->intensity = light_intensity * 255.0f * coeff;
+	
+			if (light_intensity * 255.0f * coeff > shade->intensity && coeff > 0.01)
+				shade->intensity = light_intensity * 255.0f *coeff;
 	shade->color = color_add(shade->color, color_scale(specular_color, coeff));
 }
 

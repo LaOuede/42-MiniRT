@@ -45,16 +45,16 @@ static t_vec3 modified_sphere_normal(t_hit *hit)
 	return (n);
 }
 
-/* static t_vec3 cylinder_normal(t_hit *hit)
-{
-	// t_cylindre *cylinder;
-	t_vec3 n;
+// static t_vec3 cylinder_normal(t_hit *hit)
+// {
+// 	// t_cylindre *cylinder;
+// 	t_vec3 n;
 
-	// cylinder =/
-	hit = NULL;
-	n = generate_vector(0,0,0);
-	return (n);
-} */
+// 	// cylinder =/
+// 	hit = NULL;
+// 	n = generate_vector(0,0,0);
+// 	return (n);
+// }
 
 t_vec3 get_normal_vec(t_hit *hit)
 {
@@ -66,9 +66,9 @@ t_vec3 get_normal_vec(t_hit *hit)
 	{
 		return (vec_norm(get_plane_direction(hit->obj)));
 	}
-/* 	else if (hit->obj->type == CYLINDRE)
-	{
-		return (cylinder_normal(hit));
-	} */
+	// else if (hit->obj->type == CYLINDRE)
+	// {
+	// 	return (cylinder_normal(hit));
+	// }
 	return (generate_vector(0,0,0));
 }
