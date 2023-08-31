@@ -204,6 +204,12 @@ typedef struct s_minirt
 	t_material		material[5];////////////////////////////////////////////// to change
 }					t_minirt;
 
+typedef struct s_shading
+{
+	t_color		color;
+	float		intensity;
+}				t_shading;
+
 typedef struct s_hit
 {
 	float			t;
@@ -211,13 +217,8 @@ typedef struct s_hit
 	t_vec3			hit_point;
 	unsigned int	u_px;
 	unsigned int	v_py;
+	t_shading		shade;
 }				t_hit;
-
-typedef struct s_shading
-{
-	t_color		color;
-	float		intensity;
-}				t_shading;
 
 typedef struct s_thread
 {
@@ -341,7 +342,7 @@ t_color	sub_2_colors(t_color col1, t_color col2);
 t_color	sub_3_colors(t_color col1, t_color col2, t_color col3);
 int		get_rgba(t_color color, float a);
 t_color	no_color(void);
-t_color	get_specular_color(t_color obj_color, t_hit *hit, t_shading *shade);
+t_color	get_specular_color(t_color obj_color, t_hit *hit, float color_intensity);
 t_color	max_color(t_color color);
 t_color max_out_color(t_color color);
 t_color	color_scale(t_color v, float scale);

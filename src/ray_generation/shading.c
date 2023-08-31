@@ -93,7 +93,7 @@ float shading_intensity(t_hit *hit, t_vec3 n, t_shading *shade, int refl)
 			continue;
 		}
 		geo_term = get_geo_term(hit, current->content, n);
-		if (geo_term >= 0.0f)
+		if (geo_term > 0.0f)
 			diffuse_light = geo_term * 255.0f * get_light_intensity(current->content);/////
 		else
 			diffuse_light = 0.0f;
@@ -121,10 +121,9 @@ void calc_specular_effect(t_hit *hit, t_vec3 n, t_vec3 v, t_shading *shade)
 	float	current_coeff;
 	t_list *current;
 	float	light_intensity;
+	float diff;
 
 	light_intensity = 0.0f;
-	specular_color = get_specular_color(shade->color, hit, shade);
-	// specular_color = color_scale(generate_color(100.0f, 100.0f, 100.0f), get_obj_material(hit->obj)->specular_factor);
 	current = get_minirt()->lights;
 	coeff = 0;
 	while (current)
@@ -134,54 +133,19 @@ void calc_specular_effect(t_hit *hit, t_vec3 n, t_vec3 v, t_shading *shade)
 		current_coeff = vec_dot(n, h);
 		if (current_coeff < 0)
 			current_coeff = 0;
-		// current_coeff = pow(current_coeff, get_obj_material(hit->obj)->shine);
 		current_coeff = pow(current_coeff, get_obj_material(hit->obj)->shine * pow(get_light_intensity(current->content), 1.4f));
 		if (current_coeff > coeff)
 		{
 			coeff = current_coeff;
+			specular_color = get_specular_color(shade->color, hit, get_light_intensity(current->content));
 			light_intensity = get_light_intensity(current->content) * 255.0f;
 		}
 		current = current->next;
-	}
-	// coeff *= shade->intensity / 255.0f;
-	// shade->color = color_scale(specular_color, shading_intensity(hit, n) / 255.0f);
-	// if (light_intensity * 255.0f * coeff > shade->intensity)
-	// 	shade->intensity = light_intensity * 255.0f * coeff;
-	
-			// if (light_intensity * 255.0f * coeff >= shade->intensity && coeff > 0.01)
-			// 	shade->intensity = light_intensity * 255.0f *coeff;
-			float diff;
-			diff = light_intensity - shade->intensity;
-			shade->intensity += MAX(coeff, 0.1) * diff;
+	}	
+	diff = light_intensity - shade->intensity;
+	shade->intensity += coeff * diff;
 	shade->color = color_add(shade->color, color_scale(specular_color, coeff));
 }
-
-// t_color shading_color(t_hit *hit, t_vec3 w, t_vec3 n, t_color obj_color)
-// {
-// 	t_color specular_color;
-// 	t_color output_color;
-// 	t_vec3	v;
-// 	t_vec3	h;
-// 	float	coeff;
-
-// 	specular_color = get_specular_color();
-
-// 	v = vec_norm(vec_subs(get_minirt()->camera.position, hit->hit_point));
-// 	h = vec_norm(vec_add(w, v));
-
-
-// 	coeff = vec_dot(n, h);
-// 	if (coeff < 0)
-// 		coeff = 0;
-// 	coeff = pow(coeff, get_obj_material(hit->obj)->shine * pow(get_light_intensity(get_minirt()->lights->content), 1.4f));
-
-// 	specular_color = color_scale(specular_color, coeff);
-
-// 	output_color = color_add(obj_color, specular_color);
-
-// 	output_color = max_color(output_color);
-// 	return(output_color);
-// }
 
 t_color shading_color(t_hit *hit, t_vec3 n, t_shading *shade, int *refl, t_vec3 v)
 {
@@ -189,13 +153,12 @@ t_color shading_color(t_hit *hit, t_vec3 n, t_shading *shade, int *refl, t_vec3 
 
 	mat = get_obj_material(hit->obj);
 	if (mat->shine != 0)
-		calc_specular_effect(hit, n, v, shade);//!!!!IMPORTANT!!!!<------------------
+		calc_specular_effect(hit, n, v, shade);
 	if (mat->reflexion != 0)
 		calc_reflexion(hit, n, v, shade, refl);
 
 	return(shade->color);
 }
-
 
 t_shading shading(t_hit *hit)
 {

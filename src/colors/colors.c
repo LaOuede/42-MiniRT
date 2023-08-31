@@ -37,19 +37,19 @@ float get_max_rgb(t_color input)
 	return (MAX(MAX(input.r, input.g), input.b));
 }
 
-t_color get_specular_color(t_color obj_color, t_hit *hit, t_shading *shade)/////////////////play around here
+t_color get_specular_color(t_color obj_color, t_hit *hit, float color_intensity)/////////////////play around here
 {
-	t_color specular_color;
-	float max_col;
+	// t_color specular_color;
+	// float max_col;
 
-	max_col = get_max_rgb(obj_color);
-	// t_color basic_spec_color;
-	// float color_intensity;
-	specular_color = generate_color(max_col, max_col, max_col);
-	specular_color = color_add(obj_color, specular_color);
-	// specular_color = max_color(specular_color);
-	specular_color = color_scale(specular_color, get_obj_material(hit->obj)->specular_factor);
-	shade = NULL;
+	// max_col = get_max_rgb(obj_color);
+	// // t_color basic_spec_color;
+	// // float color_intensity;
+	// specular_color = generate_color(max_col, max_col, max_col);
+	// specular_color = color_add(obj_color, specular_color);
+	// // specular_color = max_color(specular_color);
+	// specular_color = color_scale(specular_color, get_obj_material(hit->obj)->specular_factor);
+	// shade = NULL;
 	// color_add_ = obj_color;
 	// color_intensity = pow((shade->intensity / 255.0f), 1.2) * get_obj_material(hit->obj)->specular_factor;
 	// basic_spec_color = color_scale(generate_color(100, 100, 100), color_intensity);
@@ -57,7 +57,16 @@ t_color get_specular_color(t_color obj_color, t_hit *hit, t_shading *shade)/////
 
 	// obj_color = color_add(basic_spec_color, color_add_);
 
-	return(specular_color);
+	t_color color;
+
+	obj_color.r = 0;
+
+    color_intensity = pow(color_intensity, 1.2) * 255.0f * get_obj_material(hit->obj)->specular_factor;
+    color.r = color_intensity;
+    color.b = color_intensity;
+    color.g = color_intensity;
+    return(color);
+
 }
 
 t_color max_color(t_color color)
