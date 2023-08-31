@@ -69,17 +69,15 @@ t_shading single_ray(t_ray_info ray, t_hit *closest_hit)
 {
 	t_shading shade;
 
+	if (ray.px == 320 && ray.py == 243){
+		printf("");
+	}
 	find_closest_hit(ray, closest_hit, get_minirt()->camera.position);
 	if (closest_hit->obj)
 	{
 		closest_hit->hit_point = vec_add(get_minirt()->camera.position, vec_scale(ray.d, closest_hit->t));
 		closest_hit->hit_point = vec_add(closest_hit->hit_point, vec_scale(get_normal_vec(closest_hit), 0.01));
 
-		if (ray.px == 517 && ray.py == 412)
-		{
-			printf("");
-		}
-		
 		shade = shading(closest_hit);
 		return (shade);
 	}

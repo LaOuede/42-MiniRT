@@ -1,0 +1,39 @@
+ #------------------------------------------------------------------------#
+#                                                                        #
+#                            COMMANDS MENU                               #
+#                                                                        #
+#------------------------------------------------------------------------#
+
+#------------------------------------------------------------------------#
+#                                MOUSE                                   #
+#------------------------------------------------------------------------#
+  Left button  =  Select an object
+
+#------------------------------------------------------------------------#
+#                               KEYBOARD                                 #
+#------------------------------------------------------------------------#
+  1  =  Normal sampling
+  2  =  Super sampling
+  C  =  Camera
+  A  =  Left translation
+  D  =  Right translation
+  W  =  Backward translation
+  S  =  Forward translation
+  Q  =  Top translation
+  E  =  Bottom translation
+  J  =  X-axis rotation
+  L  =  X-axis rotation
+  I  =  Y-axis rotation
+  K  =  Y-axis rotation
+  U  =  X-axis rotation
+  O  =  X-axis rotation
+  +  =  
+  -  =  
+  H+  =  
+  H-  =  
+  R+  =  
+  R-  =  
+
+
+
+

@@ -62,15 +62,15 @@ void	keys_object(mlx_key_data_t keydata, void *param)
 	if (mlx_is_key_down(minirt->mlx, MLX_KEY_W)
 		|| mlx_is_key_down(minirt->mlx, MLX_KEY_S))
 		object_translation_z(minirt, keydata.key);
-	if (minirt->selected == PLAN
+	if ((minirt->selected == PLAN || minirt->selected == CYLINDRE)
 		&& (mlx_is_key_down(minirt->mlx, MLX_KEY_L)
 			|| mlx_is_key_down(minirt->mlx, MLX_KEY_J)))
 		plane_rotation_pitch(minirt, keydata.key);
-	if (minirt->selected == PLAN
+	if ((minirt->selected == PLAN || minirt->selected == CYLINDRE)
 		&& (mlx_is_key_down(minirt->mlx, MLX_KEY_I)
 			|| mlx_is_key_down(minirt->mlx, MLX_KEY_K)))
 		plane_rotation_yaw(minirt, keydata.key);
-	if (minirt->selected == PLAN
+	if ((minirt->selected == PLAN || minirt->selected == CYLINDRE)
 		&& (mlx_is_key_down(minirt->mlx, MLX_KEY_O)
 			|| mlx_is_key_down(minirt->mlx, MLX_KEY_U)))
 		plane_rotation_roll(minirt, keydata.key);
@@ -155,14 +155,14 @@ void	keys_mode(void *param)
 	minirt = (t_minirt *)param;
 	if (mlx_is_key_down(minirt->mlx, MLX_KEY_1))
 	{
-		minirt->mode = ROUTINE;
-		printf("Mode selected = routine\n");
+		minirt->mode = NORMAL;
+		printf("Mode selected = normal sampling\n");
 		ray_launcher();
 	}
 	else if (mlx_is_key_down(minirt->mlx, MLX_KEY_2))
 	{
-		minirt->mode = SUPER_ROUTINE;
-		printf("Mode selected = super routine\n");
+		minirt->mode = SUPER;
+		printf("Mode selected = super sampling\n");
 		ray_launcher();
 	}
 }
@@ -195,14 +195,16 @@ void	minirt_keys(mlx_key_data_t keydata, void *param)
 	}
 	if (get_minirt()->selected == CAMERA)
 		keys_camera(keydata, param);
-	if (get_minirt()->selected == SPHERE)
+	else if (get_minirt()->selected == SPHERE)
 	{
 		keys_object(keydata, param);
 		keys_sphere(param);
 	}
-	if (get_minirt()->selected == CYLINDRE)
+	else if (get_minirt()->selected == CYLINDRE)
 	{
 		keys_object(keydata, param);
 		keys_cylinder(param);
 	}
+	else if (get_minirt()->selected == PLAN)
+		keys_object(keydata, param);
 }

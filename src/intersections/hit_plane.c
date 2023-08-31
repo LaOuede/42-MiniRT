@@ -2,14 +2,6 @@
 
 /*
 
-Une structure qui serait accessible depuis l'objet permet de garder les infos pertinentes en lien avec les hits
-typedef struct	s_hit
-{
-	t_vec3	col_pt; // coord du point de collision
-	float	t; //distance au point de collision
-	t_vec3	normal // Surface normal vector
-}	t_hit
-
 Equation :
 	       
 	     ___a___
@@ -22,8 +14,6 @@ Equation :
 
 Surface normal vector :
 	Surface normal vector at point P equals to the plane normal, unless d.n is negative, in which case N = -n.
-
-RUN "make int" to see informations
 
 */
 
@@ -54,6 +44,3 @@ void	hit_plane(t_vec3 d, t_object *packed_plane, t_hit *hit, t_vec3 origin)
 		hit->t = t; // HIT
 	}
 }
-
-/* 		hit->t = t; // distance au point de collision
-		hit->col = vec_add(ray.origin, vec_scale(ray.direction, hit->t)); // coord du point de collision = (vecteur directionnel * t) + vecteur origin */

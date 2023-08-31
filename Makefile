@@ -34,7 +34,7 @@ export HELP
 
 # Compiler and flags
 CC		=	gcc
-CFLAGS	=	-g -Wall -Wextra -Werror -flto -Ofast -march=native -funroll-loops -finline-functions -ftree-vectorize -ffast-math #-fsanitize=thread
+CFLAGS	=	-g -Wall -Wextra -Werror #-flto -Ofast -march=native -funroll-loops -finline-functions -ftree-vectorize -ffast-math #-fsanitize=thread
 #CFLAGS	=	-fsanitize=address
 
 # Remove
@@ -212,6 +212,10 @@ rot:
 int:
 	@open https://hugi.scene.org/online/hugi24/coding%20graphics%20chris%20dragan%20raytracing%20shapes.htm
 
+# Open the subject
+menu:
+	@open menu_commandes.txt
+
 # Run norminette
 norm :
 	@echo "\n$W>>>>>>>>>>>>>>>>>>>>>>>>>> $YNORMINETTE $W<<<<<<<<<<<<<<<<<<<<<<<<<<$Z\n"
@@ -219,4 +223,4 @@ norm :
 	@echo "\n$W>>>>>>>>>>>>>>>>>>>>>>>> $YNORMINETTE ✅ $W<<<<<<<<<<<<<<<<<<<<<<<<<<"
 
 # Avoids file-target name conflicts
-.PHONY: all dir clean fclean re help pdf rot norm run int
+.PHONY: all dir clean fclean re help pdf rot norm run int menu

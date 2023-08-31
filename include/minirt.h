@@ -88,8 +88,8 @@ typedef struct s_color
 # define SUN 4
 # define TEXTURE_COUNT 5 //always ajust to be last texture index + 1 or leakks
 
-# define ROUTINE 1
-# define SUPER_ROUTINE 2
+# define NORMAL 1
+# define SUPER 2
 
 //texture
 typedef struct s_material
@@ -214,6 +214,8 @@ typedef struct s_hit
 {
 	float			t;
 	t_object		*obj;
+	t_vec3			d;
+	t_vec3			normal;
 	t_vec3			hit_point;
 	unsigned int	u_px;
 	unsigned int	v_py;
