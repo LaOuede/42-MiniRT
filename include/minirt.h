@@ -217,7 +217,6 @@ typedef struct s_hit
 	t_vec3			hit_point;
 	unsigned int	u_px;
 	unsigned int	v_py;
-	t_shading		shade;
 }				t_hit;
 
 typedef struct s_thread

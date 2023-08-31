@@ -35,7 +35,7 @@ void calc_reflexion(t_hit *hit, t_vec3 n, t_vec3 v, t_shading *shade, int *refl)
 		new_shading.color = get_texture_color(&closest_hit);
 		new_shading.intensity = shading_intensity(&closest_hit, get_normal_vec(&closest_hit), shade, *refl);
 
-		// if (get_obj_material(closest_hit.obj)->reflexion != 0 && new_shading.intensity > shade->intensity)
+		// if (new_shading.intensity > shade->intensity)
 		// {
 		// 	shade->intensity = new_shading.intensity;
 		// }

@@ -83,18 +83,6 @@ void *super_routine(void *package)
 		thread->ray.px = 0;
 		while (thread->ray.px < thread->scr_width)
 		{
-			// super_pre_launch_operations(&thread->ray, 0.25f, 0.25f);
-			// shades[0] = single_ray(thread->ray, &thread->closest_hit);
-			// super_pre_launch_operations(&thread->ray, 0.25f, 0.75f);
-			// shades[1] = single_ray(thread->ray, &thread->closest_hit);
-			// super_pre_launch_operations(&thread->ray, 0.75f, 0.25f);
-			// shades[2] = single_ray(thread->ray, &thread->closest_hit);
-			// super_pre_launch_operations(&thread->ray, 0.75f, 0.75f);
-			// shades[3] = single_ray(thread->ray, &thread->closest_hit);
-			// shades[0].color = color_add(add_3_colors(shades[0].color, shades[1].color, shades[2].color), shades[3].color);
-			// shades[0].color = color_scale(shades[0].color, 0.25f);
-			// shades[0].intensity = (shades[0].intensity + shades[1].intensity + shades[2].intensity + shades[3].intensity) / 4;
-
 			super_pre_launch_operations(&thread->ray, 0.17f, 0.17f);
 			shades[0] = single_ray(thread->ray, &thread->closest_hit);
 			super_pre_launch_operations(&thread->ray, 0.5f, 0.17f);
@@ -159,31 +147,3 @@ void ray_launcher(void)
 		i++;
 	}
 }
-
-
-			// super_pre_launch_operations(&thread->ray, 0.1f, 0.1f);
-			// shades[0] = single_ray(thread->ray, &thread->closest_hit);
-			// super_pre_launch_operations(&thread->ray, 0.5f, 0.1f);
-			// shades[1] = single_ray(thread->ray, &thread->closest_hit);
-			// super_pre_launch_operations(&thread->ray, 0.9f, 0.1f);
-			// shades[2] = single_ray(thread->ray, &thread->closest_hit);
-			// super_pre_launch_operations(&thread->ray, 0.1f, 0.5f);
-			// shades[3] = single_ray(thread->ray, &thread->closest_hit);
-			// super_pre_launch_operations(&thread->ray, 0.5f, 0.5f);
-			// shades[4] = single_ray(thread->ray, &thread->closest_hit);
-			// super_pre_launch_operations(&thread->ray, 0.9f, 0.5f);
-			// shades[5] = single_ray(thread->ray, &thread->closest_hit);
-			// super_pre_launch_operations(&thread->ray, 0.1f, 0.9f);
-			// shades[6] = single_ray(thread->ray, &thread->closest_hit);
-			// super_pre_launch_operations(&thread->ray, 0.5f, 0.9f);
-			// shades[7] = single_ray(thread->ray, &thread->closest_hit);
-			// super_pre_launch_operations(&thread->ray, 0.9f, 0.9f);
-			// shades[8] = single_ray(thread->ray, &thread->closest_hit);
-
-			// shades[0].color = add_3_colors(shades[0].color, shades[1].color, shades[2].color);
-			// shades[1].color = add_3_colors(shades[3].color, shades[4].color, shades[5].color);
-			// shades[2].color = add_3_colors(shades[6].color, shades[7].color, shades[8].color);
-			// shades[3].color = add_3_colors(shades[0].color, shades[1].color, shades[2].color);
-			// shades[0].color = color_scale(shades[0].color, 0.11111111f);
-
-			// shades[0].intensity = (shades[0].intensity + shades[1].intensity + shades[2].intensity + shades[3].intensity + shades[4].intensity + shades[5].intensity + shades[6].intensity + shades[7].intensity + shades[8].intensity) / 9;

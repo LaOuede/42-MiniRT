@@ -63,12 +63,6 @@ void find_closest_hit(t_ray_info ray, t_hit *closest_hit, t_vec3 origin)
 		}
 		current = current->next;
 	}
-
-	// if (closest_hit->obj)
-	// {
-	// 	closest_hit->hit_point = vec_add(get_minirt()->camera.position, vec_scale(ray.d, closest_hit->t));
-	// 	mlx_put_pixel(get_minirt()->image, ray.px, ray.py, shading(closest_hit));
-	// }
 }
 
 t_shading single_ray(t_ray_info ray, t_hit *closest_hit)
@@ -80,16 +74,14 @@ t_shading single_ray(t_ray_info ray, t_hit *closest_hit)
 	{
 		closest_hit->hit_point = vec_add(get_minirt()->camera.position, vec_scale(ray.d, closest_hit->t));
 		closest_hit->hit_point = vec_add(closest_hit->hit_point, vec_scale(get_normal_vec(closest_hit), 0.01));
-		
-		if (ray.px == 318 && ray.py == 325)
+
+		if (ray.px == 517 && ray.py == 412)
 		{
 			printf("");
 		}
 		
 		shade = shading(closest_hit);
-		// return ((u_int32_t)get_rgba(shade.color, shade.intensity));
 		return (shade);
-		// mlx_put_pixel(get_minirt()->image, ray.px, ray.py, (u_int32_t)get_rgba(shade.color, shade.intensity));
 	}
 	else
 	{

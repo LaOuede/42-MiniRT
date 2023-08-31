@@ -57,13 +57,10 @@ void add_light_color(t_shading *shade, void *light, float light_intensity, int r
 {
 	t_color coloradd;
 
-	if (refl > 1)////
+	if (refl > 1)
 		return;
 	light_intensity /=  255.0f;
-	// if (light_intensity > 0 && light_intensity < 0.2f)
-	// 	light_intensity = 0.2f;
-	// if (light_intensity <= 0)
-	// 	light_intensity = 0.1f;
+
 	coloradd = color_scale(get_light_color(light), light_intensity);
 	shade->color = color_add(shade->color, coloradd);
 	coloradd = color_scale(get_minirt()->ambiant_light.color , get_minirt()->ambiant_light.intensity);
@@ -105,7 +102,6 @@ float shading_intensity(t_hit *hit, t_vec3 n, t_shading *shade, int refl)
 		add_light_color(shade, current->content, current_intensity, refl);
 		if (current_intensity > light_intensity)
 			light_intensity = current_intensity;
-		
 		current = current->next;
 	}
 	
