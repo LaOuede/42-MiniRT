@@ -32,6 +32,7 @@ static void update_closest_hit(t_hit *closest_hit, t_hit hit)
 {
 	closest_hit->obj = hit.obj;
 	closest_hit->t = hit.t;
+	closest_hit->normal = hit.normal;
 }
 
 void find_hit(t_vec3 d, t_object *object, t_hit *hit, t_vec3 origin)
@@ -69,7 +70,7 @@ t_shading single_ray(t_ray_info ray, t_hit *closest_hit)
 {
 	t_shading shade;
 
-	if (ray.px == 320 && ray.py == 243){
+	if (ray.px == 276 && ray.py == 218){
 		printf("");
 	}
 	find_closest_hit(ray, closest_hit, get_minirt()->camera.position);

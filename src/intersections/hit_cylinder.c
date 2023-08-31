@@ -61,7 +61,7 @@ void	hit_cylinder(t_vec3 d, t_object *packed_cylinder, t_hit *hit, t_vec3 origin
 		hit->t = t; // HIT
 	}
 
-	############### Normal test 1 ###################
+	// ############### Normal test 1 ###################
 	// n = nrm(P-C-V*m)
 /* 	t_vec3	P;
 	t_vec3	C;
@@ -76,7 +76,7 @@ void	hit_cylinder(t_vec3 d, t_object *packed_cylinder, t_hit *hit, t_vec3 origin
 	hit->normal = vec_norm(hit->normal); */
 
 
-	############### Normal test 2 ###################
+	// ############### Normal test 2 ###################
 	t_vec3	hp;
 	t_vec3	C;
 	float T;
@@ -87,8 +87,9 @@ void	hit_cylinder(t_vec3 d, t_object *packed_cylinder, t_hit *hit, t_vec3 origin
 	T = vec_dot(vec_subs(hp, C), vec_norm(cyl->direction));
 	pt = vec_add(C, vec_scale(vec_norm(cyl->direction), T));
 	hit->normal = vec_norm(vec_subs(hp, pt));
+	hit->normal = vec_scale(hit->normal, -1);
 
-	############### Normal test 3 ###################
+	// ############### Normal test 3 ###################
 /* 	t_vec3	cross_prod;
 	cross_prod = vec_cross(vec_norm(hit->d), vec_norm(cyl->direction));
 	hit->normal = vec_norm(vec_cross(cross_prod, vec_norm(cyl->direction))); */
