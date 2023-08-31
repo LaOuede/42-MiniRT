@@ -2,15 +2,13 @@
 
 /*
 
+Do the ray touch a plane ?
+Does the ray touch the triangle which is a part of the plane ?
+plane is defined by the normal of the triangle : cross_prod of 2 edges = normal
+how to check if the intersection is inside the triangle : 
+
 Equation :
-	       
-	     ___a___
-	    |       |
-	     c - p.n
-	t = ---------
-	       d.n
-	      |___|
-			b
+
 
 Surface normal vector :
 	Surface normal vector at point P equals to the plane normal, unless d.n is negative, in which case N = -n.

@@ -146,9 +146,9 @@ void ray_launcher(void)
 		thread[i].index = i;
 		thread[i].scr_width = (int)get_minirt()->image->width;
 		thread[i].scr_height = (int)get_minirt()->image->height;
-		if (get_minirt()->mode == ROUTINE)
+		if (get_minirt()->mode == NORMAL)
 			pthread_create(&thread[i].thread, NULL, &routine, &thread[i]);
-		else if (get_minirt()->mode == SUPER_ROUTINE)
+		else if (get_minirt()->mode == SUPER)
 			pthread_create(&thread[i].thread, NULL, &super_routine, &thread[i]);
 		i++;
 	}

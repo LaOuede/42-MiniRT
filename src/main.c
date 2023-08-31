@@ -12,9 +12,9 @@ t_minirt	*get_minirt(void)
 		{
 			printf("Object selected = camera\n");
 		}
-		minirt->mode = ROUTINE;
+		minirt->mode = NORMAL;
 		{
-			printf("Mode selected = routine\n");
+			printf("Mode selected = normal sampling\n");
 		}
 	}
 	return (minirt);

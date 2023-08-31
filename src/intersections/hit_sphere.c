@@ -11,8 +11,6 @@ Surface normal vector :
 	N = nrm(P - C)
 	P = point on the sphere and C = center of the sphere
 
-RUN "make int" to see informations
-
 */
 void	hit_sphere(t_vec3 d, t_object *packed_sphere, t_hit *hit, t_vec3 origin)
 {
