@@ -32,7 +32,7 @@ static void update_closest_hit(t_hit *closest_hit, t_hit hit)
 {
 	closest_hit->obj = hit.obj;
 	closest_hit->t = hit.t;
-	closest_hit->normal = hit.normal;
+	closest_hit->normal_cyl = hit.normal_cyl;
 }
 
 void find_hit(t_vec3 d, t_object *object, t_hit *hit, t_vec3 origin)
@@ -42,7 +42,7 @@ void find_hit(t_vec3 d, t_object *object, t_hit *hit, t_vec3 origin)
 	else if (object->type == PLAN)
 		hit_plane(d, object, hit, origin);
 	else if (object->type == CYLINDRE)
-		hit_cylinder(d, object, hit, origin);
+		hit_cylinder_body(d, object, hit, origin);
 }
 
 void find_closest_hit(t_ray_info ray, t_hit *closest_hit, t_vec3 origin)

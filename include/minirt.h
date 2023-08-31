@@ -214,8 +214,7 @@ typedef struct s_hit
 {
 	float			t;
 	t_object		*obj;
-	t_vec3			d;
-	t_vec3			normal;
+	t_vec3			normal_cyl;
 	t_vec3			hit_point;
 	unsigned int	u_px;
 	unsigned int	v_py;
@@ -233,18 +232,17 @@ typedef struct s_thread
 
 
 //parsing
-void				parse(int fd);
-void				parse_to_struct(t_list **objects, char **line);
-void				parse_sphere(char **line, t_object *object);
-void				parse_cylinder(char **line, t_object *object);
-void				parse_plane(char **line, t_object *object);
-void free_parse_functions(char **split);
-void parse_coordinates(char *coordinates, t_vec3 *position);
-void parse_colors(char *coordinates, t_color *color);
-t_color generate_color(float r, float g, float b);
-void parse_ambiant_light(char **line);
-void parse_camera(char **line);
-void parse_light(char **line);
+void	parse(int fd);
+void	parse_to_struct(t_list **objects, char **line);
+void	parse_sphere(char **line, t_object *object);
+void	parse_cylinder(char **line, t_object *object);
+void	parse_plane(char **line, t_object *object);
+void	free_parse_functions(char **split);
+void	parse_coordinates(char *coordinates, t_vec3 *position);
+void	parse_colors(char *coordinates, t_color *color);
+void	parse_ambiant_light(char **line);
+void	parse_camera(char **line);
+void	parse_light(char **line);
 
 //parsing error handling
 int check_obj_arg_count(char **line, int expected_nb);
@@ -256,7 +254,7 @@ void check_error(char **line, int type, void *to_free);
 int expected_arg_count(int type);
 
 //intersections
-void	hit_cylinder(t_vec3 d, t_object *packed_cylinder, t_hit *hit, t_vec3 origin);
+void	hit_cylinder_body(t_vec3 d, t_object *packed_cylinder, t_hit *hit, t_vec3 origin);
 void	hit_plane(t_vec3 d, t_object *obj_actuel, t_hit *hit, t_vec3 origin);
 void	hit_sphere(t_vec3 d, t_object *packed_sphere, t_hit *hit, t_vec3 origin);
 
