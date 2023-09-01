@@ -21,6 +21,27 @@ void	plane_rotation_roll(t_minirt *minirt, keys_t key)
 	change_direction(minirt->obj_selected, dir);
 }
 
+void	plane_rotation_pitch(t_minirt *minirt, keys_t key)
+{
+	t_vec3	dir;
+	float	rad;
+
+	dir = get_plane_direction(minirt->obj_selected);
+	if (key == MLX_KEY_I)
+	{
+		rad = 5 * M_PI / 180.0f;
+		dir.y = cos(rad) * dir.y - sin(rad) * dir.z;
+		dir.z = sin(rad) * dir.y + cos(rad) * dir.z;
+	}
+	else if (key == MLX_KEY_K)
+	{
+		rad = -5 * M_PI / 180.0f;
+		dir.y = cos(rad) * dir.y - sin(rad) * dir.z;
+		dir.z = sin(rad) * dir.y + cos(rad) * dir.z;
+	}
+	change_direction(minirt->obj_selected, dir);
+}
+
 void	cyl_rotation_pitch(t_minirt *minirt, keys_t key)
 {
 	t_vec3	dir;
