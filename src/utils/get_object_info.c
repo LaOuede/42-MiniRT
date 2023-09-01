@@ -103,6 +103,18 @@ t_vec3 get_plane_direction(t_object *object)
 	return(generate_vector(0, 0, 0));
 }
 
+t_vec3 get_cylinder_direction(t_object *object)
+{
+	t_cylindre *cyl;
+
+	if (object->type == CYLINDRE)
+	{
+		cyl = (t_cylindre *)object->obj;
+		return (cyl->direction);
+	}
+	return(generate_vector(0, 0, 0));
+}
+
 t_material *get_obj_material(t_object *obj)
 {
 	t_sphere *sphere;

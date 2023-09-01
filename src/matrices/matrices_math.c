@@ -76,7 +76,7 @@ t_mat4	matrix_mult(t_mat4 mat1, t_mat4 mat2)
 	return (res);
 }
 
-/*
+/* 
 MULTIPLY MATRIX * VECTOR
 */
 /* t_vec3	matrix_vec_mult(t_mat4 mat, t_vec3 v)
