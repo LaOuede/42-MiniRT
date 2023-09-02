@@ -88,6 +88,7 @@ SRCS_LIST	=	colors/colors.c \
 				utils/get_light_info.c \
 				utils/utils_free.c \
 				utils/utils_image.c \
+				utils/utils_menu.c \
 				utils/utils_parsing.c \
 				vectors/vectors_math1.c \
 				vectors/vectors_math2.c \
@@ -212,10 +213,6 @@ rot:
 int:
 	@open https://hugi.scene.org/online/hugi24/coding%20graphics%20chris%20dragan%20raytracing%20shapes.htm
 
-# Open the subject
-menu:
-	@open menu_commandes.txt
-
 # Run norminette
 norm :
 	@echo "\n$W>>>>>>>>>>>>>>>>>>>>>>>>>> $YNORMINETTE $W<<<<<<<<<<<<<<<<<<<<<<<<<<$Z\n"
@@ -223,4 +220,4 @@ norm :
 	@echo "\n$W>>>>>>>>>>>>>>>>>>>>>>>> $YNORMINETTE ✅ $W<<<<<<<<<<<<<<<<<<<<<<<<<<"
 
 # Avoids file-target name conflicts
-.PHONY: all dir clean fclean re help pdf rot norm run int menu
+.PHONY: all dir clean fclean re help pdf rot norm run int

@@ -384,14 +384,16 @@ void	keys_camera(mlx_key_data_t keydata, void *param);
 void	light_translation_x(t_minirt *minirt, keys_t key);
 void	light_translation_y(t_minirt *minirt, keys_t key);
 void	light_translation_z(t_minirt *minirt, keys_t key);
+void	minirt_keys(mlx_key_data_t keydata, void *param);
+void	minirt_mouse(mouse_key_t button, action_t action, modifier_key_t mods, void* param);
 void	object_translation_x(t_minirt *minirt, keys_t key);
 void	object_translation_y(t_minirt *minirt, keys_t key);
 void	object_translation_z(t_minirt *minirt, keys_t key);
 void	plane_rotation_pitch(t_minirt *minirt, keys_t key);
 void	plane_rotation_roll(t_minirt *minirt, keys_t key);
 void	plane_rotation_yaw(t_minirt *minirt, keys_t key);
-void	minirt_keys(mlx_key_data_t keydata, void *param);
-void	minirt_mouse(mouse_key_t button, action_t action, modifier_key_t mods, void* param);
+void	print_cmd_menu1(void);
+void	print_cmd_menu2(void);
 void	resize_image(int32_t width, int32_t height, void* param);
 
 #endif

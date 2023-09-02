@@ -178,6 +178,22 @@ void	keys_mode(void *param)
 /* 
 	Handles hook for program closure;
  */
+void	keys_menu(void *param)
+{
+	t_minirt	*minirt;
+
+	minirt = (t_minirt *)param;
+	if (mlx_is_key_down(minirt->mlx, MLX_KEY_M))
+	{
+		print_cmd_menu1();
+		print_cmd_menu2();
+		ray_launcher();
+	}
+}
+
+/* 
+	Handles hook for program closure;
+ */
 void	keys_exit(void *param)
 {
 	t_minirt	*minirt;
@@ -194,6 +210,7 @@ void	minirt_keys(mlx_key_data_t keydata, void *param)
 {
 	(void) keydata;
 	keys_exit(param);
+	keys_menu(param);
 	keys_mode(param);
 	keys_light(param);
 	if (mlx_is_key_down(get_minirt()->mlx, MLX_KEY_C))

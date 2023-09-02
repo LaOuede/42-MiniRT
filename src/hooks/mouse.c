@@ -94,6 +94,8 @@ static void find_closest_object(t_ray_info *ray, t_hit *closest_hit)
 				printf("Object selected = cylinder\n");
 				get_minirt()->selected = CYLINDRE;
 			}
+			else
+				get_minirt()->selected = CAMERA;
 			update_closest_hit_mouse(closest_hit, hit);
 		}
 		current = current->next;
