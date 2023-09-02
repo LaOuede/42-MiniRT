@@ -258,6 +258,7 @@ void	hit_plane(t_vec3 d, t_object *obj_actuel, t_hit *hit, t_vec3 origin);
 void	hit_sphere(t_vec3 d, t_object *packed_sphere, t_hit *hit, t_vec3 origin);
 
 //get object info
+t_vec3 get_camera_direction(t_object *object);
 void	change_direction(t_object *object, t_vec3 new_direction);
 void	change_position(t_object *object, t_vec3 new_position);
 t_vec3 get_position(t_object *object);

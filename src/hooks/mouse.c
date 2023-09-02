@@ -76,7 +76,6 @@ static void find_closest_object(t_ray_info *ray, t_hit *closest_hit)
 		else if (object->type == CYLINDRE)
 			hit_cylinder_body(ray->d, object, &hit, get_minirt()->camera.position);
 		///////////////////////////////////////////////////////////////////////
-
 		if (hit.obj && (first_hit_mouse(TRUE) || hit.t < closest_hit->t))
 		{
 			if (hit.obj->type == SPHERE)
@@ -84,18 +83,16 @@ static void find_closest_object(t_ray_info *ray, t_hit *closest_hit)
 				printf("Object selected = sphere\n");
 				get_minirt()->selected = SPHERE;
 			}
-			if (hit.obj->type == PLAN)
+			else if (hit.obj->type == PLAN)
 			{
 				printf("Object selected = plan\n");
 				get_minirt()->selected = PLAN;
 			}
-			if (hit.obj->type == CYLINDRE)
+			else if (hit.obj->type == CYLINDRE)
 			{
 				printf("Object selected = cylinder\n");
 				get_minirt()->selected = CYLINDRE;
 			}
-			else
-				get_minirt()->selected = CAMERA;
 			update_closest_hit_mouse(closest_hit, hit);
 		}
 		current = current->next;
@@ -131,7 +128,10 @@ static void	ray_mouse(float x, float y)
 	ray.y = 2.0f * ((float)y + 0.5f) / (float)get_minirt()->image->height - 1;
 	ray.d = get_d_mouse(&ray);
 	find_closest_object(&ray, &closest_hit);
-	get_minirt()->obj_selected = closest_hit.obj;
+	if (closest_hit.obj)
+		get_minirt()->obj_selected = closest_hit.obj;
+	else
+		get_minirt()->selected = CAMERA;
 }
 
 void	minirt_mouse(mouse_key_t button, action_t action, modifier_key_t mods, void* param)

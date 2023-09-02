@@ -115,11 +115,11 @@ void	keys_camera(mlx_key_data_t keydata, void *param)
 	else if (mlx_is_key_down(minirt->mlx, MLX_KEY_Q)
 		|| mlx_is_key_down(minirt->mlx, MLX_KEY_E))
 		camera_translation_y(minirt, keydata.key);
-	else if (mlx_is_key_down(minirt->mlx, MLX_KEY_L)
-		|| mlx_is_key_down(minirt->mlx, MLX_KEY_J))
-		camera_rotation_pitch(minirt, keydata.key);
 	else if (mlx_is_key_down(minirt->mlx, MLX_KEY_I)
 		|| mlx_is_key_down(minirt->mlx, MLX_KEY_K))
+		camera_rotation_pitch(minirt, keydata.key);
+	else if (mlx_is_key_down(minirt->mlx, MLX_KEY_J)
+		|| mlx_is_key_down(minirt->mlx, MLX_KEY_L))
 		camera_rotation_yaw(minirt, keydata.key);
 	ray_launcher();
 }

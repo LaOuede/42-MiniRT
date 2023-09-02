@@ -1,48 +1,59 @@
 #include "minirt.h"
 
-void	update_d(t_minirt *minirt)
-{
-	minirt->camera.direction.x = minirt->cam_matrix.p[2][0];
-	minirt->camera.direction.y = minirt->cam_matrix.p[2][1];
-	minirt->camera.direction.z = minirt->cam_matrix.p[2][2];
-}
-
-/* void	camera_rotation_roll(t_minirt *minirt, keys_t key)
-{
-	t_mat4	roll;
-
-	if (key == MLX_KEY_U)
-		roll = matrix_rotz(5);
-	if (key == MLX_KEY_O)
-		roll = matrix_rotz(-5);
-	minirt->cam_matrix = matrix_mult(roll, minirt->cam_matrix);
-	update_d(minirt);
-} */
-
+/*
+ROT on axe X
+ _                   _
+|  1    0     0    0  |
+|  0   cos𝜃  sin𝜃   0  |
+|  0  -sin𝜃  cos𝜃   0  |
+|_ 0    0     0    1 _|
+To convert from degrees to radians, multiply the number of degrees by π/180.
+*/
 void	camera_rotation_pitch(t_minirt *minirt, keys_t key)
 {
-	t_mat4	pitch;
+	t_vec3	*dir;
+	float	rad;
 
-	if (key == MLX_KEY_L)
-		pitch = matrix_roty(1);
-	if (key == MLX_KEY_J)
-		pitch = matrix_roty(-1);
-	minirt->cam_matrix = matrix_mult(pitch, minirt->cam_matrix);
-	update_d(minirt);
+	dir = &minirt->camera.direction;
+	if (key == MLX_KEY_I)
+	{
+		rad = 1 * M_PI / 180.0f;
+		dir->y = cos(rad) * dir->y - sin(rad) * dir->z;
+		dir->z = sin(rad) * dir->y + cos(rad) * dir->z;
+	}
+	else if (key == MLX_KEY_K)
+	{
+		rad = -1 * M_PI / 180.0f;
+		dir->y = cos(rad) * dir->y - sin(rad) * dir->z;
+		dir->z = sin(rad) * dir->y + cos(rad) * dir->z;
+	}
 }
 
+/*
+ROT on axe Y
+ _                   _
+|  cos𝜃  0  -sin𝜃   0  |
+|   0    1    0     0  |
+|  sin𝜃  0   cos𝜃   0  |
+|_  0    0    0     1 _|
+To convert from degrees to radians, multiply the number of degrees by π/180.
+*/
 void	camera_rotation_yaw(t_minirt *minirt, keys_t key)
 {
-	t_mat4	yaw;
+	t_vec3	*dir;
+	float	rad;
 
-/* 	printf("minirt->cam_matrix.p[2][0] = %f\n", minirt->cam_matrix.p[2][0]);
-	printf("minirt->cam_matrix.p[2][1] = %f\n", minirt->cam_matrix.p[2][1]);
-	printf("minirt->cam_matrix.p[2][2] = %f\n", minirt->cam_matrix.p[2][2]);
-	printf("-----------------------------------\n"); */
-	if (key == MLX_KEY_I)
-		yaw = matrix_rotx(1);
-	if (key == MLX_KEY_K)
-		yaw = matrix_rotx(-1);
-	minirt->cam_matrix = matrix_mult(yaw, minirt->cam_matrix);
-	update_d(minirt);
+	dir = &minirt->camera.direction;
+	if (key == MLX_KEY_L)
+	{
+		rad = 5 * M_PI / 180.0f;
+		dir->x = cos(rad) * dir->x + sin(rad) * dir->z;
+		dir->z = -sin(rad) * dir->x + cos(rad) * dir->z;
+	}
+	else if (key == MLX_KEY_J)
+	{
+		rad = -5 * M_PI / 180.0f;
+		dir->x = cos(rad) * dir->x + sin(rad) * dir->z;
+		dir->z = -sin(rad) * dir->x + cos(rad) * dir->z;
+	}
 }
