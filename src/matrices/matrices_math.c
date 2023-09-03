@@ -83,8 +83,11 @@ MULTIPLY MATRIX * VECTOR
 {
 	t_vec3	res;
 
-	res.x = (mat.p[0][0] * v.x) + (mat.p[0][1] * v.y) + (mat.p[0][2] * v.z) + mat.p[0][3];
-	res.y = (mat.p[1][0] * v.x) + (mat.p[1][1] * v.y) + (mat.p[1][2] * v.z) + mat.p[1][3];
-	res.z = (mat.p[2][0] * v.x) + (mat.p[2][1] * v.y) + (mat.p[2][2] * v.z) + mat.p[2][3];
+	res.x = (mat.p[0][0] * v.x) + (mat.p[0][1] * v.y) + \
+		(mat.p[0][2] * v.z) + mat.p[0][3];
+	res.y = (mat.p[1][0] * v.x) + (mat.p[1][1] * v.y) + \
+		(mat.p[1][2] * v.z) + mat.p[1][3];
+	res.z = (mat.p[2][0] * v.x) + (mat.p[2][1] * v.y) + \
+		(mat.p[2][2] * v.z) + mat.p[2][3];
 	return (res);
 } */

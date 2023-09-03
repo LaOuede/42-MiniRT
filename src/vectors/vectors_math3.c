@@ -33,9 +33,9 @@ void	vec_negate(t_vec3 v)
 	v.z = -v.z;
 }
 
-t_vec3 generate_vector(float x, float y, float z)
+t_vec3	generate_vector(float x, float y, float z)
 {
-	t_vec3 null_vector;
+	t_vec3	null_vector;
 
 	null_vector.x = x;
 	null_vector.y = y;
@@ -43,9 +43,9 @@ t_vec3 generate_vector(float x, float y, float z)
 	return (null_vector);
 }
 
-t_vec3 up_guide(void)
+t_vec3	up_guide(void)
 {
-	t_vec3 up_guide;
+	t_vec3	up_guide;
 
 	up_guide.x = 0.0f;
 	up_guide.y = 1.0f;

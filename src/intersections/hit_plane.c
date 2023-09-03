@@ -1,7 +1,6 @@
 #include "minirt.h"
 
 /*
-
 Equation :
 	       
 	     ___a___
@@ -13,8 +12,8 @@ Equation :
 			b
 
 Surface normal vector :
-	Surface normal vector at point P equals to the plane normal, unless d.n is negative, in which case N = -n.
-
+	Surface normal vector at point P equals to the plane normal, 
+	unless d.n is negative, in which case N = -n.
 */
 
 void	hit_plane(t_vec3 d, t_object *packed_plane, t_hit *hit, t_vec3 origin)
@@ -22,7 +21,7 @@ void	hit_plane(t_vec3 d, t_object *packed_plane, t_hit *hit, t_vec3 origin)
 	float	a;
 	float	b;
 	float	t;
-	t_plan *plane;
+	t_plan	*plane;
 
 	plane = (t_plan *)packed_plane->obj;
 	a = vec_dot(vec_subs(plane->position, origin), vec_norm(plane->direction));

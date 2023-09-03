@@ -2,7 +2,8 @@
 
 // /*
 // MATRIX TRANSLATION
-// A translation matrix simply moves an object along one or more of the three axes.
+// A translation matrix simply moves an object along one 
+// or more of the three axes.
 //  _             _
 // |  1  0  0  𝘵𝘹  |
 // |  0  1  0  𝘵𝘺  |

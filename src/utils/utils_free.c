@@ -1,4 +1,3 @@
-
 #include "minirt.h"
 
 void	ft_free_lights(t_list **lst)
@@ -49,9 +48,9 @@ void	ft_free_lst(t_list **lst)
 	*lst = NULL;
 }
 
-void free_textures(void)
+void	free_textures(void)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < TEXTURE_COUNT)
@@ -75,6 +74,6 @@ void	free_minirt(void)
 		ft_free_lights(&minirt->lights);
 	if (minirt->mlx)
 		mlx_terminate(minirt->mlx);
-	free_textures();//add
+	free_textures();
 	minirt = ft_freenull(minirt);
 }

@@ -1,4 +1,3 @@
-
 #include "minirt.h"
 
 t_minirt	*get_minirt(void)
