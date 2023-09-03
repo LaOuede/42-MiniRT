@@ -2,7 +2,7 @@
 
 void	print_cmd_menu1(void)
 {
-	printf("##############################################################\n");
+	printf("\n##############################################################\n");
 	printf("#                       COMMANDS MENU                        #\n");
 	printf("##############################################################\n\n");
 	printf("--------------------- Sampling selection ---------------------\n\n");
@@ -33,6 +33,6 @@ void	print_cmd_menu2(void)
 	printf("Intensity : SHIFT and +\n\n");
 	printf("--------------------------- Other ----------------------------\n\n");
 	printf("To display the commands menu : M\n");
-	printf("To quit the program :          Q\n\n");
+	printf("To quit the program :          ESC\n\n");
 	printf("################################################################\n");
 }
