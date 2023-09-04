@@ -18,7 +18,7 @@ void calc_reflexion(t_hit *hit, t_vec3 n, t_vec3 v, t_shading *shade, int *refl)
 
 	if (++(*refl) > NUMBER_OF_REFLEXIONS)
 		return;
-		
+
 	w = vec_norm(vec_subs(vec_scale(n, 2 * vec_dot(v, n)), v));
 	ray.first_hit = TRUE;
 	ray.d = w;
@@ -33,7 +33,13 @@ void calc_reflexion(t_hit *hit, t_vec3 n, t_vec3 v, t_shading *shade, int *refl)
 			sun_special_reflexion_case(shade, &multiplier);
 		}
 		new_shading.color = get_texture_color(&closest_hit);
-		new_shading.intensity = shading_intensity(&closest_hit, get_normal_vec(&closest_hit));
+		new_shading.intensity = shading_intensity(&closest_hit, get_normal_vec(&closest_hit), shade, *refl);
+
+		// if (new_shading.intensity > shade->intensity)
+		// {
+		// 	shade->intensity = new_shading.intensity;
+		// }
+		
 
 		new_shading.color = shading_color(&closest_hit, get_normal_vec(&closest_hit), &new_shading, refl, vec_scale(w, -1));
 		shade->color = color_add(shade->color, color_scale(new_shading.color, multiplier * new_shading.intensity / 255.0f));

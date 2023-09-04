@@ -12,7 +12,7 @@
 # include "../MLX42/include/MLX42/MLX42.h"
 # include <math.h>
 
-/* --------------------SETTINGS-------------------- */
+/* -------------------SETTINGS------------------- */
 /* # define WIDTH 1920
 # define HEIGHT 1080 */
 
@@ -26,7 +26,7 @@
 #define WIDTH 640
 #define HEIGHT 480
 
-#define	NUMBER_OF_REFLEXIONS 5
+#define	NUMBER_OF_REFLEXIONS 4
 #define THREAD_COUNT (HEIGHT / 4)
 #define SHINY_FACTOR 1000
 
@@ -58,7 +58,7 @@ typedef struct s_color
 # define AMBIANT_LIGHT 4
 # define LIGHT 5
 # define CAMERA 6
-# define DISK 7
+# define CONE 7
 
 # define EXPECTED_SPHERE 4
 # define EXPECTED_CYLINDER 6
@@ -81,6 +81,7 @@ typedef struct s_color
 # define BAD_ARGS_AMB_LIGHT 10
 # define BAD_ARGS_LIGHT 11
 # define BAD_ARGS_CAMERA 12
+# define BAD_ARGS_CONE 13
 
 # define NO_MAT 0
 # define MOON 1
@@ -99,6 +100,7 @@ typedef struct s_material
 	mlx_texture_t	*texture;
 	mlx_texture_t	*norm_map;
 	int				shine;
+	float			specular_factor;
 	float			reflexion;
 }				t_material;
 
@@ -184,6 +186,16 @@ typedef struct s_sphere
 
 }					t_sphere;
 
+typedef struct s_cone
+{
+	t_vec3			position;
+	t_vec3			direction;
+	float			angle; //faire (diametre en input) / 2
+	t_color			color;
+	t_material		*material;
+
+}					t_cone;
+
 typedef struct s_plan
 {
 	t_color			color;
@@ -228,6 +240,12 @@ typedef struct s_minirt
 	t_material		material[5];////////////////////////////////////////////// to change
 }					t_minirt;
 
+typedef struct s_shading
+{
+	t_color		color;
+	float		intensity;
+}				t_shading;
+
 typedef struct s_hit
 {
 	float			t;
@@ -237,12 +255,6 @@ typedef struct s_hit
 	unsigned int	u_px;
 	unsigned int	v_py;
 }				t_hit;
-
-typedef struct s_shading
-{
-	t_color		color;
-	float		intensity;
-}				t_shading;
 
 typedef struct s_thread
 {
@@ -267,6 +279,7 @@ void	parse_colors(char *coordinates, t_color *color);
 void	parse_ambiant_light(char **line);
 void	parse_camera(char **line);
 void	parse_light(char **line);
+void	parse_cone(char **line, t_object *object);
 
 //parsing error handling
 int check_obj_arg_count(char **line, int expected_nb);
@@ -306,6 +319,7 @@ void check_plane_args(char **line, void *to_free);
 void check_amb_light_args(char **line, void *to_free);
 void check_light_args(char **line, void *to_free);
 void check_camera_args(char **line, void *to_free);
+void check_cone_args(char **line, void *to_free);
 
 //error value input
 int invalid_value(char *coords);
@@ -368,22 +382,23 @@ t_color	sub_2_colors(t_color col1, t_color col2);
 t_color	sub_3_colors(t_color col1, t_color col2, t_color col3);
 int		get_rgba(t_color color, float a);
 t_color	no_color(void);
-t_color	get_specular_color(t_color obj_color);
+t_color	get_specular_color(t_color obj_color, t_hit *hit, float color_intensity);
 t_color	max_color(t_color color);
+t_color max_out_color(t_color color);
 t_color	color_scale(t_color v, float scale);
 t_color	color_add(t_color v1, t_color v2);
-t_color shading_color(t_hit *hit, t_vec3 n, t_shading *shade, int *refl, t_vec3 v);
+t_color	shading_color(t_hit *hit, t_vec3 n, t_shading *shade, int *refl, t_vec3 v);
 
 //ray launcher
-void	ray_launcher();
-void	find_closest_hit(t_ray_info ray, t_hit *closest_hit, t_vec3 origin);
-t_shading single_ray(t_ray_info ray, t_hit *closest_hit);
-void find_hit(t_vec3 d, t_object *object, t_hit *hit, t_vec3 origin);
+void		ray_launcher();
+void		find_closest_hit(t_ray_info ray, t_hit *closest_hit, t_vec3 origin);
+t_shading	single_ray(t_ray_info ray, t_hit *closest_hit);
+void		find_hit(t_vec3 d, t_object *object, t_hit *hit, t_vec3 origin);
 
 //shading
 t_shading	shading(t_hit *hit);
 void		calc_reflexion(t_hit *hit, t_vec3 n, t_vec3 v, t_shading *shade, int *refl);
-float		shading_intensity(t_hit *hit, t_vec3 n);
+float		shading_intensity(t_hit *hit, t_vec3 n, t_shading *shade, int refl);
 
 //materials && textures
 void	load_moon(void);
@@ -394,8 +409,8 @@ void	load_sun(void);
 void	load_materials(void);
 t_color	get_texture_color(t_hit *hit);
 void	uv_map_sphere(t_hit *hit, unsigned int *px, unsigned int *py, mlx_texture_t *image);
-void uv_map(t_hit *hit, unsigned int *px, unsigned int *py, mlx_texture_t *image);
-t_color get_normap_value(t_hit *hit);
+void	uv_map(t_hit *hit, unsigned int *px, unsigned int *py, mlx_texture_t *image);
+t_color	get_normap_value(t_hit *hit);
 
 //hooks
 void	camera_rotation_yaw(t_minirt *minirt, keys_t key);

@@ -10,5 +10,6 @@ void load_earth(void)
 	minirt->material[EARTH].norm_map = mlx_load_png("textures_png/earth/earth_normap.png");
 	minirt->material[EARTH].shine = 1000;//?
 	minirt->material[EARTH].reflexion = 0.00000000001;//?
+	minirt->material[EARTH].specular_factor = 0.5;//?
 
 }

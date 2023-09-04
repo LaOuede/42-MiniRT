@@ -34,7 +34,7 @@ export HELP
 
 # Compiler and flags
 CC		=	gcc
-CFLAGS	=	-g -Wall -Wextra -Werror -flto -Ofast -march=native -funroll-loops -finline-functions -ftree-vectorize -ffast-math #-fsanitize=thread
+CFLAGS	=	-g -Wall -Wextra -Werror #-flto -Ofast -march=native -funroll-loops -finline-functions -ftree-vectorize -ffast-math #-fsanitize=thread
 #CFLAGS	=	-fsanitize=address
 
 # Remove
@@ -61,6 +61,7 @@ SRCS_LIST	=	colors/colors.c \
 				intersections/hit_cylinder.c \
 				intersections/hit_plane.c \
 				intersections/hit_sphere.c \
+				intersections/hit_cone.c \
 				main.c \
 				materials/load_materials.c \
 				materials/no_material.c \

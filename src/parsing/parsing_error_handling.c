@@ -48,6 +48,8 @@ void check_invalid_arg(char **line, int type, void *to_free)
 		check_light_args(line, to_free);
 	else if (type == CAMERA)
 		check_camera_args(line, to_free);
+	else if (type == CONE)
+		check_cone_args(line, to_free);
 }
 
 //go search for input error
@@ -86,6 +88,8 @@ char *get_error_message(int error_code)
 		return ("Error: Invalid argument found in plane");
 	else if (error_code == BAD_ARGS_SPHERE)
 		return ("Error: Invalid argument found in sphere");
+	else if (error_code == BAD_ARGS_CONE)
+		return ("Error: Invalid argument found in cone");
 	else
 		return("Obscur error.");
 }

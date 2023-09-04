@@ -11,5 +11,7 @@ int expected_arg_count(int type)
 		return (6);
 	else if (type == AMBIANT_LIGHT)
 		return(3);
+	else if (type == CONE)
+		return(5);
 	return(0);
 }
