@@ -134,6 +134,7 @@ typedef struct s_qdt
 	float	c;
 	float	t;
 	float	m;
+	float	k;
 	float	discriminant;
 	t_vec3	disp;
 	t_vec3	d;
@@ -277,7 +278,7 @@ void check_error(char **line, int type, void *to_free);
 int expected_arg_count(int type);
 
 //intersections
-void	hit_cylinder_body(t_vec3 d, t_object *packed_cylinder, t_hit *hit, t_vec3 origin);
+void	hit_cylinder(t_vec3 d, t_object *packed_cylinder, t_hit *hit, t_vec3 origin);
 void	hit_plane(t_vec3 d, t_object *obj_actuel, t_hit *hit, t_vec3 origin);
 void	hit_sphere(t_vec3 d, t_object *packed_sphere, t_hit *hit, t_vec3 origin);
 
