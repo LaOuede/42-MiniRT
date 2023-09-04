@@ -77,7 +77,10 @@ static void	ray_mouse(float x, float y)
 	if (closest_hit.obj)
 		get_minirt()->obj_selected = closest_hit.obj;
 	else
+	{
 		get_minirt()->selected = CAMERA;
+		printf("Object selected = camera\n");
+	}
 }
 
 void	minirt_mouse(mouse_key_t button, action_t action, \

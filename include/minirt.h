@@ -124,6 +124,20 @@ typedef struct s_ray_info
 	bool first_hit;
 }		t_ray_info;
 
+// Quadratic
+typedef struct s_qdt
+{
+	float	a;
+	float	b;
+	float	half_b;
+	float	c;
+	float	t;
+	float	m;
+	float	discriminant;
+	t_vec3	disp;
+	t_vec3	d;
+	t_vec3	origin;
+}			t_qdt;
 
 //matrix
 typedef struct s_mat4
