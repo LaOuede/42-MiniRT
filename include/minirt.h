@@ -200,6 +200,15 @@ typedef struct s_cylindre
 	t_material		*material;
 }					t_cylindre;
 
+typedef struct s_disk
+{
+	float			rayon;
+	t_color			color;
+	t_vec3			direction; //vector values between -1 and 1
+	t_vec3			position;
+	t_material		*material;
+}					t_disk;
+
 typedef struct s_minirt
 {
 	t_list			*objects;
@@ -318,6 +327,7 @@ double ft_atod(char *str);
 t_minirt *get_minirt(void);
 void free_minirt(void);
 void	map_erase(t_minirt *minirt);
+bool	is_file_empty(int fd);
 
 //vector
 t_vec3	vec_add(t_vec3 v1, t_vec3 v2);
