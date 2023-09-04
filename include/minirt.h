@@ -125,6 +125,20 @@ typedef struct s_ray_info
 	bool first_hit;
 }		t_ray_info;
 
+// Quadratic
+typedef struct s_qdt
+{
+	float	a;
+	float	b;
+	float	half_b;
+	float	c;
+	float	t;
+	float	m;
+	float	discriminant;
+	t_vec3	disp;
+	t_vec3	d;
+	t_vec3	origin;
+}			t_qdt;
 
 //matrix
 typedef struct s_mat4
@@ -186,6 +200,15 @@ typedef struct s_cylindre
 	t_vec3			position;
 	t_material		*material;
 }					t_cylindre;
+
+typedef struct s_disk
+{
+	float			rayon;
+	t_color			color;
+	t_vec3			direction; //vector values between -1 and 1
+	t_vec3			position;
+	t_material		*material;
+}					t_disk;
 
 typedef struct s_minirt
 {
@@ -259,6 +282,7 @@ void	hit_plane(t_vec3 d, t_object *obj_actuel, t_hit *hit, t_vec3 origin);
 void	hit_sphere(t_vec3 d, t_object *packed_sphere, t_hit *hit, t_vec3 origin);
 
 //get object info
+t_vec3 get_camera_direction(t_object *object);
 void	change_direction(t_object *object, t_vec3 new_direction);
 void	change_position(t_object *object, t_vec3 new_position);
 t_vec3 get_position(t_object *object);
@@ -267,6 +291,7 @@ float get_light_intensity(void *packed_light);
 t_color get_light_color(void *packed_light);
 t_color get_obj_color(t_object *obj);
 t_vec3 get_plane_direction(t_object *object);
+t_vec3 get_cylinder_direction(t_object *object);
 t_material *get_obj_material(t_object *obj);
 float	*get_height(t_object *object);
 float	*get_radius(t_object *object);
@@ -303,6 +328,7 @@ double ft_atod(char *str);
 t_minirt *get_minirt(void);
 void free_minirt(void);
 void	map_erase(t_minirt *minirt);
+bool	is_file_empty(int fd);
 
 //vector
 t_vec3	vec_add(t_vec3 v1, t_vec3 v2);
@@ -377,19 +403,36 @@ void	camera_rotation_pitch(t_minirt *minirt, keys_t key);
 void	camera_translation_x(t_minirt *minirt, keys_t key);
 void	camera_translation_y(t_minirt *minirt, keys_t key);
 void	camera_translation_z(t_minirt *minirt, keys_t key);
+void	cyl_rotation_yaw(t_minirt *minirt, keys_t key);
+void	cyl_rotation_pitch(t_minirt *minirt, keys_t key);
+void	cyl_rotation_roll(t_minirt *minirt, keys_t key);
+bool	first_hit_mouse(bool action);
+void	init_hit_mouse(t_hit *closest_hit, t_hit *hit);
 void	keys_exit(void *param);
 void	keys_camera(mlx_key_data_t keydata, void *param);
+void	keys_cylinder(void *param);
+void	keys_light(void *param);
+void	keys_menu(void *param);
+void	keys_mode(void *param);
+void	keys_object(mlx_key_data_t keydata, void *param);
+void	keys_rotation(mlx_key_data_t keydata, void *param);
+void	keys_sphere(void *param);
+void	keys_translation(mlx_key_data_t keydata, void *param);
 void	light_translation_x(t_minirt *minirt, keys_t key);
 void	light_translation_y(t_minirt *minirt, keys_t key);
 void	light_translation_z(t_minirt *minirt, keys_t key);
+void	minirt_keys(mlx_key_data_t keydata, void *param);
+void	minirt_mouse(mouse_key_t button, action_t action, modifier_key_t mods, void* param);
+void	object_selected(t_hit hit);
 void	object_translation_x(t_minirt *minirt, keys_t key);
 void	object_translation_y(t_minirt *minirt, keys_t key);
 void	object_translation_z(t_minirt *minirt, keys_t key);
 void	plane_rotation_pitch(t_minirt *minirt, keys_t key);
 void	plane_rotation_roll(t_minirt *minirt, keys_t key);
-void	plane_rotation_yaw(t_minirt *minirt, keys_t key);
-void	minirt_keys(mlx_key_data_t keydata, void *param);
-void	minirt_mouse(mouse_key_t button, action_t action, modifier_key_t mods, void* param);
+void	print_cmd_menu1(void);
+void	print_cmd_menu2(void);
 void	resize_image(int32_t width, int32_t height, void* param);
+void	update_closest_hit_mouse(t_hit *closest_hit, t_hit hit);
+t_vec3	up_guide_mouse(void);
 
 #endif

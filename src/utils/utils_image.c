@@ -5,7 +5,8 @@ void	map_erase(t_minirt *minirt)
 {
 	size_t	screen_size;
 
-	screen_size = minirt->image->width * minirt->image->height * sizeof(uint32_t);
+	screen_size = minirt->image->width * minirt->image->height * \
+		sizeof(uint32_t);
 	ft_bzero(minirt->image->pixels, screen_size);
 }
 

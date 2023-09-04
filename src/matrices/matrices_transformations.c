@@ -2,7 +2,8 @@
 
 // /*
 // MATRIX TRANSLATION
-// A translation matrix simply moves an object along one or more of the three axes.
+// A translation matrix simply moves an object along one 
+// or more of the three axes.
 //  _             _
 // |  1  0  0  𝘵𝘹  |
 // |  0  1  0  𝘵𝘺  |
@@ -60,7 +61,7 @@ t_mat4	matrix_rotx(float angle)
 	float	rad;
 
 	mat = identity_matrix();
-	rad = angle * M_PI / 180;
+	rad = angle * M_PI / 180.0f;
 	mat.p[1][1] = cosf(rad);
 	mat.p[1][2] = sinf(rad);
 	mat.p[2][1] = -sinf(rad);
@@ -85,7 +86,7 @@ t_mat4	matrix_roty(float angle)
 	t_mat4	mat;
 	float	rad;
 
-	rad = angle * M_PI / 180;
+	rad = angle * M_PI / 180.0f;
 	mat = identity_matrix();
 	mat.p[0][0] = cosf(rad);
 	mat.p[0][2] = -sinf(rad);
@@ -111,7 +112,7 @@ t_mat4	matrix_rotz(float angle)
 	t_mat4	mat;
 	float	rad;
 
-	rad = angle * M_PI / 180;
+	rad = angle * M_PI / 180.0f;
 	mat = identity_matrix();
 	mat.p[0][0] = cos(rad);
 	mat.p[0][1] = sin(rad);

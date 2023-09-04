@@ -50,8 +50,12 @@ SRCS_LIST	=	colors/colors.c \
 				hooks/camera_rotation.c \
 				hooks/camera_translation.c \
 				hooks/light_translation.c \
-				hooks/keys.c \
+				hooks/keys_cam_light.c \
+				hooks/keys_general.c \
+				hooks/keys_move.c \
+				hooks/keys_objects.c \
 				hooks/mouse.c \
+				hooks/mouse_utils.c \
 				hooks/object_translation.c \
 				hooks/object_rotation.c \
 				intersections/hit_cylinder.c \
@@ -85,9 +89,12 @@ SRCS_LIST	=	colors/colors.c \
 				textures/normal_map.c \
 				textures/uv_mapping.c \
 				utils/get_object_info.c \
+				utils/get_object_info2.c \
 				utils/get_light_info.c \
+				utils/utils_ato.c \
 				utils/utils_free.c \
 				utils/utils_image.c \
+				utils/utils_menu.c \
 				utils/utils_parsing.c \
 				vectors/vectors_math1.c \
 				vectors/vectors_math2.c \
@@ -212,10 +219,6 @@ rot:
 int:
 	@open https://hugi.scene.org/online/hugi24/coding%20graphics%20chris%20dragan%20raytracing%20shapes.htm
 
-# Open the subject
-menu:
-	@open menu_commandes.txt
-
 # Run norminette
 norm :
 	@echo "\n$W>>>>>>>>>>>>>>>>>>>>>>>>>> $YNORMINETTE $W<<<<<<<<<<<<<<<<<<<<<<<<<<$Z\n"
@@ -223,4 +226,4 @@ norm :
 	@echo "\n$W>>>>>>>>>>>>>>>>>>>>>>>> $YNORMINETTE ✅ $W<<<<<<<<<<<<<<<<<<<<<<<<<<"
 
 # Avoids file-target name conflicts
-.PHONY: all dir clean fclean re help pdf rot norm run int menu
+.PHONY: all dir clean fclean re help pdf rot norm run int
