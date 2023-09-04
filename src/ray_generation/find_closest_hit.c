@@ -70,7 +70,7 @@ t_shading single_ray(t_ray_info ray, t_hit *closest_hit)
 {
 	t_shading shade;
 
-	if (ray.px == 276 && ray.py == 218){
+	if (ray.px == 149 && ray.py == 236){
 		printf("");
 	}
 	find_closest_hit(ray, closest_hit, get_minirt()->camera.position);

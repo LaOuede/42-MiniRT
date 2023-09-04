@@ -72,14 +72,18 @@ void	hit_cylinder_body(t_vec3 d, t_object *packed_cylinder, t_hit *hit, t_vec3 o
 		{
 			hit->obj = packed_cylinder;
 			hit->t = t; // HIT
-			hit->normal_cyl = calc_normal(origin, d, t, m, cyl);
+			hit->normal_cyl = vec_cross(vec_norm(d), vec_norm(cyl->direction));
+			hit->normal_cyl = vec_norm(vec_cross(hit->normal_cyl, vec_norm(cyl->direction)));
+			// calc_normal(origin, d, t, m, cyl);
 		}
 	}
 	else
 	{
 		hit->obj = packed_cylinder;
 		hit->t = t; // HIT
-		hit->normal_cyl = calc_normal(origin, d, t, m, cyl);
+		hit->normal_cyl = vec_cross(vec_norm(d), vec_norm(cyl->direction));
+		hit->normal_cyl = vec_norm(vec_cross(hit->normal_cyl, vec_norm(cyl->direction)));
+		// hit->normal_cyl = calc_normal(origin, d, t, m, cyl);
 	}
 }
 
