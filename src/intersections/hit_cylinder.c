@@ -60,7 +60,7 @@ Equation :
 	t = (-b + √d) / a; INSIDE
 	m = D|V*t + X|V
 */
-void	hit_cylinder_body(t_vec3 d, t_object *packed_cylinder, \
+void	hit_cylinder(t_vec3 d, t_object *packed_cylinder, \
 	t_hit *hit, t_vec3 origin)
 {
 	t_qdt		q;
