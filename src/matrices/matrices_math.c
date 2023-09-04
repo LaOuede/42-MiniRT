@@ -79,7 +79,7 @@ t_mat4	matrix_mult(t_mat4 mat1, t_mat4 mat2)
 /* 
 MULTIPLY MATRIX * VECTOR
 */
-/* t_vec3	matrix_vec_mult(t_mat4 mat, t_vec3 v)
+t_vec3	matrix_vec_mult(t_mat4 mat, t_vec3 v)
 {
 	t_vec3	res;
 
@@ -90,4 +90,4 @@ MULTIPLY MATRIX * VECTOR
 	res.z = (mat.p[2][0] * v.x) + (mat.p[2][1] * v.y) + \
 		(mat.p[2][2] * v.z) + mat.p[2][3];
 	return (res);
-} */
+}

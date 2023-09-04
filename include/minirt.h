@@ -58,6 +58,7 @@ typedef struct s_color
 # define AMBIANT_LIGHT 4
 # define LIGHT 5
 # define CAMERA 6
+# define DISK 7
 
 # define EXPECTED_SPHERE 4
 # define EXPECTED_CYLINDER 6
