@@ -75,18 +75,12 @@ static void	ray_mouse(float x, float y)
 	ray.d = get_d_mouse(&ray);
 	find_closest_object(&ray, &closest_hit);
 	if (closest_hit.obj)
-<<<<<<< HEAD
-		printf("x: %f, y: %f, z: %f\n", get_position(closest_hit.obj).x, get_position(closest_hit.obj).y, get_position(closest_hit.obj).z);
-	
-	get_minirt()->obj_selected = closest_hit.obj;
-=======
 		get_minirt()->obj_selected = closest_hit.obj;
 	else
 	{
 		get_minirt()->selected = CAMERA;
 		printf("Object selected = camera\n");
 	}
->>>>>>> 881f68ee5ece49b20c8c047d7e69c37941494779
 }
 
 void	minirt_mouse(mouse_key_t button, action_t action, \

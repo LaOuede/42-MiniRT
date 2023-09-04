@@ -63,3 +63,19 @@ void parse_plane(char **line, t_object *object)
 	parse_colors(line[3], &plan->color);
 	plan->material = get_material(line[4]);
 }
+
+void parse_cone(char **line, t_object *object)
+{
+	t_cone *cone;
+
+	cone = (t_cone*)object->obj;
+	check_error(line, SPHERE, object);
+	
+	// check_sphere_validity(line);
+	
+	parse_coordinates(line[1], &cone->position);
+	parse_coordinates(line[2], &cone->direction);
+	cone->angle = ft_atof(line[3]);
+	parse_colors(line[4], &cone->color);
+	cone->material = get_material(line[5]);
+}

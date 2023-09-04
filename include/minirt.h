@@ -58,6 +58,7 @@ typedef struct s_color
 # define AMBIANT_LIGHT 4
 # define LIGHT 5
 # define CAMERA 6
+# define CONE 7
 
 # define EXPECTED_SPHERE 4
 # define EXPECTED_CYLINDER 6
@@ -80,6 +81,7 @@ typedef struct s_color
 # define BAD_ARGS_AMB_LIGHT 10
 # define BAD_ARGS_LIGHT 11
 # define BAD_ARGS_CAMERA 12
+# define BAD_ARGS_CONE 13
 
 # define NO_MAT 0
 # define MOON 1
@@ -183,6 +185,16 @@ typedef struct s_sphere
 
 }					t_sphere;
 
+typedef struct s_cone
+{
+	t_vec3			position;
+	t_vec3			direction;
+	float			angle; //faire (diametre en input) / 2
+	t_color			color;
+	t_material		*material;
+
+}					t_cone;
+
 typedef struct s_plan
 {
 	t_color			color;
@@ -266,6 +278,7 @@ void	parse_colors(char *coordinates, t_color *color);
 void	parse_ambiant_light(char **line);
 void	parse_camera(char **line);
 void	parse_light(char **line);
+void	parse_cone(char **line, t_object *object);
 
 //parsing error handling
 int check_obj_arg_count(char **line, int expected_nb);
@@ -305,6 +318,7 @@ void check_plane_args(char **line, void *to_free);
 void check_amb_light_args(char **line, void *to_free);
 void check_light_args(char **line, void *to_free);
 void check_camera_args(char **line, void *to_free);
+void check_cone_args(char **line, void *to_free);
 
 //error value input
 int invalid_value(char *coords);

@@ -54,27 +54,6 @@ void	check_file_validity(char *file)
 	char	*check_file;
 
 	check_file = ft_strrchr(file, '.');
-<<<<<<< HEAD
-	if (!check_file)
-	{
-		ft_putstr_fd("File is invalid.\n", STDERR_FILENO);
-		exit(EXIT_SUCCESS);
-	}
-	else if (ft_strcmp(check_file, ".rt") != 0)
-	{
-		ft_putstr_fd("File has an invalid extension.\n", STDERR_FILENO);
-		exit(EXIT_SUCCESS);
-	}
-	else
-	{
-		fd = open(file, O_RDONLY);
-		if (fd == -1)
-		{
-			ft_putstr_fd("File can't be opened OR File doesn't exist.\n", STDERR_FILENO);
-			close(fd);
-			exit(EXIT_SUCCESS);
-		}
-=======
 	check_file_extension(check_file);
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
@@ -88,7 +67,6 @@ void	check_file_validity(char *file)
 		ft_putstr_fd("File is empty OR Map doesn't exist\n", STDERR_FILENO);
 		close(fd);
 		exit(EXIT_FAILURE);
->>>>>>> 881f68ee5ece49b20c8c047d7e69c37941494779
 	}
 	close(fd);
 }
@@ -99,12 +77,7 @@ void	check_args_validity(int argc)
 {
 	if (argc != 2)
 	{
-<<<<<<< HEAD
-		ft_putstr_fd("Invalid argument count.\n", STDERR_FILENO);
-		exit(EXIT_SUCCESS);//exit failure?
-=======
 		ft_putstr_fd("Invalid args.\n", STDERR_FILENO);
 		exit(EXIT_FAILURE);
->>>>>>> 881f68ee5ece49b20c8c047d7e69c37941494779
 	}
 }
