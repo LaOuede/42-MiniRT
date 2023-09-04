@@ -1,106 +1,76 @@
 #include "minirt.h"
 
-void	plane_rotation_roll(t_minirt *minirt, keys_t key)
-{
-	t_vec3	dir;
-	float	rad;
-
-	dir = get_plane_direction(minirt->obj_selected);
-	if (key == MLX_KEY_J)
-	{
-		rad = 5 * M_PI / 180.0f;
-		dir.x = cos(rad) * dir.x - sin(rad) * dir.y;
-		dir.y = sin(rad) * dir.x + cos(rad) * dir.y;
-	}
-	else if (key == MLX_KEY_L)
-	{
-		rad = -5 * M_PI / 180.0f;
-		dir.x = cos(rad) * dir.x - sin(rad) * dir.y;
-		dir.y = sin(rad) * dir.x + cos(rad) * dir.y;
-	}
-	change_direction(minirt->obj_selected, dir);
-}
-
 void	plane_rotation_pitch(t_minirt *minirt, keys_t key)
 {
 	t_vec3	dir;
-	float	rad;
+	t_vec3	new_dir;
+	t_mat4	pitch;
 
 	dir = get_plane_direction(minirt->obj_selected);
 	if (key == MLX_KEY_I)
-	{
-		rad = 5 * M_PI / 180.0f;
-		dir.y = cos(rad) * dir.y - sin(rad) * dir.z;
-		dir.z = sin(rad) * dir.y + cos(rad) * dir.z;
-	}
-	else if (key == MLX_KEY_K)
-	{
-		rad = -5 * M_PI / 180.0f;
-		dir.y = cos(rad) * dir.y - sin(rad) * dir.z;
-		dir.z = sin(rad) * dir.y + cos(rad) * dir.z;
-	}
-	change_direction(minirt->obj_selected, dir);
+		pitch = matrix_rotx(5);
+	if (key == MLX_KEY_K)
+		pitch = matrix_rotx(-5);
+	new_dir = matrix_vec_mult(pitch, dir);
+	change_direction(minirt->obj_selected, new_dir);
+}
+
+void	plane_rotation_roll(t_minirt *minirt, keys_t key)
+{
+	t_vec3	dir;
+	t_vec3	new_dir;
+	t_mat4	roll;
+
+	dir = get_plane_direction(minirt->obj_selected);
+	if (key == MLX_KEY_J)
+		roll = matrix_rotz(5);
+	if (key == MLX_KEY_L)
+		roll = matrix_rotz(-5);
+	new_dir = matrix_vec_mult(roll, dir);
+	change_direction(minirt->obj_selected, new_dir);
 }
 
 void	cyl_rotation_pitch(t_minirt *minirt, keys_t key)
 {
 	t_vec3	dir;
-	float	rad;
+	t_vec3	new_dir;
+	t_mat4	pitch;
 
 	dir = get_cylinder_direction(minirt->obj_selected);
 	if (key == MLX_KEY_I)
-	{
-		rad = 5 * M_PI / 180.0f;
-		dir.y = cos(rad) * dir.y - sin(rad) * dir.z;
-		dir.z = sin(rad) * dir.y + cos(rad) * dir.z;
-	}
-	else if (key == MLX_KEY_K)
-	{
-		rad = -5 * M_PI / 180.0f;
-		dir.y = cos(rad) * dir.y - sin(rad) * dir.z;
-		dir.z = sin(rad) * dir.y + cos(rad) * dir.z;
-	}
-	change_direction(minirt->obj_selected, dir);
+		pitch = matrix_rotx(5);
+	if (key == MLX_KEY_K)
+		pitch = matrix_rotx(-5);
+	new_dir = matrix_vec_mult(pitch, dir);
+	change_direction(minirt->obj_selected, new_dir);
 }
 
 void	cyl_rotation_yaw(t_minirt *minirt, keys_t key)
 {
 	t_vec3	dir;
-	float	rad;
+	t_vec3	new_dir;
+	t_mat4	yaw;
 
 	dir = get_cylinder_direction(minirt->obj_selected);
 	if (key == MLX_KEY_J)
-	{
-		rad = 5 * M_PI / 180.0f;
-		dir.x = cos(rad) * dir.x + sin(rad) * dir.z;
-		dir.z = -sin(rad) * dir.x + cos(rad) * dir.z;
-	}
-	else if (key == MLX_KEY_L)
-	{
-		rad = -5 * M_PI / 180.0f;
-		dir.x = cos(rad) * dir.x + sin(rad) * dir.z;
-		dir.z = -sin(rad) * dir.x + cos(rad) * dir.z;
-	}
-	change_direction(minirt->obj_selected, dir);
+		yaw = matrix_roty(5);
+	if (key == MLX_KEY_L)
+		yaw = matrix_roty(-5);
+	new_dir = matrix_vec_mult(yaw, dir);
+	change_direction(minirt->obj_selected, new_dir);
 }
 
 void	cyl_rotation_roll(t_minirt *minirt, keys_t key)
 {
 	t_vec3	dir;
-	float	rad;
+	t_vec3	new_dir;
+	t_mat4	roll;
 
 	dir = get_cylinder_direction(minirt->obj_selected);
 	if (key == MLX_KEY_U)
-	{
-		rad = 5 * M_PI / 180.0f;
-		dir.x = cos(rad) * dir.x - sin(rad) * dir.y;
-		dir.y = sin(rad) * dir.x + cos(rad) * dir.y;
-	}
-	else if (key == MLX_KEY_O)
-	{
-		rad = -5 * M_PI / 180.0f;
-		dir.x = cos(rad) * dir.x - sin(rad) * dir.y;
-		dir.y = sin(rad) * dir.x + cos(rad) * dir.y;
-	}
-	change_direction(minirt->obj_selected, dir);
+		roll = matrix_rotz(5);
+	if (key == MLX_KEY_O)
+		roll = matrix_rotz(-5);
+	new_dir = matrix_vec_mult(roll, dir);
+	change_direction(minirt->obj_selected, new_dir);
 }

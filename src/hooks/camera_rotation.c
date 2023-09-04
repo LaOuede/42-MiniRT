@@ -1,59 +1,40 @@
 #include "minirt.h"
 
-/*
-ROT on axe X
- _                   _
-|  1    0     0    0  |
-|  0   cos𝜃  sin𝜃   0  |
-|  0  -sin𝜃  cos𝜃   0  |
-|_ 0    0     0    1 _|
-To convert from degrees to radians, multiply the number of degrees by π/180.
-*/
-void	camera_rotation_pitch(t_minirt *minirt, keys_t key)
+void	update_d(t_minirt *minirt, t_vec3 new_dir)
 {
-	t_vec3	*dir;
-	float	rad;
-
-	dir = &minirt->camera.direction;
-	if (key == MLX_KEY_I)
-	{
-		rad = 1 * M_PI / 180.0f;
-		dir->y = cos(rad) * dir->y - sin(rad) * dir->z;
-		dir->z = sin(rad) * dir->y + cos(rad) * dir->z;
-	}
-	else if (key == MLX_KEY_K)
-	{
-		rad = -1 * M_PI / 180.0f;
-		dir->y = cos(rad) * dir->y - sin(rad) * dir->z;
-		dir->z = sin(rad) * dir->y + cos(rad) * dir->z;
-	}
+	minirt->camera.direction.x = new_dir.x;
+	minirt->camera.direction.y = new_dir.y;
+	minirt->camera.direction.z = new_dir.z;
 }
 
-/*
-ROT on axe Y
- _                   _
-|  cos𝜃  0  -sin𝜃   0  |
-|   0    1    0     0  |
-|  sin𝜃  0   cos𝜃   0  |
-|_  0    0    0     1 _|
-To convert from degrees to radians, multiply the number of degrees by π/180.
-*/
 void	camera_rotation_yaw(t_minirt *minirt, keys_t key)
 {
-	t_vec3	*dir;
-	float	rad;
+	t_mat4			yaw;
+	t_vec3			new_dir;
 
-	dir = &minirt->camera.direction;
 	if (key == MLX_KEY_L)
+		yaw = matrix_roty(5);
+	if (key == MLX_KEY_J)
+		yaw = matrix_roty(-5);
+	new_dir = matrix_vec_mult(yaw, minirt->camera.direction);
+	update_d(minirt, new_dir);
+}
+
+void	camera_rotation_pitch(t_minirt *minirt, keys_t key)
+{
+	t_mat4			pitch;
+	t_vec3			new_dir;
+
+	if (key == MLX_KEY_I && minirt->camera.direction.y < 0.95f)
 	{
-		rad = 5 * M_PI / 180.0f;
-		dir->x = cos(rad) * dir->x + sin(rad) * dir->z;
-		dir->z = -sin(rad) * dir->x + cos(rad) * dir->z;
+		pitch = matrix_rotx(5.0f);
+		new_dir = matrix_vec_mult(pitch, minirt->camera.direction);
+		update_d(minirt, new_dir);
 	}
-	else if (key == MLX_KEY_J)
+	if (key == MLX_KEY_K && minirt->camera.direction.y > -0.95f)
 	{
-		rad = -5 * M_PI / 180.0f;
-		dir->x = cos(rad) * dir->x + sin(rad) * dir->z;
-		dir->z = -sin(rad) * dir->x + cos(rad) * dir->z;
+		pitch = matrix_rotx(-5.0f);
+		new_dir = matrix_vec_mult(pitch, minirt->camera.direction);
+		update_d(minirt, new_dir);
 	}
 }
