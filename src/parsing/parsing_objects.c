@@ -1,32 +1,28 @@
-
 #include "minirt.h"
 
-t_material *get_material(char *line)
+t_material	*get_material(char *line)
 {
 	if (!line)
 		return (&get_minirt()->material[NO_MAT]);
 	if (!ft_strncmp(line, "moon", 5))
-		return(&get_minirt()->material[MOON]);
+		return (&get_minirt()->material[MOON]);
 	else if (!ft_strncmp(line, "earth", 6))
-		return(&get_minirt()->material[EARTH]);
+		return (&get_minirt()->material[EARTH]);
 	else if (!ft_strncmp(line, "water", 6))
-		return(&get_minirt()->material[WATER]);
+		return (&get_minirt()->material[WATER]);
 	else if (!ft_strncmp(line, "sun", 4))
-		return(&get_minirt()->material[SUN]);
+		return (&get_minirt()->material[SUN]);
 	else
-		return (&get_minirt()->material[NO_MAT]);//error no such material???
+		return (&get_minirt()->material[NO_MAT]);
 }
 
 //parses line input to the sphere struct
-void parse_sphere(char **line, t_object *object)
+void	parse_sphere(char **line, t_object *object)
 {
-	t_sphere *sphere;
+	t_sphere	*sphere;
 
-	sphere = (t_sphere*)object->obj;
+	sphere = (t_sphere *)object->obj;
 	check_error(line, SPHERE, object);
-	
-	// check_sphere_validity(line);
-	
 	parse_coordinates(line[1], &sphere->position);
 	sphere->rayon = ft_atof(line[2]) / 2;
 	parse_colors(line[3], &sphere->color);
@@ -34,14 +30,12 @@ void parse_sphere(char **line, t_object *object)
 }
 
 //parses line input to the cylinder struct
-void parse_cylinder(char **line, t_object *object)
+void	parse_cylinder(char **line, t_object *object)
 {
-	t_cylindre *cylindre;
+	t_cylindre	*cylindre;
 
-	cylindre = (t_cylindre*)object->obj;
+	cylindre = (t_cylindre *)object->obj;
 	check_error(line, CYLINDRE, object);
-	//check if valid
-
 	parse_coordinates(line[1], &cylindre->position);
 	parse_coordinates(line[2], &cylindre->direction);
 	cylindre->rayon = ft_atof(line[3]) / 2;
@@ -51,28 +45,24 @@ void parse_cylinder(char **line, t_object *object)
 }
 
 //parses line input to the plane struct
-void parse_plane(char **line, t_object *object)
+void	parse_plane(char **line, t_object *object)
 {
-	t_plan *plan;
+	t_plan	*plan;
 
-	plan = (t_plan*)object->obj;
+	plan = (t_plan *)object->obj;
 	check_error(line, PLAN, object);
-		
 	parse_coordinates(line[1], &plan->position);
 	parse_coordinates(line[2], &plan->direction);
 	parse_colors(line[3], &plan->color);
 	plan->material = get_material(line[4]);
 }
 
-void parse_cone(char **line, t_object *object)
+void	parse_cone(char **line, t_object *object)
 {
-	t_cone *cone;
+	t_cone	*cone;
 
-	cone = (t_cone*)object->obj;
+	cone = (t_cone *)object->obj;
 	check_error(line, SPHERE, object);
-	
-	// check_sphere_validity(line);
-	
 	parse_coordinates(line[1], &cone->position);
 	parse_coordinates(line[2], &cone->direction);
 	cone->angle = ft_atof(line[3]);

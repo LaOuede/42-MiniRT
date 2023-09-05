@@ -189,7 +189,7 @@ typedef struct s_cone
 {
 	t_vec3			position;
 	t_vec3			direction;
-	float			angle; //faire (diametre en input) / 2
+	float			angle;
 	t_color			color;
 	t_material		*material;
 
@@ -279,6 +279,11 @@ void	parse_ambiant_light(char **line);
 void	parse_camera(char **line);
 void	parse_light(char **line);
 void	parse_cone(char **line, t_object *object);
+void	fill_sphere_info(t_object *object, char **line);
+void	fill_plane_info(t_object *object, char **line);
+void	fill_cylinder_info(t_object *object, char **line);
+void	fill_cone_info(t_object *object, char **line);
+char	*trim_gnl(char *str);
 
 //parsing error handling
 int check_obj_arg_count(char **line, int expected_nb);
@@ -393,6 +398,8 @@ void		ray_launcher();
 void		find_closest_hit(t_ray_info ray, t_hit *closest_hit, t_vec3 origin);
 t_shading	single_ray(t_ray_info ray, t_hit *closest_hit);
 void		find_hit(t_vec3 d, t_object *object, t_hit *hit, t_vec3 origin);
+void		*super_routine(void *package);
+t_vec3		get_d(t_ray_info ray);
 
 //shading
 t_shading	shading(t_hit *hit);

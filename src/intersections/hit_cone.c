@@ -1,14 +1,14 @@
 #include "minirt.h"
 
-void	hit_cone_body(t_vec3 d, t_object *packed_cone, \
-	t_hit *hit, t_vec3 origin)
-{
-	t_cone	*cone;
+// void	hit_cone_body(t_vec3 d, t_object *packed_cone, \
+// 	t_hit *hit, t_vec3 origin)
+// {
+// 	t_cone	*cone;
 
-	cone = (t_cone *)packed_cone;
-	//v = cone.position
+// 	cone = (t_cone *)packed_cone;
+// 	//v = cone.position
 	
-}
+// }
 
 
 	// t_qdt		q;

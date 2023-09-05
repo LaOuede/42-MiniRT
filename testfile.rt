@@ -1,5 +1,5 @@
 #AMBIANT LIGHT
-A	0.01 	  0,0,0
+A	0.1 	  0,0,0
 
 #CAMERA
 C	0,0,-10		0,0,1		80

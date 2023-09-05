@@ -1,6 +1,6 @@
 #include "minirt.h"
 
-int invalid_value(char *coords)
+int	invalid_value(char *coords)
 {
 	if (!is_all_digit_dot(coords))
 		return (TRUE);
@@ -10,13 +10,13 @@ int invalid_value(char *coords)
 		return (FALSE);
 }
 
-int invalid_value_limited(char *coords, float min, float max)
+int	invalid_value_limited(char *coords, float min, float max)
 {
-	float value;
+	float	value;
 
 	if (invalid_value(coords))
 	{
-		return (TRUE);	
+		return (TRUE);
 	}
 	value = ft_atof(coords);
 	if (value > max || value < min)
@@ -26,10 +26,9 @@ int invalid_value_limited(char *coords, float min, float max)
 	return (FALSE);
 }
 
-
-int invalid_coords(char *coords)
+int	invalid_coords(char *coords)
 {
-	char **split;
+	char	**split;
 
 	split = ft_split(coords, ',');
 	if (nb_of_split(split) != 3)
@@ -48,9 +47,9 @@ int invalid_coords(char *coords)
 	return (FALSE);
 }
 
-int invalid_coords_limited(char *coords, float min, float max)
+int	invalid_coords_limited(char *coords, float min, float max)
 {
-	char **split;
+	char	**split;
 
 	split = ft_split(coords, ',');
 	if (nb_of_split(split) != 3)
@@ -68,4 +67,3 @@ int invalid_coords_limited(char *coords, float min, float max)
 	free_splitted_line(split);
 	return (FALSE);
 }
-

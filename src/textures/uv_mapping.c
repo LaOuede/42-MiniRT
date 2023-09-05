@@ -29,22 +29,19 @@ void	uv_map_sphere(t_hit *hit, unsigned int *px, \
 void	uv_map_plane(t_hit *hit, unsigned int *px, \
 	unsigned int *py, mlx_texture_t *image)
 {
-	t_vec3	normal;
 	t_vec3	u_vec;
 	t_vec3	v_vec;
 	t_vec3	hit_to_point;
 	float	u;
 	float	v;
 
-	normal = get_plane_direction(hit->obj);
-	u_vec = vec_cross(normal, generate_vector(1, 0, 0));
-	v_vec = vec_cross(normal, u_vec);
+	u_vec = vec_cross(get_plane_direction(hit->obj), generate_vector(1, 0, 0));
+	v_vec = vec_cross(get_plane_direction(hit->obj), u_vec);
 	hit_to_point = vec_subs(hit->hit_point, get_position(hit->obj));
 	u = vec_dot(hit_to_point, u_vec);
 	v = vec_dot(hit_to_point, v_vec);
 	u /= 30;
 	v /= 35;
-	// Normalize U and V to [0, 1] range
 	u = fmod(u, 1.0f);
 	if (u < 0)
 		u += 1;

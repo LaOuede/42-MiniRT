@@ -34,7 +34,7 @@ export HELP
 
 # Compiler and flags
 CC		=	gcc
-CFLAGS	=	-g -Wall -Wextra -Werror #-flto -Ofast -march=native -funroll-loops -finline-functions -ftree-vectorize -ffast-math #-fsanitize=thread
+CFLAGS	=	-g -Wall -Wextra -Werror -flto -Ofast -march=native -funroll-loops -finline-functions -ftree-vectorize -ffast-math #-fsanitize=thread
 #CFLAGS	=	-fsanitize=address
 
 # Remove
@@ -74,6 +74,8 @@ SRCS_LIST	=	colors/colors.c \
 				matrices/matrices_transformations.c \
 				parsing/parsing.c \
 				parsing/object_error.c \
+				parsing/scene_info_error.c \
+				parsing/fill_object_info.c \
 				parsing/parsing_error_helper.c \
 				parsing/object_error_types.c \
 				parsing/object_error_utils.c \
@@ -86,6 +88,7 @@ SRCS_LIST	=	colors/colors.c \
 				ray_generation/find_closest_hit.c \
 				ray_generation/shading.c \
 				ray_generation/reflexions.c \
+				ray_generation/super_sampling.c \
 				textures/texture.c \
 				textures/normal_map.c \
 				textures/uv_mapping.c \
