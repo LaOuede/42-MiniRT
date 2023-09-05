@@ -89,7 +89,8 @@ typedef struct s_color
 # define EARTH 2
 # define WATER 3
 # define SUN 4
-# define TEXTURE_COUNT 5 //always ajust to be last texture index + 1 or leakks
+# define NO_MAT2 5
+# define TEXTURE_COUNT 6 //always ajust to be last texture index + 1 or leakks
 
 # define NORMAL 1
 # define SUPER 2
@@ -192,6 +193,7 @@ typedef struct s_cone
 	t_vec3			position;
 	t_vec3			direction;
 	float			angle;
+	float			hauteur;
 	t_color			color;
 	t_material		*material;
 }					t_cone;
@@ -237,7 +239,7 @@ typedef struct s_minirt
 	t_object		*obj_selected;
 	int				selected;
 	int				mode;
-	t_material		material[5];////////////////////////////////////////////// to change
+	t_material		material[6];////////////////////////////////////////////// to change
 }					t_minirt;
 
 typedef struct s_shading
@@ -393,7 +395,7 @@ t_color	max_color(t_color color);
 t_color max_out_color(t_color color);
 t_color	color_scale(t_color v, float scale);
 t_color	color_add(t_color v1, t_color v2);
-t_color	shading_color(t_hit *hit, t_vec3 n, t_shading *shade, int *refl, t_vec3 v);
+t_color	shading_color(t_hit *hit, t_shading *shade, int *refl, t_vec3 v);
 
 //ray launcher
 void		ray_launcher();
@@ -405,8 +407,13 @@ t_vec3		get_d(t_ray_info ray);
 
 //shading
 t_shading	shading(t_hit *hit);
-void		calc_reflexion(t_hit *hit, t_vec3 n, t_vec3 v, t_shading *shade, int *refl);
+void		calc_reflexion(t_hit *hit, t_vec3 v, t_shading *shade, int *refl);
 float		shading_intensity(t_hit *hit, t_vec3 n, t_shading *shade, int refl);
+t_vec3	get_light_dir(t_hit *hit, void *current_light);
+float	get_geo_term(t_hit *hit, void *current_light, t_vec3 n);
+void	init_shadow_rays(t_vec3 *d, float *t, t_list **light, t_hit *hit);
+bool	shadow_ray_hits(t_hit *hit, t_list **light);
+
 
 //materials && textures
 void	load_moon(void);
@@ -415,6 +422,7 @@ void	load_water(void);
 void	load_no_material(void);
 void	load_sun(void);
 void	load_materials(void);
+void	load_no_material2(void);
 t_color	get_texture_color(t_hit *hit);
 void	uv_map_sphere(t_hit *hit, unsigned int *px, unsigned int *py, mlx_texture_t *image);
 void	uv_map(t_hit *hit, unsigned int *px, unsigned int *py, mlx_texture_t *image);

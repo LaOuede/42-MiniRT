@@ -1,8 +1,9 @@
 #include "minirt.h"
 
-void load_materials(void)
+void	load_materials(void)
 {
 	load_no_material();
+	load_no_material2();
 	load_moon();
 	load_earth();
 	load_water();

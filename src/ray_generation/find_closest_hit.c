@@ -35,9 +35,6 @@ void	find_closest_hit(t_ray_info ray, t_hit *closest_hit, t_vec3 origin)
 	t_list		*current;
 	t_object	*object;
 
-	if (ray.px == 166 && ray.py == 141){
-		printf("");
-	}
 	init_hit(closest_hit, &hit);
 	current = get_minirt()->objects;
 	while (current)
@@ -57,6 +54,11 @@ t_shading	single_ray(t_ray_info ray, t_hit *closest_hit)
 {
 	t_shading	shade;
 
+	if (ray.px == 458 && ray.py == 164)
+	{
+		printf("");
+	}
+	
 	find_closest_hit(ray, closest_hit, get_minirt()->camera.position);
 	if (closest_hit->obj)
 	{

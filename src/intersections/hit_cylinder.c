@@ -4,7 +4,7 @@
 Surface normal vector calcul :
 	// n = nrm(P-C-V*m)
 */
-t_vec3	calc_normal_cylinder(t_qdt q, t_hit *hit, t_cylindre *cylinder, t_object *packed_cylinder)
+t_vec3	calc_normal_cylinder(t_qdt q, t_hit *hit, t_cylindre *cylinder)
 {
 	t_vec3	n;
 	t_vec3	disp;
@@ -36,14 +36,14 @@ static void	hit_cylinder_norm(t_qdt q, t_hit *hit, t_cylindre *cyl, \
 		{
 			hit->obj = packed_cylinder;
 			hit->t = q.t;
-			hit->normal = calc_normal_cylinder(q, hit, cyl, packed_cylinder);
+			hit->normal = calc_normal_cylinder(q, hit, cyl);
 		}
 	}
 	else
 	{
 		hit->obj = packed_cylinder;
 		hit->t = q.t;
-		hit->normal = calc_normal_cylinder(q, hit, cyl, packed_cylinder);
+		hit->normal = calc_normal_cylinder(q, hit, cyl);
 	}
 }
 

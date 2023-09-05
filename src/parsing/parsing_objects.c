@@ -3,7 +3,7 @@
 t_material	*get_material(char *line)
 {
 	if (!line)
-		return (&get_minirt()->material[NO_MAT]);
+		return (&get_minirt()->material[NO_MAT2]);
 	if (!ft_strncmp(line, "moon", 5))
 		return (&get_minirt()->material[MOON]);
 	else if (!ft_strncmp(line, "earth", 6))
@@ -12,8 +12,10 @@ t_material	*get_material(char *line)
 		return (&get_minirt()->material[WATER]);
 	else if (!ft_strncmp(line, "sun", 4))
 		return (&get_minirt()->material[SUN]);
-	else
+	else if (!ft_strncmp(line, "mirror", 7))
 		return (&get_minirt()->material[NO_MAT]);
+	else
+		return (&get_minirt()->material[NO_MAT2]);
 }
 
 //parses line input to the sphere struct

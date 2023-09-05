@@ -65,6 +65,7 @@ SRCS_LIST	=	colors/colors.c \
 				main.c \
 				materials/load_materials.c \
 				materials/no_material.c \
+				materials/no_material2.c \
 				materials/moon.c \
 				materials/earth.c \
 				materials/water.c \
@@ -87,6 +88,7 @@ SRCS_LIST	=	colors/colors.c \
 				ray_generation/ray_launcher.c \
 				ray_generation/find_closest_hit.c \
 				ray_generation/shading.c \
+				ray_generation/shading_helper.c \
 				ray_generation/reflexions.c \
 				ray_generation/super_sampling.c \
 				textures/texture.c \

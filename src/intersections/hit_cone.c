@@ -1,6 +1,6 @@
 #include "minirt.h"
 
-t_vec3	calc_normal_cone(t_qdt q, t_hit *hit, t_cone *cone, t_object *packed_cone)
+t_vec3	calc_normal_cone(t_qdt q, t_hit *hit, t_cone *cone)
 {
 	t_vec3	n;
 	t_vec3	disp;
@@ -31,14 +31,14 @@ static void	hit_cone_norm(t_qdt q, t_hit *hit, t_cone *cone, \
 		{
 			hit->obj = packed_cone;
 			hit->t = q.t;
-			hit->normal = calc_normal_cone(q, hit, cone, packed_cone);
+			hit->normal = calc_normal_cone(q, hit, cone);
 		}
 	}
 	else
 	{
 		hit->obj = packed_cone;
 		hit->t = q.t;
-		hit->normal = calc_normal_cone(q, hit, cone, packed_cone);
+		hit->normal = calc_normal_cone(q, hit, cone);
 	}
 }
 
