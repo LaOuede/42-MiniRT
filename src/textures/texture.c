@@ -11,6 +11,7 @@ t_color	get_texture_color(t_hit *hit)
 	mat = get_obj_material(hit->obj);
 	if (!mat->texture)
 		return (get_obj_color(hit->obj));
+	return (get_obj_color(hit->obj));
 	uv_map(hit, &px, &py, mat->texture);//could be any texture
 	// px = px % mat->texture->width;
 	// py = py % mat->texture->height;

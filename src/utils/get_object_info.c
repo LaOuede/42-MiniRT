@@ -69,6 +69,7 @@ t_color	get_obj_color(t_object *obj)
 	t_sphere	*sphere;
 	t_plan		*plane;
 	t_cylindre	*cylindre;
+	t_cone		*cone;
 	t_color		color;
 
 	if (obj->type == SPHERE)
@@ -86,6 +87,11 @@ t_color	get_obj_color(t_object *obj)
 	{
 		cylindre = (t_cylindre *)obj->obj;
 		return (cylindre->color);
+	}
+	else if (obj->type == CONE)
+	{
+		cone = (t_cone *)obj->obj;
+		return (cone->color);
 	}
 	else
 		return (no_color());

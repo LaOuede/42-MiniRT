@@ -11,6 +11,8 @@ int get_count_error(int type)
 		return (BAD_ARG_COUNT_PLANE);
 	else if (type == CYLINDRE)
 		return (BAD_ARG_COUNT_CYLINDER);
+	else if (type == CONE)
+		return (BAD_ARG_COUNT_CONE);
 	else if (type == LIGHT)
 		return (BAD_ARG_COUNT_LIGHT);
 	else if (type == AMBIANT_LIGHT)
@@ -42,14 +44,14 @@ void check_invalid_arg(char **line, int type, void *to_free)
 		check_cylinder_args(line, to_free);
 	else if (type == PLAN)
 		check_plane_args(line, to_free);
+	else if (type == CONE)
+		check_cone_args(line, to_free);
 	else if (type == AMBIANT_LIGHT)
 		check_amb_light_args(line, to_free);
 	else if (type == LIGHT)
 		check_light_args(line, to_free);
 	else if (type == CAMERA)
 		check_camera_args(line, to_free);
-	else if (type == CONE)
-		check_cone_args(line, to_free);
 }
 
 //go search for input error

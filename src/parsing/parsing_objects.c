@@ -57,25 +57,22 @@ void parse_plane(char **line, t_object *object)
 
 	plan = (t_plan*)object->obj;
 	check_error(line, PLAN, object);
-		
 	parse_coordinates(line[1], &plan->position);
 	parse_coordinates(line[2], &plan->direction);
 	parse_colors(line[3], &plan->color);
 	plan->material = get_material(line[4]);
 }
 
-void parse_cone(char **line, t_object *object)
+void	parse_cone(char **line, t_object *object)
 {
-	t_cone *cone;
+	t_cone	*cone;
 
-	cone = (t_cone*)object->obj;
-	check_error(line, SPHERE, object);
-	
-	// check_sphere_validity(line);
-	
+	cone = (t_cone *)object->obj;
+	check_error(line, CONE, object);
 	parse_coordinates(line[1], &cone->position);
 	parse_coordinates(line[2], &cone->direction);
-	cone->angle = ft_atof(line[3]);
-	parse_colors(line[4], &cone->color);
-	cone->material = get_material(line[5]);
+	cone->angle = ft_atof(line[3]) * (M_PI / 180.f);
+	cone->hauteur = ft_atof(line[4]);
+	parse_colors(line[5], &cone->color);
+	cone->material = get_material(line[6]);
 }

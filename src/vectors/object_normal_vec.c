@@ -53,7 +53,11 @@ t_vec3	get_normal_vec(t_hit *hit)
 	}
 	else if (hit->obj->type == CYLINDRE)
 	{
-		return (hit->normal_cyl);
+		return (hit->normal);
+	}
+	else if (hit->obj->type == CONE)
+	{
+		return (hit->normal);
 	}
 	return (generate_vector(0, 0, 0));
 }

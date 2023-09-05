@@ -4,20 +4,17 @@
 Surface normal vector calcul :
 	// n = nrm(P-C-V*m)
 */
-t_vec3	calc_normal(t_qdt q, t_cylindre *cyl)
+t_vec3	calc_normal_cylinder(t_qdt q, t_hit *hit, t_cylindre *cylinder, t_object *packed_cylinder)
 {
-	t_vec3	p;
-	t_vec3	c;
-	t_vec3	pc;
-	t_vec3	vm;
 	t_vec3	n;
+	t_vec3	disp;
+	t_vec3	hit_point;
+	float	proj;
 
-	p = vec_add(q.origin, vec_scale(q.d, q.t));
-	c = vec_subs(cyl->position, (vec_scale(vec_norm(cyl->direction), \
-		cyl->hauteur / 2)));
-	pc = vec_subs(p, c);
-	vm = vec_scale(vec_norm(cyl->direction), q.m);
-	n = vec_norm(vec_subs(pc, vm));
+	hit_point = vec_add(q.origin, vec_scale(q.d, hit->t));
+	disp = vec_subs(hit_point, cylinder->position);
+	proj = vec_dot(disp, vec_norm(cylinder->direction));
+	n = vec_norm(vec_subs(disp, vec_scale(vec_norm(cylinder->direction), proj)));
 	return (n);
 }
 
@@ -39,14 +36,14 @@ static void	hit_cylinder_norm(t_qdt q, t_hit *hit, t_cylindre *cyl, \
 		{
 			hit->obj = packed_cylinder;
 			hit->t = q.t;
-			hit->normal_cyl = calc_normal(q, cyl);
+			hit->normal = calc_normal_cylinder(q, hit, cyl, packed_cylinder);
 		}
 	}
 	else
 	{
 		hit->obj = packed_cylinder;
 		hit->t = q.t;
-		hit->normal_cyl = calc_normal(q, cyl);
+		hit->normal = calc_normal_cylinder(q, hit, cyl, packed_cylinder);
 	}
 }
 
