@@ -32,7 +32,7 @@ static void update_closest_hit(t_hit *closest_hit, t_hit hit)
 {
 	closest_hit->obj = hit.obj;
 	closest_hit->t = hit.t;
-	closest_hit->normal_cyl = hit.normal_cyl;
+	closest_hit->normal = hit.normal;
 }
 
 void find_hit(t_vec3 d, t_object *object, t_hit *hit, t_vec3 origin)
@@ -43,6 +43,8 @@ void find_hit(t_vec3 d, t_object *object, t_hit *hit, t_vec3 origin)
 		hit_plane(d, object, hit, origin);
 	else if (object->type == CYLINDRE)
 		hit_cylinder(d, object, hit, origin);
+	else if (object->type == CONE)
+		hit_cone(d, object, hit, origin);
 }
 
 void find_closest_hit(t_ray_info ray, t_hit *closest_hit, t_vec3 origin)
@@ -51,6 +53,9 @@ void find_closest_hit(t_ray_info ray, t_hit *closest_hit, t_vec3 origin)
 	t_list		*current;
 	t_object	*object;
 
+	if (ray.px == 166 && ray.py == 141){
+		printf("");
+	}
 	init_hit(closest_hit, &hit);
 	current = get_minirt()->objects;
 	while (current)
@@ -70,9 +75,6 @@ t_shading single_ray(t_ray_info ray, t_hit *closest_hit)
 {
 	t_shading shade;
 
-	if (ray.px == 149 && ray.py == 236){
-		printf("");
-	}
 	find_closest_hit(ray, closest_hit, get_minirt()->camera.position);
 	if (closest_hit->obj)
 	{

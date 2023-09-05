@@ -34,8 +34,8 @@ export HELP
 
 # Compiler and flags
 CC		=	gcc
-CFLAGS	=	-g -Wall -Wextra -Werror #-flto -Ofast -march=native -funroll-loops -finline-functions -ftree-vectorize -ffast-math #-fsanitize=thread
-#CFLAGS	=	-fsanitize=address
+CFLAGS	=	-g -Wall -Wextra -Werror -flto -Ofast -march=native -funroll-loops -finline-functions -ftree-vectorize -ffast-math #-fsanitize=thread
+#CFLAGS	=	-g -fsanitize=address
 
 # Remove
 RM		=	rm -rf

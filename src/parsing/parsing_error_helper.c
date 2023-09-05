@@ -7,11 +7,9 @@ int expected_arg_count(int type)
 	if (type == SPHERE || type == PLAN || type == LIGHT
 		|| type == CAMERA)
 		return (4);
-	else if (type == CYLINDRE)
+	else if (type == CYLINDRE || type == CONE)
 		return (6);
 	else if (type == AMBIANT_LIGHT)
 		return(3);
-	else if (type == CONE)
-		return(5);
 	return(0);
 }
