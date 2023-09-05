@@ -29,6 +29,7 @@ t_material	*get_obj_material(t_object *obj)
 	t_sphere	*sphere;
 	t_plan		*plane;
 	t_cylindre	*cylindre;
+	t_cone		*cone;
 
 	if (obj->type == SPHERE)
 	{
@@ -44,6 +45,11 @@ t_material	*get_obj_material(t_object *obj)
 	{
 		cylindre = (t_cylindre *)obj->obj;
 		return (cylindre->material);
+	}
+	else if (obj->type == CONE)
+	{
+		cone = (t_cone *)obj->obj;
+		return (cone->material);
 	}
 	else
 		return (NULL);

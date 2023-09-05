@@ -6,11 +6,11 @@ bool	is_file_empty(int fd)
 	int		nb_char;
 	int		i;
 
-	i = 0;
 	nb_char = 0;
 	line = get_next_line(fd);
 	while (line)
 	{
+		i = 0;
 		while (line[i])
 		{
 			if (ft_isprint(*line) == 1)

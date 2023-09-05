@@ -72,16 +72,17 @@ typedef struct s_color
 # define BAD_ARG_COUNT_SPHERE 2
 # define BAD_ARG_COUNT_PLANE 3
 # define BAD_ARG_COUNT_CYLINDER 4
-# define BAD_ARG_COUNT_LIGHT 5
-# define BAD_ARG_COUNT_AMB_LIGHT 6
-# define BAD_ARG_COUNT_CAMERA 7
-# define BAD_ARGS_SPHERE 7
-# define BAD_ARGS_PLANE 8
-# define BAD_ARGS_CYLINDER 9
-# define BAD_ARGS_AMB_LIGHT 10
-# define BAD_ARGS_LIGHT 11
-# define BAD_ARGS_CAMERA 12
-# define BAD_ARGS_CONE 13
+# define BAD_ARG_COUNT_CONE 5
+# define BAD_ARG_COUNT_LIGHT 6
+# define BAD_ARG_COUNT_AMB_LIGHT 7
+# define BAD_ARG_COUNT_CAMERA 8
+# define BAD_ARGS_SPHERE 9
+# define BAD_ARGS_PLANE 10
+# define BAD_ARGS_CYLINDER 11
+# define BAD_ARGS_AMB_LIGHT 12
+# define BAD_ARGS_LIGHT 13
+# define BAD_ARGS_CAMERA 14
+# define BAD_ARGS_CONE 15
 
 # define NO_MAT 0
 # define MOON 1
@@ -136,6 +137,7 @@ typedef struct s_qdt
 	float	c;
 	float	t;
 	float	m;
+	float	k;
 	float	discriminant;
 	t_vec3	disp;
 	t_vec3	d;
@@ -192,7 +194,6 @@ typedef struct s_cone
 	float			angle;
 	t_color			color;
 	t_material		*material;
-
 }					t_cone;
 
 typedef struct s_plan
@@ -249,7 +250,7 @@ typedef struct s_hit
 {
 	float			t;
 	t_object		*obj;
-	t_vec3			normal_cyl;
+	t_vec3			normal;
 	t_vec3			hit_point;
 	unsigned int	u_px;
 	unsigned int	v_py;
@@ -295,7 +296,8 @@ void check_error(char **line, int type, void *to_free);
 int expected_arg_count(int type);
 
 //intersections
-void	hit_cylinder_body(t_vec3 d, t_object *packed_cylinder, t_hit *hit, t_vec3 origin);
+void	hit_cone(t_vec3 d, t_object *packed_cone, t_hit *hit, t_vec3 origin);
+void	hit_cylinder(t_vec3 d, t_object *packed_cylinder, t_hit *hit, t_vec3 origin);
 void	hit_plane(t_vec3 d, t_object *obj_actuel, t_hit *hit, t_vec3 origin);
 void	hit_sphere(t_vec3 d, t_object *packed_sphere, t_hit *hit, t_vec3 origin);
 
