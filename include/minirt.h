@@ -434,7 +434,7 @@ void	init_hit_mouse(t_hit *closest_hit, t_hit *hit);
 void	keys_exit(mlx_key_data_t keydata, void *param);
 void	keys_camera(mlx_key_data_t keydata, void *param);
 void	keys_cylinder(mlx_key_data_t keydata, void *param);
-void	keys_light(void *param);
+void	keys_light(mlx_key_data_t keydata, void *param);
 void	keys_menu(mlx_key_data_t keydata, void *param);
 void	keys_mode(mlx_key_data_t keydata, void *param);
 void	keys_object(mlx_key_data_t keydata, void *param);
@@ -457,5 +457,7 @@ void	print_cmd_menu2(void);
 void	resize_image(int32_t width, int32_t height, void* param);
 void	update_closest_hit_mouse(t_hit *closest_hit, t_hit hit);
 t_vec3	up_guide_mouse(void);
+
+t_vec3	get_light_position(void *packed_light);
 
 #endif

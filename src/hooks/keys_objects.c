@@ -71,8 +71,15 @@ void	keys_object(mlx_key_data_t keydata, void *param)
 		get_minirt()->selected = CAMERA;
 		printf("Object selected = camera\n");
 	}
+	if (keydata.key == MLX_KEY_BACKSPACE)
+	{
+		get_minirt()->selected = LIGHT;
+		printf("Object selected = light\n");
+	}
 	if (get_minirt()->selected == CAMERA)
 		keys_camera(keydata, param);
+	if (get_minirt()->selected == LIGHT)
+		keys_light(keydata, param);
 	else if (get_minirt()->selected == SPHERE)
 	{
 		keys_sphere(keydata, param);

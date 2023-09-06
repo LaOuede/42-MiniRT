@@ -64,7 +64,8 @@ static bool	key_is_legit(mlx_key_data_t keydata)
 		|| keydata.key == MLX_KEY_M || keydata.key == MLX_KEY_1
 		|| keydata.key == MLX_KEY_2 || keydata.key == MLX_KEY_MINUS
 		|| keydata.key == MLX_KEY_EQUAL || keydata.key == MLX_KEY_ESCAPE
-		|| keydata.key == MLX_KEY_H || keydata.key == MLX_KEY_C)
+		|| keydata.key == MLX_KEY_H || keydata.key == MLX_KEY_BACKSPACE
+		|| keydata.key == MLX_KEY_C || keydata.key == MLX_KEY_R)
 		return (true);
 	return (false);
 }
@@ -86,7 +87,6 @@ void	minirt_keys(mlx_key_data_t keydata, void *param)
 		keys_exit(keydata, param);
 		keys_menu(keydata, param);
 		keys_mode(keydata, param);
-		keys_light(param);
 		keys_object(keydata, param);
 	}
 }

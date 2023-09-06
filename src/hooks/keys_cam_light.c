@@ -1,21 +1,5 @@
 #include "minirt.h"
 
-// void	keys_light(mlx_key_data_t keydata, void *param)
-// {
-// 	t_minirt	*minirt;
-
-// 	minirt = (t_minirt *)param;
-// 	if (mlx_is_key_down(minirt->mlx, MLX_KEY_A)
-// 		|| mlx_is_key_down(minirt->mlx, MLX_KEY_D))
-// 		ligh_translation_x(minirt, keydata.key);
-// 	if (mlx_is_key_down(minirt->mlx, MLX_KEY_W)
-// 		|| mlx_is_key_down(minirt->mlx, MLX_KEY_S))
-// 		ligh_translation_y(minirt, keydata.key);
-// 	if (mlx_is_key_down(minirt->mlx, MLX_KEY_R)
-// 		|| mlx_is_key_down(minirt->mlx, MLX_KEY_F))
-// 		ligh_translation_y(minirt, keydata.key);
-// }
-
 void	keys_camera(mlx_key_data_t keydata, void *param)
 {
 	t_minirt	*minirt;
@@ -34,30 +18,25 @@ void	keys_camera(mlx_key_data_t keydata, void *param)
 	ray_launcher();
 }
 
-static void	mod_light_intensity(float add)
-{
-	t_light	*light;
-
-	light = (t_light *)get_minirt()->lights->content;
-	light->intensity += add;
-	if (light->intensity > 1.0f)
-		light->intensity = 1.0f;
-	else if (light->intensity < 0.0f)
-		light->intensity = 0.0f;
-}
-
 /* 
 	Handles hook for lights;
  */
-void	keys_light(void *param)
+void	keys_light(mlx_key_data_t keydata, void *param)
 {
+	t_light	*light;
 	t_minirt	*minirt;
 
 	minirt = (t_minirt *)param;
-	if (mlx_is_key_down(minirt->mlx, MLX_KEY_RIGHT_SHIFT)
-		&& mlx_is_key_down(minirt->mlx, MLX_KEY_EQUAL))
-		mod_light_intensity(0.01f);
-	else if (mlx_is_key_down(minirt->mlx, MLX_KEY_RIGHT_SHIFT)
-		&& mlx_is_key_down(minirt->mlx, MLX_KEY_MINUS))
-		mod_light_intensity(-0.01f);
+	light = (t_light *)minirt->lights->content;
+	if (keydata.key == MLX_KEY_EQUAL && light->intensity < 1.0f)
+		light->intensity += 0.1f;
+	else if (keydata.key == MLX_KEY_MINUS && light->intensity > 0.1f)
+		light->intensity -= 0.1f;
+	if (keydata.key == MLX_KEY_A || keydata.key == MLX_KEY_D)
+		light_translation_x(minirt, keydata.key);
+	else if (keydata.key == MLX_KEY_Q || keydata.key == MLX_KEY_E)
+		light_translation_y(minirt, keydata.key);
+	else if (keydata.key == MLX_KEY_W || keydata.key == MLX_KEY_S)
+		light_translation_z(minirt, keydata.key);
+	ray_launcher();
 }

@@ -10,13 +10,13 @@ void	object_translation_z(t_minirt *minirt, keys_t key)
 	move.z = minirt->cam_matrix.p[2][2];
 	move = vec_scale(move, 0.5);
 	pos = get_position(minirt->obj_selected);
-	if (key == MLX_KEY_S)
+	if (key == MLX_KEY_W)
 	{
 		pos.x -= move.x;
 		pos.y -= move.y;
 		pos.z -= move.z;
 	}
-	else if (key == MLX_KEY_W)
+	else if (key == MLX_KEY_S)
 	{
 		pos.x += move.x;
 		pos.y += move.y;
