@@ -9,7 +9,7 @@ void	uv_map_sphere(t_hit *hit, unsigned int *px, \
 	float		u;
 	float		v;
 
-	normal = vec_norm(vec_subs(hit->hit_point, get_position(hit->obj)));
+	normal = vec_unit_vec(hit->hit_point, get_position(hit->obj));
 	phi = atan2f(normal.z, normal.x);
 	theta = acosf(normal.y);
 	u = (phi / (2 * M_PI)) * -1;

@@ -14,7 +14,7 @@ t_vec3	calc_normal_cylinder(t_qdt q, t_hit *hit, t_cylindre *cylinder)
 	hit_point = vec_add(q.origin, vec_scale(q.d, hit->t));
 	disp = vec_subs(hit_point, cylinder->position);
 	proj = vec_dot(disp, vec_norm(cylinder->direction));
-	n = vec_norm(vec_subs(disp, vec_scale(vec_norm(cylinder->direction), proj)));
+	n = vec_unit_vec(disp, vec_scale(vec_norm(cylinder->direction), proj));
 	return (n);
 }
 

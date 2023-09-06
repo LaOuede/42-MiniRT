@@ -29,7 +29,9 @@ void	camera_rotation_pitch(t_minirt *minirt, keys_t key)
 	{
 		pitch = matrix_rotx(5.0f);
 		new_dir = matrix_vec_mult(pitch, minirt->camera.direction);
+	printf("avant: %f %f %f\n", minirt->camera.direction.x, minirt->camera.direction.y, minirt->camera.direction.z);
 		update_d(minirt, new_dir);
+	printf("apres: %f %f %f\n", minirt->camera.direction.x, minirt->camera.direction.y, minirt->camera.direction.z);
 	}
 	if (key == MLX_KEY_I && minirt->camera.direction.y > -0.95f)
 	{

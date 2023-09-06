@@ -1,5 +1,6 @@
 #include "minirt.h"
 
+//adds color of the light to the object
 void	add_light_color(t_shading *shade, void *light, float light_intensity,
 		int refl)
 {
@@ -15,6 +16,7 @@ void	add_light_color(t_shading *shade, void *light, float light_intensity,
 	shade->color = color_add(shade->color, coloradd);
 }
 
+//gets the intensity of the object depending on lights positions
 float	shading_intensity(t_hit *hit, t_vec3 n, t_shading *shade, int refl)
 {
 	t_list	*current;
@@ -72,6 +74,7 @@ void	calc_specular_effect(t_hit *hit, t_vec3 n, t_vec3 v, t_shading *shade)
 	shade->color = color_add(shade->color, color_scale(spec.color, coeff));
 }
 
+//gets the right rgb value of the obj without reflexions
 t_color	shading_color(t_hit *hit, t_shading *shade, int *refl,
 		t_vec3 v)
 {
@@ -87,6 +90,7 @@ t_color	shading_color(t_hit *hit, t_shading *shade, int *refl,
 	return (shade->color);
 }
 
+//main shading function
 t_shading	shading(t_hit *hit)
 {
 	t_vec3		n;
@@ -95,7 +99,7 @@ t_shading	shading(t_hit *hit)
 	t_vec3		v;
 	t_color		coloradd;
 
-	v = vec_norm(vec_subs(get_minirt()->camera.position, hit->hit_point));
+	v = vec_unit_vec(get_minirt()->camera.position, hit->hit_point);
 	refl = 0;
 	shade.color = get_texture_color(hit);
 	n = get_normal_vec(hit);

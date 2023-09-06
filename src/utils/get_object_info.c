@@ -54,62 +54,42 @@ void	change_position(t_object *object, t_vec3 new_position)
 
 t_vec3	get_position(t_object *object)
 {
-	t_sphere	*sphere;
-	t_plan		*plane;
-	t_cone		*cone;
-	t_cylindre	*cylinder;
-
 	if (object->type == SPHERE)
 	{
-		sphere = (t_sphere *)object->obj;
-		return (sphere->position);
+		return (((t_sphere *)object->obj)->position);
 	}
 	if (object->type == PLAN)
 	{
-		plane = (t_plan *)object->obj;
-		return (plane->position);
+		return (((t_plan *)object->obj)->position);
 	}
 	if (object->type == CYLINDRE)
 	{
-		cylinder = (t_cylindre *)object->obj;
-		return (cylinder->position);
+		return (((t_cylindre *)object->obj)->position);
 	}
 	if (object->type == CONE)
 	{
-		cone = (t_cone *)object->obj;
-		return (cone->position);
+		return (((t_cone *)object->obj)->position);
 	}
 	return (generate_vector(0, 0, 0));
 }
 
 t_color	get_obj_color(t_object *obj)
 {
-	t_sphere	*sphere;
-	t_plan		*plane;
-	t_cylindre	*cylindre;
-	t_cone		*cone;
-	t_color		color;
-
 	if (obj->type == SPHERE)
 	{
-		sphere = (t_sphere *)obj->obj;
-		color = sphere->color;
-		return (color);
+		return (((t_sphere *)obj->obj)->color);
 	}
 	else if (obj->type == PLAN)
 	{
-		plane = (t_plan *)obj->obj;
-		return (plane->color);
+		return (((t_plan *)obj->obj)->color);
 	}
 	else if (obj->type == CYLINDRE)
 	{
-		cylindre = (t_cylindre *)obj->obj;
-		return (cylindre->color);
+		return (((t_cylindre *)obj->obj)->color);
 	}
 	else if (obj->type == CONE)
 	{
-		cone = (t_cone *)obj->obj;
-		return (cone->color);
+		return (((t_cone *)obj->obj)->color);
 	}
 	else
 		return (no_color());

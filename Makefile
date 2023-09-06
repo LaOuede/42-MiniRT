@@ -98,6 +98,7 @@ SRCS_LIST	=	colors/colors.c \
 				textures/uv_mapping.c \
 				utils/get_object_info.c \
 				utils/get_object_info2.c \
+				utils/get_object_info3.c \
 				utils/get_light_info.c \
 				utils/utils_ato.c \
 				utils/utils_free.c \

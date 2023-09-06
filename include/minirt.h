@@ -377,7 +377,6 @@ t_vec3	up_guide(void);
 t_mat4	identity_matrix(void);
 t_mat4	init_cam_matrix(t_vec3 right, t_vec3 up, t_vec3 forward);
 t_mat4	matrix_copy(t_mat4 mat);
-t_mat4	matrix_mult(t_mat4 mat1, t_mat4 mat2);
 t_mat4	matrix_rotx(float angle);
 t_mat4	matrix_roty(float angle);
 t_mat4	matrix_rotz(float angle);
@@ -387,15 +386,12 @@ t_vec3	matrix_vec_mult(t_mat4 mat, t_vec3 v);
 
 //colors
 t_color	add_2_colors(t_color col1, t_color col2);
-t_color	add_3_colors(t_color col1, t_color col2, t_color col3);
-// int		color_scale(t_color col1, float scale);
 t_color	sub_2_colors(t_color col1, t_color col2);
 t_color	sub_3_colors(t_color col1, t_color col2, t_color col3);
 int		get_rgba(t_color color, float a);
 t_color	no_color(void);
 t_color	get_specular_color(t_color obj_color, t_hit *hit, float color_intensity);
 t_color	max_color(t_color color);
-t_color max_out_color(t_color color);
 t_color	color_scale(t_color v, float scale);
 t_color	color_add(t_color v1, t_color v2);
 t_color	shading_color(t_hit *hit, t_shading *shade, int *refl, t_vec3 v);
