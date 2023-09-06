@@ -1,5 +1,6 @@
 #include "minirt.h"
 
+//super_smaple() helper
 static void	super_pre_launch_operations(t_ray_info *ray, float px_plus,
 		float py_plus)
 {
@@ -11,6 +12,7 @@ static void	super_pre_launch_operations(t_ray_info *ray, float px_plus,
 	ray->d = get_d(*ray);
 }
 
+//super_smaple() helper
 static void	super_sample_init(int *i, float *j, float *k)
 {
 	*i = -1;
@@ -18,6 +20,7 @@ static void	super_sample_init(int *i, float *j, float *k)
 	*k = 0.17f;
 }
 
+//super_smaple() helper
 static void	super_sample_update_vars(int i, float *j, float *k)
 {
 	*j += 0.34f;
@@ -27,7 +30,8 @@ static void	super_sample_update_vars(int i, float *j, float *k)
 		*k += 0.34f;
 }
 
-t_shading	super_sample(t_thread *thread)
+//helper to super_routine()
+static t_shading	super_sample(t_thread *thread)
 {
 	t_shading	shades[9];
 	t_shading	result;
@@ -55,6 +59,7 @@ t_shading	super_sample(t_thread *thread)
 	return (result);
 }
 
+//super-sample version of the ray_launcher()
 void	*super_routine(void *package)
 {
 	t_thread	*thread;

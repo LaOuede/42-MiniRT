@@ -1,5 +1,6 @@
 #include "minirt.h"
 
+//light direction from the hit point
 t_vec3	get_light_dir(t_hit *hit, void *current_light)
 {
 	t_vec3	w;
@@ -11,6 +12,7 @@ t_vec3	get_light_dir(t_hit *hit, void *current_light)
 	return (w);
 }
 
+//geo term will determine the shading intensity
 float	get_geo_term(t_hit *hit, void *current_light, t_vec3 n)
 {
 	t_vec3	w;
@@ -27,10 +29,11 @@ void	init_shadow_rays(t_vec3 *d, float *t, t_list **light, t_hit *hit)
 	t_vec3	w;
 
 	w = get_light_position((*light)->content);
-	*d = vec_norm(vec_subs(w, hit->hit_point));
+	*d = vec_unit_vec(w, hit->hit_point);
 	*t = vec_mag(vec_subs(w, hit->hit_point));
 }
 
+//checks if an object is in the shadow
 bool	shadow_ray_hits(t_hit *hit, t_list **light)
 {
 	t_vec3	d;

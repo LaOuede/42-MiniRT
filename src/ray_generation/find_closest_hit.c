@@ -1,5 +1,6 @@
 #include "minirt.h"
 
+//init helper to find_closest_hit()
 static void	init_hit(t_hit *closest_hit, t_hit *hit)
 {
 	hit->t = 0;
@@ -10,6 +11,7 @@ static void	init_hit(t_hit *closest_hit, t_hit *hit)
 	closest_hit->hit_point = generate_vector(0, 0, 0);
 }
 
+//updates the closest hit if closest hit has been found
 static void	update_closest_hit(t_hit *closest_hit, t_hit hit)
 {
 	closest_hit->obj = hit.obj;
@@ -17,6 +19,7 @@ static void	update_closest_hit(t_hit *closest_hit, t_hit hit)
 	closest_hit->normal = hit.normal;
 }
 
+//finds if there is a hit with object being inspected
 void	find_hit(t_vec3 d, t_object *object, t_hit *hit, t_vec3 origin)
 {
 	if (object->type == SPHERE)
@@ -29,6 +32,7 @@ void	find_hit(t_vec3 d, t_object *object, t_hit *hit, t_vec3 origin)
 		hit_cone(d, object, hit, origin);
 }
 
+//analyses every object in the schene and finds the closest hit with the ray
 void	find_closest_hit(t_ray_info ray, t_hit *closest_hit, t_vec3 origin)
 {
 	t_hit		hit;
@@ -50,15 +54,11 @@ void	find_closest_hit(t_ray_info ray, t_hit *closest_hit, t_vec3 origin)
 	}
 }
 
+//main funciton of what a single ray has to do
 t_shading	single_ray(t_ray_info ray, t_hit *closest_hit)
 {
 	t_shading	shade;
 
-	if (ray.px == 458 && ray.py == 164)
-	{
-		printf("");
-	}
-	
 	find_closest_hit(ray, closest_hit, get_minirt()->camera.position);
 	if (closest_hit->obj)
 	{

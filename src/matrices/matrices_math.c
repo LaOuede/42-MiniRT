@@ -19,63 +19,6 @@ t_mat4	identity_matrix(void)
 	return (id_mat);
 }
 
-// /*
-// MATRIX COPY
-// */
-// t_mat4	matrix_copy(t_mat4 mat)
-// {
-// 	t_mat4	copy;
-// 	int		row;
-// 	int		column;
-
-// 	ft_bzero(&copy, sizeof(t_mat4));
-// 	row = -1;
-// 	while (++row < 4)
-// 	{
-// 		column = -1;
-// 		while (++column < 4)
-// 			copy.p[row][column] = mat.p[row][column];
-// 	}
-// 	return (copy);
-// }
-
-/*
-MULTIPLY MATRIX * MATRIX
-The product of two matrices, A and B, is the sum of the products
-across some row of A with the corresponding entries down some column of B.
-In simple words, The dot product of the first row of the first matrix
-and the first column of the second matrix will result
-in the first element of the product matrix.
-*/
-t_mat4	matrix_mult(t_mat4 mat1, t_mat4 mat2)
-{
-	int		row;
-	t_mat4	res;
-
-	res = identity_matrix();
-	row = -1;
-	while (++row < 4)
-	{
-		res.p[row][0] = (mat1.p[row][0] * mat2.p[0][0]) \
-			+ (mat1.p[row][1] * mat2.p[1][0]) \
-			+ (mat1.p[row][2] * mat2.p[2][0]) \
-			+ (mat1.p[row][3] * mat2.p[3][0]);
-		res.p[row][1] = (mat1.p[row][0] * mat2.p[0][1]) \
-			+ (mat1.p[row][1] * mat2.p[1][1]) \
-			+ (mat1.p[row][2] * mat2.p[2][1]) \
-			+ (mat1.p[row][3] * mat2.p[3][1]);
-		res.p[row][2] = (mat1.p[row][0] * mat2.p[0][2]) \
-			+ (mat1.p[row][1] * mat2.p[1][2]) \
-			+ (mat1.p[row][2] * mat2.p[2][2]) \
-			+ (mat1.p[row][3] * mat2.p[3][2]);
-		res.p[row][3] = (mat1.p[row][0] * mat2.p[0][3]) \
-			+ (mat1.p[row][1] * mat2.p[1][3]) \
-			+ (mat1.p[row][2] * mat2.p[2][3]) \
-			+ (mat1.p[row][3] * mat2.p[3][3]);
-	}
-	return (res);
-}
-
 /* 
 MULTIPLY MATRIX * VECTOR
 */

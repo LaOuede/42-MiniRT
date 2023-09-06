@@ -54,14 +54,13 @@ static void	init_directions_mouse(t_ray_info *ray)
 	camera = get_minirt()->cam_matrix;
 	aspect_ratio = (float)get_minirt()->image->width / \
 		(float)get_minirt()->image->height;
-	ray->height = atanf(get_minirt()->camera.field_of_view);
+	ray->height = atanf(get_minirt()->camera.field_of_view / 2.0f);
 	ray->width = ray->height * aspect_ratio;
 	ray->forward = get_minirt()->camera.direction;
 	ray->right = vec_scale(vec_cross(ray->forward, up_guide_mouse()), \
 		ray->width * -1);
 	ray->up = vec_scale(vec_cross(vec_norm(ray->right), ray->forward), \
 		ray->height);
-	ray->forward = vec_scale(ray->forward, 3.0f);
 	vec_reset(&ray->d);
 	camera = init_cam_matrix(ray->right, ray->up, ray->forward);
 	get_minirt()->cam_matrix = camera;

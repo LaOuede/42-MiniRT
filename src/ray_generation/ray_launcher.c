@@ -1,5 +1,6 @@
 #include "minirt.h"
 
+//d is ray direction
 t_vec3	get_d(t_ray_info ray)
 {
 	t_vec3	d;
@@ -15,6 +16,7 @@ t_vec3	get_d(t_ray_info ray)
 	return (d);
 }
 
+//init helper to the routine
 static void	init_directions(t_ray_info *ray)
 {
 	float		aspect_ratio;
@@ -23,18 +25,19 @@ static void	init_directions(t_ray_info *ray)
 	minirt = get_minirt();
 	aspect_ratio = (float)get_minirt()->image->width
 		/ (float)get_minirt()->image->height;
-	ray->height = atanf(get_minirt()->camera.field_of_view);
+	ray->height = atanf(get_minirt()->camera.field_of_view / 2.0f);
 	ray->width = ray->height * aspect_ratio;
 	ray->forward = get_minirt()->camera.direction;
 	ray->right = vec_scale(vec_cross(ray->forward, up_guide()), ray->width);
-	ray->right = vec_scale(ray->right, -1);
+	ray->right = vec_scale(ray->right, -1.0f);
 	ray->up = vec_scale(vec_cross(vec_norm(ray->right), ray->forward),
 			ray->height);
-	ray->forward = vec_scale(ray->forward, 3.0f);
+	ray->forward = vec_norm(ray->forward);
 	vec_reset(&ray->d);
 	minirt->cam_matrix = init_cam_matrix(ray->right, ray->up, ray->forward);
 }
 
+//init helper to a single ray in the routine
 static void	pre_launch_operations(t_ray_info *ray)
 {
 	ray->x = 2.0f * ((float)ray->px + 0.5f) / (float)get_minirt()->image->width
@@ -45,6 +48,7 @@ static void	pre_launch_operations(t_ray_info *ray)
 	ray->d = get_d(*ray);
 }
 
+//ray_launcher() without super-sampling
 void	*routine(void *package)
 {
 	t_thread	*thread;
@@ -68,6 +72,7 @@ void	*routine(void *package)
 	return (NULL);
 }
 
+//main function that launches the individual rays
 void	ray_launcher(void)
 {
 	int			i;

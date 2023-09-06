@@ -1,13 +1,23 @@
 #include "minirt.h"
-// /*
-// ADD 3 colors
-// */
-t_color	add_3_colors(t_color col1, t_color col2, t_color col3)
-{
-	t_color	new;
 
-	new.r = col1.r + col2.r + col3.r;
-	new.g = col1.g + col2.g + col3.g;
-	new.b = col1.b + col2.b + col3.b;
-	return (new);
+t_color	max_color(t_color color)
+{
+	float	big_color;
+	float	div_factor;
+
+	big_color = MAX(MAX(color.r, color.g), color.b);
+	if (big_color > 255.0f)
+	{
+		div_factor = big_color / 255.0f;
+		color.r = color.r / div_factor;
+		color.g = color.g / div_factor;
+		color.b = color.b / div_factor;
+	}
+	if (color.r > 255.0f)
+		color.r = 255.0f;
+	if (color.g > 255.0f)
+		color.g = 255.0f;
+	if (color.b > 255.0f)
+		color.b = 255.0f;
+	return (color);
 }

@@ -23,16 +23,6 @@ void	vec_reset(t_vec3 *v)
 	v->z = 0;
 }
 
-/*
-NEGATE
-*/
-void	vec_negate(t_vec3 v)
-{
-	v.x = -v.x;
-	v.y = -v.y;
-	v.z = -v.z;
-}
-
 t_vec3	generate_vector(float x, float y, float z)
 {
 	t_vec3	null_vector;
