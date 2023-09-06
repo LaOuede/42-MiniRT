@@ -11,6 +11,35 @@ t_vec3	calc_normal_cone(t_qdt q, t_hit *hit, t_cone *cone)
 	n = vec_norm(vec_subs(disp, vec_scale(vec_norm(cone->direction), \
 		vec_dot(disp, vec_norm(cone->direction)))));
 	return (n);
+/* 	(void) hit;
+		t_vec3	hit_point;
+	    t_vec3 n;
+    t_vec3 disp;
+	hit_point = vec_add(q.origin, vec_scale(q.d, hit->t));
+
+    float radius = tanf(cone->angle) * q.m; // Calculate the cone's radius at the hit point
+
+    disp = vec_subs(hit_point, cone->position);
+
+    // Check if the hit point is inside the cone
+    if (q.m > 0 && q.m < cone->hauteur)
+    {
+        // Calculate the normal vector as the difference between the hit point and the cone's apex
+        n = vec_subs(disp, vec_scale(cone->direction, radius));
+        n = vec_norm(n);
+    }
+    else if (q.m >= cone->hauteur)
+    {
+        // The hit point is at the apex; the normal is the cone's direction
+        n = cone->direction;
+    }
+    else
+    {
+        // The hit point is outside the cone; use the original normal calculation
+        n = vec_norm(vec_subs(disp, vec_scale(cone->direction, vec_dot(disp, cone->direction))));
+    }
+
+    return n; */
 }
 
 static void	hit_cone_norm(t_qdt q, t_hit *hit, t_cone *cone, \

@@ -12,9 +12,9 @@ void	camera_rotation_yaw(t_minirt *minirt, keys_t key)
 	t_mat4			yaw;
 	t_vec3			new_dir;
 
-	if (key == MLX_KEY_L)
-		yaw = matrix_roty(5);
 	if (key == MLX_KEY_J)
+		yaw = matrix_roty(5);
+	if (key == MLX_KEY_L)
 		yaw = matrix_roty(-5);
 	new_dir = matrix_vec_mult(yaw, minirt->camera.direction);
 	update_d(minirt, new_dir);
