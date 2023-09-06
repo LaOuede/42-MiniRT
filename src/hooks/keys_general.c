@@ -64,7 +64,7 @@ static bool	key_is_legit(mlx_key_data_t keydata)
 		|| keydata.key == MLX_KEY_M || keydata.key == MLX_KEY_1
 		|| keydata.key == MLX_KEY_2 || keydata.key == MLX_KEY_MINUS
 		|| keydata.key == MLX_KEY_EQUAL || keydata.key == MLX_KEY_ESCAPE
-		|| keydata.key == MLX_KEY_H || keydata.key == MLX_KEY_H)
+		|| keydata.key == MLX_KEY_H || keydata.key == MLX_KEY_C)
 		return (true);
 	return (false);
 }
