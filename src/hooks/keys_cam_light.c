@@ -21,20 +21,15 @@ void	keys_camera(mlx_key_data_t keydata, void *param)
 	t_minirt	*minirt;
 
 	minirt = (t_minirt *)param;
-	if (mlx_is_key_down(minirt->mlx, MLX_KEY_A)
-		|| mlx_is_key_down(minirt->mlx, MLX_KEY_D))
+	if (keydata.key == MLX_KEY_A || keydata.key == MLX_KEY_D)
 		camera_translation_x(minirt, keydata.key);
-	else if (mlx_is_key_down(minirt->mlx, MLX_KEY_W)
-		|| mlx_is_key_down(minirt->mlx, MLX_KEY_S))
+	else if (keydata.key == MLX_KEY_W || keydata.key == MLX_KEY_S)
 		camera_translation_z(minirt, keydata.key);
-	else if (mlx_is_key_down(minirt->mlx, MLX_KEY_Q)
-		|| mlx_is_key_down(minirt->mlx, MLX_KEY_E))
+	else if (keydata.key == MLX_KEY_Q || keydata.key == MLX_KEY_E)
 		camera_translation_y(minirt, keydata.key);
-	else if (mlx_is_key_down(minirt->mlx, MLX_KEY_I)
-		|| mlx_is_key_down(minirt->mlx, MLX_KEY_K))
+	else if (keydata.key == MLX_KEY_I || keydata.key == MLX_KEY_K)
 		camera_rotation_pitch(minirt, keydata.key);
-	else if (mlx_is_key_down(minirt->mlx, MLX_KEY_J)
-		|| mlx_is_key_down(minirt->mlx, MLX_KEY_L))
+	else if (keydata.key == MLX_KEY_J || keydata.key == MLX_KEY_L)
 		camera_rotation_yaw(minirt, keydata.key);
 	ray_launcher();
 }

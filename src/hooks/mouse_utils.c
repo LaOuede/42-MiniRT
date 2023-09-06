@@ -59,4 +59,9 @@ void	object_selected(t_hit hit)
 		printf("Object selected = cylinder\n");
 		get_minirt()->selected = CYLINDRE;
 	}
+	else if (hit.obj->type == CONE)
+	{
+		printf("Object selected = cone\n");
+		get_minirt()->selected = CONE;
+	}
 }

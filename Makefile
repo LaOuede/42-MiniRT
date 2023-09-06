@@ -49,6 +49,8 @@ SRCS_LIST	=	colors/colors.c \
 				colors/colors_transformations.c \
 				hooks/camera_rotation.c \
 				hooks/camera_translation.c \
+				hooks/cone_rotation.c \
+				hooks/cylinder_rotation.c \
 				hooks/light_translation.c \
 				hooks/keys_cam_light.c \
 				hooks/keys_general.c \
@@ -57,7 +59,7 @@ SRCS_LIST	=	colors/colors.c \
 				hooks/mouse.c \
 				hooks/mouse_utils.c \
 				hooks/object_translation.c \
-				hooks/object_rotation.c \
+				hooks/plane_rotation.c \
 				intersections/hit_cylinder.c \
 				intersections/hit_plane.c \
 				intersections/hit_sphere.c \
