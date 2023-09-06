@@ -24,6 +24,18 @@ t_vec3	get_cylinder_direction(t_object *object)
 	return (generate_vector(0, 0, 0));
 }
 
+t_vec3	get_cone_direction(t_object *object)
+{
+	t_cone	*cone;
+
+	if (object->type == CONE)
+	{
+		cone = (t_cone *)object->obj;
+		return (cone->direction);
+	}
+	return (generate_vector(0, 0, 0));
+}
+
 t_material	*get_obj_material(t_object *obj)
 {
 	t_sphere	*sphere;
@@ -57,12 +69,18 @@ t_material	*get_obj_material(t_object *obj)
 
 float	*get_height(t_object *object)
 {
+	t_cone		*cone;
 	t_cylindre	*cylinder;
 
 	if (object->type == CYLINDRE)
 	{
 		cylinder = (t_cylindre *)object->obj;
 		return (&cylinder->hauteur);
+	}
+	if (object->type == CONE)
+	{
+		cone = (t_cone *)object->obj;
+		return (&cone->hauteur);
 	}
 	return (NULL);
 }
@@ -81,6 +99,18 @@ float	*get_radius(t_object *object)
 	{
 		cylinder = (t_cylindre *)object->obj;
 		return (&cylinder->rayon);
+	}
+	return (NULL);
+}
+
+float	*get_angle(t_object *object)
+{
+	t_cone	*cone;
+
+	if (object->type == CONE)
+	{
+		cone = (t_cone *)object->obj;
+		return (&cone->angle);
 	}
 	return (NULL);
 }

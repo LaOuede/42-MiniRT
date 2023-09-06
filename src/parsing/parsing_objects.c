@@ -67,7 +67,8 @@ void	parse_cone(char **line, t_object *object)
 	check_error(line, SPHERE, object);
 	parse_coordinates(line[1], &cone->position);
 	parse_coordinates(line[2], &cone->direction);
-	cone->angle = ft_atof(line[3]);
-	parse_colors(line[4], &cone->color);
-	cone->material = get_material(line[5]);
+	cone->angle = ft_atof(line[3]) * (M_PI / 180.0f);
+	cone->hauteur = ft_atof(line[4]);
+	parse_colors(line[5], &cone->color);
+	cone->material = get_material(line[6]);
 }

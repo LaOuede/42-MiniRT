@@ -18,6 +18,9 @@ static void	find_closest_object(t_ray_info *ray, t_hit *closest_hit)
 		else if (object->type == CYLINDRE)
 			hit_cylinder(ray->d, object, \
 			&hit, get_minirt()->camera.position);
+		else if (object->type == CONE)
+			hit_cone(ray->d, object, \
+			&hit, get_minirt()->camera.position);
 		if (hit.obj && (first_hit_mouse(TRUE) || hit.t < closest_hit->t))
 		{
 			object_selected(hit);
@@ -98,8 +101,7 @@ void	minirt_mouse(mouse_key_t button, action_t action, \
 	{
 		mlx_get_mouse_pos(minirt->mlx, &x_mouse, &y_mouse);
 		printf("Coordinates :\n");
-		printf("x_mouse = %d\n", x_mouse);
-		printf("y_mouse = %d\n", y_mouse);
+		printf("x_mouse = %d and y_mouse = %d\n", x_mouse, y_mouse);
 		ray_mouse((float)x_mouse, (float)y_mouse);
 	}
 }

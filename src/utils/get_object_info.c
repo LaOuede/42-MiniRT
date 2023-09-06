@@ -3,6 +3,7 @@
 void	change_direction(t_object *object, t_vec3 new_direction)
 {
 	t_plan		*plane;
+	t_cone		*cone;
 	t_cylindre	*cylinder;
 
 	if (object->type == PLAN)
@@ -15,12 +16,18 @@ void	change_direction(t_object *object, t_vec3 new_direction)
 		cylinder = (t_cylindre *)object->obj;
 		cylinder->direction = new_direction;
 	}
+	if (object->type == CONE)
+	{
+		cone = (t_cone *)object->obj;
+		cone->direction = new_direction;
+	}
 }
 
 void	change_position(t_object *object, t_vec3 new_position)
 {
 	t_sphere	*sphere;
 	t_plan		*plane;
+	t_cone		*cone;
 	t_cylindre	*cylinder;
 
 	if (object->type == SPHERE)
@@ -38,12 +45,18 @@ void	change_position(t_object *object, t_vec3 new_position)
 		cylinder = (t_cylindre *)object->obj;
 		cylinder->position = new_position;
 	}
+	if (object->type == CONE)
+	{
+		cone = (t_cone *)object->obj;
+		cone->position = new_position;
+	}
 }
 
 t_vec3	get_position(t_object *object)
 {
 	t_sphere	*sphere;
 	t_plan		*plane;
+	t_cone		*cone;
 	t_cylindre	*cylinder;
 
 	if (object->type == SPHERE)
@@ -60,6 +73,11 @@ t_vec3	get_position(t_object *object)
 	{
 		cylinder = (t_cylindre *)object->obj;
 		return (cylinder->position);
+	}
+	if (object->type == CONE)
+	{
+		cone = (t_cone *)object->obj;
+		return (cone->position);
 	}
 	return (generate_vector(0, 0, 0));
 }

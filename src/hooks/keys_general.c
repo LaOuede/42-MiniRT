@@ -3,18 +3,18 @@
 /* 
 	Handles hook for program mode;
  */
-void	keys_mode(void *param)
+void	keys_mode(mlx_key_data_t keydata, void *param)
 {
 	t_minirt	*minirt;
 
 	minirt = (t_minirt *)param;
-	if (mlx_is_key_down(minirt->mlx, MLX_KEY_1))
+	if (keydata.key == MLX_KEY_1)
 	{
 		minirt->mode = NORMAL;
 		printf("Mode selected = normal sampling\n");
 		ray_launcher();
 	}
-	else if (mlx_is_key_down(minirt->mlx, MLX_KEY_2))
+	else if (keydata.key == MLX_KEY_2)
 	{
 		minirt->mode = SUPER;
 		printf("Mode selected = super sampling\n");
@@ -25,12 +25,12 @@ void	keys_mode(void *param)
 /* 
 	Handles hook for program closure;
  */
-void	keys_menu(void *param)
+void	keys_menu(mlx_key_data_t keydata, void *param)
 {
 	t_minirt	*minirt;
 
 	minirt = (t_minirt *)param;
-	if (mlx_is_key_down(minirt->mlx, MLX_KEY_M))
+	if (keydata.key ==  MLX_KEY_M)
 	{
 		print_cmd_menu1();
 		print_cmd_menu2();
@@ -41,16 +41,32 @@ void	keys_menu(void *param)
 /* 
 	Handles hook for program closure;
  */
-void	keys_exit(void *param)
+void	keys_exit(mlx_key_data_t keydata, void *param)
 {
 	t_minirt	*minirt;
 
 	minirt = (t_minirt *)param;
-	if (mlx_is_key_down(minirt->mlx, MLX_KEY_ESCAPE))
+	if (keydata.key == MLX_KEY_ESCAPE)
 	{
 		free_minirt();
 		exit(EXIT_SUCCESS);
 	}
+}
+
+static bool	key_is_legit(mlx_key_data_t keydata)
+{
+	if (keydata.key == MLX_KEY_A || keydata.key == MLX_KEY_D
+		|| keydata.key == MLX_KEY_W || keydata.key == MLX_KEY_S
+		|| keydata.key == MLX_KEY_Q || keydata.key == MLX_KEY_E
+		|| keydata.key == MLX_KEY_J || keydata.key == MLX_KEY_L
+		|| keydata.key == MLX_KEY_I || keydata.key == MLX_KEY_K
+		|| keydata.key == MLX_KEY_U || keydata.key == MLX_KEY_O
+		|| keydata.key == MLX_KEY_M || keydata.key == MLX_KEY_1
+		|| keydata.key == MLX_KEY_2 || keydata.key == MLX_KEY_MINUS
+		|| keydata.key == MLX_KEY_EQUAL || keydata.key == MLX_KEY_ESCAPE
+		|| keydata.key == MLX_KEY_H || keydata.key == MLX_KEY_H)
+		return (true);
+	return (false);
 }
 
 /**
@@ -65,9 +81,12 @@ void	keys_exit(void *param)
 void	minirt_keys(mlx_key_data_t keydata, void *param)
 {
 	(void) keydata;
-	keys_exit(param);
-	keys_menu(param);
-	keys_mode(param);
-	keys_light(param);
-	keys_object(keydata, param);
+	if (key_is_legit(keydata) == true)
+	{
+		keys_exit(keydata, param);
+		keys_menu(keydata, param);
+		keys_mode(keydata, param);
+		keys_light(param);
+		keys_object(keydata, param);
+	}
 }
