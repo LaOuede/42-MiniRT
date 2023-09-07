@@ -3,7 +3,7 @@
 /* 
 	Handles hook for program mode;
  */
-void	keys_mode(mlx_key_data_t keydata, void *param)
+static void	keys_mode(mlx_key_data_t keydata, void *param)
 {
 	t_minirt	*minirt;
 
@@ -23,14 +23,14 @@ void	keys_mode(mlx_key_data_t keydata, void *param)
 }
 
 /* 
-	Handles hook for program closure;
+	Handles hook for menu disply in terminal;
  */
-void	keys_menu(mlx_key_data_t keydata, void *param)
+static void	keys_menu(mlx_key_data_t keydata, void *param)
 {
 	t_minirt	*minirt;
 
 	minirt = (t_minirt *)param;
-	if (keydata.key ==  MLX_KEY_M)
+	if (keydata.key == MLX_KEY_M)
 	{
 		print_cmd_menu1();
 		print_cmd_menu2();
@@ -41,7 +41,7 @@ void	keys_menu(mlx_key_data_t keydata, void *param)
 /* 
 	Handles hook for program closure;
  */
-void	keys_exit(mlx_key_data_t keydata, void *param)
+static void	keys_exit(mlx_key_data_t keydata, void *param)
 {
 	t_minirt	*minirt;
 
@@ -53,6 +53,13 @@ void	keys_exit(mlx_key_data_t keydata, void *param)
 	}
 }
 
+/* 
+This function checks whether a given key is considered legitimate
+for handling certain actions in the program. It returns true if
+the key corresponds to one of the specified legitimate keys
+(e.g., movement keys, camera control keys), otherwise,
+it returns false.
+ */
 static bool	key_is_legit(mlx_key_data_t keydata)
 {
 	if (keydata.key == MLX_KEY_A || keydata.key == MLX_KEY_D
@@ -64,7 +71,8 @@ static bool	key_is_legit(mlx_key_data_t keydata)
 		|| keydata.key == MLX_KEY_M || keydata.key == MLX_KEY_1
 		|| keydata.key == MLX_KEY_2 || keydata.key == MLX_KEY_MINUS
 		|| keydata.key == MLX_KEY_EQUAL || keydata.key == MLX_KEY_ESCAPE
-		|| keydata.key == MLX_KEY_H || keydata.key == MLX_KEY_C)
+		|| keydata.key == MLX_KEY_H || keydata.key == MLX_KEY_BACKSPACE
+		|| keydata.key == MLX_KEY_C || keydata.key == MLX_KEY_R)
 		return (true);
 	return (false);
 }
@@ -86,7 +94,7 @@ void	minirt_keys(mlx_key_data_t keydata, void *param)
 		keys_exit(keydata, param);
 		keys_menu(keydata, param);
 		keys_mode(keydata, param);
-		keys_light(param);
-		keys_object(keydata, param);
+		keys_object1(keydata, param);
+		keys_object2(keydata, param);
 	}
 }

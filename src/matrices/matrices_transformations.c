@@ -1,47 +1,34 @@
 #include "minirt.h"
 
-// /*
-// MATRIX TRANSLATION
-// A translation matrix simply moves an object along one 
-// or more of the three axes.
-//  _             _
-// |  1  0  0  𝘵𝘹  |
-// |  0  1  0  𝘵𝘺  |
-// |  0  0  1  𝘵𝘻  |
-// |_ 0  0  0  1 _|
-// */
-// t_mat4	matrix_translation(float tx, float ty, float tz)
-// {
-// 	t_mat4	mat;
+/* 
+MATRIX INIT
+This function initializes a transformation matrix for our camera,
+where it aligns the camera's orientation axes (right, up, and forward)
+and sets its position. It returns this matrix, representing the
+transformation from world space to camera space.
+ */
+t_mat4	init_cam_matrix(t_vec3 right, t_vec3 up, t_vec3 forward)
+{
+	t_mat4	cam_mat;
 
-// 	mat = identity_matrix();
-// 	mat.p[0][3] = tx;
-// 	mat.p[1][3] = ty;
-// 	mat.p[2][3] = tz;
-// 	return (mat);
-// }
-
-// /*
-// MATRIX SCALE
-// A scaling transform changes the size of an object by expanding
-// or contracting all voxels or vertices along the three axes
-// by three scalar values specified in the matrix.
-//  _             _
-// |  𝘴𝘹  0  0  0  |
-// |  0  𝘴𝘺  0  0  |
-// |  0  0  𝘴𝘻  0  |
-// |_ 0  0  0  1 _|
-// */
-// t_mat4	matrix_scale(float sx, float sy, float sz)
-// {
-// 	t_mat4	mat;
-
-// 	mat = identity_matrix();
-// 	mat.p[0][0] = sx;
-// 	mat.p[1][1] = sy;
-// 	mat.p[2][2] = sz;
-// 	return (mat);
-// }
+	right = vec_norm(right);
+	up = vec_norm(up);
+	forward = vec_norm(forward);
+	cam_mat = identity_matrix();
+	cam_mat.p[0][0] = right.x;
+	cam_mat.p[0][1] = right.y;
+	cam_mat.p[0][2] = right.z;
+	cam_mat.p[1][0] = up.x;
+	cam_mat.p[1][1] = up.y;
+	cam_mat.p[1][2] = up.z;
+	cam_mat.p[2][0] = forward.x;
+	cam_mat.p[2][1] = forward.y;
+	cam_mat.p[2][2] = forward.z;
+	cam_mat.p[3][0] = get_minirt()->camera.position.x;
+	cam_mat.p[3][1] = get_minirt()->camera.position.y;
+	cam_mat.p[3][2] = get_minirt()->camera.position.z;
+	return (cam_mat);
+}
 
 /*
 MATRIX ROTATION
@@ -68,6 +55,40 @@ t_mat4	matrix_rotx(float angle)
 	mat.p[2][2] = cosf(rad);
 	return (mat);
 }
+
+// t_mat4 matrix_rotate_arbitrary(t_vec3 axis, float angle)
+// {
+//     t_mat4 mat;
+//     float cosA = cosf(angle);
+//     float sinA = sinf(angle);
+//     float oneMinusCosA = 1.0f - cosA;
+
+//     // First row
+//     mat.p[0][0] = cosA + axis.x * axis.x * oneMinusCosA;
+//     mat.p[0][1] = axis.x * axis.y * oneMinusCosA - axis.z * sinA;
+//     mat.p[0][2] = axis.x * axis.z * oneMinusCosA + axis.y * sinA;
+//     mat.p[0][3] = 0.0f;
+
+//     // Second row
+//     mat.p[1][0] = axis.y * axis.x * oneMinusCosA + axis.z * sinA;
+//     mat.p[1][1] = cosA + axis.y * axis.y * oneMinusCosA;
+//     mat.p[1][2] = axis.y * axis.z * oneMinusCosA - axis.x * sinA;
+//     mat.p[1][3] = 0.0f;
+
+//     // Third row
+//     mat.p[2][0] = axis.z * axis.x * oneMinusCosA - axis.y * sinA;
+//     mat.p[2][1] = axis.z * axis.y * oneMinusCosA + axis.x * sinA;
+//     mat.p[2][2] = cosA + axis.z * axis.z * oneMinusCosA;
+//     mat.p[2][3] = 0.0f;
+
+//     // Fourth row
+//     mat.p[3][0] = 0.0f;
+//     mat.p[3][1] = 0.0f;
+//     mat.p[3][2] = 0.0f;
+//     mat.p[3][3] = 1.0f;
+
+//     return (mat);
+// }
 
 /*
 MATRIX ROTATION

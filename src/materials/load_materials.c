@@ -6,6 +6,7 @@ void	load_materials(void)
 	load_no_material2();
 	load_moon();
 	load_earth();
-	load_water();
+	load_wood();
 	load_sun();
+	load_damier();
 }

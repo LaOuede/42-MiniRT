@@ -61,8 +61,10 @@ void	hit_cone(t_vec3 d, t_object *packed_cone, \
 	q.k = 1 + pow(tanf(cone->angle), 2);
 	q.disp = vec_subs(origin, cone->position);
 	q.a = vec_dot(d, d) - q.k * pow(vec_dot(d, vec_norm(cone->direction)), 2);
-	q.half_b = vec_dot(d, q.disp) - q.k * vec_dot(d, vec_norm(cone->direction)) * vec_dot(q.disp, vec_norm(cone->direction));
-	q.c = vec_dot(q.disp, q.disp) - q.k * pow(vec_dot(q.disp, vec_norm(cone->direction)), 2);
+	q.half_b = vec_dot(d, q.disp) - q.k * vec_dot(d, vec_norm(cone->direction)) \
+		* vec_dot(q.disp, vec_norm(cone->direction));
+	q.c = vec_dot(q.disp, q.disp) - q.k * \
+		pow(vec_dot(q.disp, vec_norm(cone->direction)), 2);
 	q.discriminant = pow(q.half_b, 2) - (q.a * q.c);
 	if (q.discriminant < 0.00001)
 	{
@@ -71,7 +73,8 @@ void	hit_cone(t_vec3 d, t_object *packed_cone, \
 		return ;
 	}
 	q.t = (-q.half_b - sqrtf(q.discriminant)) / q.a;
-	q.m = vec_dot(d, vec_norm(cone->direction)) * q.t + vec_dot(q.disp, vec_norm(cone->direction));
+	q.m = vec_dot(d, vec_norm(cone->direction)) * q.t + \
+		vec_dot(q.disp, vec_norm(cone->direction));
 	q.origin = origin;
 	q.d = d;
 	hit_cone_norm(q, hit, cone, packed_cone);

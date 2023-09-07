@@ -4,10 +4,7 @@ void	camera_translation_z(t_minirt *minirt, keys_t key)
 {
 	t_vec3	move;
 
-	move.x = minirt->cam_matrix.p[2][0];
-	move.y = minirt->cam_matrix.p[2][1];
-	move.z = minirt->cam_matrix.p[2][2];
-	move = vec_scale(move, 0.5);
+	move = move_init(minirt, 'z');
 	if (key == MLX_KEY_W)
 		minirt->camera.position = vec_add(minirt->camera.position, move);
 	else if (key == MLX_KEY_S)
@@ -18,10 +15,7 @@ void	camera_translation_y(t_minirt *minirt, keys_t key)
 {
 	t_vec3	move;
 
-	move.x = minirt->cam_matrix.p[1][0];
-	move.y = minirt->cam_matrix.p[1][1];
-	move.z = minirt->cam_matrix.p[1][2];
-	move = vec_scale(move, 0.5);
+	move = move_init(minirt, 'y');
 	if (key == MLX_KEY_Q)
 		minirt->camera.position = vec_add(minirt->camera.position, move);
 	else if (key == MLX_KEY_E)
@@ -32,10 +26,7 @@ void	camera_translation_x(t_minirt *minirt, keys_t key)
 {
 	t_vec3	move;
 
-	move.x = minirt->cam_matrix.p[0][0];
-	move.y = minirt->cam_matrix.p[0][1];
-	move.z = minirt->cam_matrix.p[0][2];
-	move = vec_scale(move, 0.5);
+	move = move_init(minirt, 'x');
 	if (key == MLX_KEY_D)
 		minirt->camera.position = vec_add(minirt->camera.position, move);
 	else if (key == MLX_KEY_A)
