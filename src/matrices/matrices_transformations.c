@@ -69,6 +69,40 @@ t_mat4	matrix_rotx(float angle)
 	return (mat);
 }
 
+// t_mat4 matrix_rotate_arbitrary(t_vec3 axis, float angle)
+// {
+//     t_mat4 mat;
+//     float cosA = cosf(angle);
+//     float sinA = sinf(angle);
+//     float oneMinusCosA = 1.0f - cosA;
+
+//     // First row
+//     mat.p[0][0] = cosA + axis.x * axis.x * oneMinusCosA;
+//     mat.p[0][1] = axis.x * axis.y * oneMinusCosA - axis.z * sinA;
+//     mat.p[0][2] = axis.x * axis.z * oneMinusCosA + axis.y * sinA;
+//     mat.p[0][3] = 0.0f;
+
+//     // Second row
+//     mat.p[1][0] = axis.y * axis.x * oneMinusCosA + axis.z * sinA;
+//     mat.p[1][1] = cosA + axis.y * axis.y * oneMinusCosA;
+//     mat.p[1][2] = axis.y * axis.z * oneMinusCosA - axis.x * sinA;
+//     mat.p[1][3] = 0.0f;
+
+//     // Third row
+//     mat.p[2][0] = axis.z * axis.x * oneMinusCosA - axis.y * sinA;
+//     mat.p[2][1] = axis.z * axis.y * oneMinusCosA + axis.x * sinA;
+//     mat.p[2][2] = cosA + axis.z * axis.z * oneMinusCosA;
+//     mat.p[2][3] = 0.0f;
+
+//     // Fourth row
+//     mat.p[3][0] = 0.0f;
+//     mat.p[3][1] = 0.0f;
+//     mat.p[3][2] = 0.0f;
+//     mat.p[3][3] = 1.0f;
+
+//     return (mat);
+// }
+
 /*
 MATRIX ROTATION
 A rotation matrix rotates an object about one of the three coordinate axes,

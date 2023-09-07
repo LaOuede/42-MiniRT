@@ -12,5 +12,5 @@ void	load_moon(void)
 	mlx_load_png("textures_png/moon/moon_normap_5.png");
 	minirt->material[MOON].shine = 0;
 	minirt->material[MOON].reflexion = 0;
-	minirt->material[WATER].specular_factor = 0;
+	minirt->material[MOON].specular_factor = 0;
 }

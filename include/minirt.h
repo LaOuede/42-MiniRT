@@ -87,10 +87,11 @@ typedef struct s_color
 # define NO_MAT 0
 # define MOON 1
 # define EARTH 2
-# define WATER 3
+# define WOOD 3
 # define SUN 4
 # define NO_MAT2 5
-# define TEXTURE_COUNT 6 //always ajust to be last texture index + 1 or leakks
+# define DAMIER 6
+# define TEXTURE_COUNT 7 //always ajust to be last texture index + 1 or leakks
 
 # define NORMAL 1
 # define SUPER 2
@@ -240,7 +241,7 @@ typedef struct s_minirt
 	t_object		*obj_selected;
 	int				selected;
 	int				mode;
-	t_material		material[6];////////////////////////////////////////////// to change
+	t_material		material[7];////////////////////////////////////////////// to change
 }					t_minirt;
 
 typedef struct s_shading
@@ -378,6 +379,7 @@ t_mat4	identity_matrix(void);
 t_mat4	init_cam_matrix(t_vec3 right, t_vec3 up, t_vec3 forward);
 t_mat4	matrix_copy(t_mat4 mat);
 t_mat4	matrix_rotx(float angle);
+// t_mat4 matrix_rotate_arbitrary(t_vec3 axis, float angle);
 t_mat4	matrix_roty(float angle);
 t_mat4	matrix_rotz(float angle);
 t_mat4	matrix_scale(float sx, float sy, float sz);
@@ -417,11 +419,12 @@ bool	shadow_ray_hits(t_hit *hit, t_list **light);
 //materials && textures
 void	load_moon(void);
 void	load_earth(void);
-void	load_water(void);
+void	load_wood(void);
 void	load_no_material(void);
 void	load_sun(void);
 void	load_materials(void);
 void	load_no_material2(void);
+void	load_damier(void);
 t_color	get_texture_color(t_hit *hit);
 void	uv_map_sphere(t_hit *hit, unsigned int *px, unsigned int *py, mlx_texture_t *image);
 void	uv_map(t_hit *hit, unsigned int *px, unsigned int *py, mlx_texture_t *image);
