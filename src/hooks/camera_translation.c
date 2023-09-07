@@ -1,9 +1,5 @@
 #include "minirt.h"
 
-/* 
-Handle camera translation along the z-axis, y-axis and x-axis,
- based on specific key inputs, and update the camera's position accordingly.
- */
 void	camera_translation_z(t_minirt *minirt, keys_t key)
 {
 	t_vec3	move;

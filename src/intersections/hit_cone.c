@@ -1,8 +1,5 @@
 #include "minirt.h"
 
-/* 
-Calculates the normal vector at the intersection point.
- */
 t_vec3	calc_normal_cone(t_qdt q, t_hit *hit, t_cone *cone)
 {
 	t_vec3	n;
@@ -15,10 +12,7 @@ t_vec3	calc_normal_cone(t_qdt q, t_hit *hit, t_cone *cone)
 		vec_dot(disp, vec_norm(cone->direction))));
 	return (n);
 }
-/* 
-Handles the logic of whether the ray hits the cone or not
-and updates the hit structure accordingly.
- */
+
 static void	hit_cone_norm(t_qdt q, t_hit *hit, t_cone *cone, \
 	t_object *packed_cone)
 {
@@ -49,10 +43,6 @@ static void	hit_cone_norm(t_qdt q, t_hit *hit, t_cone *cone, \
 }
 
 /*
-Calculate ray-cone intersections.
-It sets up the quadratic equation parameters for the cone
-and uses the discriminant to determine if there is an intersection.
-
 Equation :
 	a = D|D - (1+k*k)*(D|V)^2
 	b/2 = D|X - (1+k*k)*(D|V)*(X|V)

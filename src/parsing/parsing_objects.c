@@ -66,7 +66,7 @@ void	parse_cone(char **line, t_object *object)
 	t_cone	*cone;
 
 	cone = (t_cone *)object->obj;
-	check_error(line, CONE, object);
+	check_error(line, SPHERE, object);
 	parse_coordinates(line[1], &cone->position);
 	parse_coordinates(line[2], &cone->direction);
 	cone->angle = ft_atof(line[3]) * (M_PI / 180.0f);

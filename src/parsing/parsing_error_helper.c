@@ -23,8 +23,6 @@ int	get_count_error(int type)
 		return (BAD_ARG_COUNT_PLANE);
 	else if (type == CYLINDRE)
 		return (BAD_ARG_COUNT_CYLINDER);
-	else if (type == CONE)
-		return (BAD_ARG_COUNT_CONE);
 	else if (type == LIGHT)
 		return (BAD_ARG_COUNT_LIGHT);
 	else if (type == AMBIANT_LIGHT)

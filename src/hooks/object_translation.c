@@ -1,10 +1,5 @@
 #include "minirt.h"
 
-/* 
-Updates the position vector pos by adding or subtracting
-a specified move vector based on the direction indicated
-by the character c.
- */
 void	new_pos(t_vec3 *pos, t_vec3 move, char c)
 {
 	if (c == '-')
@@ -20,11 +15,7 @@ void	new_pos(t_vec3 *pos, t_vec3 move, char c)
 		pos->z += move.z;
 	}
 }
-/* 
-Initializes a move vector based on the given axis and camera matrix.
-Calculates move which represents a displacement in the specified
-axis relative to the camera's orientation.
- */
+
 t_vec3	move_init(t_minirt *minirt, char axis)
 {
 	t_vec3	move;

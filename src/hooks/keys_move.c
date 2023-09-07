@@ -1,8 +1,5 @@
 #include "minirt.h"
 
-/* 
-handles keyboard input for rotating objects
- */
 void	keys_rotation(mlx_key_data_t keydata, void *param)
 {
 	t_minirt	*minirt;
@@ -25,9 +22,6 @@ void	keys_rotation(mlx_key_data_t keydata, void *param)
 	ray_launcher();
 }
 
-/* 
-handles keyboard input for translating objects
- */
 void	keys_translation(mlx_key_data_t keydata, void *param)
 {
 	t_minirt	*minirt;
