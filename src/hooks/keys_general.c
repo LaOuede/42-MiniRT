@@ -89,7 +89,8 @@ static bool	key_is_legit(mlx_key_data_t keydata)
 void	minirt_keys(mlx_key_data_t keydata, void *param)
 {
 	(void) keydata;
-	if (key_is_legit(keydata) == true && keydata.action == MLX_PRESS)
+	if (key_is_legit(keydata) == true && (keydata.action == MLX_REPEAT
+		|| keydata.action == MLX_REPEAT)
 	{
 		keys_exit(keydata, param);
 		keys_menu(keydata, param);

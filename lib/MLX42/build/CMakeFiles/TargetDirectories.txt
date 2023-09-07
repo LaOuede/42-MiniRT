@@ -1,7 +1,7 @@
-/Users/macote/cursus42/miniRT/lib/MLX42/build/CMakeFiles/mlx42.dir
-/Users/macote/cursus42/miniRT/lib/MLX42/build/CMakeFiles/edit_cache.dir
-/Users/macote/cursus42/miniRT/lib/MLX42/build/CMakeFiles/rebuild_cache.dir
-/Users/macote/cursus42/miniRT/lib/MLX42/build/CMakeFiles/list_install_components.dir
-/Users/macote/cursus42/miniRT/lib/MLX42/build/CMakeFiles/install.dir
-/Users/macote/cursus42/miniRT/lib/MLX42/build/CMakeFiles/install/local.dir
-/Users/macote/cursus42/miniRT/lib/MLX42/build/CMakeFiles/install/strip.dir
+/Users/gle-roux/Desktop/Git_Hub/MiniRT/lib/MLX42/build/CMakeFiles/mlx42.dir
+/Users/gle-roux/Desktop/Git_Hub/MiniRT/lib/MLX42/build/CMakeFiles/edit_cache.dir
+/Users/gle-roux/Desktop/Git_Hub/MiniRT/lib/MLX42/build/CMakeFiles/rebuild_cache.dir
+/Users/gle-roux/Desktop/Git_Hub/MiniRT/lib/MLX42/build/CMakeFiles/list_install_components.dir
+/Users/gle-roux/Desktop/Git_Hub/MiniRT/lib/MLX42/build/CMakeFiles/install.dir
+/Users/gle-roux/Desktop/Git_Hub/MiniRT/lib/MLX42/build/CMakeFiles/install/local.dir
+/Users/gle-roux/Desktop/Git_Hub/MiniRT/lib/MLX42/build/CMakeFiles/install/strip.dir
