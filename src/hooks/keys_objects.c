@@ -1,6 +1,6 @@
 #include "minirt.h"
 
-void	keys_sphere(mlx_key_data_t keydata, void *param)
+static void	keys_sphere(mlx_key_data_t keydata, void *param)
 {
 	float		*radius;
 	t_minirt	*minirt;
@@ -14,7 +14,7 @@ void	keys_sphere(mlx_key_data_t keydata, void *param)
 	ray_launcher();
 }
 
-void	keys_cylinder(mlx_key_data_t keydata, void *param)
+static void	keys_cylinder(mlx_key_data_t keydata, void *param)
 {
 	float			*radius;
 	float			*height;
@@ -39,7 +39,7 @@ void	keys_cylinder(mlx_key_data_t keydata, void *param)
 	ray_launcher();
 }
 
-void	keys_cone(mlx_key_data_t keydata, void *param)
+static void	keys_cone(mlx_key_data_t keydata, void *param)
 {
 	float			*angle;
 	float			*height;

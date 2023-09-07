@@ -10,8 +10,8 @@ void	print_cmd_menu1(void)
 	printf("Super sampling :  2\n\n");
 	printf("---------------------- Object selection ----------------------\n\n");
 	printf("To select camera :        C\n");
+	printf("To select light :         BACKSPACE\n");
 	printf("To select an object :     Mouse button left\n");
-	printf("To print object's infos : P\n\n");
 	printf("------------------------ Translation -------------------------\n\n");
 	printf("X_axis : A --- B\n");
 	printf("Y_axis : Q --- E\n");
@@ -22,15 +22,15 @@ void	print_cmd_menu1(void)
 	printf("Z_axis : U --- O\n\n");
 	printf("-------------------------- Scale -----------------------------\n\n");
 	printf("Sphere diameter :   + --- -\n");
-	printf("Cylinder height :   H and + --- H and -\n");
-	printf("Cylinder diameter : R and + --- R and -\n\n");
+	printf("Cylinder height :   H then + --- -\n");
+	printf("Cylinder diameter : R then + --- -\n\n");
 }
 
 void	print_cmd_menu2(void)
 {
 	printf("-------------------------- Lights ----------------------------\n\n");
-	printf("Intensity : SHIFT and -\n");
-	printf("Intensity : SHIFT and +\n\n");
+	printf("Change light : SPACE\n");
+	printf("Intensity :    + --- -\n");
 	printf("--------------------------- Other ----------------------------\n\n");
 	printf("To display the commands menu : M\n");
 	printf("To quit the program :          ESC\n\n");

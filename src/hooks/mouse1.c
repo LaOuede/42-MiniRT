@@ -54,6 +54,11 @@ static void	ray_mouse(float x, float y)
 	}
 }
 
+/* 
+Handles mouse input events.
+When the left mouse button is pressed, it retrieves the current
+mouse coordinates and prints them to the console.
+ */
 void	minirt_mouse(mouse_key_t button, action_t action, \
 	modifier_key_t mods, void *param)
 {

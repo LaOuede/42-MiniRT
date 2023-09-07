@@ -25,7 +25,7 @@ void	find_closest_object(t_ray_info *ray, t_hit *closest_hit)
 			hit_cylinder(ray->d, object, \
 			&hit, get_minirt()->camera.position);
 		else if (object->type == CONE)
-		hit_cone(ray->d, object, \
+			hit_cone(ray->d, object, \
 		&hit, get_minirt()->camera.position);
 		if (hit.obj && (first_hit_mouse(TRUE) || hit.t < closest_hit->t))
 			update(closest_hit, hit);
