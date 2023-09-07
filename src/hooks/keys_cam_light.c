@@ -23,7 +23,7 @@ void	keys_camera(mlx_key_data_t keydata, void *param)
  */
 void	keys_light(mlx_key_data_t keydata, void *param)
 {
-	t_light	*light;
+	t_light		*light;
 	t_minirt	*minirt;
 
 	minirt = (t_minirt *)param;
@@ -33,10 +33,10 @@ void	keys_light(mlx_key_data_t keydata, void *param)
 	else if (keydata.key == MLX_KEY_MINUS && light->intensity > 0.1f)
 		light->intensity -= 0.1f;
 	if (keydata.key == MLX_KEY_A || keydata.key == MLX_KEY_D)
-		light_translation_x(minirt, keydata.key);
+		light_translation(minirt, keydata.key, 'x');
 	else if (keydata.key == MLX_KEY_Q || keydata.key == MLX_KEY_E)
-		light_translation_y(minirt, keydata.key);
+		light_translation(minirt, keydata.key, 'y');
 	else if (keydata.key == MLX_KEY_W || keydata.key == MLX_KEY_S)
-		light_translation_z(minirt, keydata.key);
+		light_translation(minirt, keydata.key, 'z');
 	ray_launcher();
 }

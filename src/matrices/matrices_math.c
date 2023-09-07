@@ -19,26 +19,6 @@ t_mat4	identity_matrix(void)
 	return (id_mat);
 }
 
-// /*
-// MATRIX COPY
-// */
-// t_mat4	matrix_copy(t_mat4 mat)
-// {
-// 	t_mat4	copy;
-// 	int		row;
-// 	int		column;
-
-// 	ft_bzero(&copy, sizeof(t_mat4));
-// 	row = -1;
-// 	while (++row < 4)
-// 	{
-// 		column = -1;
-// 		while (++column < 4)
-// 			copy.p[row][column] = mat.p[row][column];
-// 	}
-// 	return (copy);
-// }
-
 /*
 MULTIPLY MATRIX * MATRIX
 The product of two matrices, A and B, is the sum of the products
@@ -78,6 +58,9 @@ t_mat4	matrix_mult(t_mat4 mat1, t_mat4 mat2)
 
 /* 
 MULTIPLY MATRIX * VECTOR
+This function multiplies a 4x4 matrix by a 3D vector.
+It performs the matrix-vector multiplication and
+returns the resulting 3D vector.
 */
 t_vec3	matrix_vec_mult(t_mat4 mat, t_vec3 v)
 {

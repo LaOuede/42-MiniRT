@@ -49,17 +49,15 @@ SRCS_LIST	=	colors/colors.c \
 				colors/colors_transformations.c \
 				hooks/camera_rotation.c \
 				hooks/camera_translation.c \
-				hooks/cone_rotation.c \
-				hooks/cylinder_rotation.c \
 				hooks/light_translation.c \
 				hooks/keys_cam_light.c \
 				hooks/keys_general.c \
 				hooks/keys_move.c \
 				hooks/keys_objects.c \
-				hooks/mouse.c \
-				hooks/mouse_utils.c \
+				hooks/mouse1.c \
+				hooks/mouse2.c \
+				hooks/object_rotation.c \
 				hooks/object_translation.c \
-				hooks/plane_rotation.c \
 				intersections/hit_cylinder.c \
 				intersections/hit_plane.c \
 				intersections/hit_sphere.c \
@@ -71,7 +69,6 @@ SRCS_LIST	=	colors/colors.c \
 				materials/earth.c \
 				materials/water.c \
 				materials/sun.c \
-				matrices/matrices_init.c \
 				matrices/matrices_math.c \
 				matrices/matrices_transformations.c \
 				parsing/parsing.c \
@@ -98,6 +95,7 @@ SRCS_LIST	=	colors/colors.c \
 				utils/utils_free.c \
 				utils/utils_image.c \
 				utils/utils_menu.c \
+				utils/utils_mouse.c \
 				utils/utils_parsing.c \
 				vectors/vectors_math1.c \
 				vectors/vectors_math2.c \
