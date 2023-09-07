@@ -8,7 +8,7 @@ void	load_no_material2(void)
 	minirt->material[NO_MAT2].id = NO_MAT2;
 	minirt->material[NO_MAT2].texture = NULL;
 	minirt->material[NO_MAT2].norm_map = NULL;
-	minirt->material[NO_MAT2].reflexion = 0;
-	minirt->material[NO_MAT2].shine = 100;
-	minirt->material[NO_MAT2].specular_factor = 0.1;
+	minirt->material[NO_MAT2].reflexion = 5;
+	minirt->material[NO_MAT2].shine = 10000;
+	minirt->material[NO_MAT2].specular_factor = 0.5;
 }

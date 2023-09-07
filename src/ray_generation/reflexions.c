@@ -1,7 +1,7 @@
 #include "minirt.h"
 
 //special case for sun in reflexion to make it look more realistic
-void	sun_special_reflexion_case(t_shading *shade, float *multiplier, 
+void	sun_special_reflexion_case(t_shading *shade, float *multiplier,
 	t_hit closest_hit)
 {
 	if (get_obj_material(closest_hit.obj)->id == SUN)

@@ -35,7 +35,7 @@ float	shading_intensity(t_hit *hit, t_vec3 n, t_shading *shade, int refl)
 			continue ;
 		current_intensity = 0.0f;
 		if (get_geo_term(hit, current->content, n) > 0.0f)
-			current_intensity = MIN(get_geo_term(hit, current->content, n) 
+			current_intensity = MIN(get_geo_term(hit, current->content, n)
 					* 255.0f * get_light_intensity(current->content), 255.0f);
 		add_light_color(shade, current->content, current_intensity, refl);
 		if (MAX(current_intensity, ambiant_light) > light_intensity)
