@@ -385,6 +385,7 @@ t_mat4	matrix_rotz(float angle);
 t_mat4	matrix_scale(float sx, float sy, float sz);
 t_mat4	matrix_translation(float tx, float ty, float tz);
 t_vec3	matrix_vec_mult(t_mat4 mat, t_vec3 v);
+t_mat4	matrix_mult(t_mat4 mat1, t_mat4 mat2);
 
 //colors
 t_color	add_2_colors(t_color col1, t_color col2);
