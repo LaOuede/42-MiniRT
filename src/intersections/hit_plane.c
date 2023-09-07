@@ -1,6 +1,10 @@
 #include "minirt.h"
 
 /*
+Calculates the intersection of a ray defined by its direction d
+and origin with a plane defined by its position and normal
+direction [plane->position and plane->direction].
+
 Equation :
 	       
 	     ___a___
@@ -11,9 +15,6 @@ Equation :
 	      |___|
 			b
 
-Surface normal vector :
-	Surface normal vector at point P equals to the plane normal, 
-	unless d.n is negative, in which case N = -n.
 */
 void	hit_plane(t_vec3 d, t_object *packed_plane, t_hit *hit, t_vec3 origin)
 {
