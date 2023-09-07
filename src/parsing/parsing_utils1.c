@@ -4,7 +4,7 @@
 int	is_object(char *type)
 {
 	if (!ft_strncmp(type, "cy", 3) || !ft_strncmp(type, "sp", 3)
-		|| !ft_strncmp(type, "pl", 3))
+		|| !ft_strncmp(type, "pl", 3) || !ft_strncmp(type, "co", 3))
 		return (TRUE);
 	return (FALSE);
 }

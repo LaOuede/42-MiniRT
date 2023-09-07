@@ -53,6 +53,8 @@ char	*get_error_message(int error_code)
 		return ("Error: Not the right amount of arguments for camera");
 	else if (error_code == BAD_ARG_COUNT_CYLINDER)
 		return ("Error: Not the right amount of arguments for cylinder");
+	else if (error_code == BAD_ARG_COUNT_CONE)
+		return ("Error: Not the right amount of arguments for cone");
 	else if (error_code == BAD_ARG_COUNT_LIGHT)
 		return ("Error: Not the right amount of arguments for light");
 	else if (error_code == BAD_ARG_COUNT_PLANE)
