@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minirt.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/08 11:26:18 by macote            #+#    #+#             */
+/*   Updated: 2023/09/08 11:36:57 by gle-roux         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef MINIRT_H
 # define MINIRT_H
 
@@ -10,7 +22,7 @@
 # include <sys/time.h>
 # include <unistd.h>
 # include "../MLX42/include/MLX42/MLX42.h"
-# include "math.h"
+# include <math.h>
 
 /* -------------------SETTINGS------------------- */
 # define ERROR -1

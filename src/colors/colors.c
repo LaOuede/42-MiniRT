@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   colors.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: macote <macote@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/08 11:22:14 by macote            #+#    #+#             */
+/*   Updated: 2023/09/08 11:22:17 by macote           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minirt.h"
 
 /*
@@ -22,7 +34,7 @@ t_color	no_color(void)
 }
 
 /* 
-Returns a modified color with only the specular reflection,
+Returns a modified color with only the sp¯ecular reflection,
 where the intensity is determined by the original intensity,
 the material's specular factor, and a power function
  */

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   mouse1.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: macote <macote@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/08 11:22:49 by macote            #+#    #+#             */
+/*   Updated: 2023/09/08 11:25:51 by macote           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minirt.h"
 
 static t_vec3	get_d_mouse(t_ray_info *ray)
@@ -34,7 +46,6 @@ static void	init_directions_mouse(t_ray_info *ray)
 	camera = init_cam_matrix(ray->right, ray->up, ray->forward);
 	get_minirt()->cam_matrix = camera;
 }
-
 
 /* 
 Ray-picking objects based on mouse input in order to select an object
