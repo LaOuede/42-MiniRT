@@ -10,7 +10,6 @@
 # include <sys/time.h>
 # include <unistd.h>
 # include "../MLX42/include/MLX42/MLX42.h"
-# include <math.h>
 
 /* -------------------SETTINGS------------------- */
 # define ERROR -1

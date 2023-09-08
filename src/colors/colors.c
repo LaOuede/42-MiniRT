@@ -21,6 +21,11 @@ t_color	no_color(void)
 	return (color);
 }
 
+/* 
+Returns a modified color with only the specular reflection,
+where the intensity is determined by the original intensity,
+the material's specular factor, and a power function
+ */
 t_color	get_specular_color(t_color obj_color, t_hit *hit, float color_intensity)
 {
 	t_color	color;
