@@ -59,12 +59,12 @@ void	object_translation(t_minirt *minirt, keys_t key, char axis)
 
 	move = move_init(minirt, axis);
 	pos = get_position(minirt->obj_selected);
-	if (key == MLX_KEY_W || key == MLX_KEY_Q || key == MLX_KEY_A)
+	if (key == MLX_KEY_S || key == MLX_KEY_Q || key == MLX_KEY_A)
 	{
 		c = '-';
 		new_pos(&pos, move, c);
 	}
-	else if (key == MLX_KEY_S || key == MLX_KEY_E || key == MLX_KEY_D)
+	else if (key == MLX_KEY_W || key == MLX_KEY_E || key == MLX_KEY_D)
 	{
 		c = '+';
 		new_pos(&pos, move, c);

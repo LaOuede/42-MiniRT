@@ -15,6 +15,7 @@ t_vec3	calc_normal_cone(t_qdt q, t_hit *hit, t_cone *cone)
 		vec_dot(disp, vec_norm(cone->direction))));
 	return (n);
 }
+
 /* 
 Handles the logic of whether the ray hits the cone or not
 and updates the hit structure accordingly.
