@@ -54,6 +54,10 @@ float	vec_mag(t_vec3 v)
 	return (len);
 }
 
+/* 
+UNIT
+Returns the unit vector between two points represented by v1 and v2.
+ */
 t_vec3	vec_unit_vec(t_vec3 v1, t_vec3 v2)
 {
 	return (vec_norm(vec_subs(v1, v2)));
