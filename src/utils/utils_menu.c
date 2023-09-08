@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils_menu.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: macote <macote@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/08 11:24:47 by macote            #+#    #+#             */
+/*   Updated: 2023/09/08 11:28:06 by macote           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minirt.h"
 
 void	print_cmd_menu1(void)
@@ -10,6 +22,7 @@ void	print_cmd_menu1(void)
 	printf("Super sampling :  2\n\n");
 	printf("---------------------- Object selection ----------------------\n\n");
 	printf("To select camera :        C\n");
+	printf("To select light :         Backspace\n");
 	printf("To select an object :     Mouse button left\n");
 	printf("To print object's infos : P\n\n");
 	printf("------------------------ Translation -------------------------\n\n");
@@ -29,8 +42,8 @@ void	print_cmd_menu1(void)
 void	print_cmd_menu2(void)
 {
 	printf("-------------------------- Lights ----------------------------\n\n");
-	printf("Intensity : SHIFT and -\n");
-	printf("Intensity : SHIFT and +\n\n");
+	printf("Intensity :  -\n");
+	printf("Intensity :  +\n\n");
 	printf("--------------------------- Other ----------------------------\n\n");
 	printf("To display the commands menu : M\n");
 	printf("To quit the program :          ESC\n\n");
