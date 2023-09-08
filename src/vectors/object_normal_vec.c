@@ -1,5 +1,10 @@
 #include "minirt.h"
 
+/* 
+Surface normal vector for a sphere :
+	N = nrm(P - C)
+	P = point on the sphere and C = center of the sphere
+ */
 static t_vec3	sphere_normal(t_hit *hit)
 {
 	t_vec3	n;

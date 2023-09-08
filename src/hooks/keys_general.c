@@ -27,9 +27,7 @@ static void	keys_mode(mlx_key_data_t keydata, void *param)
  */
 static void	keys_menu(mlx_key_data_t keydata, void *param)
 {
-	t_minirt	*minirt;
-
-	minirt = (t_minirt *)param;
+	(void) param;
 	if (keydata.key == MLX_KEY_M)
 	{
 		print_cmd_menu1();
@@ -43,9 +41,7 @@ static void	keys_menu(mlx_key_data_t keydata, void *param)
  */
 static void	keys_exit(mlx_key_data_t keydata, void *param)
 {
-	t_minirt	*minirt;
-
-	minirt = (t_minirt *)param;
+	(void) param;
 	if (keydata.key == MLX_KEY_ESCAPE)
 	{
 		free_minirt();
@@ -89,7 +85,8 @@ static bool	key_is_legit(mlx_key_data_t keydata)
 void	minirt_keys(mlx_key_data_t keydata, void *param)
 {
 	(void) keydata;
-	if (key_is_legit(keydata) == true && (keydata.action == MLX_PRESS || keydata.action == MLX_REPEAT))
+	if (key_is_legit(keydata) == true \
+		&& (keydata.action == MLX_PRESS || keydata.action == MLX_REPEAT))
 	{
 		keys_exit(keydata, param);
 		keys_menu(keydata, param);

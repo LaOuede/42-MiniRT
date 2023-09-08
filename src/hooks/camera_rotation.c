@@ -1,5 +1,9 @@
 #include "minirt.h"
 
+/* 
+Updates the direction of the camera by setting
+ its components to the new direction provided as an argument.
+ */
 static void	update_d_yaw(t_minirt *minirt, t_vec3 new_dir)
 {
 	minirt->camera.direction.x = new_dir.x;
@@ -7,6 +11,11 @@ static void	update_d_yaw(t_minirt *minirt, t_vec3 new_dir)
 	minirt->camera.direction.z = new_dir.z;
 }
 
+/* 
+Performs yaw rotation of the camera based on 
+the specified key inputs (J and L), generating a yaw matrix 
+and updating the camera direction accordingly.
+ */
 void	camera_rotation_yaw(t_minirt *minirt, keys_t key)
 {
 	t_mat4	yaw;
@@ -20,6 +29,10 @@ void	camera_rotation_yaw(t_minirt *minirt, keys_t key)
 	update_d_yaw(minirt, new_dir);
 }
 
+/* 
+Updates the direction of the camera to match the third row (z-axis)
+of the camera matrix.
+ */
 static void	update_d_pitch(t_minirt *minirt)
 {
 	minirt->camera.direction.x = minirt->cam_matrix.p[2][0];
@@ -27,6 +40,11 @@ static void	update_d_pitch(t_minirt *minirt)
 	minirt->camera.direction.z = minirt->cam_matrix.p[2][2];
 }
 
+/* 
+Performs pitch rotation of the camera based on the specified 
+key inputs (I and K), generating a pitch matrix and updating 
+both the camera matrix and direction.
+ */
 void	camera_rotation_pitch(t_minirt *minirt, keys_t key)
 {
 	t_mat4	pitch;

@@ -35,6 +35,11 @@ static void	init_directions_mouse(t_ray_info *ray)
 	get_minirt()->cam_matrix = camera;
 }
 
+
+/* 
+Ray-picking objects based on mouse input in order to select an object
+on the screen
+ */
 static void	ray_mouse(float x, float y)
 {
 	t_ray_info	ray;
@@ -54,6 +59,11 @@ static void	ray_mouse(float x, float y)
 	}
 }
 
+/* 
+Handles mouse input events.
+When the left mouse button is pressed, it retrieves the current
+mouse coordinates and prints them to the console.
+ */
 void	minirt_mouse(mouse_key_t button, action_t action, \
 	modifier_key_t mods, void *param)
 {

@@ -4,9 +4,6 @@
 Combines four individual channel bytes into a single integer using
 bit-shifting
 Use with mlx_put_pixel as 4th param (uint_32 color)
-
-*** I think we don't need a so it will be silenced and assigned to 0 ???***
-
 */
 int	get_rgba(t_color color, float a)
 {
@@ -24,6 +21,11 @@ t_color	no_color(void)
 	return (color);
 }
 
+/* 
+Returns a modified color with only the specular reflection,
+where the intensity is determined by the original intensity,
+the material's specular factor, and a power function
+ */
 t_color	get_specular_color(t_color obj_color, t_hit *hit, float color_intensity)
 {
 	t_color	color;

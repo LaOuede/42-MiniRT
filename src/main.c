@@ -8,13 +8,9 @@ t_minirt	*get_minirt(void)
 	{
 		minirt = ft_calloc(1, sizeof(t_minirt));
 		minirt->selected = CAMERA;
-		{
-			printf("Object selected = camera\n");
-		}
+		printf("Object selected = camera\n");
 		minirt->mode = NORMAL;
-		{
-			printf("Mode selected = normal sampling\n");
-		}
+		printf("Mode selected = normal sampling\n");
 	}
 	return (minirt);
 }
@@ -33,7 +29,6 @@ bool	init_mlx(t_minirt *minirt)
 	return (true);
 }
 
-		// mlx_resize_image(minirt->mlx, minirt->mlx.);
 void	minirt(int fd)
 {
 	t_minirt	*minirt;

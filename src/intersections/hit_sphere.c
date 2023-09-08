@@ -1,5 +1,9 @@
 #include "minirt.h"
 
+/* 
+Handles the logic of whether the ray hits the sphere (inside or outside)
+or not and updates the hit structure accordingly.
+ */
 static void	hit_sphere_norm(t_qdt q, t_hit *hit, t_object *packed_sphere)
 {
 	q.t = (-q.b - sqrtf(q.discriminant)) / (2.0f * q.a);
@@ -25,14 +29,14 @@ static void	hit_sphere_norm(t_qdt q, t_hit *hit, t_object *packed_sphere)
 }
 
 /*
+calculates ray-cylinder intersections.
+It sets up the quadratic equation parameters for the cylinder
+and uses the discriminant to determine if there is an intersection.
+
 Equation :
 	 (d.d)t² + 2d.(p - c)t + (p - c)(p - c) - r² = 0
 	|______|  |___________| |___________________|
 		a			b				c
-
-Surface normal vector :
-	N = nrm(P - C)
-	P = point on the sphere and C = center of the sphere
 */
 void	hit_sphere(t_vec3 d, t_object *packed_sphere, t_hit *hit, t_vec3 origin)
 {

@@ -1,14 +1,19 @@
 #include "minirt.h"
 
+/* 
+handles keyboard input for rotating objects
+ */
 void	keys_rotation(mlx_key_data_t keydata, void *param)
 {
 	t_minirt	*minirt;
 
 	minirt = (t_minirt *)param;
-	if (minirt->selected == PLAN && (keydata.key == MLX_KEY_J
-			|| keydata.key == MLX_KEY_L || keydata.key == MLX_KEY_I
+	if (minirt->selected == PLAN && (keydata.key == MLX_KEY_I
 			|| keydata.key == MLX_KEY_K))
-		plane_rotation(minirt, keydata.key);
+		plane_rotation_pitch(minirt, keydata.key);
+	if (minirt->selected == PLAN && (keydata.key == MLX_KEY_J
+			|| keydata.key == MLX_KEY_L))
+		plane_rotation_roll(minirt, keydata.key);
 	if (minirt->selected == CYLINDRE && (keydata.key == MLX_KEY_J
 			|| keydata.key == MLX_KEY_L || keydata.key == MLX_KEY_I
 			|| keydata.key == MLX_KEY_K || keydata.key == MLX_KEY_L
@@ -22,6 +27,9 @@ void	keys_rotation(mlx_key_data_t keydata, void *param)
 	ray_launcher();
 }
 
+/* 
+handles keyboard input for translating objects
+ */
 void	keys_translation(mlx_key_data_t keydata, void *param)
 {
 	t_minirt	*minirt;

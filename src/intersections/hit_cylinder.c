@@ -1,6 +1,7 @@
 #include "minirt.h"
 
 /*
+Calculates the normal vector at the intersection point.
 Surface normal vector calcul :
 	// n = nrm(P-C-V*m)
 	// n = nrm( P-C - (1+k*k)*V*m )
@@ -20,6 +21,10 @@ t_vec3	calc_normal_cylinder(t_qdt q, t_hit *hit, t_cylindre *cylinder)
 	return (n);
 }
 
+/* 
+Handles the logic of whether the ray hits the cone or not
+and updates the hit structure accordingly.
+ */
 static void	hit_cylinder_norm(t_qdt q, t_hit *hit, t_cylindre *cyl, \
 	t_object *packed_cylinder)
 {
@@ -50,6 +55,10 @@ static void	hit_cylinder_norm(t_qdt q, t_hit *hit, t_cylindre *cyl, \
 }
 
 /*
+Calculate ray-cylinder intersections.
+It sets up the quadratic equation parameters for the cylinder
+and uses the discriminant to determine if there is an intersection.
+
 Equation :
 	a = D|D - (D|V)^2
 	b/2 = D|X - (D|V)*(X|V)
