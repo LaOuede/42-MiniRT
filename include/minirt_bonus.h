@@ -71,6 +71,10 @@
 # define NORMAL 1
 # define SUPER 2
 
+// Cone intersection
+# define OUTSIDE 1
+# define INSIDE 2
+
 /* ------------------STRUCTURES------------------ */
 typedef struct s_color
 {
@@ -123,6 +127,7 @@ typedef struct s_qdt
 	float	c;
 	float	t;
 	float	t1;
+	float	t2;
 	float	m;
 	float	k;
 	float	discriminant;

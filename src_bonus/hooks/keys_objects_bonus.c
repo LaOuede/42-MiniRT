@@ -61,7 +61,7 @@ void	keys_cone(mlx_key_data_t keydata, void *param)
 		*height -= 1.0f;
 	else if (keydata.key == MLX_KEY_EQUAL && flag == false)
 		*angle += 1.0f * (M_PI / 180.0f);
-	else if (keydata.key == MLX_KEY_MINUS && *angle > 1.0f && flag == false)
+	else if (keydata.key == MLX_KEY_MINUS && *angle > 0.25f && flag == false)
 		*angle -= 1.0 * (M_PI / 180.0f);
 	ray_launcher();
 }

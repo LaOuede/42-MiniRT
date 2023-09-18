@@ -18,6 +18,26 @@ t_vec3	calc_normal_cone(t_qdt q, t_hit *hit, t_cone *cone)
 	return (n);
 }
 
+static void	calculate_t(t_qdt *q, int i)
+{
+	q->t1 = (-q->half_b + sqrtf(q->discriminant)) / q->a;
+	q->t2 = (-q->half_b - sqrtf(q->discriminant)) / q->a;
+	if (i == OUTSIDE)
+	{
+		if (q->t1 < q->t2)
+			q->t = q->t1;
+		else
+			q->t = q->t2;
+	}
+	else if (i == INSIDE)
+	{
+		if (q->t1 > q->t2)
+			q->t = q->t1;
+		else
+			q->t = q->t2;
+	}
+}
+
 /* 
 Handles the logic of whether the ray hits the cone or not
 and updates the hit structure accordingly.
@@ -25,12 +45,12 @@ and updates the hit structure accordingly.
 static void	hit_cone_norm(t_qdt q, t_hit *hit, t_cone *cone, \
 	t_object *packed_cone)
 {
-	if (q.t < 0.00001 || fabs(q.m) > cone->hauteur / 2)
+	if (q.t < 0.00001f || fabs(q.m) > cone->hauteur / 2)
 	{
-		q.t = (-q.half_b + sqrtf(q.discriminant)) / q.a;
+		calculate_t(&q, INSIDE);
 		q.m = vec_dot(q.d, vec_norm(cone->direction)) * q.t + \
 			vec_dot(q.disp, vec_norm(cone->direction));
-		if (q.t < 0.00001 || fabs(q.m) > cone->hauteur / 2)
+		if (q.t < 0.00001f || fabs(q.m) > cone->hauteur / 2)
 		{
 			hit->obj = NULL;
 			hit->t = ERROR;
@@ -85,7 +105,7 @@ void	hit_cone(t_vec3 d, t_object *packed_cone, \
 		hit->t = ERROR;
 		return ;
 	}
-	q.t = (-q.half_b - sqrtf(q.discriminant)) / q.a;
+	calculate_t(&q, OUTSIDE);
 	q.m = vec_dot(d, vec_norm(cone->direction)) * q.t + \
 		vec_dot(q.disp, vec_norm(cone->direction));
 	q.origin = origin;
