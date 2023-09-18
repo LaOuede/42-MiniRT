@@ -21,11 +21,6 @@ void	keys_rotation(mlx_key_data_t keydata, void *param)
 			|| keydata.key == MLX_KEY_K || keydata.key == MLX_KEY_L
 			|| keydata.key == MLX_KEY_U || keydata.key == MLX_KEY_O))
 		cyl_rotation(minirt, keydata.key);
-	if (minirt->selected == CONE && (keydata.key == MLX_KEY_J
-			|| keydata.key == MLX_KEY_L || keydata.key == MLX_KEY_I
-			|| keydata.key == MLX_KEY_K || keydata.key == MLX_KEY_L
-			|| keydata.key == MLX_KEY_U || keydata.key == MLX_KEY_O))
-		cone_rotation(minirt, keydata.key);
 	ray_launcher();
 }
 

@@ -11,8 +11,6 @@ void	check_invalid_arg(char **line, int type, void *to_free)
 		check_cylinder_args(line, to_free);
 	else if (type == PLAN)
 		check_plane_args(line, to_free);
-	else if (type == CONE)
-		check_cone_args(line, to_free);
 	else if (type == AMBIANT_LIGHT)
 		check_amb_light_args(line, to_free);
 	else if (type == LIGHT)
@@ -38,8 +36,6 @@ char	*get_error_message2(int error_code)
 		return ("Error: Invalid argument found in plane");
 	else if (error_code == BAD_ARGS_SPHERE)
 		return ("Error: Invalid argument found in sphere");
-	else if (error_code == BAD_ARGS_CONE)
-		return ("Error: Invalid argument found in cone");
 	else
 		return ("Obscur error.");
 }
@@ -49,14 +45,14 @@ char	*get_error_message(int error_code)
 {
 	if (error_code == INVALID_OBJECT)
 		return ("Error: Unknown type of object");
+	else if (error_code == DUPLICATE_OBJECT)
+		return ("Error: Duplicate oblect (camera or light or ambiant light)");
 	else if (error_code == BAD_ARG_COUNT_AMB_LIGHT)
 		return ("Error: Not the right amount of arguments for ambiant light");
 	else if (error_code == BAD_ARG_COUNT_CAMERA)
 		return ("Error: Not the right amount of arguments for camera");
 	else if (error_code == BAD_ARG_COUNT_CYLINDER)
 		return ("Error: Not the right amount of arguments for cylinder");
-	else if (error_code == BAD_ARG_COUNT_CONE)
-		return ("Error: Not the right amount of arguments for cone");
 	else if (error_code == BAD_ARG_COUNT_LIGHT)
 		return ("Error: Not the right amount of arguments for light");
 	else if (error_code == BAD_ARG_COUNT_PLANE)

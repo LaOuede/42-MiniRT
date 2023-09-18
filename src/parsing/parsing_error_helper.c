@@ -7,12 +7,10 @@ int	expected_arg_count(int type)
 {
 	if (type == SPHERE || type == PLAN || type == LIGHT || type == CAMERA)
 		return (4);
-	else if (type == CYLINDRE || type == CONE)
+	else if (type == CYLINDRE)
 		return (6);
 	else if (type == AMBIANT_LIGHT)
 		return (3);
-	else if (type == CONE)
-		return (5);
 	return (0);
 }
 
@@ -25,8 +23,6 @@ int	get_count_error(int type)
 		return (BAD_ARG_COUNT_PLANE);
 	else if (type == CYLINDRE)
 		return (BAD_ARG_COUNT_CYLINDER);
-	else if (type == CONE)
-		return (BAD_ARG_COUNT_CONE);
 	else if (type == LIGHT)
 		return (BAD_ARG_COUNT_LIGHT);
 	else if (type == AMBIANT_LIGHT)
@@ -45,7 +41,6 @@ void	check_bad_arg_count(char **line, int type, void *to_free)
 	nb_args = 0;
 	while (line[nb_args])
 		nb_args++;
-	if (nb_args != expected_arg_count(type) && nb_args
-		- 1 != expected_arg_count(type))
+	if (nb_args != expected_arg_count(type))
 		error(line, get_count_error(type), to_free);
 }

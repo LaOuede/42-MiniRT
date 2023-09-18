@@ -62,9 +62,5 @@ t_vec3	get_normal_vec(t_hit *hit)
 	{
 		return (hit->normal);
 	}
-	else if (hit->obj->type == CONE)
-	{
-		return (hit->normal);
-	}
 	return (generate_vector(0, 0, 0));
 }

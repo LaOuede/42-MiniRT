@@ -21,6 +21,10 @@ void	new_obj(char **line)
 	{
 		fill_cylinder_info(object, line);
 	}
+	else if (!ft_strncmp(line[0], "co", 3))
+	{
+		fill_cone_info(object, line);
+	}
 	ft_lstadd_back(&get_minirt()->objects, ft_lstnew(object));
 }
 

@@ -45,7 +45,13 @@ void	check_bad_arg_count(char **line, int type, void *to_free)
 	nb_args = 0;
 	while (line[nb_args])
 		nb_args++;
-	if (nb_args != expected_arg_count(type) && nb_args
-		- 1 != expected_arg_count(type))
-		error(line, get_count_error(type), to_free);
+	if (type == SPHERE || type == PLAN)
+	{
+		if (nb_args != expected_arg_count(type) && nb_args
+			- 1 != expected_arg_count(type))
+			error(line, get_count_error(type), to_free);
+	}
+	else
+		if (nb_args != expected_arg_count(type))
+			error(line, get_count_error(type), to_free);
 }

@@ -41,31 +41,6 @@ void	keys_cylinder(mlx_key_data_t keydata, void *param)
 	ray_launcher();
 }
 
-void	keys_cone(mlx_key_data_t keydata, void *param)
-{
-	float			*angle;
-	float			*height;
-	t_minirt		*minirt;
-	static bool		flag = false;
-
-	minirt = (t_minirt *)param;
-	height = get_height(minirt->obj_selected);
-	angle = get_angle(minirt->obj_selected);
-	if (keydata.key == MLX_KEY_H)
-		flag = true;
-	else if (keydata.key == MLX_KEY_R)
-		flag = false;
-	if (keydata.key == MLX_KEY_EQUAL && flag == true)
-		*height += 1.0f;
-	else if (keydata.key == MLX_KEY_MINUS && *height > 1.0f && flag == true)
-		*height -= 1.0f;
-	else if (keydata.key == MLX_KEY_EQUAL && flag == false)
-		*angle += 1.0f * (M_PI / 180.0f);
-	else if (keydata.key == MLX_KEY_MINUS && *angle > 1.0f && flag == false)
-		*angle -= 1.0 * (M_PI / 180.0f);
-	ray_launcher();
-}
-
 void	keys_object2(mlx_key_data_t keydata, void *param)
 {
 	if (get_minirt()->selected == SPHERE)
@@ -78,12 +53,6 @@ void	keys_object2(mlx_key_data_t keydata, void *param)
 		keys_rotation(keydata, param);
 		keys_translation(keydata, param);
 		keys_cylinder(keydata, param);
-	}
-	else if (get_minirt()->selected == CONE)
-	{
-		keys_rotation(keydata, param);
-		keys_translation(keydata, param);
-		keys_cone(keydata, param);
 	}
 	else if (get_minirt()->selected == PLAN)
 	{

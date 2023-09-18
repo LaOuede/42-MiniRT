@@ -30,8 +30,6 @@ void	find_hit(t_vec3 d, t_object *object, t_hit *hit, t_vec3 origin)
 		hit_plane(d, object, hit, origin);
 	else if (object->type == CYLINDRE)
 		hit_cylinder(d, object, hit, origin);
-	else if (object->type == CONE)
-		hit_cone(d, object, hit, origin);
 }
 
 //analyses every object in the schene and finds the closest hit with the ray

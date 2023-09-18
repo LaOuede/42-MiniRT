@@ -22,10 +22,3 @@ void	fill_cylinder_info(t_object *object, char **line)
 	object->obj = ft_calloc(1, sizeof(t_cylindre));
 	parse_cylinder(line, object);
 }
-
-void	fill_cone_info(t_object *object, char **line)
-{
-	object->type = CONE;
-	object->obj = ft_calloc(1, sizeof(t_cone));
-	parse_cone(line, object);
-}

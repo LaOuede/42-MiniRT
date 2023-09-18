@@ -31,7 +31,6 @@
 # define AMBIANT_LIGHT 4
 # define LIGHT 5
 # define CAMERA 6
-# define CONE 7
 
 # define EXPECTED_SPHERE 4
 # define EXPECTED_CYLINDER 6
@@ -42,10 +41,10 @@
 
 //error codes
 # define INVALID_OBJECT 1
-# define BAD_ARG_COUNT_SPHERE 2
-# define BAD_ARG_COUNT_PLANE 3
-# define BAD_ARG_COUNT_CYLINDER 4
-# define BAD_ARG_COUNT_CONE 5
+# define DUPLICATE_OBJECT 2
+# define BAD_ARG_COUNT_SPHERE 3
+# define BAD_ARG_COUNT_PLANE 4
+# define BAD_ARG_COUNT_CYLINDER 5
 # define BAD_ARG_COUNT_LIGHT 6
 # define BAD_ARG_COUNT_AMB_LIGHT 7
 # define BAD_ARG_COUNT_CAMERA 8
@@ -55,7 +54,6 @@
 # define BAD_ARGS_AMB_LIGHT 12
 # define BAD_ARGS_LIGHT 13
 # define BAD_ARGS_CAMERA 14
-# define BAD_ARGS_CONE 15
 
 // Types of texture
 # define NO_MAT 0
@@ -175,16 +173,6 @@ typedef struct s_sphere
 
 }				t_sphere;
 
-typedef struct s_cone
-{
-	t_vec3		position;
-	t_vec3		direction;
-	float		angle;
-	float		hauteur;
-	t_color		color;
-	t_material	*material;
-}				t_cone;
-
 typedef struct s_plan
 {
 	t_color		color;
@@ -252,7 +240,6 @@ typedef struct s_minirt
 
 /* -------------------FUNCTIONS------------------- */
 //parsing
-void		fill_cone_info(t_object *object, char **line);
 void		fill_cylinder_info(t_object *object, char **line);
 void		fill_plane_info(t_object *object, char **line);
 void		fill_sphere_info(t_object *object, char **line);
@@ -262,7 +249,6 @@ void		parse_ambiant_light(char **line);
 void		parse_camera(char **line);
 void		parse_coordinates(char *coordinates, t_vec3 *position);
 void		parse_colors(char *coordinates, t_color *color);
-void		parse_cone(char **line, t_object *object);
 void		parse_cylinder(char **line, t_object *object);
 void		parse_light(char **line);
 void		parse_plane(char **line, t_object *object);
@@ -278,8 +264,6 @@ void		error(char **line, int error_code, void *to_free);
 int			expected_arg_count(int type);
 
 //intersections
-void		hit_cone(t_vec3 d, t_object *packed_cone, \
-				t_hit *hit, t_vec3 origin);
 void		hit_cylinder(t_vec3 d, t_object *packed_cylinder, \
 				t_hit *hit, t_vec3 origin);
 void		hit_plane(t_vec3 d, t_object *obj_actuel, \
@@ -291,7 +275,6 @@ void		hit_sphere(t_vec3 d, t_object *packed_sphere, \
 void		change_direction(t_object *object, t_vec3 new_direction);
 void		change_position(t_object *object, t_vec3 new_position);
 float		*get_angle(t_object *object);
-t_vec3		get_cone_direction(t_object *object);
 t_vec3		get_cylinder_direction(t_object *object);
 float		*get_height(t_object *object);
 t_color		get_light_color(void *packed_light);
@@ -306,7 +289,6 @@ float		*get_radius(t_object *object);
 //object errors
 void		check_amb_light_args(char **line, void *to_free);
 void		check_camera_args(char **line, void *to_free);
-void		check_cone_args(char **line, void *to_free);
 void		check_cylinder_args(char **line, void *to_free);
 void		check_light_args(char **line, void *to_free);
 void		check_plane_args(char **line, void *to_free);
@@ -409,7 +391,6 @@ void		camera_rotation_pitch(t_minirt *minirt, keys_t key);
 void		camera_translation_x(t_minirt *minirt, keys_t key);
 void		camera_translation_y(t_minirt *minirt, keys_t key);
 void		camera_translation_z(t_minirt *minirt, keys_t key);
-void		cone_rotation(t_minirt *minirt, keys_t key);
 void		cyl_rotation(t_minirt *minirt, keys_t key);
 void		find_closest_object(t_ray_info *ray, t_hit *closest_hit);
 bool		first_hit_mouse(bool action);

@@ -28,17 +28,29 @@ void	new_obj(char **line)
 //kind of scene info object
 void	new_scene_info(char **line)
 {
-	if (!ft_strncmp(line[0], "A", 2))
+	static int	nb_light = 0;
+	static int	nb_amb_light = 0;
+	static int	nb_camera = 0;
+
+
+	if (!ft_strncmp(line[0], "A", 2) && nb_amb_light == 0)
 	{
 		parse_ambiant_light(line);
+		nb_amb_light = 1;
 	}
-	else if (!ft_strncmp(line[0], "C", 2))
+	else if (!ft_strncmp(line[0], "C", 2) && nb_camera == 0)
 	{
 		parse_camera(line);
+		nb_camera = 1;
 	}
-	else if (!ft_strncmp(line[0], "L", 2))
+	else if (!ft_strncmp(line[0], "L", 2) && nb_light == 0)
 	{
 		parse_light(line);
+		nb_light = 1;
+	}
+	else
+	{
+		error(line, DUPLICATE_OBJECT, NULL);
 	}
 }
 
