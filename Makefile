@@ -42,6 +42,7 @@ RM		=	rm -rf
 
 # Librairies names
 NAME		=	miniRT
+NAME_B		=	miniRT_bonus
 
 # Dir. and files names
 SRCS_DIR	=	./src/
@@ -109,16 +110,87 @@ SRCS_LIST	=	colors/colors.c \
 				vectors/vectors_math3.c \
 				vectors/object_normal_vec.c \
 
-# 
 SRCS		=	$(addprefix $(SRCS_DIR), $(SRCS_LIST))
 
 OBJS_DIR	=	./obj/
 OBJS_LIST	=	$(patsubst %.c, %.o, $(SRCS_LIST))
 OBJS		=	$(addprefix $(OBJS_DIR), $(OBJS_LIST))
 
+# Dir. and files names - BONUS
+SRCS_DIR_B	=	./src_bonus/
+SRCS_LIST_B	=	colors/colors_bonus.c \
+				colors/colors_transformations_bonus.c \
+				hooks/camera_rotation_bonus.c \
+				hooks/camera_translation_bonus.c \
+				hooks/light_translation_bonus.c \
+				hooks/keys_cam_light_bonus.c \
+				hooks/keys_general_bonus.c \
+				hooks/keys_move_bonus.c \
+				hooks/keys_objects_bonus.c \
+				hooks/mouse1_bonus.c \
+				hooks/mouse2_bonus.c \
+				hooks/object_rotation_bonus.c \
+				hooks/object_translation_bonus.c \
+				intersections/hit_cylinder_bonus.c \
+				intersections/hit_plane_bonus.c \
+				intersections/hit_sphere_bonus.c \
+				intersections/hit_cone_bonus.c \
+				main_bonus.c \
+				materials/load_materials_bonus.c \
+				materials/no_material_bonus.c \
+				materials/no_material2_bonus.c \
+				materials/moon_bonus.c \
+				materials/earth_bonus.c \
+				materials/water_bonus.c \
+				materials/sun_bonus.c \
+				materials/damier_bonus.c \
+				matrices/matrices_math_bonus.c \
+				matrices/matrices_transformations_bonus.c \
+				parsing/parsing_bonus.c \
+				parsing/object_error_bonus.c \
+				parsing/scene_info_error_bonus.c \
+				parsing/fill_object_info_bonus.c \
+				parsing/parsing_error_helper_bonus.c \
+				parsing/object_error_types_bonus.c \
+				parsing/object_error_utils_bonus.c \
+				parsing/parsing_error_handling_bonus.c \
+				parsing/parsing_helper_bonus.c \
+				parsing/parsing_objects_bonus.c \
+				parsing/parsing_scene_info_bonus.c \
+				parsing/parsing_utils1_bonus.c \
+				ray_generation/ray_launcher_bonus.c \
+				ray_generation/find_closest_hit_bonus.c \
+				ray_generation/shading_bonus.c \
+				ray_generation/shading_helper_bonus.c \
+				ray_generation/reflexions_bonus.c \
+				ray_generation/super_sampling_bonus.c \
+				textures/texture_bonus.c \
+				textures/normal_map_bonus.c \
+				textures/uv_mapping_bonus.c \
+				utils/get_object_info_bonus.c \
+				utils/get_object_info2_bonus.c \
+				utils/get_object_info3_bonus.c \
+				utils/get_light_info_bonus.c \
+				utils/utils_ato_bonus.c \
+				utils/utils_free_bonus.c \
+				utils/utils_image_bonus.c \
+				utils/utils_menu_bonus.c \
+				utils/utils_mouse_bonus.c \
+				utils/utils_parsing_bonus.c \
+				vectors/vectors_math1_bonus.c \
+				vectors/vectors_math2_bonus.c \
+				vectors/vectors_math3_bonus.c \
+				vectors/object_normal_vec_bonus.c \
+
+SRCS_B		=	$(addprefix $(SRCS_DIR), $(SRCS_LIST))
+
+OBJS_LIST_B	=	$(patsubst %.c, %.o, $(SRCS_LIST))
+OBJS_B		=	$(addprefix $(OBJS_DIR), $(OBJS_LIST))
+
 # Headers
 HEADER_DIR	=	./include/
-HEADER_LIST	=	minirt.h
+HEADER_LIST	=	minirt.h \
+				minirt_bonus.h
 HEADER		=	$(addprefix $(HEADER_DIR), $(HEADER_LIST))
 
 # Libft variables
@@ -158,6 +230,12 @@ $(NAME): $(MLX42) $(LIBFT) $(OBJS)
 	@echo "\n-------------- $WIf help is needed, type $Ymake help $W--------------"
 	@echo "\n>>>>>>>>>>>>>>>>>>>>>> $YMiniRT $Wis $Gready ✅$W <<<<<<<<<<<<<<<<<<<<<\n"
 
+$(NAME_B): $(MLX42) $(LIBFT) $(OBJS_B)
+	@echo "$(ERASE_LINE)$W>>>>>>>>>>>>>>>>>> $YCONFIGURATION $Wis $Gdone ✅ $W<<<<<<<<<<<<<<<<<<<"
+	@$(CC) $(CFLAGS) $(SRCS_B) $(LIBFT) $(MLX42) $(OPEN_GL) $(GLFW) -o $(NAME_B) $(INCLUDE)
+	@echo "\n-------------- $WIf help is needed, type $Ymake help $W--------------"
+	@echo "\n>>>>>>>>>>>>>>>>>>>>>> $YMiniRT $Wis $Gready ✅$W <<<<<<<<<<<<<<<<<<<<<\n"
+
 $(MLX42):
 	@echo "\n$W>>>>>>>>>>>>>>>>>>>>>>>> $YCONFIGURATION $W<<<<<<<<<<<<<<<<<<<<<<<<\n"
 	@echo "------------------- Checking for $YBREW $Wupdate ------------------\n"
@@ -188,6 +266,14 @@ $(OBJS_DIR)%.o: $(SRCS_DIR)%.c $(HEADER)
 	@printf "$(ERASE_LINE) $YCompiling : $W$(notdir $<)"
 	@$(CC) $(CFLAGS) -c $< -o $@ $(INCLUDE)
 
+# Create all files .o (object) from files .c (source code) - BONUS
+$(OBJS_DIR)%.o: $(SRCS_DIR_B)%.c $(HEADER)
+	@printf "$(ERASE_LINE) $GCompiling : $Z$(notdir $<)"
+	@$(CC) $(CFLAGS) -c $< -o $@
+
+# Create bonus files
+bonus: dir $(NAME_B)
+
 # Remove objects
 clean:
 	@echo "\n$W>>>>>>>>>>>>>>>>>>>>>>>>>>> $YCLEANING $W<<<<<<<<<<<<<<<<<<<<<<<<<<"
@@ -200,6 +286,7 @@ fclean: clean
 	@$(RM) $(NAME)
 	@$(RM) $(LIBFT)
 	@$(RM) ./lib
+	@$(RM) $(NAME_B)
 	@echo "\n$W-------- All exec. and archives successfully $Rdeleted ❌$W--------\n"
 	@echo "$W>>>>>>>>>>>>>>>>>>>>> $YCleaning $Wis $Gdone ✅ $W<<<<<<<<<<<<<<<<<<<<<\n"
 
