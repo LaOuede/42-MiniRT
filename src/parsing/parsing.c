@@ -1,14 +1,4 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: macote <macote@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/08 11:23:51 by macote            #+#    #+#             */
-/*   Updated: 2023/09/08 11:23:52 by macote           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+
 
 #include "minirt.h"
 
@@ -30,10 +20,6 @@ void	new_obj(char **line)
 	else if (!ft_strncmp(line[0], "cy", 3))
 	{
 		fill_cylinder_info(object, line);
-	}
-	else if (!ft_strncmp(line[0], "co", 3))
-	{
-		fill_cone_info(object, line);
 	}
 	ft_lstadd_back(&get_minirt()->objects, ft_lstnew(object));
 }

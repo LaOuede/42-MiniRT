@@ -182,10 +182,10 @@ SRCS_LIST_B	=	colors/colors_bonus.c \
 				vectors/vectors_math3_bonus.c \
 				vectors/object_normal_vec_bonus.c \
 
-SRCS_B		=	$(addprefix $(SRCS_DIR), $(SRCS_LIST))
+SRCS_B		=	$(addprefix $(SRCS_DIR_B), $(SRCS_LIST_B))
 
-OBJS_LIST_B	=	$(patsubst %.c, %.o, $(SRCS_LIST))
-OBJS_B		=	$(addprefix $(OBJS_DIR), $(OBJS_LIST))
+OBJS_LIST_B	=	$(patsubst %.c, %.o, $(SRCS_LIST_B))
+OBJS_B		=	$(addprefix $(OBJS_DIR), $(OBJS_LIST_B))
 
 # Headers
 HEADER_DIR	=	./include/
@@ -317,7 +317,7 @@ int:
 # Run norminette
 norm :
 	@echo "\n$W>>>>>>>>>>>>>>>>>>>>>>>>>> $YNORMINETTE $W<<<<<<<<<<<<<<<<<<<<<<<<<<$Z\n"
-	@norminette $(SRCS) $(HEADER) $(LIBFT_DIR) $(SRCS_B)
+	@norminette $(SRCS) $(HEADER) $(HEADER_B) $(LIBFT_DIR) $(SRCS_B)
 	@echo "\n$W>>>>>>>>>>>>>>>>>>>>>>>> $YNORMINETTE ✅ $W<<<<<<<<<<<<<<<<<<<<<<<<<<"
 
 # Avoids file-target name conflicts
