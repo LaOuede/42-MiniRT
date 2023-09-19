@@ -49,6 +49,8 @@ char	*get_error_message(int error_code)
 {
 	if (error_code == INVALID_OBJECT)
 		return ("Error: Unknown type of object");
+	else if (error_code == DUPLICATE_OBJECT)
+		return ("Error: Duplicate object (camera or ambiant light)");
 	else if (error_code == BAD_ARG_COUNT_AMB_LIGHT)
 		return ("Error: Not the right amount of arguments for ambiant light");
 	else if (error_code == BAD_ARG_COUNT_CAMERA)

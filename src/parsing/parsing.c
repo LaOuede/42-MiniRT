@@ -32,7 +32,6 @@ void	new_scene_info(char **line)
 	static int	nb_amb_light = 0;
 	static int	nb_camera = 0;
 
-
 	if (!ft_strncmp(line[0], "A", 2) && nb_amb_light == 0)
 	{
 		parse_ambiant_light(line);

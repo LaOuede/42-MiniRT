@@ -8,5 +8,6 @@
 		"algorithm": "c",
 		"__node_handle": "c"
 	},
-	"cmake.configureOnOpen": false
+	"cmake.configureOnOpen": false,
+	"cmake.sourceDirectory": "/Users/gle-roux/Desktop/Git_Hub/MiniRT/MLX42"
 }
