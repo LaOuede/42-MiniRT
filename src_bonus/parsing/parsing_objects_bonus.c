@@ -6,7 +6,9 @@ t_material	*get_material(char *line)
 {
 	if (!line)
 		return (&get_minirt()->material[NO_MAT2]);
-	if (!ft_strncmp(line, "moon", 5))
+	if (!ft_strncmp(line, "mirror", 7))
+		return (&get_minirt()->material[NO_MAT]);
+	else if (!ft_strncmp(line, "moon", 5))
 		return (&get_minirt()->material[MOON]);
 	else if (!ft_strncmp(line, "earth", 6))
 		return (&get_minirt()->material[EARTH]);
@@ -14,8 +16,6 @@ t_material	*get_material(char *line)
 		return (&get_minirt()->material[WOOD]);
 	else if (!ft_strncmp(line, "sun", 4))
 		return (&get_minirt()->material[SUN]);
-	else if (!ft_strncmp(line, "mirror", 7))
-		return (&get_minirt()->material[NO_MAT]);
 	else if (!ft_strncmp(line, "damier", 7))
 		return (&get_minirt()->material[DAMIER]);
 	else

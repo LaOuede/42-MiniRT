@@ -72,7 +72,7 @@ void	calc_specular_effect(t_hit *hit, t_vec3 n, t_vec3 v, t_shading *shade)
 		}
 		current = current->next;
 	}
-	shade->intensity += coeff * (spec.intensity - shade->intensity);
+	shade->intensity += MAX(coeff, 0.01) * (spec.intensity - shade->intensity);
 	shade->color = color_add(shade->color, color_scale(spec.color, coeff));
 }
 
