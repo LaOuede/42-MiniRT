@@ -31,6 +31,12 @@ static void	init_directions(t_ray_info *ray)
 	ray->width = ray->height * aspect_ratio;
 	ray->forward = get_minirt()->camera.direction;
 	ray->right = vec_scale(vec_cross(ray->forward, up_guide()), ray->width);
+	if (ray->forward.x == 0 && ray->forward.z == 0 && ray->forward.y == 1)
+		ray->right = vec_scale(vec_cross(ray->forward, \
+		vec_norm(generate_vector(0.05, 0.95, 0))), ray->width);
+	else if (ray->forward.x == 0 && ray->forward.z == 0 && ray->forward.y == -1)
+		ray->right = vec_scale(vec_cross(ray->forward, \
+		vec_norm(generate_vector(-0.05, -0.95, 0))), ray->width);
 	ray->right = vec_scale(ray->right, -1.0f);
 	ray->up = vec_scale(vec_cross(vec_norm(ray->right), ray->forward),
 			ray->height);
