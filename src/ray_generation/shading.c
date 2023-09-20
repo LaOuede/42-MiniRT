@@ -1,4 +1,14 @@
-
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   shading.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/19 14:03:29 by gle-roux          #+#    #+#             */
+/*   Updated: 2023/09/19 14:32:38 by gle-roux         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "minirt.h"
 
@@ -72,7 +82,7 @@ void	calc_specular_effect(t_hit *hit, t_vec3 n, t_vec3 v, t_shading *shade)
 		}
 		current = current->next;
 	}
-	shade->intensity += MAX(coeff, 0.01) * (spec.intensity - shade->intensity);
+	shade->intensity += MAX(coeff, 0.1) * (spec.intensity - shade->intensity);
 	shade->color = color_add(shade->color, color_scale(spec.color, coeff));
 }
 

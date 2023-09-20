@@ -1,4 +1,14 @@
-
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing_error_helper_bonus.c                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/19 14:03:29 by gle-roux          #+#    #+#             */
+/*   Updated: 2023/09/19 14:31:07 by gle-roux         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../../include/minirt_bonus.h"
 
@@ -45,7 +55,7 @@ void	check_bad_arg_count(char **line, int type, void *to_free)
 	nb_args = 0;
 	while (line[nb_args])
 		nb_args++;
-	if (type == SPHERE || type == PLAN || type == CONE || type == CYLINDRE)
+	if (type == SPHERE || type == PLAN)
 	{
 		if (nb_args != expected_arg_count(type) && nb_args
 			- 1 != expected_arg_count(type))
