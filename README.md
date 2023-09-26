@@ -66,5 +66,5 @@ I couldn't have taken this project this far without him.
 
 <div align="center">
 
-To look at [my next 42 project](https://github.com/LaOuede/Philosophers) !
+To look at [my next 42 project](https://github.com/LaOuede/cpp) !
 </div>
