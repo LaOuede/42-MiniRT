@@ -18,7 +18,7 @@ Go to [42 Québec](https://42quebec.com/) to discover the course ! 👈
 
 <h3 align="left">What I've learned 📚</h3>
 
-I've acquired a lot of basic knowledge on C programming :
+I've acquired basic knowledge in :
 - Ray Tracing Fundamentals
 - Mathematics (vectors, matrices and trigonometry to perform ray-object intersection calculations)
 - Computer Graphics Concepts
