@@ -6,7 +6,7 @@
 
 <div align=center>
   
-The <b>MiniRT</b> project is a mini ray tracing engine. It's an introduction to computer graphics concepts and ray tracing algorithms. It involves rendering 3D scenes by casting rays from the camera into the scene, calculating intersections with objects, and simulating lighting effects. Through this project, students learn about ray-sphere intersections, shading models, and fundamental techniques used in creating realistic computer-generated images.
+The <b>MiniRT</b> project is a mini ray tracing engine. It's an introduction to computer graphics concepts and ray tracing algorithms. It involves rendering 3D scenes by casting rays from the camera into the scene, calculating intersections with objects, and simulating lighting effects. Through this project, several concepts are learned such as ray-object intersections, shading models and fundamental techniques used in creating realistic computer-generated images.
 </div>
 
 <div align="center">
