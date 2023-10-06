@@ -42,7 +42,7 @@ static void	hit_sphere_norm(t_qdt q, t_hit *hit, t_object *packed_sphere)
 
 /*
 calculates ray-cylinder intersections.
-It sets up the quadratic equation parameters for the cylinder
+It sets up the quadratic equation parameters for the sphere
 and uses the discriminant to determine if there is an intersection.
 
 Equation :
