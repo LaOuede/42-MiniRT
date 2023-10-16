@@ -6,7 +6,7 @@
 /*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 14:03:29 by gle-roux          #+#    #+#             */
-/*   Updated: 2023/09/19 14:05:11 by gle-roux         ###   ########.fr       */
+/*   Updated: 2023/10/16 14:31:33 by gle-roux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	load_wood(void)
 	minirt = get_minirt();
 	minirt->material[WOOD].id = WOOD;
 	minirt->material[WOOD].texture = \
-	mlx_load_png("textures_png/water/wod_tex.png");
+	mlx_load_png("./textures_png/water/wod_tex.png");
 	minirt->material[WOOD].norm_map = NULL;
 	minirt->material[WOOD].shine = 10000;
 	minirt->material[WOOD].reflexion = 0;

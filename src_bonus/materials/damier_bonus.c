@@ -6,7 +6,7 @@
 /*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 14:03:29 by gle-roux          #+#    #+#             */
-/*   Updated: 2023/09/19 14:09:11 by gle-roux         ###   ########.fr       */
+/*   Updated: 2023/10/16 14:31:42 by gle-roux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	load_damier(void)
 	minirt = get_minirt();
 	minirt->material[DAMIER].id = DAMIER;
 	minirt->material[DAMIER].texture = \
-	mlx_load_png("textures_png/damier/damier.png");
+	mlx_load_png("./textures_png/damier/damier.png");
 	minirt->material[DAMIER].norm_map = NULL;
 	minirt->material[DAMIER].shine = 10000;
 	minirt->material[DAMIER].reflexion = 0.1;

@@ -6,7 +6,7 @@
 /*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 14:03:29 by gle-roux          #+#    #+#             */
-/*   Updated: 2023/09/19 14:09:26 by gle-roux         ###   ########.fr       */
+/*   Updated: 2023/10/16 14:31:52 by gle-roux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	load_sun(void)
 	minirt = get_minirt();
 	minirt->material[SUN].id = SUN;
 	minirt->material[SUN].texture = \
-	mlx_load_png("textures_png/sun/8k_sun.png");
+	mlx_load_png("./textures_png/sun/8k_sun.png");
 	minirt->material[SUN].norm_map = NULL;
 	minirt->material[SUN].shine = 1000;
 	minirt->material[SUN].reflexion = 0.0000001;
