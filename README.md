@@ -55,7 +55,7 @@ make
 
 <div align="center">
   
-This project was a team effort with [Maxil Côté](https://github.com/Totoleader) ! 🚀
+This project was a team effort with Maxil Côté ! 🚀
 
 
 I couldn't have taken this project this far without him.
