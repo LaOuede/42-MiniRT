@@ -53,10 +53,13 @@ make
 <img width="2240" alt="Capture d’écran, le 2023-09-26 à 09 17 10" src="https://github.com/LaOuede/MiniRT/assets/114024436/30f62302-cc55-4678-9837-036fbdb39d39">
 <img width="2240" alt="Capture d’écran, le 2023-09-26 à 09 17 50" src="https://github.com/LaOuede/MiniRT/assets/114024436/d57fab27-61dd-4bb7-9290-bb4b79379787">
 
-<div align="center">
-  
-This project was a team effort with Maxil Côté ! 🚀
+---
 
+<h3 align="center">Collaborator 👨🏼‍🚀</h3>
+
+<div align="center">
+
+This project was a team effort with Maxil Côté ! 🚀
 
 I couldn't have taken this project this far without him.
 
