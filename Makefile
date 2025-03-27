@@ -312,10 +312,6 @@ run: all
 help:
 	@echo "$$HELP"
 
-# Open the subject
-pdf:
-	@open https://cdn.intra.42.fr/pdf/pdf/80709/fr.subject.pdf
-
 # Open rotation informations
 rot:
 	@open https://fr.wikipedia.org/wiki/Rotation_vectorielle
@@ -331,4 +327,4 @@ norm :
 	@echo "\n$W>>>>>>>>>>>>>>>>>>>>>>>> $YNORMINETTE ✅ $W<<<<<<<<<<<<<<<<<<<<<<<<<<"
 
 # Avoids file-target name conflicts
-.PHONY: all dir clean fclean re help pdf rot norm run int
+.PHONY: all dir clean fclean re help rot norm run int
